@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tracking Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="TrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBS-eI-ouf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-8m-5HX">
+                                        <rect key="frame" x="0.0" y="52" width="414" height="802"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="toggleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hgp-VZ-S28"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="centerX" secondItem="cBS-eI-ouf" secondAttribute="centerX" id="3O7-8e-MO8"/>
+                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="leading" secondItem="cBS-eI-ouf" secondAttribute="leading" id="FdJ-Z4-COQ"/>
+                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="top" secondItem="cBS-eI-ouf" secondAttribute="top" constant="52" id="gMH-dH-MgR"/>
+                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="bottom" secondItem="cBS-eI-ouf" secondAttribute="bottomMargin" id="ihd-Pz-JzI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="cBS-eI-ouf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5xe-cc-Y1d"/>
+                            <constraint firstItem="cBS-eI-ouf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9Yp-Ur-z6A"/>
+                            <constraint firstItem="cBS-eI-ouf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-44" id="BFZ-iK-2ki"/>
+                            <constraint firstItem="cBS-eI-ouf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IWa-rf-yhu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="trackingButton" destination="cTq-8m-5HX" id="hMu-4h-bwq"/>
+                        <outlet property="view" destination="cBS-eI-ouf" id="2Pf-F3-0rF"/>
+                        <outlet property="viewer" destination="cBS-eI-ouf" id="aCQ-Gj-KFy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+</document>

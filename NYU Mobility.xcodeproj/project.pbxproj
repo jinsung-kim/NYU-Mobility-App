@@ -9,13 +9,18 @@
 /* Begin PBXBuildFile section */
 		A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9724814B7C00A3433D /* AppDelegate.swift */; };
 		A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9924814B7C00A3433D /* SceneDelegate.swift */; };
-		A141FC9C24814B7C00A3433D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9B24814B7C00A3433D /* ViewController.swift */; };
+		A141FC9C24814B7C00A3433D /* TrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9B24814B7C00A3433D /* TrackingController.swift */; };
 		A141FC9F24814B7D00A3433D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A141FC9D24814B7D00A3433D /* Main.storyboard */; };
 		A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */; };
 		A141FCA424814B7E00A3433D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A141FCA324814B7E00A3433D /* Assets.xcassets */; };
 		A141FCA724814B7E00A3433D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A141FCA524814B7E00A3433D /* LaunchScreen.storyboard */; };
 		A141FCB224814B7E00A3433D /* NYU_MobilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FCB124814B7E00A3433D /* NYU_MobilityTests.swift */; };
 		A141FCBD24814B7E00A3433D /* NYU_MobilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FCBC24814B7E00A3433D /* NYU_MobilityUITests.swift */; };
+		A141FCD224816E5C00A3433D /* pause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCCD24816E5C00A3433D /* pause.mp3 */; };
+		A141FCD324816E5C00A3433D /* reset.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCCE24816E5C00A3433D /* reset.mp3 */; };
+		A141FCD424816E5C00A3433D /* resume.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCCF24816E5C00A3433D /* resume.mp3 */; };
+		A141FCD524816E5C00A3433D /* stop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD024816E5C00A3433D /* stop.mp3 */; };
+		A141FCD624816E5C00A3433D /* start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD124816E5C00A3433D /* start.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +44,7 @@
 		A141FC9424814B7C00A3433D /* NYU Mobility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYU Mobility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A141FC9724814B7C00A3433D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A141FC9924814B7C00A3433D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A141FC9B24814B7C00A3433D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A141FC9B24814B7C00A3433D /* TrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingController.swift; sourceTree = "<group>"; };
 		A141FC9E24814B7D00A3433D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A141FCA124814B7D00A3433D /* NYU_Mobility.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NYU_Mobility.xcdatamodel; sourceTree = "<group>"; };
 		A141FCA324814B7E00A3433D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +56,11 @@
 		A141FCB824814B7E00A3433D /* NYU MobilityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NYU MobilityUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A141FCBC24814B7E00A3433D /* NYU_MobilityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYU_MobilityUITests.swift; sourceTree = "<group>"; };
 		A141FCBE24814B7E00A3433D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A141FCCD24816E5C00A3433D /* pause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pause.mp3; sourceTree = "<group>"; };
+		A141FCCE24816E5C00A3433D /* reset.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = reset.mp3; sourceTree = "<group>"; };
+		A141FCCF24816E5C00A3433D /* resume.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = resume.mp3; sourceTree = "<group>"; };
+		A141FCD024816E5C00A3433D /* stop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stop.mp3; sourceTree = "<group>"; };
+		A141FCD124816E5C00A3433D /* start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = start.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,12 +111,12 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
+				A141FCD824816F6500A3433D /* Controllers */,
+				A141FCCC24816E1D00A3433D /* Sound */,
+				A141FCCA24814E6900A3433D /* Storyboards */,
 				A141FC9724814B7C00A3433D /* AppDelegate.swift */,
 				A141FC9924814B7C00A3433D /* SceneDelegate.swift */,
-				A141FC9B24814B7C00A3433D /* ViewController.swift */,
-				A141FC9D24814B7D00A3433D /* Main.storyboard */,
 				A141FCA324814B7E00A3433D /* Assets.xcassets */,
-				A141FCA524814B7E00A3433D /* LaunchScreen.storyboard */,
 				A141FCA824814B7E00A3433D /* Info.plist */,
 				A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */,
 			);
@@ -129,6 +139,35 @@
 				A141FCBE24814B7E00A3433D /* Info.plist */,
 			);
 			path = "NYU MobilityUITests";
+			sourceTree = "<group>";
+		};
+		A141FCCA24814E6900A3433D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A141FCA524814B7E00A3433D /* LaunchScreen.storyboard */,
+				A141FC9D24814B7D00A3433D /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A141FCCC24816E1D00A3433D /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				A141FCCD24816E5C00A3433D /* pause.mp3 */,
+				A141FCCE24816E5C00A3433D /* reset.mp3 */,
+				A141FCCF24816E5C00A3433D /* resume.mp3 */,
+				A141FCD124816E5C00A3433D /* start.mp3 */,
+				A141FCD024816E5C00A3433D /* stop.mp3 */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		A141FCD824816F6500A3433D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A141FC9B24814B7C00A3433D /* TrackingController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,8 +275,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A141FCA724814B7E00A3433D /* LaunchScreen.storyboard in Resources */,
+				A141FCD324816E5C00A3433D /* reset.mp3 in Resources */,
+				A141FCD224816E5C00A3433D /* pause.mp3 in Resources */,
+				A141FCD424816E5C00A3433D /* resume.mp3 in Resources */,
 				A141FCA424814B7E00A3433D /* Assets.xcassets in Resources */,
+				A141FCD624816E5C00A3433D /* start.mp3 in Resources */,
 				A141FC9F24814B7D00A3433D /* Main.storyboard in Resources */,
+				A141FCD524816E5C00A3433D /* stop.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A141FC9C24814B7C00A3433D /* ViewController.swift in Sources */,
+				A141FC9C24814B7C00A3433D /* TrackingController.swift in Sources */,
 				A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */,
 				A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */,
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
