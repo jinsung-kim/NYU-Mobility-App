@@ -1,0 +1,612 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9724814B7C00A3433D /* AppDelegate.swift */; };
+		A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9924814B7C00A3433D /* SceneDelegate.swift */; };
+		A141FC9C24814B7C00A3433D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9B24814B7C00A3433D /* ViewController.swift */; };
+		A141FC9F24814B7D00A3433D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A141FC9D24814B7D00A3433D /* Main.storyboard */; };
+		A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */; };
+		A141FCA424814B7E00A3433D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A141FCA324814B7E00A3433D /* Assets.xcassets */; };
+		A141FCA724814B7E00A3433D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A141FCA524814B7E00A3433D /* LaunchScreen.storyboard */; };
+		A141FCB224814B7E00A3433D /* NYU_MobilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FCB124814B7E00A3433D /* NYU_MobilityTests.swift */; };
+		A141FCBD24814B7E00A3433D /* NYU_MobilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FCBC24814B7E00A3433D /* NYU_MobilityUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A141FCAE24814B7E00A3433D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A141FC8C24814B7C00A3433D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A141FC9324814B7C00A3433D;
+			remoteInfo = "NYU Mobility";
+		};
+		A141FCB924814B7E00A3433D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A141FC8C24814B7C00A3433D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A141FC9324814B7C00A3433D;
+			remoteInfo = "NYU Mobility";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A141FC9424814B7C00A3433D /* NYU Mobility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYU Mobility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A141FC9724814B7C00A3433D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A141FC9924814B7C00A3433D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A141FC9B24814B7C00A3433D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A141FC9E24814B7D00A3433D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A141FCA124814B7D00A3433D /* NYU_Mobility.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NYU_Mobility.xcdatamodel; sourceTree = "<group>"; };
+		A141FCA324814B7E00A3433D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A141FCA624814B7E00A3433D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A141FCA824814B7E00A3433D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A141FCAD24814B7E00A3433D /* NYU MobilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NYU MobilityTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A141FCB124814B7E00A3433D /* NYU_MobilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYU_MobilityTests.swift; sourceTree = "<group>"; };
+		A141FCB324814B7E00A3433D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A141FCB824814B7E00A3433D /* NYU MobilityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NYU MobilityUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A141FCBC24814B7E00A3433D /* NYU_MobilityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYU_MobilityUITests.swift; sourceTree = "<group>"; };
+		A141FCBE24814B7E00A3433D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A141FC9124814B7C00A3433D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A141FCAA24814B7E00A3433D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A141FCB524814B7E00A3433D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A141FC8B24814B7C00A3433D = {
+			isa = PBXGroup;
+			children = (
+				A141FC9624814B7C00A3433D /* NYU Mobility */,
+				A141FCB024814B7E00A3433D /* NYU MobilityTests */,
+				A141FCBB24814B7E00A3433D /* NYU MobilityUITests */,
+				A141FC9524814B7C00A3433D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A141FC9524814B7C00A3433D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A141FC9424814B7C00A3433D /* NYU Mobility.app */,
+				A141FCAD24814B7E00A3433D /* NYU MobilityTests.xctest */,
+				A141FCB824814B7E00A3433D /* NYU MobilityUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
+			isa = PBXGroup;
+			children = (
+				A141FC9724814B7C00A3433D /* AppDelegate.swift */,
+				A141FC9924814B7C00A3433D /* SceneDelegate.swift */,
+				A141FC9B24814B7C00A3433D /* ViewController.swift */,
+				A141FC9D24814B7D00A3433D /* Main.storyboard */,
+				A141FCA324814B7E00A3433D /* Assets.xcassets */,
+				A141FCA524814B7E00A3433D /* LaunchScreen.storyboard */,
+				A141FCA824814B7E00A3433D /* Info.plist */,
+				A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */,
+			);
+			path = "NYU Mobility";
+			sourceTree = "<group>";
+		};
+		A141FCB024814B7E00A3433D /* NYU MobilityTests */ = {
+			isa = PBXGroup;
+			children = (
+				A141FCB124814B7E00A3433D /* NYU_MobilityTests.swift */,
+				A141FCB324814B7E00A3433D /* Info.plist */,
+			);
+			path = "NYU MobilityTests";
+			sourceTree = "<group>";
+		};
+		A141FCBB24814B7E00A3433D /* NYU MobilityUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A141FCBC24814B7E00A3433D /* NYU_MobilityUITests.swift */,
+				A141FCBE24814B7E00A3433D /* Info.plist */,
+			);
+			path = "NYU MobilityUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A141FC9324814B7C00A3433D /* NYU Mobility */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A141FCC124814B7E00A3433D /* Build configuration list for PBXNativeTarget "NYU Mobility" */;
+			buildPhases = (
+				A141FC9024814B7C00A3433D /* Sources */,
+				A141FC9124814B7C00A3433D /* Frameworks */,
+				A141FC9224814B7C00A3433D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NYU Mobility";
+			productName = "NYU Mobility";
+			productReference = A141FC9424814B7C00A3433D /* NYU Mobility.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A141FCAC24814B7E00A3433D /* NYU MobilityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A141FCC424814B7E00A3433D /* Build configuration list for PBXNativeTarget "NYU MobilityTests" */;
+			buildPhases = (
+				A141FCA924814B7E00A3433D /* Sources */,
+				A141FCAA24814B7E00A3433D /* Frameworks */,
+				A141FCAB24814B7E00A3433D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A141FCAF24814B7E00A3433D /* PBXTargetDependency */,
+			);
+			name = "NYU MobilityTests";
+			productName = "NYU MobilityTests";
+			productReference = A141FCAD24814B7E00A3433D /* NYU MobilityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A141FCB724814B7E00A3433D /* NYU MobilityUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A141FCC724814B7E00A3433D /* Build configuration list for PBXNativeTarget "NYU MobilityUITests" */;
+			buildPhases = (
+				A141FCB424814B7E00A3433D /* Sources */,
+				A141FCB524814B7E00A3433D /* Frameworks */,
+				A141FCB624814B7E00A3433D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A141FCBA24814B7E00A3433D /* PBXTargetDependency */,
+			);
+			name = "NYU MobilityUITests";
+			productName = "NYU MobilityUITests";
+			productReference = A141FCB824814B7E00A3433D /* NYU MobilityUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A141FC8C24814B7C00A3433D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Jin Kim";
+				TargetAttributes = {
+					A141FC9324814B7C00A3433D = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					A141FCAC24814B7E00A3433D = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = A141FC9324814B7C00A3433D;
+					};
+					A141FCB724814B7E00A3433D = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = A141FC9324814B7C00A3433D;
+					};
+				};
+			};
+			buildConfigurationList = A141FC8F24814B7C00A3433D /* Build configuration list for PBXProject "NYU Mobility" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A141FC8B24814B7C00A3433D;
+			productRefGroup = A141FC9524814B7C00A3433D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A141FC9324814B7C00A3433D /* NYU Mobility */,
+				A141FCAC24814B7E00A3433D /* NYU MobilityTests */,
+				A141FCB724814B7E00A3433D /* NYU MobilityUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A141FC9224814B7C00A3433D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A141FCA724814B7E00A3433D /* LaunchScreen.storyboard in Resources */,
+				A141FCA424814B7E00A3433D /* Assets.xcassets in Resources */,
+				A141FC9F24814B7D00A3433D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A141FCAB24814B7E00A3433D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A141FCB624814B7E00A3433D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A141FC9024814B7C00A3433D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A141FC9C24814B7C00A3433D /* ViewController.swift in Sources */,
+				A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */,
+				A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */,
+				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A141FCA924814B7E00A3433D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A141FCB224814B7E00A3433D /* NYU_MobilityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A141FCB424814B7E00A3433D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A141FCBD24814B7E00A3433D /* NYU_MobilityUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A141FCAF24814B7E00A3433D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A141FC9324814B7C00A3433D /* NYU Mobility */;
+			targetProxy = A141FCAE24814B7E00A3433D /* PBXContainerItemProxy */;
+		};
+		A141FCBA24814B7E00A3433D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A141FC9324814B7C00A3433D /* NYU Mobility */;
+			targetProxy = A141FCB924814B7E00A3433D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A141FC9D24814B7D00A3433D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A141FC9E24814B7D00A3433D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A141FCA524814B7E00A3433D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A141FCA624814B7E00A3433D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A141FCBF24814B7E00A3433D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A141FCC024814B7E00A3433D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A141FCC224814B7E00A3433D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UDU5C8NBFK;
+				INFOPLIST_FILE = "NYU Mobility/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jin-kim.NYU-Mobility";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A141FCC324814B7E00A3433D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UDU5C8NBFK;
+				INFOPLIST_FILE = "NYU Mobility/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jin-kim.NYU-Mobility";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A141FCC524814B7E00A3433D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UDU5C8NBFK;
+				INFOPLIST_FILE = "NYU MobilityTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jin-kim.NYU-MobilityTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYU Mobility.app/NYU Mobility";
+			};
+			name = Debug;
+		};
+		A141FCC624814B7E00A3433D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UDU5C8NBFK;
+				INFOPLIST_FILE = "NYU MobilityTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jin-kim.NYU-MobilityTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYU Mobility.app/NYU Mobility";
+			};
+			name = Release;
+		};
+		A141FCC824814B7E00A3433D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UDU5C8NBFK;
+				INFOPLIST_FILE = "NYU MobilityUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jin-kim.NYU-MobilityUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "NYU Mobility";
+			};
+			name = Debug;
+		};
+		A141FCC924814B7E00A3433D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UDU5C8NBFK;
+				INFOPLIST_FILE = "NYU MobilityUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jin-kim.NYU-MobilityUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "NYU Mobility";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A141FC8F24814B7C00A3433D /* Build configuration list for PBXProject "NYU Mobility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A141FCBF24814B7E00A3433D /* Debug */,
+				A141FCC024814B7E00A3433D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A141FCC124814B7E00A3433D /* Build configuration list for PBXNativeTarget "NYU Mobility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A141FCC224814B7E00A3433D /* Debug */,
+				A141FCC324814B7E00A3433D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A141FCC424814B7E00A3433D /* Build configuration list for PBXNativeTarget "NYU MobilityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A141FCC524814B7E00A3433D /* Debug */,
+				A141FCC624814B7E00A3433D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A141FCC724814B7E00A3433D /* Build configuration list for PBXNativeTarget "NYU MobilityUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A141FCC824814B7E00A3433D /* Debug */,
+				A141FCC924814B7E00A3433D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A141FCA124814B7D00A3433D /* NYU_Mobility.xcdatamodel */,
+			);
+			currentVersion = A141FCA124814B7D00A3433D /* NYU_Mobility.xcdatamodel */;
+			path = NYU_Mobility.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A141FC8C24814B7C00A3433D /* Project object */;
+}
