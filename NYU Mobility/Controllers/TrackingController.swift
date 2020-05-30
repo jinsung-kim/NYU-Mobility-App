@@ -50,6 +50,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         getLocationPermission()
         enableDoubleTap()
         loadData()
+        // Initial screen is white, so must set it to
+        // black so that you can see the start button
+        self.viewer.backgroundColor = UIColor.black
     }
     
     func enableDoubleTap() {
@@ -100,9 +103,14 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
+//            do {
+//                let messageData = try JSONSerialization.data(withJSONObject: travelPoints, options: .prettyPrinted)
+//                print(messageData)
+//            } catch {
+//                print("error with serialization")
+//            }
             playSound("reset")
             sender.setTitle("Start", for: .normal)
-//            self.steps = 0
             self.buttonState = 0
         case 3:
             stopTracking()
@@ -225,8 +233,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         point.setValue(long, forKeyPath: "long")
         // Save the gyroscope data
         point.setValue(gyroData, forKeyPath: "gyroData")
-        // Clear the gyroscope data
-        gyroData.removeAll()
+//        print("\(currTime) \(steps) \(lat) \(long) \(gyroData.count)")
         
         do {
           try managedContext.save()
@@ -234,6 +241,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         } catch let error as NSError {
           print("Could not save. \(error), \(error.userInfo)")
         }
+        
+        // Clear the gyroscope data
+        gyroData.removeAll()
     }
     
     /**
@@ -310,6 +320,5 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
             print("Unexpected Behavior: \(error.localizedDescription)")
         }
     }
-    
 }
 

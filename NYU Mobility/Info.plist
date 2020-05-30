@@ -20,10 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSMotionUsageDescription</key>
-    <string>Your motion will be used to track your progress</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Your location is needed to track where you go</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is needed to track where you go</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Your motion will be used to track your progress</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -54,8 +54,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
