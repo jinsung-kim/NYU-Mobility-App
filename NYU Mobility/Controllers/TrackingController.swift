@@ -6,6 +6,7 @@
 //  Copyright © 2020 Jin Kim. All rights reserved.
 //
 
+// Navigation Bar: For the settings tab later
 // https://www.youtube.com/watch?v=aW_u2nTxQ7A
 
 import UIKit
@@ -31,7 +32,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     
     // Gyro Sensor
     let motionManager: CMMotionManager = CMMotionManager()
-    var gyroData: [CMGyroData] = []
+    var gyroArray: [CMRotationRate] = []
     
     // Responsive button sounds
     var player: AVAudioPlayer?
@@ -64,20 +65,48 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     }
     
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
-            if (self.buttonState == 1) {
-                playSound("pause")
-                trackingButton.setTitle("Resume", for: .normal)
-                self.viewer.backgroundColor = UIColor.red
-                self.buttonState = 3
-                toggleButton(trackingButton)
-            } else {
-                playSound("resume")
-                trackingButton.setTitle("Pause", for: .normal)
-                self.viewer.backgroundColor = UIColor.green
-                self.buttonState = 4
-                toggleButton(trackingButton)
+        if (self.buttonState == 1) {
+            playSound("pause")
+            trackingButton.setTitle("Resume", for: .normal)
+            self.viewer.backgroundColor = UIColor.red
+            self.buttonState = 3
+            toggleButton(trackingButton)
+        } else {
+            playSound("resume")
+            trackingButton.setTitle("Pause", for: .normal)
+            self.viewer.backgroundColor = UIColor.green
+            self.buttonState = 4
+            toggleButton(trackingButton)
+        }
+    }
+    
+    // Testing purposes
+    func createExportString() -> String {
+        var time: Date
+        var steps: Int32
+        var lat: Double
+        var long: Double
+        var gyro: String
+        var export: String = NSLocalizedString("Time, Steps Taken, Lat, Long, Gyro \n", comment: "")
+        for (index, point) in travelPoints.enumerated() {
+            if (index < travelPoints.count - 1) {
+                time = (point.value(forKey: "time") as? Date)!
+                steps = (point.value(forKey: "steps") as? Int32)!
+                lat = (point.value(forKey: "lat") as? Double)!
+                long = (point.value(forKey: "long") as? Double)!
+                gyro = (point.value(forKey: "gyroArray") as? String)!
+                
+                let timeString = "\(String(describing: time))"
+                let stepString = "\(String(describing: steps))"
+                let latString = "\(String(describing: lat))"
+                let longString = "\(String(describing: long))"
+                let gyroString = "\(String(describing: gyro))"
+                
+                export += timeString + "," + stepString + "," + latString + "," + longString + "," + gyroString + "\n"
             }
         }
+        return export
+    }
     
     /**
         Used to toggle into the next state of the button and tracking process
@@ -93,22 +122,21 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     @IBAction func toggleButton(_ sender: UIButton) {
         switch(self.buttonState) {
         case 0:
+            print(getEmail())
             startTracking()
             playSound("start")
             sender.setTitle("Stop", for: .normal)
             self.buttonState = 1
         case 1:
+            saveEmail("jinsungking@gmail.com")
             stopTracking()
             playSound("stop")
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
-//            do {
-//                let messageData = try JSONSerialization.data(withJSONObject: travelPoints, options: .prettyPrinted)
-//                print(messageData)
-//            } catch {
-//                print("error with serialization")
-//            }
+            print(getEmail())
+//            print(createExportString())
+            clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)
             self.buttonState = 0
@@ -227,13 +255,13 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         let point = NSManagedObject(entity: entity,
                                      insertInto: managedContext)
         
+        let gyroString: String = generateGyroString()
+        
         point.setValue(currTime, forKeyPath: "time")
         point.setValue(steps, forKeyPath: "steps")
         point.setValue(lat, forKeyPath: "lat")
         point.setValue(long, forKeyPath: "long")
-        // Save the gyroscope data
-        point.setValue(gyroData, forKeyPath: "gyroData")
-//        print("\(currTime) \(steps) \(lat) \(long) \(gyroData.count)")
+        point.setValue(gyroString, forKeyPath: "gyroArray")
         
         do {
           try managedContext.save()
@@ -243,7 +271,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         }
         
         // Clear the gyroscope data
-        gyroData.removeAll()
+        gyroArray.removeAll()
     }
     
     /**
@@ -275,6 +303,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    func clearData() { travelPoints.removeAll() }
+    
     // Gyroscope Functions
     
     // Starts the gyroscope once it is confirmed to be available
@@ -284,8 +314,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
             self.motionManager.gyroUpdateInterval = 0.2
             self.motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
                 if let gyroData = data {
-                    self.gyroData.append(gyroData)
-    //                print(gyroData.rotationRate)
+                    self.gyroArray.append(gyroData.rotationRate)
                     // Ex (output):
                     // CMRotationRate(x: 0.6999756693840027, y: -1.379577398300171, z: -0.3633846044540405)
                 }
@@ -295,6 +324,20 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     
     // Stops the gyroscope (assuming that it is available)
     func stopGyros() { self.motionManager.stopGyroUpdates() }
+    
+    func generateGyroString() -> String {
+        var result: String = ""
+        var currPoint: String = ""
+//        for gyro in gyroArray {
+//            currPoint = "\(String(describing: gyro.x))" + "/"
+//                        + "\(String(describing: gyro.y))" + "/"
+//                        + "\(String(describing: gyro.z))" + ", "
+//            result += currPoint
+//        }
+        currPoint = "1/2/3, 4/5/6,"
+        result = currPoint
+        return result
+    }
     
     // Sound Functionality
     
@@ -319,6 +362,18 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         } catch let error {
             print("Unexpected Behavior: \(error.localizedDescription)")
         }
+    }
+    
+    func saveEmail(_ email: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(email, forKey: "email")
+//        defaults.synchronize()
+    }
+    
+    func getEmail() -> String {
+        let defaults = UserDefaults.standard
+        let email = defaults.string(forKey: "email")
+        return email!
     }
 }
 

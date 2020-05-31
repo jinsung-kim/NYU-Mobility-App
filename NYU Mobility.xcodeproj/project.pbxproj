@@ -88,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A114729824840DCF0043B04B /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
 		A141FC8B24814B7C00A3433D = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +119,7 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
+				A114729824840DCF0043B04B /* Data Model */,
 				A141FCD824816F6500A3433D /* Controllers */,
 				A141FCCC24816E1D00A3433D /* Sound */,
 				A141FCCA24814E6900A3433D /* Storyboards */,
@@ -118,7 +127,6 @@
 				A141FC9924814B7C00A3433D /* SceneDelegate.swift */,
 				A141FCA324814B7E00A3433D /* Assets.xcassets */,
 				A141FCA824814B7E00A3433D /* Info.plist */,
-				A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */,
 			);
 			path = "NYU Mobility";
 			sourceTree = "<group>";
