@@ -332,7 +332,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
                         + "\(String(describing: gyro.z))" + ", "
             result += currPoint
         }
-        result = currPoint
         return result
     }
     
