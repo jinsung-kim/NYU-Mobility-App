@@ -360,6 +360,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // Email Functionality
+    
     func saveEmail(_ email: String) {
         let defaults = UserDefaults.standard
         defaults.set(email, forKey: "email")
