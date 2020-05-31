@@ -94,7 +94,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
                 steps = (point.value(forKey: "steps") as? Int32)!
                 lat = (point.value(forKey: "lat") as? Double)!
                 long = (point.value(forKey: "long") as? Double)!
-                gyro = (point.value(forKey: "gyroArray") as? String)!
+                gyro = (point.value(forKey: "gyroArray") as? String ?? "")
                 
                 let timeString = "\(String(describing: time))"
                 let stepString = "\(String(describing: steps))"
@@ -122,20 +122,17 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     @IBAction func toggleButton(_ sender: UIButton) {
         switch(self.buttonState) {
         case 0:
-            print(getEmail())
             startTracking()
             playSound("start")
             sender.setTitle("Stop", for: .normal)
             self.buttonState = 1
         case 1:
-            saveEmail("jinsungking@gmail.com")
             stopTracking()
             playSound("stop")
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
-            print(getEmail())
-//            print(createExportString())
+            print(createExportString())
             clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)
@@ -256,6 +253,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
                                      insertInto: managedContext)
         
         let gyroString: String = generateGyroString()
+//        let gyroString: String = "1/2/3, 4/5/6"
         
         point.setValue(currTime, forKeyPath: "time")
         point.setValue(steps, forKeyPath: "steps")
@@ -263,15 +261,15 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         point.setValue(long, forKeyPath: "long")
         point.setValue(gyroString, forKeyPath: "gyroArray")
         
+        // Clear the gyroscope data after getting its string representation
+        gyroArray.removeAll()
+        
         do {
           try managedContext.save()
           travelPoints.append(point)
         } catch let error as NSError {
           print("Could not save. \(error), \(error.userInfo)")
         }
-        
-        // Clear the gyroscope data
-        gyroArray.removeAll()
     }
     
     /**
@@ -328,13 +326,12 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     func generateGyroString() -> String {
         var result: String = ""
         var currPoint: String = ""
-//        for gyro in gyroArray {
-//            currPoint = "\(String(describing: gyro.x))" + "/"
-//                        + "\(String(describing: gyro.y))" + "/"
-//                        + "\(String(describing: gyro.z))" + ", "
-//            result += currPoint
-//        }
-        currPoint = "1/2/3, 4/5/6,"
+        for gyro in gyroArray {
+            currPoint = "\(String(describing: gyro.x))" + "/"
+                        + "\(String(describing: gyro.y))" + "/"
+                        + "\(String(describing: gyro.z))" + ", "
+            result += currPoint
+        }
         result = currPoint
         return result
     }
