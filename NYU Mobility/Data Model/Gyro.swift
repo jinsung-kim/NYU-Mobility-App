@@ -2,13 +2,13 @@
 //  Gyro.swift
 //  NYU Mobility
 //
-//  Created by Jin Kim on 5/31/20.
+//  Created by Jin Kim on 6/1/20.
 //  Copyright © 2020 Jin Kim. All rights reserved.
 //
 
 import Foundation
 
-public class Gyro {
+struct Gyro: Codable {
     var x: Double
     var y: Double
     var z: Double

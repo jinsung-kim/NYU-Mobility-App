@@ -24,15 +24,15 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var trackingButton: UIButton!
     
     // Creating a new LocationManager Object
-    let locationManager: CLLocationManager = CLLocationManager()
+    private let locationManager: CLLocationManager = CLLocationManager()
     
     // Pedometer object - used to trace each step
-    let activityManager: CMMotionActivityManager = CMMotionActivityManager()
-    let pedometer: CMPedometer = CMPedometer()
+    private let activityManager: CMMotionActivityManager = CMMotionActivityManager()
+    private let pedometer: CMPedometer = CMPedometer()
     
     // Gyro Sensor
-    let motionManager: CMMotionManager = CMMotionManager()
-    var gyroArray: [CMRotationRate] = []
+    private let motionManager: CMMotionManager = CMMotionManager()
+    private var gyroArray: [Gyro] = []
     
     // Responsive button sounds
     var player: AVAudioPlayer?
@@ -253,7 +253,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
                                      insertInto: managedContext)
         
         let gyroString: String = generateGyroString()
-//        let gyroString: String = "1/2/3, 4/5/6"
         
         point.setValue(currTime, forKeyPath: "time")
         point.setValue(steps, forKeyPath: "steps")
@@ -312,7 +311,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
             self.motionManager.gyroUpdateInterval = 0.2
             self.motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
                 if let gyroData = data {
-                    self.gyroArray.append(gyroData.rotationRate)
+                    self.gyroArray.append(Gyro(gyroData.rotationRate.x,
+                                               gyroData.rotationRate.y,
+                                               gyroData.rotationRate.z))
                     // Ex (output):
                     // CMRotationRate(x: 0.6999756693840027, y: -1.379577398300171, z: -0.3633846044540405)
                 }
