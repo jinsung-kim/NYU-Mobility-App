@@ -25,6 +25,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     
     // Creating a new LocationManager Object
     private let locationManager: CLLocationManager = CLLocationManager()
+    private var locationArray: [String: [Double]] = ["long": [], "lat": []]
     
     // Pedometer object - used to trace each step
     private let activityManager: CMMotionActivityManager = CMMotionActivityManager()
@@ -150,8 +151,13 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
                 let coordinate: CLLocationCoordinate2D = location.coordinate
 
                 // ... proceed with the location and coordinates
-                self.saveData(currTime: Date(), steps: (self.steps ?? 0),
-                              lat: coordinate.latitude, long: coordinate.longitude)
+                if (self.locationArray["lat"] == nil) {
+                    self.locationArray["lat"] = [coordinate.latitude]
+                    self.locationArray["long"] = [coordinate.longitude]
+                } else {
+                    self.locationArray["lat"]!.append(coordinate.latitude)
+                    self.locationArray["long"]!.append(coordinate.longitude)
+                }
             }
             // Looks like this when debugged (city bike ride):
             // (Function): <+37.33144466,-122.03075535> +/- 30.00m
@@ -212,7 +218,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
 
             // Runs concurrently
             DispatchQueue.main.async {
-                self?.steps = Int32(truncating: pedometerData.numberOfSteps)
+                self?.saveData(currTime: Date(), steps: (pedometerData.numberOfSteps as! Int32))
             }
         }
     }
@@ -225,12 +231,13 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
             - lat: lat coordinate the user is standing at
             - long: long coordinate the user is standing at
      */
-    func saveData(currTime: Date, steps: Int32, lat: Double, long: Double) {
+    func saveData(currTime: Date, steps: Int32) {
         // JSON array implementation
-        points.append(Point(dateFormatter(), steps, lat, long, gyroDict))
+        points.append(Point(dateFormatter(), steps, self.locationArray, self.gyroDict))
         
         // Clear the gyroscope data after getting its string representation
-        gyroDict.removeAll()
+        self.gyroDict.removeAll()
+        self.locationArray.removeAll()
     }
     
     func clearData() { points.removeAll() }
