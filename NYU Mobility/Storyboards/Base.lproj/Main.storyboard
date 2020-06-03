@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,14 +12,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBS-eI-ouf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-8m-5HX">
-                                        <rect key="frame" x="0.0" y="52" width="414" height="802"/>
+                                        <rect key="frame" x="0.0" y="8" width="320" height="552"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <state key="normal" title="Start">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -31,19 +31,19 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
-                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="centerX" secondItem="cBS-eI-ouf" secondAttribute="centerX" id="3O7-8e-MO8"/>
-                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="leading" secondItem="cBS-eI-ouf" secondAttribute="leading" id="FdJ-Z4-COQ"/>
-                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="top" secondItem="cBS-eI-ouf" secondAttribute="top" constant="52" id="gMH-dH-MgR"/>
-                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="bottom" secondItem="cBS-eI-ouf" secondAttribute="bottomMargin" id="ihd-Pz-JzI"/>
+                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="bottom" secondItem="cBS-eI-ouf" secondAttribute="bottomMargin" id="EOt-r5-zrB"/>
+                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="leading" secondItem="cBS-eI-ouf" secondAttribute="leading" id="Pfb-LU-eUH"/>
+                                    <constraint firstAttribute="trailing" secondItem="cTq-8m-5HX" secondAttribute="trailing" id="VUM-uU-R4N"/>
+                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="top" secondItem="cBS-eI-ouf" secondAttribute="topMargin" id="q48-lf-ktA"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="cBS-eI-ouf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5xe-cc-Y1d"/>
-                            <constraint firstItem="cBS-eI-ouf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9Yp-Ur-z6A"/>
-                            <constraint firstItem="cBS-eI-ouf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-44" id="BFZ-iK-2ki"/>
-                            <constraint firstItem="cBS-eI-ouf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IWa-rf-yhu"/>
+                            <constraint firstItem="cBS-eI-ouf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="HVd-VV-6B5"/>
+                            <constraint firstAttribute="trailing" secondItem="cBS-eI-ouf" secondAttribute="trailing" id="Ncy-sq-gS3"/>
+                            <constraint firstAttribute="bottom" secondItem="cBS-eI-ouf" secondAttribute="bottom" id="P8c-HW-sVF"/>
+                            <constraint firstItem="cBS-eI-ouf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="U3G-kO-h88"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

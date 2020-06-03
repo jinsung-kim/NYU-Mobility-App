@@ -21,7 +21,6 @@
 		A141FCD424816E5C00A3433D /* resume.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCCF24816E5C00A3433D /* resume.mp3 */; };
 		A141FCD524816E5C00A3433D /* stop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD024816E5C00A3433D /* stop.mp3 */; };
 		A141FCD624816E5C00A3433D /* start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD124816E5C00A3433D /* start.mp3 */; };
-		A1FC5FF8248537FC001DCCD5 /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC5FF7248537FC001DCCD5 /* Gyro.swift */; };
 		A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC5FF924853A25001DCCD5 /* Point.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		A141FCCF24816E5C00A3433D /* resume.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = resume.mp3; sourceTree = "<group>"; };
 		A141FCD024816E5C00A3433D /* stop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stop.mp3; sourceTree = "<group>"; };
 		A141FCD124816E5C00A3433D /* start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = start.mp3; sourceTree = "<group>"; };
-		A1FC5FF7248537FC001DCCD5 /* Gyro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
 		A1FC5FF924853A25001DCCD5 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */,
-				A1FC5FF7248537FC001DCCD5 /* Gyro.swift */,
 				A1FC5FF924853A25001DCCD5 /* Point.swift */,
 			);
 			path = "Data Model";
@@ -324,7 +321,6 @@
 				A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */,
 				A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */,
 				A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */,
-				A1FC5FF8248537FC001DCCD5 /* Gyro.swift in Sources */,
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

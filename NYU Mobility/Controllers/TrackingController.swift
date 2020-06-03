@@ -12,7 +12,7 @@
 import UIKit
 import CoreMotion // Used to track user movement
 import CoreLocation // Used to access coordinate data
-import CoreData // Used to store data
+// import CoreData // Used to store data
 import AVFoundation // Used to play sounds
 
 class TrackingController: UIViewController, CLLocationManagerDelegate {
@@ -32,25 +32,24 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     
     // Gyro Sensor
     private let motionManager: CMMotionManager = CMMotionManager()
-    private var gyroArray: [Gyro] = []
+    private var gyroDict: [String:[Double]] = ["x": [], "y": [], "z": []] // Used to store all x, y, z values
     
     // Responsive button sounds
-    var player: AVAudioPlayer?
+    private var player: AVAudioPlayer?
     
     // Triggering the button's three states
-    var buttonState: Int = 0
+    private var buttonState: Int = 0
     
     // Used to track pedometer when saving data
-    var steps: Int32?
+    private var steps: Int32?
     
-    // Local Storage
-    var travelPoints: [NSManagedObject] = []
+    // Used for creating the JSON
+    private var points: [Point] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getLocationPermission()
         enableDoubleTap()
-        loadData()
         // Initial screen is white, so must set it to
         // black so that you can see the start button
         self.viewer.backgroundColor = UIColor.black
@@ -80,32 +79,21 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // Testing purposes
-    func createExportString() -> String {
-        var time: Date
-        var steps: Int32
-        var lat: Double
-        var long: Double
-        var gyro: String
-        var export: String = NSLocalizedString("Time, Steps Taken, Lat, Long, Gyro \n", comment: "")
-        for (index, point) in travelPoints.enumerated() {
-            if (index < travelPoints.count - 1) {
-                time = (point.value(forKey: "time") as? Date)!
-                steps = (point.value(forKey: "steps") as? Int32)!
-                lat = (point.value(forKey: "lat") as? Double)!
-                long = (point.value(forKey: "long") as? Double)!
-                gyro = (point.value(forKey: "gyroArray") as? String ?? "")
-                
-                let timeString = "\(String(describing: time))"
-                let stepString = "\(String(describing: steps))"
-                let latString = "\(String(describing: lat))"
-                let longString = "\(String(describing: long))"
-                let gyroString = "\(String(describing: gyro))"
-                
-                export += timeString + "," + stepString + "," + latString + "," + longString + "," + gyroString + "\n"
-            }
+    func dateFormatter() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        let dateString = formatter.string(from: Date())
+        return dateString
+    }
+    
+    // Generate JSON in String form
+    func generateJSON() -> String {
+        let dicArray = points.map { $0.convertToDictionary() }
+        if let data = try? JSONSerialization.data(withJSONObject: dicArray, options: .prettyPrinted) {
+            let str = String(bytes: data, encoding: .utf8)
+            return str!
         }
-        return export
+        return "There was an error generating the JSON file"
     }
     
     /**
@@ -132,7 +120,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
-            print(createExportString())
+            saveAndExport(exportString: generateJSON())
             clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)
@@ -234,73 +222,18 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         - Parameters:
             - currTime: Date in which the data has been tracked
             - stepsTaken: Steps that have been taken
-            - xCoord: x coordinate the user is standing at
-            - yCoord: y coordinate the user is standing at
+            - lat: lat coordinate the user is standing at
+            - long: long coordinate the user is standing at
      */
     func saveData(currTime: Date, steps: Int32, lat: Double, long: Double) {
-        guard let appDelegate =
-          UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext =
-          appDelegate.persistentContainer.viewContext
-        
-        
-        let entity =
-          NSEntityDescription.entity(forEntityName: "CurrentSeq",
-                                     in: managedContext)!
-        
-        let point = NSManagedObject(entity: entity,
-                                     insertInto: managedContext)
-        
-        let gyroString: String = generateGyroString()
-        
-        point.setValue(currTime, forKeyPath: "time")
-        point.setValue(steps, forKeyPath: "steps")
-        point.setValue(lat, forKeyPath: "lat")
-        point.setValue(long, forKeyPath: "long")
-        point.setValue(gyroString, forKeyPath: "gyroArray")
+        // JSON array implementation
+        points.append(Point(dateFormatter(), steps, lat, long, gyroDict))
         
         // Clear the gyroscope data after getting its string representation
-        gyroArray.removeAll()
-        
-        do {
-          try managedContext.save()
-          travelPoints.append(point)
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
+        gyroDict.removeAll()
     }
     
-    /**
-       Loads all of the NSManagedObject array, so that it can be accessed by the device
-       - Parameters:
-           - currTime: Date in which the data has been tracked
-           - stepsTaken: Steps that have been taken
-           - xCoord: x coordinate the user is standing at
-           - yCoord: y coordinate the user is standing at
-    */
-    func loadData() {
-        guard let appDelegate =
-          UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext =
-          appDelegate.persistentContainer.viewContext
-        
-        //2
-        let fetchRequest =
-          NSFetchRequest<NSManagedObject>(entityName: "CurrentSeq")
-        
-        //3
-        do {
-          travelPoints = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-          print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
-    
-    func clearData() { travelPoints.removeAll() }
+    func clearData() { points.removeAll() }
     
     // Gyroscope Functions
     
@@ -311,9 +244,15 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
             self.motionManager.gyroUpdateInterval = 0.2
             self.motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
                 if let gyroData = data {
-                    self.gyroArray.append(Gyro(gyroData.rotationRate.x,
-                                               gyroData.rotationRate.y,
-                                               gyroData.rotationRate.z))
+                    if (self.gyroDict["x"] == nil) { // No entries for this point yet
+                        self.gyroDict["x"] = [gyroData.rotationRate.x]
+                        self.gyroDict["y"] = [gyroData.rotationRate.y]
+                        self.gyroDict["z"] = [gyroData.rotationRate.z]
+                    } else { // We know there are already values inserted
+                        self.gyroDict["x"]!.append(gyroData.rotationRate.x)
+                        self.gyroDict["y"]!.append(gyroData.rotationRate.y)
+                        self.gyroDict["z"]!.append(gyroData.rotationRate.z)
+                    }
                     // Ex (output):
                     // CMRotationRate(x: 0.6999756693840027, y: -1.379577398300171, z: -0.3633846044540405)
                 }
@@ -323,18 +262,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     
     // Stops the gyroscope (assuming that it is available)
     func stopGyros() { self.motionManager.stopGyroUpdates() }
-    
-    func generateGyroString() -> String {
-        var result: String = ""
-        var currPoint: String = ""
-        for gyro in gyroArray {
-            currPoint = "\(String(describing: gyro.x))" + "/"
-                        + "\(String(describing: gyro.y))" + "/"
-                        + "\(String(describing: gyro.z))" + ", "
-            result += currPoint
-        }
-        return result
-    }
     
     // Sound Functionality
     
@@ -361,12 +288,47 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // Export Functionality
+    func saveAndExport(exportString: String) {
+            let exportFilePath = NSTemporaryDirectory() + "export.json"
+            let exportFileUrl = NSURL(fileURLWithPath: exportFilePath)
+            FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil)
+            var fileHandle: FileHandle? = nil
+            // Try
+            do {
+                fileHandle = try FileHandle(forWritingTo: exportFileUrl as URL)
+            } catch {
+                print("Error with File Handle")
+            }
+            
+            if (fileHandle != nil) {
+                fileHandle?.seekToEndOfFile()
+                let jsonData = exportString.data(using: String.Encoding.utf8, allowLossyConversion: false)
+                // Writes the JSON data into the file
+                fileHandle?.write(jsonData!)
+                fileHandle?.closeFile()
+                
+                let firstActivityItem = URL(fileURLWithPath: exportFilePath)
+                let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
+                
+                // Taking out some of the options that won't be needed / applicable
+                activityViewController.excludedActivityTypes = [
+                    UIActivity.ActivityType.assignToContact,
+                    UIActivity.ActivityType.saveToCameraRoll,
+                    UIActivity.ActivityType.postToFlickr,
+                    UIActivity.ActivityType.postToVimeo,
+                    UIActivity.ActivityType.postToTencentWeibo
+                ]
+                
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+        }
+    
     // Email Functionality
     
     func saveEmail(_ email: String) {
         let defaults = UserDefaults.standard
         defaults.set(email, forKey: "email")
-//        defaults.synchronize()
     }
     
     func getEmail() -> String {

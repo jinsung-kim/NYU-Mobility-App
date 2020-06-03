@@ -9,17 +9,23 @@
 import Foundation
 
 struct Point: Codable {
-    var time: Date
+    var time: String
     var steps: Int32
     var lat: Double
     var long: Double
-    var gyroData: [Gyro]?
+    var gyroData: [String: [Double]] // All x values held in the same place, y values, z values
     
-    init(_ time: Date, _ steps: Int32, _ lat: Double, _ long: Double, _ gyroData: [Gyro]) {
+    init(_ time: String, _ steps: Int32, _ lat: Double, _ long: Double, _ gyroData: [String: [Double]]) {
         self.time = time
         self.steps = steps
         self.lat = lat
         self.long = long
         self.gyroData = gyroData
+    }
+    
+    func convertToDictionary() -> [String : Any] {
+        let dic: [String: Any] = ["time": self.time, "steps": self.steps, "lat": self.lat,
+                                  "long": self.long, "gyroData": self.gyroData]
+        return dic
     }
 }
