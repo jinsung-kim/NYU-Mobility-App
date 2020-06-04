@@ -1,6 +1,5 @@
 <p align="center">
-<img src="https://imgur.com/WLz38p7" alt="App Icon" width=64 height=64>
-<h3 align="center">NYU Mobility</h3>
+<img src="https://i.imgur.com/WLz38p7.png" alt="App Icon" width=64 height=64>
 
 # NYU Mobility
 
