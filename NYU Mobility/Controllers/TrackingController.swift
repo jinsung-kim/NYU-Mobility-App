@@ -56,6 +56,20 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         self.viewer.backgroundColor = UIColor.black
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if (getEmail() == "") {
+            showInputDialog(title: "Add Email",
+                            subtitle: "Enter the email of your clinician who will view your data",
+                            actionTitle: "Add",
+                            cancelTitle: "Cancel",
+                            inputPlaceholder: "Email: ",
+                            inputKeyboardType: .emailAddress)
+            { (input:String?) in
+                self.saveEmail(input!)
+            }
+        }
+    }
+    
     func enableDoubleTap() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TrackingController.labelTapped(recognizer:)))
         tapGestureRecognizer.numberOfTapsRequired = 2
@@ -377,5 +391,34 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
+    
 }
 
+// Pop up text field for initial sign up
+extension UIViewController {
+    func showInputDialog(title: String? = nil,
+                         subtitle: String? = nil,
+                         actionTitle: String? = "Add",
+                         cancelTitle: String? = "Cancel",
+                         inputPlaceholder: String? = nil,
+                         inputKeyboardType: UIKeyboardType = UIKeyboardType.default,
+                         cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
+                         actionHandler: ((_ text: String?) -> Void)? = nil) {
+
+        let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
+        alert.addTextField { (textField:UITextField) in
+            textField.placeholder = inputPlaceholder
+            textField.keyboardType = inputKeyboardType
+        }
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { (action:UIAlertAction) in
+            guard let textField =  alert.textFields?.first else {
+                actionHandler?(nil)
+                return
+            }
+            actionHandler?(textField.text)
+        }))
+        alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
+
+        self.present(alert, animated: true, completion: nil)
+    }
+}
