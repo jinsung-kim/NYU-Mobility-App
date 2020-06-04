@@ -19,7 +19,7 @@ An email draft will be created, and sent with one click.
 
 This is what a sample result file will look like:
 
-```
+```json
 [
   {
     "gyroData" : {
