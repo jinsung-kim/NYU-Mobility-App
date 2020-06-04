@@ -3,7 +3,7 @@
 
 # NYU Mobility
 
-NYU Mobility is a tracking application built on iOS, used to track mobility movement. 
+NYU Mobility is a tracking application built for iOS (in Swift), used to track mobility movement. 
 Using gyroscope sensors and GPS tracking services, the app tracks steps taken, orientation,
 and GPS location at different points of time. The data that is tracked, is exported as a JSON
 format, and is sent as an email to clinicians.
