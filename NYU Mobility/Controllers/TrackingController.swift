@@ -12,10 +12,10 @@
 import UIKit
 import CoreMotion // Used to track user movement
 import CoreLocation // Used to access coordinate data
-// import CoreData // Used to store data
 import AVFoundation // Used to play sounds
+import MessageUI // Used to send emails
 
-class TrackingController: UIViewController, CLLocationManagerDelegate {
+class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate {
     
     // What is used to change color
     @IBOutlet weak var viewer: UIView!
@@ -121,7 +121,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
-            saveAndExport(exportString: generateJSON())
+            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
             clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)
@@ -296,40 +296,25 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
     }
     
     // Export Functionality
-    func saveAndExport(exportString: String) {
-            let exportFilePath = NSTemporaryDirectory() + "export.json"
-            let exportFileUrl = NSURL(fileURLWithPath: exportFilePath)
-            FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil)
-            var fileHandle: FileHandle? = nil
-            // Try
-            do {
-                fileHandle = try FileHandle(forWritingTo: exportFileUrl as URL)
-            } catch {
-                print("Error with File Handle")
-            }
-            
-            if (fileHandle != nil) {
-                fileHandle?.seekToEndOfFile()
-                let jsonData = exportString.data(using: String.Encoding.utf8, allowLossyConversion: false)
-                // Writes the JSON data into the file
-                fileHandle?.write(jsonData!)
-                fileHandle?.closeFile()
-                
-                let firstActivityItem = URL(fileURLWithPath: exportFilePath)
-                let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-                
-                // Taking out some of the options that won't be needed / applicable
-                activityViewController.excludedActivityTypes = [
-                    UIActivity.ActivityType.assignToContact,
-                    UIActivity.ActivityType.saveToCameraRoll,
-                    UIActivity.ActivityType.postToFlickr,
-                    UIActivity.ActivityType.postToVimeo,
-                    UIActivity.ActivityType.postToTencentWeibo
-                ]
-                
-                self.present(activityViewController, animated: true, completion: nil)
-            }
+    func saveAndExport(exportString: String) -> Data {
+        let exportFilePath = NSTemporaryDirectory() + "export.json"
+        let exportFileUrl = NSURL(fileURLWithPath: exportFilePath)
+        FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil)
+        var fileHandle: FileHandle? = nil
+        // Try
+        do {
+            fileHandle = try FileHandle(forWritingTo: exportFileUrl as URL)
+        } catch {
+            print("Error with File Handle")
         }
+        
+        fileHandle?.seekToEndOfFile()
+        let jsonData = exportString.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        // Writes the JSON data into the file
+        fileHandle?.write(jsonData!)
+        fileHandle?.closeFile()
+        return jsonData ?? Data()
+    }
     
     // Email Functionality
     
@@ -342,6 +327,55 @@ class TrackingController: UIViewController, CLLocationManagerDelegate {
         let defaults = UserDefaults.standard
         let email = defaults.string(forKey: "email")
         return email!
+    }
+    
+    func sendEmail(jsonData: Data) {
+        let recipientEmail = getEmail()
+        let subject = "JSON Export"
+        let body = "Here is the data that was tracked"
+
+        // Show default mail composer
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([recipientEmail])
+            mail.setSubject(subject)
+            mail.setMessageBody(body, isHTML: false)
+            
+            mail.addAttachmentData(jsonData, mimeType: "application/json" , fileName: "export.json")
+
+            present(mail, animated: true)
+
+        // Show third party email composer if default Mail app is not present
+        } else if let emailUrl = createEmailUrl(to: recipientEmail, subject: subject, body: body) {
+            UIApplication.shared.open(emailUrl)
+        }
+    }
+    
+    func createEmailUrl(to: String, subject: String, body: String) -> URL? {
+        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+
+        let gmailUrl = URL(string: "googlegmail://co?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let outlookUrl = URL(string: "ms-outlook://compose?to=\(to)&subject=\(subjectEncoded)")
+        let yahooMail = URL(string: "ymail://mail/compose?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let sparkUrl = URL(string: "readdle-spark://compose?recipient=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let defaultUrl = URL(string: "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)")
+
+        if let gmailUrl = gmailUrl, UIApplication.shared.canOpenURL(gmailUrl) {
+            return gmailUrl
+        } else if let outlookUrl = outlookUrl, UIApplication.shared.canOpenURL(outlookUrl) {
+            return outlookUrl
+        } else if let yahooMail = yahooMail, UIApplication.shared.canOpenURL(yahooMail) {
+            return yahooMail
+        } else if let sparkUrl = sparkUrl, UIApplication.shared.canOpenURL(sparkUrl) {
+            return sparkUrl
+        }
+        return defaultUrl
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
 
