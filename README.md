@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://imgur.com/WLz38p7" alt="App Icon" width=64 height=64>
+<h3 align="center">NYU Mobility</h3>
+
 # NYU Mobility
 
 NYU Mobility is a tracking application built on iOS, used to track mobility movement. 
