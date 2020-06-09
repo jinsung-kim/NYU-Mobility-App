@@ -8,6 +8,7 @@
 
 // Navigation Bar: For the settings tab later
 // https://www.youtube.com/watch?v=aW_u2nTxQ7A
+// https://www.youtube.com/watch?v=gUhhFPTKCrE
 
 import UIKit
 import CoreMotion // Used to track user movement
@@ -42,10 +43,11 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     private var buttonState: Int = 0
     
     // Used to track pedometer when saving data
-    private var steps: Int32?
+    var steps: Int32?
     
     // Used for creating the JSON
-    private var points: [Point] = []
+    var points: [Point] = []
+    var coords: [CLLocationCoordinate2D] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +69,16 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             { (input:String?) in
                 self.saveEmail(input!)
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is MapViewController
+        {
+            let vc = segue.destination as? MapViewController
+            vc?.steps = self.steps
+            vc?.coords = self.coords
         }
     }
     
@@ -135,7 +147,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
-            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
+//            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
+            self.performSegue(withIdentifier: "MapViewSegue", sender: self)
             clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)
@@ -163,6 +176,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             
             if let location: CLLocation = locationManager.location {
                 let coordinate: CLLocationCoordinate2D = location.coordinate
+                
+                self.coords.append(coordinate)
 
                 // ... proceed with the location and coordinates
                 if (self.locationArray["lat"] == nil) {
@@ -254,7 +269,10 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         self.locationArray.removeAll()
     }
     
-    func clearData() { points.removeAll() }
+    func clearData() {
+        points.removeAll()
+        coords.removeAll()
+    }
     
     // Gyroscope Functions
     

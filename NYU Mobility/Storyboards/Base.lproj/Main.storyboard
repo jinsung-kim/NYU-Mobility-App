@@ -12,14 +12,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBS-eI-ouf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-8m-5HX">
-                                        <rect key="frame" x="0.0" y="52" width="375" height="718"/>
+                                        <rect key="frame" x="0.0" y="8" width="375" height="708"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <state key="normal" title="Start">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,15 +47,69 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="vEr-Hv-cZ1"/>
                     <connections>
                         <outlet property="trackingButton" destination="cTq-8m-5HX" id="hMu-4h-bwq"/>
                         <outlet property="view" destination="cBS-eI-ouf" id="2Pf-F3-0rF"/>
                         <outlet property="viewer" destination="cBS-eI-ouf" id="aCQ-Gj-KFy"/>
+                        <segue destination="mb0-rH-wPf" kind="show" identifier="MapViewSegue" id="lYd-j5-o2L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="hjX-wK-ZWM">
+            <objects>
+                <viewController id="mb0-rH-wPf" customClass="MapViewController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pca-kK-tm1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FX0-9C-yL1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="632"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Distance: \(steps)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvt-cS-Kjt">
+                                <rect key="frame" x="81" y="653" width="213" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps Taken: \(steps)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtX-Rt-veK">
+                                <rect key="frame" x="90" y="685" width="194" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fvt-cS-Kjt" firstAttribute="top" secondItem="FX0-9C-yL1" secondAttribute="bottom" constant="21" id="FxF-LT-UR6"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="KtX-Rt-veK" secondAttribute="bottom" constant="15" id="I4S-ef-u4X"/>
+                            <constraint firstItem="KtX-Rt-veK" firstAttribute="top" secondItem="fvt-cS-Kjt" secondAttribute="bottom" constant="8" id="Ir3-FK-pFg"/>
+                            <constraint firstItem="FX0-9C-yL1" firstAttribute="top" secondItem="Gcz-3f-w4e" secondAttribute="top" id="KaG-9a-wUi"/>
+                            <constraint firstItem="fvt-cS-Kjt" firstAttribute="leading" secondItem="Gcz-3f-w4e" secondAttribute="leading" constant="81" id="RE8-qJ-RfV"/>
+                            <constraint firstItem="FX0-9C-yL1" firstAttribute="centerX" secondItem="pca-kK-tm1" secondAttribute="centerX" id="Vun-cU-1l5"/>
+                            <constraint firstItem="FX0-9C-yL1" firstAttribute="leading" secondItem="Gcz-3f-w4e" secondAttribute="leading" id="W4f-9Z-oN4"/>
+                            <constraint firstItem="fvt-cS-Kjt" firstAttribute="centerX" secondItem="pca-kK-tm1" secondAttribute="centerX" id="aJb-Vv-6Om"/>
+                            <constraint firstItem="KtX-Rt-veK" firstAttribute="leading" secondItem="Gcz-3f-w4e" secondAttribute="leading" constant="90" id="k5e-0Q-GDA"/>
+                            <constraint firstItem="KtX-Rt-veK" firstAttribute="top" secondItem="fvt-cS-Kjt" secondAttribute="bottom" constant="8" id="ozn-da-MUG"/>
+                            <constraint firstItem="Gcz-3f-w4e" firstAttribute="trailing" secondItem="KtX-Rt-veK" secondAttribute="trailing" constant="91" id="w1Q-ys-9x8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Gcz-3f-w4e"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rDw-tj-B7L"/>
+                    <connections>
+                        <outlet property="distanceLabel" destination="fvt-cS-Kjt" id="jib-II-ohC"/>
+                        <outlet property="mapView" destination="FX0-9C-yL1" id="lBC-Mo-IMC"/>
+                        <outlet property="stepsLabel" destination="KtX-Rt-veK" id="I69-5E-4ZJ"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="trackingSegue" id="mCP-mK-cti"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WRN-bQ-zDN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063.768115942029" y="91.741071428571431"/>
         </scene>
     </scenes>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
