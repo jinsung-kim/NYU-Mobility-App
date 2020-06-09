@@ -32,6 +32,44 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.isScrollEnabled = false
         updateLabels()
         voiceResults()
+        generateLine()
+    }
+    
+    // Map View Functions
+    
+    func generateLine() {
+        mapView.delegate = self
+        mapView.isZoomEnabled = true
+        let polyline = MKPolyline(coordinates: coords, count: coords.count)
+        mapView.addOverlay(polyline)
+        zoomToPolyLine(map: mapView, polyLine: polyline)
+    }
+    
+    func zoomToPolyLine(map : MKMapView, polyLine : MKPolyline) {
+        var regionRect = polyLine.boundingMapRect
+
+        let wPadding = regionRect.size.width * 0.75
+        let hPadding = regionRect.size.height * 0.75
+
+        //Add padding to the region
+        regionRect.size.width += wPadding
+        regionRect.size.height += hPadding
+
+        //Center the region on the line
+        regionRect.origin.x -= wPadding / 2
+        regionRect.origin.y -= hPadding / 2
+
+        mapView.setRegion(MKCoordinateRegion(regionRect), animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = .black
+            polylineRenderer.lineWidth = 4
+            return polylineRenderer
+        }
+        return MKPolylineRenderer()
     }
     
     // Updates the labels
@@ -88,6 +126,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // Currently: Atlas page destroyed with outstanding references
     // Apple bug maybe?
     deinit {
+        let overlays = mapView.overlays
+        mapView.removeOverlays(overlays)
         mapView.annotations.forEach{ mapView.removeAnnotation($0) }
         mapView.delegate = nil
     }
