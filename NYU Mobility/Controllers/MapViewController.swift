@@ -18,6 +18,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var stepsLabel: UILabel!
     
+    var player: AVAudioPlayer?
+    
     // Used to track pedometer when saving data
     var steps: Int32 = 0
     
@@ -31,6 +33,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         updateLabels()
         voiceResults()
         generateLine()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let overlays = mapView.overlays
+        playSound("back")
+        mapView.removeOverlays(overlays)
+        mapView.delegate = nil
     }
     
     // Map View Functions
@@ -50,11 +59,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let wPadding = regionRect.size.width * 0.75
         let hPadding = regionRect.size.height * 0.75
 
-        //Add padding to the region
+        // Add padding to the region
         regionRect.size.width += wPadding
         regionRect.size.height += hPadding
 
-        //Center the region on the line
+        // Center the region on the line
         regionRect.origin.x -= wPadding / 2
         regionRect.origin.y -= hPadding / 2
 
@@ -126,11 +135,29 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // Currently: Atlas page destroyed with outstanding references
     // Apple bug maybe?
-    deinit {
-        let overlays = mapView.overlays
-        mapView.removeOverlays(overlays)
-        mapView.annotations.forEach{ mapView.removeAnnotation($0) }
-        mapView.delegate = nil
+//    deinit {
+//        let overlays = mapView.overlays
+//        mapView.removeOverlays(overlays)
+//        mapView.annotations.forEach{ mapView.removeAnnotation($0) }
+//        mapView.delegate = nil
+//    }
+    
+    func playSound(_ fileName: String) {
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return }
+
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+
+            guard let player = player else { return }
+
+            player.play()
+
+        } catch let error {
+            print("Unexpected Behavior: \(error.localizedDescription)")
+        }
     }
 }
 

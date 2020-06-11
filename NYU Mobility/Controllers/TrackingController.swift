@@ -33,7 +33,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     private var gyroDict: [String:[Double]] = ["x": [], "y": [], "z": []] // Used to store all x, y, z values
     
     // Responsive button sounds
-    private var player: AVAudioPlayer?
+    var player: AVAudioPlayer?
     
     // Triggering the button's three states
     private var buttonState: Int = 0
@@ -73,8 +73,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     // Used to send over data to MapView Controller to read out results
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is MapViewController
         {
             let vc = segue.destination as? MapViewController
@@ -92,6 +91,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     @objc func settingsTap() {
+        playSound("settings")
         self.performSegue(withIdentifier: "SettingsSegue", sender: self)
     }
     
@@ -157,6 +157,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)
+            self.viewer.backgroundColor = UIColor.white
             self.buttonState = 0
         case 3:
             stopTracking()
