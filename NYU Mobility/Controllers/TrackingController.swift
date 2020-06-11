@@ -6,9 +6,6 @@
 //  Copyright © 2020 Jin Kim. All rights reserved.
 //
 
-// Navigation Bar: For the settings tab later
-// https://www.youtube.com/watch?v=gUhhFPTKCrE
-
 import UIKit
 import CoreMotion // Used to track user movement
 import CoreLocation // Used to access coordinate data
@@ -50,6 +47,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let settingsButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(settingsTap))
+        self.navigationItem.rightBarButtonItem = settingsButton
         getLocationPermission()
         enableDoubleTap()
         // Initial screen is white, so must set it to
@@ -87,6 +86,14 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         
         trackingButton.isUserInteractionEnabled = true
         trackingButton.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func settingsTap() {
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "settingsSegue") as! SettingsController
+//        self.present(nextViewController, animated:true, completion:nil)
+        self.performSegue(withIdentifier: "settingsSegue", sender: self)
     }
     
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
