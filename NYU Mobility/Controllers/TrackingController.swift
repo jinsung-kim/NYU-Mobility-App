@@ -7,7 +7,6 @@
 //
 
 // Navigation Bar: For the settings tab later
-// https://www.youtube.com/watch?v=aW_u2nTxQ7A
 // https://www.youtube.com/watch?v=gUhhFPTKCrE
 
 import UIKit
@@ -77,7 +76,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         if segue.destination is MapViewController
         {
             let vc = segue.destination as? MapViewController
-            vc?.steps = self.steps
+            vc?.steps = self.steps ?? 0
             vc?.coords = self.coords
         }
     }
@@ -248,6 +247,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             // Runs concurrently
             DispatchQueue.main.async {
                 self?.saveData(currTime: Date(), steps: (pedometerData.numberOfSteps as! Int32))
+                self?.steps = Int32(truncating: pedometerData.numberOfSteps)
             }
         }
     }

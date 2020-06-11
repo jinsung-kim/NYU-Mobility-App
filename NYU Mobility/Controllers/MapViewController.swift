@@ -10,8 +10,6 @@ import UIKit
 import MapKit
 import AVFoundation
 
-// https://www.hackingwithswift.com/example-code/media/how-to-convert-text-to-speech-using-avspeechsynthesizer-avspeechutterance-and-avspeechsynthesisvoice
-
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     // Controller View Objects
@@ -21,7 +19,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var stepsLabel: UILabel!
     
     // Used to track pedometer when saving data
-    var steps: Int32?
+    var steps: Int32 = 0
     
     // Used for creating the JSON that will be manipulated to grab the coordinates
     var coords: [CLLocationCoordinate2D] = []
@@ -43,6 +41,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let polyline = MKPolyline(coordinates: coords, count: coords.count)
         mapView.addOverlay(polyline)
         zoomToPolyLine(map: mapView, polyLine: polyline)
+        mapView.isZoomEnabled = false
     }
     
     func zoomToPolyLine(map : MKMapView, polyLine : MKPolyline) {
@@ -65,7 +64,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = .black
+            polylineRenderer.strokeColor = .red
             polylineRenderer.lineWidth = 4
             return polylineRenderer
         }
@@ -75,12 +74,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // Updates the labels
     func updateLabels() {
         distanceLabel.text = "Distance Walked: \(String(totalDistanceCalculated().truncate(places: 2))) mi"
-        stepsLabel.text = "Steps Taken: \(self.steps!) steps"
+        stepsLabel.text = "Steps Taken: \(self.steps) steps"
     }
     
     // Currently testing
     func voiceResults() {
-        let result = "You walked \(totalDistanceCalculated().truncate(places :2)) miles and took \(self.steps!) steps"
+        let result = "You walked \(totalDistanceCalculated().truncate(places :2)) miles and took \(String(describing: self.steps)) steps"
         let utterance = AVSpeechUtterance(string: result)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
 
@@ -137,6 +136,6 @@ extension Double{
     // Truncates double to how ever many places is needed
     // Used to manage the text to speech feature
     func truncate(places : Int) -> Double {
-        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
+        return Double(floor(pow(10.0, Double(places)) * self) / pow(10.0, Double(places)))
     }
 }
