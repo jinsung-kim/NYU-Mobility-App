@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsController: UIViewController {
+class SettingsController: UITableViewController {
     
     // Labels
     

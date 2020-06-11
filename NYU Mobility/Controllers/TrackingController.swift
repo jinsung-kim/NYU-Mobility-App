@@ -92,7 +92,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     @objc func settingsTap() {
-        self.performSegue(withIdentifier: "settingsSegue", sender: self)
+        self.performSegue(withIdentifier: "SettingsSegue", sender: self)
     }
     
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
