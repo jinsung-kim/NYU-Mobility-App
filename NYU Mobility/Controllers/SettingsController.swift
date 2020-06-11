@@ -10,4 +10,12 @@ import UIKit
 
 class SettingsController: UIViewController {
     
+    // Labels
+    
+    // Switches
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
 }

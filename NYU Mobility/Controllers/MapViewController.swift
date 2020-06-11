@@ -75,6 +75,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func updateLabels() {
         distanceLabel.text = "Distance Walked: \(String(totalDistanceCalculated().truncate(places: 2))) mi"
         stepsLabel.text = "Steps Taken: \(self.steps) steps"
+        distanceLabel.center.x = self.view.center.x
+        stepsLabel.center.x = self.view.center.x
     }
     
     // Currently testing

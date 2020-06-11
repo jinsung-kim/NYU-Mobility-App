@@ -15,7 +15,7 @@ import MessageUI // Used to send emails
 class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate {
     
     // What is used to change color
-    @IBOutlet weak var viewer: UIView!
+    @IBOutlet var viewer: UIView!
     
     // Button used to change states
     @IBOutlet weak var trackingButton: UIButton!
@@ -47,8 +47,10 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Used to access settings
         let settingsButton = UIBarButtonItem()
-        settingsButton.image = UIImage(named: "settings")
+//        settingsButton.title = "\u{2699}" // Unicode value for gear emoji
+        settingsButton.title = "Settings"
         settingsButton.action = #selector(settingsTap)
         settingsButton.target = self
         self.navigationItem.rightBarButtonItem = settingsButton
@@ -70,6 +72,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         }
     }
     
+    // Used to send over data to MapView Controller to read out results
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.destination is MapViewController
