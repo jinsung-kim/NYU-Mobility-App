@@ -47,13 +47,13 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let settingsButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(settingsTap))
+        let settingsButton = UIBarButtonItem()
+        settingsButton.image = UIImage(named: "settings")
+        settingsButton.action = #selector(settingsTap)
+        settingsButton.target = self
         self.navigationItem.rightBarButtonItem = settingsButton
         getLocationPermission()
         enableDoubleTap()
-        // Initial screen is white, so must set it to
-        // black so that you can see the start button
-        self.viewer.backgroundColor = UIColor.black
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,10 +89,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     @objc func settingsTap() {
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//
-//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "settingsSegue") as! SettingsController
-//        self.present(nextViewController, animated:true, completion:nil)
         self.performSegue(withIdentifier: "settingsSegue", sender: self)
     }
     

@@ -14,7 +14,7 @@
                     <view key="view" contentMode="scaleToFill" id="9ST-qx-VGV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="anc-D7-30M"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="qjO-hK-0wV"/>
@@ -24,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9pq-Of-mLx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="-227"/>
+            <point key="canvasLocation" x="2017" y="-313"/>
         </scene>
         <!--Track A Session-->
         <scene sceneID="tne-QT-ifu">
@@ -38,22 +38,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-8m-5HX">
-                                        <rect key="frame" x="0.0" y="96" width="375" height="674"/>
+                                        <rect key="frame" x="0.0" y="42" width="375" height="728"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <state key="normal" title="Start">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="toggleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hgp-VZ-S28"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="centerX" secondItem="cBS-eI-ouf" secondAttribute="centerX" id="49x-qn-OWb"/>
                                     <constraint firstItem="cTq-8m-5HX" firstAttribute="bottom" secondItem="cBS-eI-ouf" secondAttribute="bottomMargin" id="EOt-r5-zrB"/>
-                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="leading" secondItem="cBS-eI-ouf" secondAttribute="leading" id="Pfb-LU-eUH"/>
                                     <constraint firstAttribute="trailing" secondItem="cTq-8m-5HX" secondAttribute="trailing" id="VUM-uU-R4N"/>
-                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="top" secondItem="cBS-eI-ouf" secondAttribute="topMargin" id="q48-lf-ktA"/>
+                                    <constraint firstItem="cTq-8m-5HX" firstAttribute="centerY" secondItem="cBS-eI-ouf" secondAttribute="centerY" id="hqj-lb-hS6"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -92,20 +92,20 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FX0-9C-yL1">
                                 <rect key="frame" x="0.0" y="88" width="375" height="598"/>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Distance: \(steps)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvt-cS-Kjt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Distance: 0.0 mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvt-cS-Kjt">
                                 <rect key="frame" x="81" y="707" width="213" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps Taken: \(steps)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtX-Rt-veK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps Taken: 0 steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtX-Rt-veK">
                                 <rect key="frame" x="90" y="739" width="194" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fvt-cS-Kjt" firstAttribute="top" secondItem="FX0-9C-yL1" secondAttribute="bottom" constant="21" id="FxF-LT-UR6"/>
                             <constraint firstAttribute="bottomMargin" secondItem="KtX-Rt-veK" secondAttribute="bottom" constant="15" id="I4S-ef-u4X"/>
@@ -131,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WRN-bQ-zDN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2018" y="521"/>
+            <point key="canvasLocation" x="2016.8" y="520.93596059113304"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ak5-Qv-Adb">
