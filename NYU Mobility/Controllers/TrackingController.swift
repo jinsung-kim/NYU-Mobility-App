@@ -32,6 +32,11 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     private let motionManager: CMMotionManager = CMMotionManager()
     private var gyroDict: [String:[Double]] = ["x": [], "y": [], "z": []] // Used to store all x, y, z values
     
+    // Pace trackers
+    private var currPace: Double? = 0.0
+    private var avgPace: Double? = 0.0
+    private var currCad: Double? = 0.0
+    
     // Responsive button sounds
     var player: AVAudioPlayer?
     
@@ -39,7 +44,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     private var buttonState: Int = 0
     
     // Used to track pedometer when saving data
-    var steps: Int32?
+    var steps: Int32? = 0
     
     // Used for creating the JSON
     var points: [Point] = []
@@ -83,7 +88,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     func enableDoubleTap() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TrackingController.labelTapped(recognizer:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TrackingController.labelTapped(recognizer: )))
         tapGestureRecognizer.numberOfTapsRequired = 2
         
         trackingButton.isUserInteractionEnabled = true
@@ -91,25 +96,19 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     @objc func settingsTap() {
-        if (getState()) {
-            playSound("settings")
-        }
+        playSound("settings")
         self.performSegue(withIdentifier: "SettingsSegue", sender: self)
     }
     
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
         if (self.buttonState == 1) {
-            if (getState()) {
-                playSound("pause")
-            }
+            playSound("pause")
             trackingButton.setTitle("Resume", for: .normal)
             self.viewer.backgroundColor = UIColor.red
             self.buttonState = 3
             toggleButton(trackingButton)
         } else {
-            if (getState()) {
-                playSound("resume")
-            }
+            playSound("resume")
             trackingButton.setTitle("Pause", for: .normal)
             self.viewer.backgroundColor = UIColor.green
             self.buttonState = 4
@@ -149,25 +148,19 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         switch(self.buttonState) {
         case 0:
             startTracking()
-            if (getState()) {
-                playSound("start")
-            }
+            playSound("start")
             sender.setTitle("Stop", for: .normal)
             self.buttonState = 1
         case 1:
             stopTracking()
-            if (getState()) {
-                playSound("stop")
-            }
+            playSound("stop")
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
             self.performSegue(withIdentifier: "MapViewSegue", sender: self)
-//            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
+            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
             clearData()
-            if (getState()) {
-                playSound("reset")
-            }
+            playSound("reset")
             sender.setTitle("Start", for: .normal)
             self.viewer.backgroundColor = UIColor.white
             self.buttonState = 0
@@ -176,9 +169,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             self.buttonState = 0
         case 4:
             startTracking()
-            if (getState()) {
-                playSound("resume")
-            }
+            playSound("resume")
             sender.setTitle("Stop", for: .normal)
             self.buttonState = 1
         default: // Should never happen
@@ -188,7 +179,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     func getLocationPermission() {
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -269,6 +260,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             DispatchQueue.main.async {
                 self?.saveData(currTime: Date(), steps: (pedometerData.numberOfSteps as! Int32))
                 self?.steps = Int32(truncating: pedometerData.numberOfSteps)
+                self?.avgPace = Double(truncating: pedometerData.averageActivePace ?? 0)
+                self?.currPace = Double(truncating: pedometerData.currentPace ?? 0)
+                self?.currCad = Double(truncating: pedometerData.currentCadence ?? 0)
             }
         }
     }
@@ -282,8 +276,10 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             - long: long coordinate the user is standing at
      */
     func saveData(currTime: Date, steps: Int32) {
-        // JSON array implementation
-        points.append(Point(dateFormatter(), steps, self.locationArray, self.gyroDict))
+        // JSON array implementation (See Point.swift for model)
+        points.append(Point(dateFormatter(), steps, self.avgPace!,
+                            self.currPace!, self.currCad!,
+                            self.locationArray, self.gyroDict))
         
         // Clear the gyroscope data after getting its string representation
         self.gyroDict.removeAll()
@@ -331,20 +327,22 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             - fileName: The name of the file being executed (all within 'Sound' group)
      */
     func playSound(_ fileName: String) {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return }
+        if (getState()) {
+            guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return }
 
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+                try AVAudioSession.sharedInstance().setActive(true)
 
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+                player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
 
-            guard let player = player else { return }
+                guard let player = player else { return }
 
-            player.play()
+                player.play()
 
-        } catch let error {
-            print("Unexpected Behavior: \(error.localizedDescription)")
+            } catch let error {
+                print("Unexpected Behavior: \(error.localizedDescription)")
+            }
         }
     }
     

@@ -20,8 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Your location is needed to track where you go</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Your location is needed to see where you go</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Your motion will be used to track your progress</string>
 	<key>UIApplicationSceneManifest</key>

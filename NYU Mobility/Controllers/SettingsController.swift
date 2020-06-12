@@ -17,6 +17,13 @@ class SettingsController: UITableViewController {
     // Clinician's email label
     @IBOutlet weak var clinicianEmail: UILabel!
     
+    // Location Labels -> Currently supports up to 5 locations
+    @IBOutlet weak var firstLoc: UILabel!
+    @IBOutlet weak var secondLoc: UILabel!
+    @IBOutlet weak var thirdLoc: UILabel!
+    @IBOutlet weak var fourthLoc: UILabel!
+    @IBOutlet weak var fifthLoc: UILabel!
+    
     var player: AVAudioPlayer?
     
     override func viewDidLoad() {
@@ -26,9 +33,7 @@ class SettingsController: UITableViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if (getState()) {
-            playSound("back")
-        }
+        playSound("back")
     }
     
     @IBAction func changeEmailPressed(_ sender: Any) {
@@ -49,20 +54,22 @@ class SettingsController: UITableViewController {
     
     // Sound Functionality
     func playSound(_ fileName: String) {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return }
+        if (getState()) {
+            guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return }
 
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+                try AVAudioSession.sharedInstance().setActive(true)
 
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+                player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
 
-            guard let player = player else { return }
+                guard let player = player else { return }
 
-            player.play()
+                player.play()
 
-        } catch let error {
-            print("Unexpected Behavior: \(error.localizedDescription)")
+            } catch let error {
+                print("Unexpected Behavior: \(error.localizedDescription)")
+            }
         }
     }
     

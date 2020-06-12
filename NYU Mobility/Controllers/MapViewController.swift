@@ -32,16 +32,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.isScrollEnabled = false
         updateLabels()
         // Only voice results if voice gestures are activated
-        if (getState()) {
-            voiceResults()
-        }
+        voiceResults()
         generateLine()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if (getState()) {
-            playSound("back")
-        }
+        playSound("back")
         let overlays = mapView.overlays
         mapView.removeOverlays(overlays)
         mapView.delegate = nil
@@ -95,12 +91,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // Currently testing
     func voiceResults() {
-        let result = "You walked \(totalDistanceCalculated().truncate(places :2)) miles and took \(String(describing: self.steps)) steps"
-        let utterance = AVSpeechUtterance(string: result)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+        if (getState()) {
+            let result = "You walked \(totalDistanceCalculated().truncate(places :2)) miles and took \(String(describing: self.steps)) steps"
+            let utterance = AVSpeechUtterance(string: result)
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
 
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
+            let synthesizer = AVSpeechSynthesizer()
+            synthesizer.speak(utterance)
+        }
     }
     
     /**
@@ -138,30 +136,23 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return total
     }
     
-    // Currently: Atlas page destroyed with outstanding references
-    // Apple bug maybe?
-//    deinit {
-//        let overlays = mapView.overlays
-//        mapView.removeOverlays(overlays)
-//        mapView.annotations.forEach{ mapView.removeAnnotation($0) }
-//        mapView.delegate = nil
-//    }
-    
     func playSound(_ fileName: String) {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return }
+        if (getState()) {
+            guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return }
 
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+                try AVAudioSession.sharedInstance().setActive(true)
 
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+                player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
 
-            guard let player = player else { return }
+                guard let player = player else { return }
 
-            player.play()
+                player.play()
 
-        } catch let error {
-            print("Unexpected Behavior: \(error.localizedDescription)")
+            } catch let error {
+                print("Unexpected Behavior: \(error.localizedDescription)")
+            }
         }
     }
     
