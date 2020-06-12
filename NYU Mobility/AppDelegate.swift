@@ -15,10 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch
         let defaults = UserDefaults.standard
-        let defaultValue = ["email" : ""]
+        let defaultValue = ["email" : "", "state": true] as [String : Any]
         defaults.register(defaults: defaultValue)
-        // Override point for customization after application launch.
         return true
     }
 

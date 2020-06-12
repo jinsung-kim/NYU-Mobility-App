@@ -32,7 +32,20 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fq-fA-FkM">
+                                                    <rect key="frame" x="345" y="6" width="53" height="30.5"/>
+                                                    <state key="normal" title="Change"/>
+                                                    <connections>
+                                                        <action selector="changeEmailPressed:" destination="wSX-zg-eUu" eventType="touchUpInside" id="P2O-FV-mIo"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="9fq-fA-FkM" secondAttribute="trailing" constant="16" id="5wW-O0-lE5"/>
+                                                <constraint firstItem="9fq-fA-FkM" firstAttribute="top" secondItem="Oat-vi-sGh" secondAttribute="top" constant="6" id="FdB-Mw-v4W"/>
+                                                <constraint firstItem="9fq-fA-FkM" firstAttribute="leading" secondItem="iz9-LK-iCm" secondAttribute="trailing" constant="151" id="X5F-k5-CYm"/>
+                                                <constraint firstAttribute="bottom" secondItem="9fq-fA-FkM" secondAttribute="bottom" constant="7.5" id="ZBN-iG-CgN"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -53,7 +66,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2me-tZ-LkK">
+                                                    <rect key="frame" x="347" y="6" width="49" height="31.5"/>
+                                                    <connections>
+                                                        <action selector="responsiveGestureSwitch:" destination="wSX-zg-eUu" eventType="valueChanged" id="Bqc-6B-7Lh"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="2me-tZ-LkK" secondAttribute="bottom" constant="6.5" id="G8u-XX-GtS"/>
+                                                <constraint firstAttribute="trailing" secondItem="2me-tZ-LkK" secondAttribute="trailing" constant="20" id="ccS-wW-Wyz"/>
+                                                <constraint firstItem="2me-tZ-LkK" firstAttribute="leading" secondItem="OFh-Z5-eqr" secondAttribute="trailing" constant="165" id="o8u-ch-q7D"/>
+                                                <constraint firstItem="2me-tZ-LkK" firstAttribute="top" secondItem="1Uf-Ra-49y" secondAttribute="top" constant="6" id="t7R-77-Vqn"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -66,6 +91,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="foj-pc-YvT"/>
                     <connections>
+                        <outlet property="gestureSwitch" destination="2me-tZ-LkK" id="OEp-nV-cwR"/>
                         <segue destination="4yC-Ij-NeA" kind="show" identifier="doneSettingsSegue" id="Smj-0J-MLE"/>
                     </connections>
                 </tableViewController>

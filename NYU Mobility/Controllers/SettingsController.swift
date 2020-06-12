@@ -10,17 +10,35 @@ import UIKit
 import AVFoundation
 
 class SettingsController: UITableViewController {
-    
-    // Switches
+
+    // Switch label
+    @IBOutlet weak var gestureSwitch: UISwitch!
     
     var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gestureSwitch.isOn = UserDefaults.standard.bool(forKey: "state")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         playSound("back")
+    }
+    
+    @IBAction func changeEmailPressed(_ sender: Any) {
+        showInputDialog(title: "Add Email",
+                        subtitle: "Enter the email of your clinician who will view your data",
+                        actionTitle: "Add",
+                        cancelTitle: "Cancel",
+                        inputPlaceholder: "Email: ",
+                        inputKeyboardType: .emailAddress)
+        { (input: String?) in
+            self.saveEmail(input!)
+        }
+    }
+    
+    @IBAction func responsiveGestureSwitch(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "state")
     }
     
     // Sound Functionality
@@ -40,6 +58,16 @@ class SettingsController: UITableViewController {
         } catch let error {
             print("Unexpected Behavior: \(error.localizedDescription)")
         }
+    }
+    
+    func saveEmail(_ email: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(email, forKey: "email")
+    }
+    
+    func saveState(_ state: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(state, forKey: "state")
     }
     
 }

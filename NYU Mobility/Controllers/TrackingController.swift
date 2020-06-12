@@ -142,6 +142,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     @IBAction func toggleButton(_ sender: UIButton) {
         switch(self.buttonState) {
         case 0:
+            if (getState() == "F") { // Test
+                self.viewer.backgroundColor = UIColor.purple
+            }
             startTracking()
             playSound("start")
             sender.setTitle("Stop", for: .normal)
@@ -353,6 +356,13 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         fileHandle?.write(jsonData!)
         fileHandle?.closeFile()
         return jsonData ?? Data()
+    }
+    
+    // Gesture Functionality
+    func getState() -> String {
+        let defaults = UserDefaults.standard
+        let gesture = defaults.string(forKey: "state")
+        return gesture!
     }
     
     // Email Functionality
