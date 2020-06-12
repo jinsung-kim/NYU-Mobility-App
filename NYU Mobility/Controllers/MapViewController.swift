@@ -39,10 +39,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        let overlays = mapView.overlays
         if (getState()) {
             playSound("back")
         }
+        let overlays = mapView.overlays
         mapView.removeOverlays(overlays)
         mapView.delegate = nil
     }
