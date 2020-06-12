@@ -25,26 +25,43 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Clinician Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iz9-LK-iCm">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clinician's Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iz9-LK-iCm">
                                                     <rect key="frame" x="20" y="11" width="174" height="21.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fq-fA-FkM">
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="d5b-s0-fWV">
+                                        <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d5b-s0-fWV" id="3GD-cT-wVa">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Clinician Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tCX-wy-KBr">
+                                                    <rect key="frame" x="20" y="11" width="174" height="21.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekM-Za-X9p">
                                                     <rect key="frame" x="345" y="6" width="53" height="30.5"/>
                                                     <state key="normal" title="Change"/>
                                                     <connections>
-                                                        <action selector="changeEmailPressed:" destination="wSX-zg-eUu" eventType="touchUpInside" id="P2O-FV-mIo"/>
+                                                        <action selector="changeEmailPressed:" destination="wSX-zg-eUu" eventType="touchUpInside" id="ay1-T8-rZV"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="9fq-fA-FkM" secondAttribute="trailing" constant="16" id="5wW-O0-lE5"/>
-                                                <constraint firstItem="9fq-fA-FkM" firstAttribute="top" secondItem="Oat-vi-sGh" secondAttribute="top" constant="6" id="FdB-Mw-v4W"/>
-                                                <constraint firstItem="9fq-fA-FkM" firstAttribute="leading" secondItem="iz9-LK-iCm" secondAttribute="trailing" constant="151" id="X5F-k5-CYm"/>
-                                                <constraint firstAttribute="bottom" secondItem="9fq-fA-FkM" secondAttribute="bottom" constant="7.5" id="ZBN-iG-CgN"/>
+                                                <constraint firstAttribute="bottom" secondItem="ekM-Za-X9p" secondAttribute="bottom" constant="7.5" id="TEs-82-fff"/>
+                                                <constraint firstItem="ekM-Za-X9p" firstAttribute="leading" secondItem="tCX-wy-KBr" secondAttribute="trailing" constant="151" id="ZpX-1s-tlF"/>
+                                                <constraint firstItem="ekM-Za-X9p" firstAttribute="top" secondItem="3GD-cT-wVa" secondAttribute="top" constant="6" id="jnh-08-qof"/>
+                                                <constraint firstAttribute="trailing" secondItem="ekM-Za-X9p" secondAttribute="trailing" constant="16" id="zPn-lQ-wEt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -53,7 +70,7 @@
                             <tableViewSection headerTitle="Accessibility" id="Mxe-VX-350">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6u4-S7-GKz">
-                                        <rect key="frame" x="0.0" y="127.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="171" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6u4-S7-GKz" id="1Uf-Ra-49y">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>

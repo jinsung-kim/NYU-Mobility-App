@@ -97,13 +97,17 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
         if (self.buttonState == 1) {
-            playSound("pause")
+            if (getState()) {
+                playSound("pause")
+            }
             trackingButton.setTitle("Resume", for: .normal)
             self.viewer.backgroundColor = UIColor.red
             self.buttonState = 3
             toggleButton(trackingButton)
         } else {
-            playSound("resume")
+            if (getState()) {
+                playSound("resume")
+            }
             trackingButton.setTitle("Pause", for: .normal)
             self.viewer.backgroundColor = UIColor.green
             self.buttonState = 4
@@ -142,23 +146,26 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     @IBAction func toggleButton(_ sender: UIButton) {
         switch(self.buttonState) {
         case 0:
-            if (getState() == "F") { // Test
-                self.viewer.backgroundColor = UIColor.purple
-            }
             startTracking()
-            playSound("start")
+            if (getState()) {
+                playSound("start")
+            }
             sender.setTitle("Stop", for: .normal)
             self.buttonState = 1
         case 1:
             stopTracking()
-            playSound("stop")
+            if (getState()) {
+                playSound("stop")
+            }
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
-//            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
             self.performSegue(withIdentifier: "MapViewSegue", sender: self)
+//            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
             clearData()
-            playSound("reset")
+            if (getState()) {
+                playSound("reset")
+            }
             sender.setTitle("Start", for: .normal)
             self.viewer.backgroundColor = UIColor.white
             self.buttonState = 0
@@ -167,7 +174,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             self.buttonState = 0
         case 4:
             startTracking()
-            playSound("resume")
+            if (getState()) {
+                playSound("resume")
+            }
             sender.setTitle("Stop", for: .normal)
             self.buttonState = 1
         default: // Should never happen
@@ -359,10 +368,10 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     // Gesture Functionality
-    func getState() -> String {
+    func getState() -> Bool {
         let defaults = UserDefaults.standard
-        let gesture = defaults.string(forKey: "state")
-        return gesture!
+        let gesture = defaults.bool(forKey: "state")
+        return gesture
     }
     
     // Email Functionality

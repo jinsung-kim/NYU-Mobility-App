@@ -31,13 +31,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         mapView.isScrollEnabled = false
         updateLabels()
-        voiceResults()
+        // Only voice results if voice gestures are activated
+        if (getState()) {
+            voiceResults()
+        }
         generateLine()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         let overlays = mapView.overlays
-        playSound("back")
+        if (getState()) {
+            playSound("back")
+        }
         mapView.removeOverlays(overlays)
         mapView.delegate = nil
     }
@@ -159,6 +164,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             print("Unexpected Behavior: \(error.localizedDescription)")
         }
     }
+    
+    func getState() -> Bool {
+        let defaults = UserDefaults.standard
+        let gesture = defaults.bool(forKey: "state")
+        return gesture
+    }
+
 }
 
 extension Double{

@@ -22,7 +22,9 @@ class SettingsController: UITableViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        playSound("back")
+        if (getState()) {
+            playSound("back")
+        }
     }
     
     @IBAction func changeEmailPressed(_ sender: Any) {
@@ -68,6 +70,12 @@ class SettingsController: UITableViewController {
     func saveState(_ state: String) {
         let defaults = UserDefaults.standard
         defaults.set(state, forKey: "state")
+    }
+    
+    func getState() -> Bool {
+        let defaults = UserDefaults.standard
+        let gesture = defaults.bool(forKey: "state")
+        return gesture
     }
     
 }
