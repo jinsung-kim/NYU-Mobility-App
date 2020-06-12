@@ -26,7 +26,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clinician's Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iz9-LK-iCm">
-                                                    <rect key="frame" x="20" y="11" width="174" height="21.5"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -108,13 +108,14 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="foj-pc-YvT"/>
                     <connections>
+                        <outlet property="clinicianEmail" destination="iz9-LK-iCm" id="Vt4-rh-DDt"/>
                         <outlet property="gestureSwitch" destination="2me-tZ-LkK" id="OEp-nV-cwR"/>
                         <segue destination="4yC-Ij-NeA" kind="show" identifier="doneSettingsSegue" id="Smj-0J-MLE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QHb-QW-TTX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2016" y="-334"/>
+            <point key="canvasLocation" x="2015.9420289855075" y="-334.15178571428572"/>
         </scene>
         <!--Track A Session-->
         <scene sceneID="tne-QT-ifu">

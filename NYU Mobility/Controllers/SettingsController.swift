@@ -14,10 +14,14 @@ class SettingsController: UITableViewController {
     // Switch label
     @IBOutlet weak var gestureSwitch: UISwitch!
     
+    // Clinician's email label
+    @IBOutlet weak var clinicianEmail: UILabel!
+    
     var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        clinicianEmail.text = "Clinician Email: \(getEmail())"
         gestureSwitch.isOn = UserDefaults.standard.bool(forKey: "state")
     }
     
@@ -60,6 +64,12 @@ class SettingsController: UITableViewController {
         } catch let error {
             print("Unexpected Behavior: \(error.localizedDescription)")
         }
+    }
+    
+    func getEmail() -> String {
+        let defaults = UserDefaults.standard
+        let email = defaults.string(forKey: "email")
+        return email!
     }
     
     func saveEmail(_ email: String) {

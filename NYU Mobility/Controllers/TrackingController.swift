@@ -91,7 +91,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     @objc func settingsTap() {
-        playSound("settings")
+        if (getState()) {
+            playSound("settings")
+        }
         self.performSegue(withIdentifier: "SettingsSegue", sender: self)
     }
     
@@ -390,7 +392,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     func sendEmail(jsonData: Data) {
         let recipientEmail = getEmail()
         let subject = "JSON Export"
-        let body = "Here is the data that was tracked"
+        let body = "Here is the data that I tracked"
 
         // Show default mail composer
         if MFMailComposeViewController.canSendMail() {
