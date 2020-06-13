@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData // Local storage (user saved locations)
 import CoreMotion // Used to track user movement
 import CoreLocation // Used to access coordinate data
 import AVFoundation // Used to play sounds
@@ -30,12 +31,13 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     // Gyro Sensor
     private let motionManager: CMMotionManager = CMMotionManager()
-    private var gyroDict: [String:[Double]] = ["x": [], "y": [], "z": []] // Used to store all x, y, z values
+    // Used to store all x, y, z values
+    private var gyroDict: [String: [Double]] = ["x": [], "y": [], "z": []]
     
     // Pace trackers
-    private var currPace: Double? = 0.0
-    private var avgPace: Double? = 0.0
-    private var currCad: Double? = 0.0
+    private var currPace: Double = 0.0
+    private var avgPace: Double = 0.0
+    private var currCad: Double = 0.0
     
     // Responsive button sounds
     var player: AVAudioPlayer?
@@ -49,6 +51,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     // Used for creating the JSON
     var points: [Point] = []
     var coords: [CLLocationCoordinate2D] = []
+    
+    // Local Storage
+    var userLocations: [NSManagedObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -277,8 +282,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
      */
     func saveData(currTime: Date, steps: Int32) {
         // JSON array implementation (See Point.swift for model)
-        points.append(Point(dateFormatter(), steps, self.avgPace!,
-                            self.currPace!, self.currCad!,
+        points.append(Point(dateFormatter(), steps, self.avgPace,
+                            self.currPace, self.currCad,
                             self.locationArray, self.gyroDict))
         
         // Clear the gyroscope data after getting its string representation
@@ -434,6 +439,26 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
+    }
+    
+    // User Location Saved
+    func loadData() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "UserSaved")
+        
+        do {
+            userLocations = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
     
 }

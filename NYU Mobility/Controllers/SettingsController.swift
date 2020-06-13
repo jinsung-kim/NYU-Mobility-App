@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import CoreData
+import CoreLocation
 
 class SettingsController: UITableViewController {
 
@@ -26,8 +28,12 @@ class SettingsController: UITableViewController {
     
     var player: AVAudioPlayer?
     
+    // Local Storage
+    var userLocations: [NSManagedObject] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
         clinicianEmail.text = "Clinician Email: \(getEmail())"
         gestureSwitch.isOn = UserDefaults.standard.bool(forKey: "state")
     }
@@ -73,6 +79,7 @@ class SettingsController: UITableViewController {
         }
     }
     
+    // Email Functionality:
     func getEmail() -> String {
         let defaults = UserDefaults.standard
         let email = defaults.string(forKey: "email")
@@ -84,15 +91,78 @@ class SettingsController: UITableViewController {
         defaults.set(email, forKey: "email")
     }
     
+    // State Functionality:
+    func getState() -> Bool {
+        let defaults = UserDefaults.standard
+        let gesture = defaults.bool(forKey: "state")
+        return gesture
+    }
+    
     func saveState(_ state: String) {
         let defaults = UserDefaults.standard
         defaults.set(state, forKey: "state")
     }
     
-    func getState() -> Bool {
-        let defaults = UserDefaults.standard
-        let gesture = defaults.bool(forKey: "state")
-        return gesture
+    // Load all of the points
+    func loadData() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserSaved")
+        
+        do {
+            userLocations = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+    
+    // Saves Point
+    func savePoint(name: String, address: String) {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "UserSaved",
+                                                in: managedContext)!
+        
+        let point = NSManagedObject(entity: entity,
+                                    insertInto: managedContext)
+        
+        point.setValue(name, forKeyPath: "name")
+        point.setValue(address, forKeyPath: "address")
+        
+        // Address -> Coordinates
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+            else {
+                // handle no location found
+                return
+            }
+
+            point.setValue(location.coordinate.latitude, forKeyPath: "lat")
+            point.setValue(location.coordinate.longitude, forKey: "long")
+        }
+        
+        do {
+            try managedContext.save()
+            // Only save if there are less than 5 previously saved points
+            if (userLocations.count <= 5) {
+                userLocations.append(point)
+            }
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
     
 }
