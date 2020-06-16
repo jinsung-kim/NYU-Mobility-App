@@ -15,7 +15,7 @@ class FormController: UIViewController, UITextFieldDelegate {
     // Add button
     @IBOutlet weak var addButton: CustomAdd!
     
-    // Label
+    // Text fields (In order of appearance)
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var street: UITextField!
     @IBOutlet weak var city: UITextField!
@@ -32,6 +32,12 @@ class FormController: UIViewController, UITextFieldDelegate {
         exitEdit()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        // Cleaning up to avoid any unnecessary notification messages
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     func update() {
         addButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         name.widthAnchor.constraint(equalToConstant: 150).isActive = true
@@ -40,8 +46,26 @@ class FormController: UIViewController, UITextFieldDelegate {
         state.widthAnchor.constraint(equalToConstant: 100).isActive = true
         zip.widthAnchor.constraint(equalToConstant: 150).isActive = true
         
-        // Connect all UITextFields
+        // Connect all UITextFields to go to the next
         UITextField.connectFields(fields: [name, street, city, state, zip])
+        
+        // Keyboard settings
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
     func exitEdit() {
@@ -59,7 +83,7 @@ class FormController: UIViewController, UITextFieldDelegate {
         // Ex: 123 Apple Street Cupertino, CA 95015
         address = "\(street.text!) \(city.text!), \(state.text!) \(zip.text!)"
         print(address)
-//        savePoint(name: name.text!, address: address)
+        savePoint(name: name.text!, address: address)
     }
     
     // Load Points
