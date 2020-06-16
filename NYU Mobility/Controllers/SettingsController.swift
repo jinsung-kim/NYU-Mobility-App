@@ -53,7 +53,6 @@ class SettingsController: UITableViewController {
         loadData()
         updateLabels()
         updateButtons()
-        self.tableView.reloadData()
     }
     
     // Leaving the settings page
@@ -80,12 +79,19 @@ class SettingsController: UITableViewController {
         for (index, point) in userLocations.enumerated() {
             arr[index].text = "\(String(describing: point.value(forKey: "name")!)): \(String(describing: point.value(forKey: "address")!))"
         }
+        for j in userLocations.count ..< 5 {
+            arr[j].text = "None"
+        }
     }
     
     func updateButtons() {
         let arr: [UIButton] = [firstBut, secondBut, thirdBut, fourthBut, fifthBut]
         for i in 0 ..< userLocations.count {
             arr[i].setTitle("Delete", for: .normal)
+        }
+        // Rest of them should be "Add" buttons to redirect to the form
+        for j in userLocations.count ..< 5 {
+            arr[j].setTitle("Add", for: .normal)
         }
     }
     
@@ -116,7 +122,8 @@ class SettingsController: UITableViewController {
         if (index < userLocations.count) {
             deleteData(index)
             userLocations.remove(at: index)
-            self.tableView.reloadData()
+            updateLabels()
+            updateButtons()
         } else {
             // Moves onto the Form controller
             self.performSegue(withIdentifier: "FormSegue", sender: self)
