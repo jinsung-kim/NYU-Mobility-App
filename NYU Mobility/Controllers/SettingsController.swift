@@ -46,6 +46,17 @@ class SettingsController: UITableViewController {
         gestureSwitch.isOn = UserDefaults.standard.bool(forKey: "state")
     }
     
+    @IBAction func unwindSettings(_ sender: UIStoryboardSegue) {}
+    
+    // When it returns to the settings page
+    override func viewDidAppear(_ animated: Bool) {
+        loadData()
+        updateLabels()
+        updateButtons()
+        self.tableView.reloadData()
+    }
+    
+    // Leaving the settings page
     override func viewWillDisappear(_ animated: Bool) {
         playSound("back")
     }
@@ -73,7 +84,7 @@ class SettingsController: UITableViewController {
     
     func updateButtons() {
         let arr: [UIButton] = [firstBut, secondBut, thirdBut, fourthBut, fifthBut]
-        for i in 0..<userLocations.count {
+        for i in 0 ..< userLocations.count {
             arr[i].setTitle("Delete", for: .normal)
         }
     }
@@ -103,7 +114,9 @@ class SettingsController: UITableViewController {
     func update(_ index: size_t) {
         // Make sure that there is a valid address at that point
         if (index < userLocations.count) {
+            deleteData(index)
             userLocations.remove(at: index)
+            self.tableView.reloadData()
         } else {
             // Moves onto the Form controller
             self.performSegue(withIdentifier: "FormSegue", sender: self)
@@ -170,6 +183,22 @@ class SettingsController: UITableViewController {
             userLocations = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func deleteData(_ index: size_t) {
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        do {
+            context.delete(userLocations[index])
+            try context.save()
+        } catch {
+            print("Error: \(error.localizedDescription)")
         }
     }
     

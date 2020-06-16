@@ -34,8 +34,10 @@ class FormController: UIViewController, UITextFieldDelegate {
     
     override func viewDidDisappear(_ animated: Bool) {
         // Cleaning up to avoid any unnecessary notification messages
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
     }
     
     func update() {
@@ -82,8 +84,8 @@ class FormController: UIViewController, UITextFieldDelegate {
         var address: String = ""
         // Ex: 123 Apple Street Cupertino, CA 95015
         address = "\(street.text!) \(city.text!), \(state.text!) \(zip.text!)"
-        print(address)
         savePoint(name: name.text!, address: address)
+        
     }
     
     // Load Points
@@ -133,7 +135,7 @@ class FormController: UIViewController, UITextFieldDelegate {
             }
 
             point.setValue(location.coordinate.latitude, forKeyPath: "lat")
-            point.setValue(location.coordinate.longitude, forKey: "long")
+            point.setValue(location.coordinate.longitude, forKeyPath: "long")
         }
         
         do {
@@ -150,13 +152,13 @@ class FormController: UIViewController, UITextFieldDelegate {
 
 // Used to go from one UITextField to the next
 extension UITextField {
-    class func connectFields(fields:[UITextField]) -> Void {
+    class func connectFields(fields: [UITextField]) -> Void {
         guard let last = fields.last else {
             return
         }
         for i in 0 ..< fields.count - 1 {
             fields[i].returnKeyType = .next
-            fields[i].addTarget(fields[i+1], action: #selector(self.becomeFirstResponder), for: .editingDidEndOnExit)
+            fields[i].addTarget(fields[i + 1], action: #selector(self.becomeFirstResponder), for: .editingDidEndOnExit)
         }
         last.returnKeyType = .done
         last.addTarget(last, action: #selector(UIResponder.resignFirstResponder), for: .editingDidEndOnExit)
