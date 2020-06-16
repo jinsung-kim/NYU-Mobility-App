@@ -26,6 +26,13 @@ class SettingsController: UITableViewController {
     @IBOutlet weak var fourthLoc: UILabel!
     @IBOutlet weak var fifthLoc: UILabel!
     
+    // Buttons associated to the location labels above
+    @IBOutlet weak var firstBut: UIButton!
+    @IBOutlet weak var secondBut: UIButton!
+    @IBOutlet weak var thirdBut: UIButton!
+    @IBOutlet weak var fourthBut: UIButton!
+    @IBOutlet weak var fifthBut: UIButton!
+    
     var player: AVAudioPlayer?
     
     // Local Storage
@@ -34,7 +41,8 @@ class SettingsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        clinicianEmail.text = "Clinician Email: \(getEmail())"
+        updateLabels()
+        updateButtons()
         gestureSwitch.isOn = UserDefaults.standard.bool(forKey: "state")
     }
     
@@ -54,8 +62,52 @@ class SettingsController: UITableViewController {
         }
     }
     
+    // Updates all of the labels as necessary, based on what the user has already inputted
+    func updateLabels() {
+        clinicianEmail.text = "Clinician Email: \(getEmail())"
+        let arr: [UILabel] = [firstLoc, secondLoc, thirdLoc, fourthLoc, fifthLoc]
+        for (index, point) in userLocations.enumerated() {
+            arr[index].text = "\(String(describing: point.value(forKey: "name"))): \(String(describing: point.value(forKey: "address")))"
+        }
+    }
+    
+    func updateButtons() {
+        let arr: [UIButton] = [firstBut, secondBut, thirdBut, fourthBut, fifthBut]
+        for i in 0..<userLocations.count {
+            arr[i].setTitle("Delete", for: .normal)
+        }
+    }
+    
     @IBAction func responsiveGestureSwitch(_ sender: UISwitch) {
         UserDefaults.standard.set(sender.isOn, forKey: "state")
+    }
+    
+    // Button Handler
+    @IBAction func pressed(_ sender: UIButton) {
+        switch (sender) {
+        case firstBut:
+            update(0)
+        case secondBut:
+            update(1)
+        case thirdBut:
+            update(2)
+        case fourthBut:
+            update(3)
+        case fifthBut:
+            update(4)
+        default:
+            print("Shouldn't happen")
+        }
+    }
+    
+    func update(_ index: size_t) {
+        // Make sure that there is a valid address at that point
+        if (index < userLocations.count) {
+            userLocations.remove(at: index)
+        } else {
+            // Moves onto the Form controller
+            self.performSegue(withIdentifier: "FormSegue", sender: self)
+        }
     }
     
     // Sound Functionality
@@ -118,50 +170,6 @@ class SettingsController: UITableViewController {
             userLocations = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
-    
-    // Saves Point
-    func savePoint(name: String, address: String) {
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "UserSaved",
-                                                in: managedContext)!
-        
-        let point = NSManagedObject(entity: entity,
-                                    insertInto: managedContext)
-        
-        point.setValue(name, forKeyPath: "name")
-        point.setValue(address, forKeyPath: "address")
-        
-        // Address -> Coordinates
-        let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(address) { (placemarks, error) in
-            guard
-                let placemarks = placemarks,
-                let location = placemarks.first?.location
-            else {
-                // handle no location found
-                return
-            }
-
-            point.setValue(location.coordinate.latitude, forKeyPath: "lat")
-            point.setValue(location.coordinate.longitude, forKey: "long")
-        }
-        
-        do {
-            try managedContext.save()
-            // Only save if there are less than 5 previously saved points
-            if (userLocations.count <= 5) {
-                userLocations.append(point)
-            }
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     

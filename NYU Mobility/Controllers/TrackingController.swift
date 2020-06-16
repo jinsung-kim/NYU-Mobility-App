@@ -59,13 +59,13 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         super.viewDidLoad()
         // Used to access settings
         let settingsButton = UIBarButtonItem()
-//        settingsButton.title = "\u{2699}" // Unicode value for gear emoji
         settingsButton.title = "Settings"
         settingsButton.action = #selector(settingsTap)
         settingsButton.target = self
         self.navigationItem.rightBarButtonItem = settingsButton
-        getLocationPermission()
-        enableDoubleTap()
+        getLocationPermission() // Permission to track
+        enableDoubleTap() // Double tap feature
+        loadData() // Gets user saved locations
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -273,12 +273,10 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     /**
-        Saves the given data into the stack within CoreData, and clears out the gyroscope data to start taking values again
+        Saves the given data into the stack, and clears out the gyroscope data to start taking values again
         - Parameters:
             - currTime: Date in which the data has been tracked
             - stepsTaken: Steps that have been taken
-            - lat: lat coordinate the user is standing at
-            - long: long coordinate the user is standing at
      */
     func saveData(currTime: Date, steps: Int32) {
         // JSON array implementation (See Point.swift for model)
