@@ -67,7 +67,7 @@ class SettingsController: UITableViewController {
         clinicianEmail.text = "Clinician Email: \(getEmail())"
         let arr: [UILabel] = [firstLoc, secondLoc, thirdLoc, fourthLoc, fifthLoc]
         for (index, point) in userLocations.enumerated() {
-            arr[index].text = "\(String(describing: point.value(forKey: "name"))): \(String(describing: point.value(forKey: "address")))"
+            arr[index].text = "\(String(describing: point.value(forKey: "name")!)): \(String(describing: point.value(forKey: "address")!))"
         }
     }
     
