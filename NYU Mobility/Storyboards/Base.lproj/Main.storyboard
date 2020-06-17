@@ -340,6 +340,9 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="continue" textContentType="address-level1"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="iRo-wM-Nc0" eventType="editingDidEnd" id="cWG-ON-HP9"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: New York" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JAT-ld-95s">
                                 <rect key="frame" x="150.5" y="521" width="113" height="34"/>
@@ -347,6 +350,9 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="continue" textContentType="address-level2"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="iRo-wM-Nc0" eventType="editingDidEnd" id="f5M-mX-iYD"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: 550 First Avenue" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3To-Rj-Ww1">
                                 <rect key="frame" x="127" y="452" width="160" height="34"/>
@@ -354,6 +360,9 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="continue" textContentType="address-line1"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="iRo-wM-Nc0" eventType="editingDidEnd" id="Xuq-1i-hGa"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex: Home" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hcD-U6-vf2">
                                 <rect key="frame" x="162.5" y="300" width="89" height="34"/>
@@ -361,6 +370,9 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="continue" textContentType="location"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="iRo-wM-Nc0" eventType="touchDown" id="v9b-Fd-72i"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: 10016" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mI6-aF-jgb">
                                 <rect key="frame" x="161.5" y="659" width="91" height="34"/>
@@ -368,6 +380,9 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="postal-code"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="iRo-wM-Nc0" eventType="editingDidEnd" id="dTI-Fq-y66"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

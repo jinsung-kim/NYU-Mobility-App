@@ -22,6 +22,8 @@ class FormController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zip: UITextField!
     
+    var last: UITextField?
+    
     // Local Storage
     var userLocations: [NSManagedObject] = []
     
@@ -52,14 +54,22 @@ class FormController: UIViewController, UITextFieldDelegate {
         UITextField.connectFields(fields: [name, street, city, state, zip])
         
         // Keyboard settings
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @IBAction func keyboardStays(_ sender: UITextField) {
+        last = sender
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+        if (last != name && last != street) {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
             }
         }
     }
@@ -73,11 +83,6 @@ class FormController: UIViewController, UITextFieldDelegate {
     func exitEdit() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         self.view.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
     }
     
     @IBAction func submitLocation(_ sender: Any) {
