@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import AVFoundation
+import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
@@ -26,10 +27,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // Used for creating the JSON that will be manipulated to grab the coordinates
     var coords: [CLLocationCoordinate2D] = []
     
+    var userLocations: [NSManagedObject] = []
+    
     // All the map functions go here
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.isScrollEnabled = false
+        loadData()
+        addAnnotations()
         updateLabels()
         // Only voice results if voice gestures are activated
         voiceResults()
@@ -43,7 +48,39 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = nil
     }
     
+    // Core Data
+    
+    func loadData() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "UserSaved")
+        
+        do {
+            userLocations = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+    
     // Map View Functions
+    
+    func addAnnotations() {
+        for i in 0 ..< userLocations.count {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(
+                latitude: userLocations[i].value(forKey: "lat")! as! CLLocationDegrees,
+                longitude: userLocations[i].value(forKey: "long")! as! CLLocationDegrees)
+            annotation.title = "\(userLocations[i].value(forKey: "name")!)"
+            mapView.addAnnotation(annotation)
+        }
+    }
     
     func generateLine() {
         mapView.delegate = self
