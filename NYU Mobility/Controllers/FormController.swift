@@ -138,7 +138,6 @@ class FormController: UIViewController, UITextFieldDelegate {
                 // No location found
                 return
             }
-
             point.setValue(location.coordinate.latitude, forKeyPath: "lat")
             point.setValue(location.coordinate.longitude, forKeyPath: "long")
         }

@@ -57,12 +57,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Used to access settings
-        let settingsButton = UIBarButtonItem()
-        settingsButton.title = "Settings"
-        settingsButton.action = #selector(settingsTap)
-        settingsButton.target = self
-        self.navigationItem.rightBarButtonItem = settingsButton
+        settingsButton()
         getLocationPermission() // Permission to track
         enableDoubleTap() // Double tap feature
         loadData() // Gets user saved locations
@@ -90,6 +85,14 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             vc?.steps = self.steps ?? 0
             vc?.coords = self.coords
         }
+    }
+    
+    func settingsButton() {
+        let settingsButton = UIBarButtonItem()
+        settingsButton.title = "Settings"
+        settingsButton.action = #selector(settingsTap)
+        settingsButton.target = self
+        self.navigationItem.rightBarButtonItem = settingsButton
     }
     
     func enableDoubleTap() {

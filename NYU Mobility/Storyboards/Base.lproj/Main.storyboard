@@ -473,7 +473,7 @@
             </objects>
             <point key="canvasLocation" x="1078.2608695652175" y="93.080357142857139"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Session Results-->
         <scene sceneID="hjX-wK-ZWM">
             <objects>
                 <viewController storyboardIdentifier="mapview" id="mb0-rH-wPf" customClass="MapViewController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
@@ -512,7 +512,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gcz-3f-w4e"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rDw-tj-B7L"/>
+                    <navigationItem key="navigationItem" title="Session Results" id="rDw-tj-B7L"/>
                     <connections>
                         <outlet property="distanceLabel" destination="fvt-cS-Kjt" id="jib-II-ohC"/>
                         <outlet property="mapView" destination="FX0-9C-yL1" id="lBC-Mo-IMC"/>

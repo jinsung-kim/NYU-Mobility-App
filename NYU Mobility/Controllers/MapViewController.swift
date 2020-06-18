@@ -79,6 +79,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 longitude: userLocations[i].value(forKey: "long")! as! CLLocationDegrees)
             annotation.title = "\(userLocations[i].value(forKey: "name")!)"
             mapView.addAnnotation(annotation)
+            print(userLocations[i].value(forKey: "lat")!)
+            print(userLocations[i].value(forKey: "long")!)
         }
     }
     
