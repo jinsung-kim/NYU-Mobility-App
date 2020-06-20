@@ -46,7 +46,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     private var buttonState: Int = 0
     
     // Used to track pedometer when saving data
-    var steps: Int32? = 0
+    var steps: Int32 = 0
+    var distance: Int32 = 0 // In meters
     
     // Used for creating the JSON
     var points: [Point] = []
@@ -82,8 +83,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         if segue.destination is MapViewController
         {
             let vc = segue.destination as? MapViewController
-            vc?.steps = self.steps ?? 0
+            vc?.steps = self.steps
             vc?.coords = self.coords
+            vc?.distance = self.distance
         }
     }
     
@@ -256,6 +258,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         activityManager.startActivityUpdates(to: OperationQueue.main) {
             [weak self] (activity: CMMotionActivity?) in
             self?.steps = 0
+            self?.distance = 0
+            self?.saveData(currTime: Date(), steps: 0)
         }
     }
     
@@ -266,7 +270,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
 
             // Runs concurrently
             DispatchQueue.main.async {
-                self?.saveData(currTime: Date(), steps: (pedometerData.numberOfSteps as! Int32))
+                self?.saveData(currTime: Date(),
+                               steps: (pedometerData.numberOfSteps as! Int32))
+                self?.distance = Int32(truncating: pedometerData.distance ?? 0)
                 self?.steps = Int32(truncating: pedometerData.numberOfSteps)
                 self?.avgPace = Double(truncating: pedometerData.averageActivePace ?? 0)
                 self?.currPace = Double(truncating: pedometerData.currentPace ?? 0)
@@ -283,7 +289,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
      */
     func saveData(currTime: Date, steps: Int32) {
         // JSON array implementation (See Point.swift for model)
-        points.append(Point(dateFormatter(), steps, self.avgPace,
+        points.append(Point(dateFormatter(), steps, self.distance, self.avgPace,
                             self.currPace, self.currCad,
                             self.locationArray, self.gyroDict))
         

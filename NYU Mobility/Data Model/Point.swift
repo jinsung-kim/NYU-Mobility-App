@@ -11,13 +11,14 @@ import Foundation
 struct Point: Codable {
     var time: String
     var steps: Int32
-    var coordinates: [String: [Double]]
+    var distance: Int32
+    var coordinates: [String: [Double]] // All lat, long values held in the same place
     var gyroData: [String: [Double]] // All x values held in the same place, y values, z values
     var avgPace: Double
     var currPace: Double
     var currCad: Double
     
-    init(_ time: String, _ steps: Int32, _ avgPace: Double, _ currPace: Double,
+    init(_ time: String, _ steps: Int32, _ distance: Int32, _ avgPace: Double, _ currPace: Double,
          _ currCad: Double, _ coordinates: [String: [Double]], _ gyroData: [String: [Double]]) {
         self.time = time
         self.steps = steps
@@ -26,10 +27,11 @@ struct Point: Codable {
         self.currCad = currCad
         self.avgPace = avgPace
         self.currPace = currPace
+        self.distance = distance
     }
     
     func convertToDictionary() -> [String : Any] {
-        let dic: [String: Any] = ["time": self.time, "steps": self.steps,
+        let dic: [String: Any] = ["time": self.time, "steps": self.steps, "distance": self.distance,
                                   "coordinates": self.coordinates, "gyroData": self.gyroData,
                                   "avgPace": self.avgPace, "currPace": self.currPace,
                                   "currCad": self.currCad]
