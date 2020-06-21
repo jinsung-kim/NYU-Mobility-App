@@ -47,7 +47,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     // Used to track pedometer when saving data
     var steps: Int32 = 0
+    var maxSteps: Int32 = 0
     var distance: Int32 = 0 // In meters
+    var maxDistance: Int32 = 0
     
     // Used for creating the JSON
     var points: [Point] = []
@@ -58,7 +60,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settingsButton()
+        UIApplication.shared.isIdleTimerDisabled = true // Screen will not be put to sleep
+        settingsButton() // The right side button
         getLocationPermission() // Permission to track
         enableDoubleTap() // Double tap feature
         loadData() // Gets user saved locations
@@ -83,9 +86,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         if segue.destination is MapViewController
         {
             let vc = segue.destination as? MapViewController
-            vc?.steps = self.steps
+            vc?.steps = self.maxSteps
             vc?.coords = self.coords
-            vc?.distance = self.distance
+            vc?.distance = self.maxDistance
         }
     }
     
@@ -259,7 +262,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             [weak self] (activity: CMMotionActivity?) in
             self?.steps = 0
             self?.distance = 0
-            self?.saveData(currTime: Date(), steps: 0)
+            self?.maxSteps = 0
+            self?.maxDistance = 0
+            self?.saveData(currTime: Date())
         }
     }
     
@@ -270,8 +275,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
 
             // Runs concurrently
             DispatchQueue.main.async {
-                self?.saveData(currTime: Date(),
-                               steps: (pedometerData.numberOfSteps as! Int32))
+                self?.saveData(currTime: Date())
                 self?.distance = Int32(truncating: pedometerData.distance ?? 0)
                 self?.steps = Int32(truncating: pedometerData.numberOfSteps)
                 self?.avgPace = Double(truncating: pedometerData.averageActivePace ?? 0)
@@ -285,17 +289,24 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         Saves the given data into the stack, and clears out the gyroscope data to start taking values again
         - Parameters:
             - currTime: Date in which the data has been tracked
-            - stepsTaken: Steps that have been taken
      */
-    func saveData(currTime: Date, steps: Int32) {
+    func saveData(currTime: Date) {
         // JSON array implementation (See Point.swift for model)
-        points.append(Point(dateFormatter(), steps, self.distance, self.avgPace,
-                            self.currPace, self.currCad,
-                            self.locationArray, self.gyroDict))
-        
-        // Clear the gyroscope data after getting its string representation
-        self.gyroDict.removeAll()
-        self.locationArray.removeAll()
+        if (self.steps >= self.maxSteps) {
+            self.maxSteps = self.steps
+        }
+        if (self.distance >= self.maxDistance) {
+            self.maxDistance = self.distance
+        }
+        if (self.maxDistance != 0 && self.maxSteps != 0) {
+            points.append(Point(dateFormatter(), self.maxSteps, self.maxDistance, self.avgPace,
+                                self.currPace, self.currCad,
+                                self.locationArray, self.gyroDict))
+            
+            // Clear the gyroscope data after getting its string representation
+            self.gyroDict.removeAll()
+            self.locationArray.removeAll()
+        }
     }
     
     func clearData() {
@@ -467,7 +478,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
-    
 }
 
 // Pop up text field for initial sign up
