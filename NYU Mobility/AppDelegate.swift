@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         let defaultValue = ["email" : "", "state": true] as [String : Any]
         defaults.register(defaults: defaultValue)
-        // Disable dark mode
+        // Disable dark mode -> Just for now (Annoying for testing)
         if #available(iOS 13, *) {
             window?.overrideUserInterfaceStyle = .light
         }

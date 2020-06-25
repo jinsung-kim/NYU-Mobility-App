@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Used for buttons / labels
+// Used for buttons / labels -> Custom Add
 enum Colors {
     static let coolBlue = UIColor(red: 42/255, green: 126/255, blue: 254/255, alpha: 1.0)
 }

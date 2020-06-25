@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Point: Codable {
+struct Point: Codable { // Without 'Codable', it will not turn into a JSON
     var time: String
     var steps: Int32
     var distance: Int32
@@ -18,6 +18,7 @@ struct Point: Codable {
     var currPace: Double
     var currCad: Double
     
+    // Used to add each point within the JSON
     init(_ time: String, _ steps: Int32, _ distance: Int32, _ avgPace: Double, _ currPace: Double,
          _ currCad: Double, _ coordinates: [String: [Double]], _ gyroData: [String: [Double]]) {
         self.time = time

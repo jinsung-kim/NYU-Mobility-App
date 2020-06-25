@@ -67,6 +67,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         loadData() // Gets user saved locations
     }
     
+    // If the app is loaded for the first time, this will trigger and ask the user to enter a email
     override func viewDidAppear(_ animated: Bool) {
         if (getEmail() == "") {
             showInputDialog(title: "Add Email",
@@ -92,6 +93,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         }
     }
     
+    // Upper right item from the tracking controller that goes to the 
     func settingsButton() {
         let settingsButton = UIBarButtonItem()
         settingsButton.title = "Settings"
@@ -100,6 +102,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         self.navigationItem.rightBarButtonItem = settingsButton
     }
     
+    // Double tap pauses and resumes given the previous state
     func enableDoubleTap() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TrackingController.labelTapped(recognizer: )))
         tapGestureRecognizer.numberOfTapsRequired = 2
@@ -113,6 +116,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         self.performSegue(withIdentifier: "SettingsSegue", sender: self)
     }
     
+    // Goes together with enableDoubleTap
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
         if (self.buttonState == 1) {
             playSound("pause")
@@ -190,6 +194,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         }
     }
     
+    // Should only do this once
     func getLocationPermission() {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
