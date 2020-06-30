@@ -8,21 +8,74 @@
 
 import UIKit
 
-class ClientRegistration: UIViewController {
+class ClientRegistration: UIViewController, UITextFieldDelegate {
     
-    // Local Storage
+    // Text fields
+    @IBOutlet weak var fullName: UITextField!
+    @IBOutlet weak var specialistEmail: UITextField!
+    
+    @IBOutlet weak var registerButton: CustomAdd!
+    
+    var last: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loadData()
-        
-    }
-
-    @IBAction func toClient(_ sender: Any) {
-//        var viewControllers = self.navigationController?.viewControllers
-//        viewControllers!.remove(at: viewControllers!.count - 1)
-//        self.navigationController?.setViewControllers(viewControllers!, animated: true)
-//        self.performSegue(withIdentifier: "ToClient", sender: self)
+        labelAdjustments()
+        exitEdit()
     }
     
+    func labelAdjustments() {
+        registerButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        fullName.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        specialistEmail.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        
+        // Connect all UITextFields to go to the next
+        UITextField.connectFields(fields: [fullName, specialistEmail])
+        
+        // Keyboard settings
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // Called when we leave this view controller, whether that is going back or finished
+    override func viewDidDisappear(_ animated: Bool) {
+        // Cleaning up to avoid any unnecessary notification messages
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
+    }
+    
+    @IBAction func keyboardStays(_ sender: UITextField) {
+        last = sender
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if (last != fullName && last != specialistEmail) {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    func exitEdit() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @IBAction func registered(_ sender: Any) {
+        print(fullName!)
+        print(specialistEmail!)
+    }
 }
+

@@ -15,14 +15,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2a-ec-mim">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2a-ec-mim" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
                                 <rect key="frame" x="166" y="288" width="82" height="30"/>
                                 <state key="normal" title="I am a client"/>
                                 <connections>
                                     <segue destination="PDR-mp-3r4" kind="show" identifier="ClientSignUp" id="hEx-H3-lpH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbZ-3G-HR8">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbZ-3G-HR8" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
                                 <rect key="frame" x="152.5" y="632" width="109" height="30"/>
                                 <state key="normal" title="I am a specialist"/>
                                 <connections>
@@ -40,6 +40,10 @@
                         <viewLayoutGuide key="safeArea" id="VYn-Uo-xnw"/>
                     </view>
                     <navigationItem key="navigationItem" title="Registration" id="nfH-Hc-1ON"/>
+                    <connections>
+                        <outlet property="clientButton" destination="H2a-ec-mim" id="1NV-aV-BBl"/>
+                        <outlet property="specialistButton" destination="LbZ-3G-HR8" id="xfH-Zx-geP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCU-nm-fjG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,32 +73,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOX-As-8l1">
-                                <rect key="frame" x="171.5" y="433" width="71" height="30"/>
-                                <state key="normal" title="Go to next"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOX-As-8l1" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="178.5" y="772" width="57" height="30"/>
+                                <state key="normal" title="Register"/>
                                 <connections>
-                                    <action selector="toClient:" destination="PDR-mp-3r4" eventType="touchUpInside" id="xh9-6z-vdW"/>
+                                    <action selector="registered:" destination="PDR-mp-3r4" eventType="touchUpInside" id="Fb1-ME-mxV"/>
                                     <segue destination="cYw-0i-MUx" kind="show" identifier="ToClient" id="fiU-F7-pAy"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: John Appleseed" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faE-p1-5eG">
+                                <rect key="frame" x="129.5" y="435" width="155.5" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ViJ-71-OBx">
+                                <rect key="frame" x="168.5" y="406" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9q1-z6-u6s">
+                                <rect key="frame" x="174" y="558" width="66.5" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialist Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3D-uC-raI">
+                                <rect key="frame" x="147.5" y="529" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="sOX-As-8l1" firstAttribute="centerY" secondItem="Aab-3F-Tml" secondAttribute="centerY" id="46s-rv-yBF"/>
+                            <constraint firstItem="9q1-z6-u6s" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="6YV-bd-hb4"/>
                             <constraint firstItem="sOX-As-8l1" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="AFi-Ek-Uk7"/>
+                            <constraint firstItem="ViJ-71-OBx" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="Hbp-Vd-5TY"/>
+                            <constraint firstItem="faE-p1-5eG" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="MfR-fH-AYZ"/>
+                            <constraint firstItem="E3D-uC-raI" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="Zu5-w8-Yyc"/>
+                            <constraint firstItem="g1e-us-2ka" firstAttribute="bottom" secondItem="sOX-As-8l1" secondAttribute="bottom" constant="60" id="ayR-uz-Nix"/>
+                            <constraint firstItem="faE-p1-5eG" firstAttribute="top" secondItem="ViJ-71-OBx" secondAttribute="bottom" constant="8" id="c9Z-Ar-1w6"/>
+                            <constraint firstItem="sOX-As-8l1" firstAttribute="top" secondItem="9q1-z6-u6s" secondAttribute="bottom" constant="180" id="e0Z-ee-k9P"/>
+                            <constraint firstItem="9q1-z6-u6s" firstAttribute="top" secondItem="E3D-uC-raI" secondAttribute="bottom" constant="8" id="pBS-k4-ipj"/>
+                            <constraint firstItem="E3D-uC-raI" firstAttribute="top" secondItem="faE-p1-5eG" secondAttribute="bottom" constant="60" id="xPs-lZ-73W"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g1e-us-2ka"/>
                     </view>
                     <navigationItem key="navigationItem" title="Client Registration" id="SEi-2m-bWM"/>
+                    <connections>
+                        <outlet property="fullName" destination="faE-p1-5eG" id="tTS-M8-vEs"/>
+                        <outlet property="registerButton" destination="sOX-As-8l1" id="8ng-5p-Bco"/>
+                        <outlet property="specialistEmail" destination="9q1-z6-u6s" id="Uap-Pn-dpL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kN-Mb-J2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1992.753623188406" y="-246.42857142857142"/>
         </scene>
-        <!--tracking-->
+        <!--Tracking-->
         <scene sceneID="C28-8e-BbD">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="clientNavigation" storyboardName="Client" referencedIdentifier="tracking" id="cYw-0i-MUx" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="clientNavigation" storyboardName="Client" referencedIdentifier="Tracking" id="cYw-0i-MUx" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="N00-GW-uCp"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qjd-U1-HcD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

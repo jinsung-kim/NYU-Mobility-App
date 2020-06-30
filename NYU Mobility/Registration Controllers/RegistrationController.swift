@@ -7,16 +7,28 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
 
 class RegistrationController: UIViewController {
     
-    // Local Storage
+    // Client button
+    @IBOutlet weak var clientButton: CustomAdd!
+    
+    // Specialist button
+    @IBOutlet weak var specialistButton: CustomAdd!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loadData()
-        
+        buttonConstraints()
+    }
+    
+    func buttonConstraints() {
+        // Client button styling
+        clientButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        clientButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        // Specialist button styling
+        specialistButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        specialistButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
 
 }

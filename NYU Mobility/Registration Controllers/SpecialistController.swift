@@ -9,12 +9,9 @@
 import UIKit
 
 class SpecialistController: UIViewController {
-    
-     // Local Storage
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loadData()
-        
+
     }
 }
