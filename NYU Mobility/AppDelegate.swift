@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        application.isIdleTimerDisabled = true
+        application.isIdleTimerDisabled = true // Won't turn off by itself
         // Override point for customization after application launch
         let defaults = UserDefaults.standard
         let defaultValue = ["email" : "", "state": true] as [String : Any]

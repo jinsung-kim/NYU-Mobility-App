@@ -45,7 +45,7 @@
             </objects>
             <point key="canvasLocation" x="831.88405797101461" y="105.80357142857143"/>
         </scene>
-        <!--I am a specialist-->
+        <!--Specialist Registration-->
         <scene sceneID="WHk-js-bR2">
             <objects>
                 <viewController storyboardIdentifier="SpecialistVC" id="LTW-xd-LH4" customClass="SpecialistController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
@@ -55,27 +55,51 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="n3u-88-GSE"/>
                     </view>
-                    <navigationItem key="navigationItem" title="I am a specialist" id="W8q-MR-Vfu"/>
+                    <navigationItem key="navigationItem" title="Specialist Registration" id="W8q-MR-Vfu"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsG-S0-Df9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1992.753623188406" y="475.44642857142856"/>
         </scene>
-        <!--I am a client-->
+        <!--Client Registration-->
         <scene sceneID="UUC-L7-Rjp">
             <objects>
                 <viewController storyboardIdentifier="ClientVC" id="PDR-mp-3r4" customClass="ClientRegistration" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aab-3F-Tml">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOX-As-8l1">
+                                <rect key="frame" x="171.5" y="433" width="71" height="30"/>
+                                <state key="normal" title="Go to next"/>
+                                <connections>
+                                    <action selector="toClient:" destination="PDR-mp-3r4" eventType="touchUpInside" id="xh9-6z-vdW"/>
+                                    <segue destination="cYw-0i-MUx" kind="show" identifier="ToClient" id="fiU-F7-pAy"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sOX-As-8l1" firstAttribute="centerY" secondItem="Aab-3F-Tml" secondAttribute="centerY" id="46s-rv-yBF"/>
+                            <constraint firstItem="sOX-As-8l1" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="AFi-Ek-Uk7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="g1e-us-2ka"/>
                     </view>
-                    <navigationItem key="navigationItem" title="I am a client" id="SEi-2m-bWM"/>
+                    <navigationItem key="navigationItem" title="Client Registration" id="SEi-2m-bWM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kN-Mb-J2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1992.753623188406" y="-246.42857142857142"/>
+        </scene>
+        <!--tracking-->
+        <scene sceneID="C28-8e-BbD">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="clientNavigation" storyboardName="Client" referencedIdentifier="tracking" id="cYw-0i-MUx" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="N00-GW-uCp"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qjd-U1-HcD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2707" y="-246"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Pmc-sG-xYe">

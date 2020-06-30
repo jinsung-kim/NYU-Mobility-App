@@ -61,6 +61,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true // Screen will not be put to sleep
+        self.navigationItem.setHidesBackButton(true, animated: false)
         settingsButton() // The right side button
         getLocationPermission() // Permission to track
         enableDoubleTap() // Double tap feature
