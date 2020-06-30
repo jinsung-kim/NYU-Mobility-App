@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vi2-PK-aE2">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Registration-->
+        <scene sceneID="rJG-SL-SwO">
+            <objects>
+                <viewController storyboardIdentifier="Registration" id="gnB-UP-gQP" customClass="RegistrationController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="laY-RN-P0X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2a-ec-mim">
+                                <rect key="frame" x="166" y="288" width="82" height="30"/>
+                                <state key="normal" title="I am a client"/>
+                                <connections>
+                                    <segue destination="PDR-mp-3r4" kind="show" identifier="ClientSignUp" id="hEx-H3-lpH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbZ-3G-HR8">
+                                <rect key="frame" x="152.5" y="632" width="109" height="30"/>
+                                <state key="normal" title="I am a specialist"/>
+                                <connections>
+                                    <segue destination="LTW-xd-LH4" kind="show" identifier="SpecialistSignUp" id="cpf-uN-Xo4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="VYn-Uo-xnw" firstAttribute="bottom" secondItem="LbZ-3G-HR8" secondAttribute="bottom" constant="200" id="PIU-pb-zT1"/>
+                            <constraint firstItem="H2a-ec-mim" firstAttribute="top" secondItem="VYn-Uo-xnw" secondAttribute="top" constant="200" id="uEr-te-SsT"/>
+                            <constraint firstItem="H2a-ec-mim" firstAttribute="centerX" secondItem="laY-RN-P0X" secondAttribute="centerX" id="xKQ-WF-hR8"/>
+                            <constraint firstItem="LbZ-3G-HR8" firstAttribute="centerX" secondItem="laY-RN-P0X" secondAttribute="centerX" id="yCr-QT-36h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VYn-Uo-xnw"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Registration" id="nfH-Hc-1ON"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dCU-nm-fjG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="831.88405797101461" y="105.80357142857143"/>
+        </scene>
+        <!--I am a specialist-->
+        <scene sceneID="WHk-js-bR2">
+            <objects>
+                <viewController storyboardIdentifier="SpecialistVC" id="LTW-xd-LH4" customClass="SpecialistController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cxq-SX-dUV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="n3u-88-GSE"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="I am a specialist" id="W8q-MR-Vfu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vsG-S0-Df9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1992.753623188406" y="475.44642857142856"/>
+        </scene>
+        <!--I am a client-->
+        <scene sceneID="UUC-L7-Rjp">
+            <objects>
+                <viewController storyboardIdentifier="ClientVC" id="PDR-mp-3r4" customClass="ClientRegistration" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aab-3F-Tml">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="g1e-us-2ka"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="I am a client" id="SEi-2m-bWM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0kN-Mb-J2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1992.753623188406" y="-246.42857142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Pmc-sG-xYe">
+            <objects>
+                <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" id="vi2-PK-aE2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cn4-EV-s9p">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gnB-UP-gQP" kind="relationship" relationship="rootViewController" id="Xxw-6y-99a"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pQh-Sv-pbq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-78.260869565217391" y="105.80357142857143"/>
+        </scene>
+    </scenes>
+</document>

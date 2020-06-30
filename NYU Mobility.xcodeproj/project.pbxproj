@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A121D94C24958C9500F4F5DE /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D94B24958C9500F4F5DE /* FormController.swift */; };
+		A1366EC024AB843C00B1FA57 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1366EBF24AB843C00B1FA57 /* Registration.storyboard */; };
+		A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC424AB853F00B1FA57 /* RegistrationController.swift */; };
+		A1366EC724AB8BE900B1FA57 /* ClientRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC624AB8BE900B1FA57 /* ClientRegistration.swift */; };
+		A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC824AB8C0F00B1FA57 /* SpecialistController.swift */; };
 		A13FEA1B2491CE8800A4904F /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13FEA1A2491CE8800A4904F /* SettingsController.swift */; };
 		A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9724814B7C00A3433D /* AppDelegate.swift */; };
 		A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9924814B7C00A3433D /* SceneDelegate.swift */; };
@@ -50,6 +54,10 @@
 
 /* Begin PBXFileReference section */
 		A121D94B24958C9500F4F5DE /* FormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
+		A1366EBF24AB843C00B1FA57 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
+		A1366EC424AB853F00B1FA57 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		A1366EC624AB8BE900B1FA57 /* ClientRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientRegistration.swift; sourceTree = "<group>"; };
+		A1366EC824AB8C0F00B1FA57 /* SpecialistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistController.swift; sourceTree = "<group>"; };
 		A13FEA1A2491CE8800A4904F /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		A141FC9424814B7C00A3433D /* NYU Mobility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYU Mobility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A141FC9724814B7C00A3433D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +121,16 @@
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
+		A1366EC124AB84D400B1FA57 /* Registration Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A1366EC424AB853F00B1FA57 /* RegistrationController.swift */,
+				A1366EC624AB8BE900B1FA57 /* ClientRegistration.swift */,
+				A1366EC824AB8C0F00B1FA57 /* SpecialistController.swift */,
+			);
+			path = "Registration Controllers";
+			sourceTree = "<group>";
+		};
 		A141FC8B24814B7C00A3433D = {
 			isa = PBXGroup;
 			children = (
@@ -136,9 +154,10 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
+				A1366EC124AB84D400B1FA57 /* Registration Controllers */,
 				A16DE4AA2497E340008777CD /* Custom */,
 				A114729824840DCF0043B04B /* Data Model */,
-				A141FCD824816F6500A3433D /* Controllers */,
+				A141FCD824816F6500A3433D /* Client Controllers */,
 				A141FCCC24816E1D00A3433D /* Sound */,
 				A141FCCA24814E6900A3433D /* Storyboards */,
 				A141FC9724814B7C00A3433D /* AppDelegate.swift */,
@@ -172,6 +191,7 @@
 			children = (
 				A141FCA524814B7E00A3433D /* LaunchScreen.storyboard */,
 				A141FC9D24814B7D00A3433D /* Main.storyboard */,
+				A1366EBF24AB843C00B1FA57 /* Registration.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -190,7 +210,7 @@
 			path = Sound;
 			sourceTree = "<group>";
 		};
-		A141FCD824816F6500A3433D /* Controllers */ = {
+		A141FCD824816F6500A3433D /* Client Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				A141FC9B24814B7C00A3433D /* TrackingController.swift */,
@@ -198,7 +218,7 @@
 				A13FEA1A2491CE8800A4904F /* SettingsController.swift */,
 				A121D94B24958C9500F4F5DE /* FormController.swift */,
 			);
-			path = Controllers;
+			path = "Client Controllers";
 			sourceTree = "<group>";
 		};
 		A16DE4AA2497E340008777CD /* Custom */ = {
@@ -316,6 +336,7 @@
 			files = (
 				A141FCA724814B7E00A3433D /* LaunchScreen.storyboard in Resources */,
 				A1AF57092492A8BD008EF983 /* back.mp3 in Resources */,
+				A1366EC024AB843C00B1FA57 /* Registration.storyboard in Resources */,
 				A141FCD324816E5C00A3433D /* reset.mp3 in Resources */,
 				A141FCD224816E5C00A3433D /* pause.mp3 in Resources */,
 				A141FCD424816E5C00A3433D /* resume.mp3 in Resources */,
@@ -353,11 +374,14 @@
 				A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */,
 				A13FEA1B2491CE8800A4904F /* SettingsController.swift in Sources */,
 				A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */,
+				A1366EC724AB8BE900B1FA57 /* ClientRegistration.swift in Sources */,
 				A16DE4B02497E4B8008777CD /* Constants.swift in Sources */,
+				A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */,
 				A16DE4AC2497E35A008777CD /* CustomAdd.swift in Sources */,
 				A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */,
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,
+				A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

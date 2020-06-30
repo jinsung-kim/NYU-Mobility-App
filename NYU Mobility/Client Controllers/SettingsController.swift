@@ -193,6 +193,7 @@ class SettingsController: UITableViewController {
         }
     }
     
+    // Deleting Coredata object
     func deleteData(_ index: size_t) {
         guard let appDelegate =
           UIApplication.shared.delegate as? AppDelegate else {

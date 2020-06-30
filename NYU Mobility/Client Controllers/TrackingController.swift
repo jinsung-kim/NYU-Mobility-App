@@ -245,6 +245,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         locationManager.stopUpdatingLocation()
         stopUpdating()
         stopGyros()
+        self.saveData(currTime: Date())
         self.viewer.backgroundColor = UIColor.red
     }
     

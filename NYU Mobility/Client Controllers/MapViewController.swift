@@ -72,6 +72,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // Map View Functions
     
+    // User locations are shown
     func addAnnotations() {
         for i in 0 ..< userLocations.count {
             let annotation = MKPointAnnotation()
@@ -83,6 +84,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    // Generates trial of points walked
     func generateLine() {
         mapView.delegate = self
         mapView.isZoomEnabled = true
