@@ -7,21 +7,86 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Track Session-->
+        <!--Track a Session-->
         <scene sceneID="IQf-SA-XMg">
             <objects>
-                <viewController storyboardIdentifier="ToSpecialist" id="lld-gF-TcX" customClass="TrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ToSpecialist" id="lld-gF-TcX" customClass="SpecialistTrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vxm-Yr-3DV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqU-Mb-rmQ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwI-Ls-0cO">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <state key="normal" title="Start"/>
+                                        <connections>
+                                            <action selector="trackingChange:" destination="lld-gF-TcX" eventType="touchUpInside" id="7G0-ih-fPT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="nwI-Ls-0cO" secondAttribute="bottom" id="5DR-K1-cQq"/>
+                                    <constraint firstItem="nwI-Ls-0cO" firstAttribute="top" secondItem="sqU-Mb-rmQ" secondAttribute="top" id="Kb0-L7-R9U"/>
+                                    <constraint firstItem="nwI-Ls-0cO" firstAttribute="leading" secondItem="sqU-Mb-rmQ" secondAttribute="leading" id="NFq-ry-h27"/>
+                                    <constraint firstAttribute="trailing" secondItem="nwI-Ls-0cO" secondAttribute="trailing" id="dK4-pu-2WS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="sqU-Mb-rmQ" secondAttribute="bottom" id="6iR-fW-bEg"/>
+                            <constraint firstItem="sqU-Mb-rmQ" firstAttribute="leading" secondItem="cf9-4u-OCa" secondAttribute="leading" id="Amd-DG-Cxy"/>
+                            <constraint firstItem="sqU-Mb-rmQ" firstAttribute="trailing" secondItem="cf9-4u-OCa" secondAttribute="trailing" id="ApL-wV-0Is"/>
+                            <constraint firstItem="sqU-Mb-rmQ" firstAttribute="top" secondItem="vxm-Yr-3DV" secondAttribute="top" id="Pgf-5K-Iuy"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cf9-4u-OCa"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Track Session" id="BKN-Q0-CRk"/>
+                    <navigationItem key="navigationItem" title="Track a Session" id="BKN-Q0-CRk"/>
+                    <connections>
+                        <outlet property="trackingButton" destination="nwI-Ls-0cO" id="oVq-6R-9aV"/>
+                        <outlet property="viewer" destination="vxm-Yr-3DV" id="q3u-W3-o4U"/>
+                        <segue destination="qrO-Op-9oN" kind="show" identifier="SeeSessions" id="yNg-ZM-EX0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pXb-iU-j0O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="942.02898550724649" y="137.94642857142856"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="Dbd-4c-99R">
+            <objects>
+                <tableViewController id="qrO-Op-9oN" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Storage" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Le5-LQ-lSh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StorageCell" id="gmv-Gn-BL3">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="View" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gmv-Gn-BL3" id="Nre-Sf-hWL">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="qrO-Op-9oN" id="Oen-Z4-ZSE"/>
+                            <outlet property="delegate" destination="qrO-Op-9oN" id="tP9-kM-qRj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="VGs-Zg-WXh">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="0ym-3M-9Br"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="amc-ES-Ezc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2061" y="-222"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="btQ-k8-vaE">

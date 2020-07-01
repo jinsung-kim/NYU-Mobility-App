@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A12106DE24AD57130041704D /* SpecialistPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106DD24AD57130041704D /* SpecialistPoint.swift */; };
 		A121D94C24958C9500F4F5DE /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D94B24958C9500F4F5DE /* FormController.swift */; };
 		A1366EC024AB843C00B1FA57 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1366EBF24AB843C00B1FA57 /* Registration.storyboard */; };
 		A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC424AB853F00B1FA57 /* RegistrationController.swift */; };
@@ -32,7 +33,7 @@
 		A1AF57082492A8BD008EF983 /* settings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57062492A8BC008EF983 /* settings.mp3 */; };
 		A1AF57092492A8BD008EF983 /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57072492A8BC008EF983 /* back.mp3 */; };
 		A1F002B624AC21340030E2F5 /* Specialist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F002B524AC21340030E2F5 /* Specialist.storyboard */; };
-		A1F002B924AC23F10030E2F5 /* TrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F002B824AC23F10030E2F5 /* TrackingController.swift */; };
+		A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */; };
 		A1F66C04248F0A840055DBAD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F66C03248F0A840055DBAD /* MapViewController.swift */; };
 		A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC5FF924853A25001DCCD5 /* Point.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A12106DD24AD57130041704D /* SpecialistPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistPoint.swift; sourceTree = "<group>"; };
 		A121D94B24958C9500F4F5DE /* FormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
 		A1366EBF24AB843C00B1FA57 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		A1366EC424AB853F00B1FA57 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
@@ -86,7 +88,7 @@
 		A1AF57062492A8BC008EF983 /* settings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = settings.mp3; sourceTree = "<group>"; };
 		A1AF57072492A8BC008EF983 /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = back.mp3; sourceTree = "<group>"; };
 		A1F002B524AC21340030E2F5 /* Specialist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Specialist.storyboard; sourceTree = "<group>"; };
-		A1F002B824AC23F10030E2F5 /* TrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingController.swift; sourceTree = "<group>"; };
+		A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistTrackingController.swift; sourceTree = "<group>"; };
 		A1F66C03248F0A840055DBAD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A1FC5FF924853A25001DCCD5 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 			children = (
 				A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */,
 				A1FC5FF924853A25001DCCD5 /* Point.swift */,
+				A12106DD24AD57130041704D /* SpecialistPoint.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -239,7 +242,7 @@
 		A1F002B724AC23DE0030E2F5 /* Specialist Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A1F002B824AC23F10030E2F5 /* TrackingController.swift */,
+				A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */,
 			);
 			path = "Specialist Controllers";
 			sourceTree = "<group>";
@@ -394,7 +397,8 @@
 				A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */,
 				A16DE4AC2497E35A008777CD /* CustomAdd.swift in Sources */,
 				A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */,
-				A1F002B924AC23F10030E2F5 /* TrackingController.swift in Sources */,
+				A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */,
+				A12106DE24AD57130041704D /* SpecialistPoint.swift in Sources */,
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,
 				A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */,

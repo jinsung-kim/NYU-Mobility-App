@@ -1,29 +1,29 @@
 //
-//  TrackingController.swift
+//  SpecialistTrackingController.swift
 //  NYU Mobility
 //
-//  Created by Jin Kim on 5/29/20.
+//  Created by Jin Kim on 6/30/20.
 //  Copyright © 2020 Jin Kim. All rights reserved.
 //
 
 import UIKit
-import CoreData // Local storage (user saved locations)
-import CoreMotion // Used to track user movement
-import CoreLocation // Used to access coordinate data
-import AVFoundation // Used to play sounds
-import MessageUI // Used to send emails
+import CoreMotion
 
-class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate {
+class SpecialistTrackingController: UIViewController {
     
-    // What is used to change color
+    @IBOutlet weak var trackingButton: UIButton!
     @IBOutlet var viewer: UIView!
     
-    // Button used to change states
-    @IBOutlet weak var trackingButton: UIButton!
+    private var buttonState: Int = 0
     
-    // Creating a new LocationManager Object
-    private let locationManager: CLLocationManager = CLLocationManager()
-    private var locationArray: [String: [Double]] = ["long": [], "lat": []]
+    // Used to track pedometer when saving data
+    var steps: Int32 = 0
+    var maxSteps: Int32 = 0
+    var distance: Int32 = 0 // In meters
+    var maxDistance: Int32 = 0
+    
+    // Used for creating the JSON
+    var points: [SpecialistPoint] = []
     
     // Pedometer object - used to trace each step
     private let activityManager: CMMotionActivityManager = CMMotionActivityManager()
@@ -39,43 +39,14 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     private var avgPace: Double = 0.0
     private var currCad: Double = 0.0
     
-    // Responsive button sounds
-    var player: AVAudioPlayer?
-    
-    // Triggering the button's three states
-    private var buttonState: Int = 0
-    
-    // Used to track pedometer when saving data
-    var steps: Int32 = 0
-    var maxSteps: Int32 = 0
-    var distance: Int32 = 0 // In meters
-    var maxDistance: Int32 = 0
-    
-    // Used for creating the JSON
-    var points: [Point] = []
-    var coords: [CLLocationCoordinate2D] = []
-    
-    // Local Storage
-    var userLocations: [NSManagedObject] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.shared.isIdleTimerDisabled = true // Screen will not be put to sleep
         self.navigationItem.setHidesBackButton(true, animated: false)
-        settingsButton() // The right side button
-        getLocationPermission() // Permission to track
-        enableDoubleTap() // Double tap feature
+        settingsButton()
     }
     
-    // Used to send over data to MapView Controller to read out results
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is MapViewController
-        {
-            let vc = segue.destination as? MapViewController
-            vc?.steps = self.maxSteps
-            vc?.coords = self.coords
-            vc?.distance = self.maxDistance
-        }
+    @IBAction func trackingChange(_ sender: Any) {
+        
     }
     
     // Upper right item from the tracking controller that goes to the settings
@@ -87,30 +58,18 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         self.navigationItem.rightBarButtonItem = settingsButton
     }
     
-    // Double tap pauses and resumes given the previous state
-    func enableDoubleTap() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TrackingController.labelTapped(recognizer: )))
-        tapGestureRecognizer.numberOfTapsRequired = 2
-        
-        trackingButton.isUserInteractionEnabled = true
-        trackingButton.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
     @objc func settingsTap() {
-        playSound("settings")
-        self.performSegue(withIdentifier: "SettingsSegue", sender: self)
+        self.performSegue(withIdentifier: "SeeSessions", sender: self)
     }
     
     // Goes together with enableDoubleTap
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
         if (self.buttonState == 1) {
-            playSound("pause")
             trackingButton.setTitle("Resume", for: .normal)
             self.viewer.backgroundColor = UIColor.red
             self.buttonState = 3
             toggleButton(trackingButton)
         } else {
-            playSound("resume")
             trackingButton.setTitle("Pause", for: .normal)
             self.viewer.backgroundColor = UIColor.green
             self.buttonState = 4
@@ -150,19 +109,16 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         switch(self.buttonState) {
         case 0:
             startTracking()
-            playSound("start")
             sender.setTitle("Stop", for: .normal)
             self.buttonState = 1
         case 1:
             stopTracking()
-            playSound("stop")
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
             self.performSegue(withIdentifier: "MapViewSegue", sender: self)
-            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
+//            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
             clearData()
-            playSound("reset")
             sender.setTitle("Start", for: .normal)
             self.viewer.backgroundColor = UIColor.white
             self.buttonState = 0
@@ -171,40 +127,10 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             self.buttonState = 0
         case 4:
             startTracking()
-            playSound("resume")
             sender.setTitle("Stop", for: .normal)
             self.buttonState = 1
         default: // Should never happen
             print("Unexpected case: \(self.buttonState)")
-        }
-    }
-    
-    // Should only do this once
-    func getLocationPermission() {
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        for _ in locations { // _ -> currentLocation
-            
-            if let location: CLLocation = locationManager.location {
-                let coordinate: CLLocationCoordinate2D = location.coordinate
-                
-                self.coords.append(coordinate)
-
-                // ... proceed with the location and coordinates
-                if (self.locationArray["lat"] == nil) {
-                    self.locationArray["lat"] = [coordinate.latitude]
-                    self.locationArray["long"] = [coordinate.longitude]
-                } else {
-                    self.locationArray["lat"]!.append(coordinate.latitude)
-                    self.locationArray["long"]!.append(coordinate.longitude)
-                }
-            }
-            // Looks like this when debugged (city bike ride):
-            // (Function): <+37.33144466,-122.03075535> +/- 30.00m
-            // (speed 6.01 mps / course 180.98) @ 3/13/20, 8:55:48 PM Pacific Daylight Time
         }
     }
     
@@ -216,7 +142,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             - fileName: The name of the file that should be played
      */
     func startTracking() {
-        locationManager.startUpdatingLocation()
         startGyro()
         startUpdating()
         self.viewer.backgroundColor = UIColor.green
@@ -227,7 +152,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         Assumes that the previously stated managers are running
      */
     func stopTracking() {
-        locationManager.stopUpdatingLocation()
         stopUpdating()
         stopGyros()
         self.saveData(currTime: Date())
@@ -290,19 +214,16 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             self.maxDistance = self.distance
         }
         if (self.maxDistance != 0 && self.maxSteps != 0) {
-            points.append(Point(dateFormatter(), self.maxSteps, self.maxDistance, self.avgPace,
-                                self.currPace, self.currCad,
-                                self.locationArray, self.gyroDict))
+            points.append(SpecialistPoint(dateFormatter(), self.maxSteps, self.maxDistance, self.avgPace,
+                                self.currPace, self.currCad, self.gyroDict))
             
             // Clear the gyroscope data after getting its string representation
             self.gyroDict.removeAll()
-            self.locationArray.removeAll()
         }
     }
     
     func clearData() {
         points.removeAll()
-        coords.removeAll()
     }
     
     // Gyroscope Functions
@@ -333,33 +254,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     // Stops the gyroscope (assuming that it is available)
     func stopGyros() { self.motionManager.stopGyroUpdates() }
     
-    // Sound Functionality
-    
-    /**
-        Plays a sound given the state of the button
-        - Parameters:
-            - fileName: The name of the file being executed (all within 'Sound' group)
-     */
-    func playSound(_ fileName: String) {
-        if (getState()) {
-            guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return }
-
-            do {
-                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-                try AVAudioSession.sharedInstance().setActive(true)
-
-                player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-
-                guard let player = player else { return }
-
-                player.play()
-
-            } catch let error {
-                print("Unexpected Behavior: \(error.localizedDescription)")
-            }
-        }
-    }
-    
     // Export Functionality
     func saveAndExport(exportString: String) -> Data {
         let exportFilePath = NSTemporaryDirectory() + "export.json"
@@ -381,72 +275,4 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         return jsonData ?? Data()
     }
     
-    // Gesture Functionality
-    func getState() -> Bool {
-        let defaults = UserDefaults.standard
-        let gesture = defaults.bool(forKey: "state")
-        return gesture
-    }
-    
-    // Email Functionality
-    
-    func saveEmail(_ email: String) {
-        let defaults = UserDefaults.standard
-        defaults.set(email, forKey: "email")
-    }
-    
-    func getEmail() -> String {
-        let defaults = UserDefaults.standard
-        let email = defaults.string(forKey: "email")
-        return email!
-    }
-    
-    func sendEmail(jsonData: Data) {
-        let recipientEmail = getEmail()
-        let subject = "JSON Export"
-        let body = "Here is the data that I tracked"
-
-        // Show default mail composer
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients([recipientEmail])
-            mail.setSubject(subject)
-            mail.setMessageBody(body, isHTML: false)
-            
-            mail.addAttachmentData(jsonData, mimeType: "application/json" , fileName: "export.json")
-
-            present(mail, animated: true)
-
-        // Show third party email composer if default Mail app is not present
-        } else if let emailUrl = createEmailUrl(to: recipientEmail, subject: subject, body: body) {
-            UIApplication.shared.open(emailUrl)
-        }
-    }
-    
-    func createEmailUrl(to: String, subject: String, body: String) -> URL? {
-        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-
-        let gmailUrl = URL(string: "googlegmail://co?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        let outlookUrl = URL(string: "ms-outlook://compose?to=\(to)&subject=\(subjectEncoded)")
-        let yahooMail = URL(string: "ymail://mail/compose?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        let sparkUrl = URL(string: "readdle-spark://compose?recipient=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        let defaultUrl = URL(string: "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)")
-
-        if let gmailUrl = gmailUrl, UIApplication.shared.canOpenURL(gmailUrl) {
-            return gmailUrl
-        } else if let outlookUrl = outlookUrl, UIApplication.shared.canOpenURL(outlookUrl) {
-            return outlookUrl
-        } else if let yahooMail = yahooMail, UIApplication.shared.canOpenURL(yahooMail) {
-            return yahooMail
-        } else if let sparkUrl = sparkUrl, UIApplication.shared.canOpenURL(sparkUrl) {
-            return sparkUrl
-        }
-        return defaultUrl
-    }
-
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
-    }
 }
