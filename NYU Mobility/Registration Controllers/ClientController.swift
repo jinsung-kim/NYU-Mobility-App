@@ -1,5 +1,5 @@
 //
-//  ClientRegistration.swift
+//  ClientController.swift
 //  NYU Mobility
 //
 //  Created by Jin Kim on 6/30/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClientRegistration: UIViewController, UITextFieldDelegate {
+class ClientController: UIViewController, UITextFieldDelegate {
     
     // Text fields
     @IBOutlet weak var fullName: UITextField!
@@ -74,8 +74,18 @@ class ClientRegistration: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registered(_ sender: Any) {
-        print(fullName!)
-        print(specialistEmail!)
+        saveEmail(specialistEmail.text!)
+        saveName(fullName.text!)
+    }
+    
+    func saveEmail(_ email: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(email, forKey: "email")
+    }
+    
+    func saveName(_ name: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(name, forKey: "name")
     }
 }
 

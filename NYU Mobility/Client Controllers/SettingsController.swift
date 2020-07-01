@@ -59,7 +59,7 @@ class SettingsController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         playSound("back")
     }
-    
+   
     @IBAction func changeEmailPressed(_ sender: Any) {
         showInputDialog(title: "Add Email",
                         subtitle: "Enter the email of your clinician who will view your data",
@@ -70,6 +70,12 @@ class SettingsController: UITableViewController {
         { (input: String?) in
             self.saveEmail(input!)
         }
+    }
+    
+    // Logs out of the current system
+    @IBAction func logoutPressed(_ sender: Any) {
+        self.saveEmail("")
+        self.saveName("")
     }
     
     // Updates all of the labels as necessary, based on what the user has already inputted
@@ -161,6 +167,11 @@ class SettingsController: UITableViewController {
     func saveEmail(_ email: String) {
         let defaults = UserDefaults.standard
         defaults.set(email, forKey: "email")
+    }
+    
+    func saveName(_ name: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(name, forKey: "name")
     }
     
     // State Functionality:

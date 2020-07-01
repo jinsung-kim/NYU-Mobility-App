@@ -65,23 +65,23 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         settingsButton() // The right side button
         getLocationPermission() // Permission to track
         enableDoubleTap() // Double tap feature
-        loadData() // Gets user saved locations
+//        loadData() // Gets user saved locations
     }
     
     // If the app is loaded for the first time, this will trigger and ask the user to enter a email
-    override func viewDidAppear(_ animated: Bool) {
-        if (getEmail() == "") {
-            showInputDialog(title: "Add Email",
-                            subtitle: "Enter the email of your clinician who will view your data",
-                            actionTitle: "Add",
-                            cancelTitle: "Cancel",
-                            inputPlaceholder: "Email: ",
-                            inputKeyboardType: .emailAddress)
-            { (input:String?) in
-                self.saveEmail(input!)
-            }
-        }
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        if (getEmail() == "") {
+//            showInputDialog(title: "Add Email",
+//                            subtitle: "Enter the email of your clinician who will view your data",
+//                            actionTitle: "Add",
+//                            cancelTitle: "Cancel",
+//                            inputPlaceholder: "Email: ",
+//                            inputKeyboardType: .emailAddress)
+//            { (input:String?) in
+//                self.saveEmail(input!)
+//            }
+//        }
+//    }
     
     // Used to send over data to MapView Controller to read out results
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -467,24 +467,24 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     // User Location Saved
-    func loadData() {
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "UserSaved")
-        
-        do {
-            userLocations = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
+//    func loadData() {
+//        guard let appDelegate =
+//            UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+//
+//        let managedContext =
+//            appDelegate.persistentContainer.viewContext
+//
+//        let fetchRequest =
+//            NSFetchRequest<NSManagedObject>(entityName: "UserSaved")
+//
+//        do {
+//            userLocations = try managedContext.fetch(fetchRequest)
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//    }
 }
 
 // Pop up text field for initial sign up

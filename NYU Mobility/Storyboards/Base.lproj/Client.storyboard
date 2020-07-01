@@ -7,6 +7,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Registration-->
+        <scene sceneID="WJz-Qf-doW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Registration" referencedIdentifier="Registration" id="5EP-1I-bl1" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cDP-gA-SBj"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3cj-ZK-I66" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2655" y="79"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="zdd-2z-IwC">
             <objects>
@@ -254,6 +264,34 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Account" footerTitle="" id="sir-5N-BYi">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="43" id="mBN-nW-5dl">
+                                        <rect key="frame" x="0.0" y="544" width="414" height="43"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mBN-nW-5dl" id="rT4-Hq-McN">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SnX-3V-5eT">
+                                                    <rect key="frame" x="20" y="5" width="48" height="33"/>
+                                                    <state key="normal" title="Logout"/>
+                                                    <connections>
+                                                        <action selector="logoutPressed:" destination="wSX-zg-eUu" eventType="touchUpInside" id="loi-xA-bXo"/>
+                                                        <segue destination="5EP-1I-bl1" kind="show" id="WP0-qc-kEw"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="SnX-3V-5eT" secondAttribute="bottom" constant="5" id="Pkx-LT-PY3"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SnX-3V-5eT" secondAttribute="trailing" id="UNF-Hg-eqh"/>
+                                                <constraint firstItem="SnX-3V-5eT" firstAttribute="top" secondItem="rT4-Hq-McN" secondAttribute="top" constant="5" id="cEa-oB-tl4"/>
+                                                <constraint firstItem="SnX-3V-5eT" firstAttribute="leading" secondItem="rT4-Hq-McN" secondAttribute="leading" constant="20" id="zW2-3E-HVl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="wSX-zg-eUu" id="cxn-Kv-Blc"/>
@@ -280,7 +318,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QHb-QW-TTX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2013.75" y="-334.85915492957747"/>
+            <point key="canvasLocation" x="2013.0434782608697" y="-335.49107142857139"/>
         </scene>
         <!--Add Location-->
         <scene sceneID="uJU-SW-fAA">
@@ -548,6 +586,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mCP-mK-cti"/>
+        <segue reference="Smj-0J-MLE"/>
     </inferredMetricsTieBreakers>
 </document>

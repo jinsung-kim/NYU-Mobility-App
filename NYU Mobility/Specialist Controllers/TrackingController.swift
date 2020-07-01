@@ -1,5 +1,5 @@
 //
-//  SpecialistController.swift
+//  TrackingController.swift
 //  NYU Mobility
 //
 //  Created by Jin Kim on 6/30/20.
@@ -8,16 +8,11 @@
 
 import UIKit
 
-class SpecialistController: UIViewController {
-    
-    @IBOutlet weak var registerButton: UIButton!
+class TrackingController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    @IBAction func registered(_ sender: Any) {
-        
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
 }

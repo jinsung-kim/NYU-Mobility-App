@@ -19,6 +19,10 @@ class RegistrationController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        if (getRegistered()) {
+            self.performSegue(withIdentifier: "SkipRegistration", sender: self)
+        }
         buttonConstraints()
     }
     
@@ -29,6 +33,16 @@ class RegistrationController: UIViewController {
         // Specialist button styling
         specialistButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         specialistButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    }
+    
+    func getRegistered() -> Bool {
+        let defaults = UserDefaults.standard
+        let email = defaults.string(forKey: "email")
+        let name = defaults.string(forKey: "name")
+        if (email == "" || name == "") {
+            return false
+        }
+        return true
     }
 
 }
