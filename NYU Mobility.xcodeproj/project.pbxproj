@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A12106DE24AD57130041704D /* SpecialistPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106DD24AD57130041704D /* SpecialistPoint.swift */; };
+		A12106E024AD5E3D0041704D /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106DF24AD5E3D0041704D /* StorageController.swift */; };
+		A12106E224AD6FE60041704D /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106E124AD6FE60041704D /* CardCell.swift */; };
 		A121D94C24958C9500F4F5DE /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D94B24958C9500F4F5DE /* FormController.swift */; };
 		A1366EC024AB843C00B1FA57 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1366EBF24AB843C00B1FA57 /* Registration.storyboard */; };
 		A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC424AB853F00B1FA57 /* RegistrationController.swift */; };
@@ -57,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		A12106DD24AD57130041704D /* SpecialistPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistPoint.swift; sourceTree = "<group>"; };
+		A12106DF24AD5E3D0041704D /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
+		A12106E124AD6FE60041704D /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		A121D94B24958C9500F4F5DE /* FormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
 		A1366EBF24AB843C00B1FA57 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		A1366EC424AB853F00B1FA57 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 			children = (
 				A16DE4AB2497E35A008777CD /* CustomAdd.swift */,
 				A16DE4AF2497E4B8008777CD /* Constants.swift */,
+				A12106E124AD6FE60041704D /* CardCell.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */,
+				A12106DF24AD5E3D0041704D /* StorageController.swift */,
 			);
 			path = "Specialist Controllers";
 			sourceTree = "<group>";
@@ -393,11 +399,13 @@
 				A13FEA1B2491CE8800A4904F /* SettingsController.swift in Sources */,
 				A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */,
 				A1366EC724AB8BE900B1FA57 /* ClientController.swift in Sources */,
+				A12106E224AD6FE60041704D /* CardCell.swift in Sources */,
 				A16DE4B02497E4B8008777CD /* Constants.swift in Sources */,
 				A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */,
 				A16DE4AC2497E35A008777CD /* CustomAdd.swift in Sources */,
 				A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */,
 				A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */,
+				A12106E024AD5E3D0041704D /* StorageController.swift in Sources */,
 				A12106DE24AD57130041704D /* SpecialistPoint.swift in Sources */,
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,

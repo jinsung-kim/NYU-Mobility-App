@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="942.02898550724649" y="137.94642857142856"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Storage Controller-->
         <scene sceneID="Dbd-4c-99R">
             <objects>
-                <tableViewController id="qrO-Op-9oN" sceneMemberID="viewController">
+                <tableViewController id="qrO-Op-9oN" customClass="StorageController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Storage" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Le5-LQ-lSh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,6 +83,9 @@
                     <navigationItem key="navigationItem" id="VGs-Zg-WXh">
                         <barButtonItem key="backBarButtonItem" title="Back" id="0ym-3M-9Br"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="customTableView" destination="Le5-LQ-lSh" id="8Cq-a4-878"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amc-ES-Ezc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

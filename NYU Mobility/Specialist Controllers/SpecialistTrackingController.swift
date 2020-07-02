@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import CoreData
 
 class SpecialistTrackingController: UIViewController {
     
@@ -21,9 +22,12 @@ class SpecialistTrackingController: UIViewController {
     var maxSteps: Int32 = 0
     var distance: Int32 = 0 // In meters
     var maxDistance: Int32 = 0
+    var startTime: Date = Date()
     
     // Used for creating the JSON
     var points: [SpecialistPoint] = []
+    
+    var sessions: [NSManagedObject] = []
     
     // Pedometer object - used to trace each step
     private let activityManager: CMMotionActivityManager = CMMotionActivityManager()
@@ -41,12 +45,9 @@ class SpecialistTrackingController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
         self.navigationItem.setHidesBackButton(true, animated: false)
         settingsButton()
-    }
-    
-    @IBAction func trackingChange(_ sender: Any) {
-        
     }
     
     // Upper right item from the tracking controller that goes to the settings
@@ -68,12 +69,12 @@ class SpecialistTrackingController: UIViewController {
             trackingButton.setTitle("Resume", for: .normal)
             self.viewer.backgroundColor = UIColor.red
             self.buttonState = 3
-            toggleButton(trackingButton)
+            trackingChange(trackingButton)
         } else {
             trackingButton.setTitle("Pause", for: .normal)
             self.viewer.backgroundColor = UIColor.green
             self.buttonState = 4
-            toggleButton(trackingButton)
+            trackingChange(trackingButton)
         }
     }
     
@@ -82,16 +83,6 @@ class SpecialistTrackingController: UIViewController {
         formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         let dateString = formatter.string(from: Date())
         return dateString
-    }
-    
-    // Generate JSON in String form
-    func generateJSON() -> String {
-        let dicArray = points.map { $0.convertToDictionary() }
-        if let data = try? JSONSerialization.data(withJSONObject: dicArray, options: .prettyPrinted) {
-            let str = String(bytes: data, encoding: .utf8)
-            return str!
-        }
-        return "There was an error generating the JSON file"
     }
     
     /**
@@ -105,10 +96,11 @@ class SpecialistTrackingController: UIViewController {
         - Parameters:
             - sender: The tracking button
      */
-    @IBAction func toggleButton(_ sender: UIButton) {
+    @IBAction func trackingChange(_ sender: UIButton) {
         switch(self.buttonState) {
         case 0:
             startTracking()
+            startTime = Date()
             sender.setTitle("Stop", for: .normal)
             self.buttonState = 1
         case 1:
@@ -116,8 +108,7 @@ class SpecialistTrackingController: UIViewController {
             sender.setTitle("Reset", for: .normal)
             self.buttonState = 2
         case 2:
-            self.performSegue(withIdentifier: "MapViewSegue", sender: self)
-//            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
+            savePoint() // Saves into Core Data
             clearData()
             sender.setTitle("Start", for: .normal)
             self.viewer.backgroundColor = UIColor.white
@@ -200,6 +191,23 @@ class SpecialistTrackingController: UIViewController {
         }
     }
     
+    func loadData() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Session")
+        
+        do {
+            sessions = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+    
     /**
         Saves the given data into the stack, and clears out the gyroscope data to start taking values again
         - Parameters:
@@ -219,6 +227,41 @@ class SpecialistTrackingController: UIViewController {
             
             // Clear the gyroscope data after getting its string representation
             self.gyroDict.removeAll()
+        }
+    }
+    
+    // Generate JSON in String form
+    func generateJSON() -> String {
+        let dicArray = points.map { $0.convertToDictionary() }
+        if let data = try? JSONSerialization.data(withJSONObject: dicArray, options: .prettyPrinted) {
+            let str = String(bytes: data, encoding: .utf8)
+            return str!
+        }
+        return "There was an error generating the JSON file"
+    }
+    
+    // Saves Point
+    func savePoint() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Session",
+                                                in: managedContext)!
+        
+        let session = NSManagedObject(entity: entity,
+                                    insertInto: managedContext)
+        
+        session.setValue(generateJSON(), forKeyPath: "json")
+        session.setValue(startTime, forKeyPath: "startTime")
+        
+        do {
+            try managedContext.save()
+                sessions.append(session)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
@@ -253,26 +296,5 @@ class SpecialistTrackingController: UIViewController {
     
     // Stops the gyroscope (assuming that it is available)
     func stopGyros() { self.motionManager.stopGyroUpdates() }
-    
-    // Export Functionality
-    func saveAndExport(exportString: String) -> Data {
-        let exportFilePath = NSTemporaryDirectory() + "export.json"
-        let exportFileUrl = NSURL(fileURLWithPath: exportFilePath)
-        FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil)
-        var fileHandle: FileHandle? = nil
-        // Try
-        do {
-            fileHandle = try FileHandle(forWritingTo: exportFileUrl as URL)
-        } catch {
-            print("Error with File Handle")
-        }
-        
-        fileHandle?.seekToEndOfFile()
-        let jsonData = exportString.data(using: String.Encoding.utf8, allowLossyConversion: false)
-        // Writes the JSON data into the file
-        fileHandle?.write(jsonData!)
-        fileHandle?.closeFile()
-        return jsonData ?? Data()
-    }
     
 }
