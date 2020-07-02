@@ -9,18 +9,19 @@
 import UIKit
 
 class CardCell: UITableViewCell {
-    //UILabels to connect to storyboard
+    
+    // Holder
     @IBOutlet weak var cardView: UIView!
+    
+    // Start time label
+    @IBOutlet weak var timeLabel: UILabel!
     
     func configure(date: Date){
         //Setting Labels to update recording information
-        recordingNumLabel.text = "#\(recordNum)"
+        timeLabel.text = "\(dateFormatter(date))"
         
         //Fiting the text to the labels
-        recordingNumLabel.sizeToFit()
-        minLabel.sizeToFit()
-        avgLabel.sizeToFit()
-        maxLabel.sizeToFit()
+        timeLabel.sizeToFit()
         
         //Styling the card
         cardView.layer.shadowColor = UIColor.gray.cgColor
@@ -28,5 +29,13 @@ class CardCell: UITableViewCell {
         cardView.layer.shadowOpacity = 1.0
         cardView.layer.masksToBounds = false
         cardView.layer.cornerRadius = 5.0
+    }
+    
+    // Transforming the date into a string
+    func dateFormatter(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        let dateString = formatter.string(from: date)
+        return dateString
     }
 }

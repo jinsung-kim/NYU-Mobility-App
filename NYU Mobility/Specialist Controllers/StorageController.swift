@@ -49,24 +49,16 @@ class StorageController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CardCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StorageCell", for: indexPath) as! CardCell
         
-        //Getting the contents of the selected row
-        let selectedRow = sessions[indexPath.row]
-        
-        // Assigning decibel readings to variables
-        let avgDecibel = selectedRow.value(forKey: "avgDecibel") as! Int
-        let minDecibel = selectedRow.value(forKey: "minDecibel") as! Int
-        let maxDecibel = selectedRow.value(forKey: "maxDecibel") as! Int
-        
-        //Assigning text label of cell to decibel readings
-        //cell.textLabel?.text = String("Avg: \(avgDecibel)dB| Min: \(minDecibel)dB| Max: \(maxDecibel)dB")
-        cell.configure(recordNum: indexPath.row + 1, minDecibel: minDecibel, avgDecibel: avgDecibel, maxDecibel: maxDecibel)
+        // Getting the contents of the selected row
+        // See CardCell.swift in Custom group
+        cell.configure(date: sessions[indexPath.row].value(forKey: "startTime") as! Date)
         
         return cell
     }
     
-    //Remove a recording by swiping right
+    // Right swipe 'Delete'
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {

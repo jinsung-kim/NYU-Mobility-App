@@ -65,13 +65,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StorageCell" id="gmv-Gn-BL3">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StorageCell" id="gmv-Gn-BL3" customClass="CardCell" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="View" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gmv-Gn-BL3" id="Nre-Sf-hWL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esY-9i-PSN">
+                                            <rect key="frame" x="20" y="11" width="374" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="esY-9i-PSN" secondAttribute="trailing" constant="20" id="gZA-O3-QKR"/>
+                                        <constraint firstItem="esY-9i-PSN" firstAttribute="leading" secondItem="Nre-Sf-hWL" secondAttribute="leading" constant="20" id="jdK-LB-NLy"/>
+                                        <constraint firstAttribute="bottom" secondItem="esY-9i-PSN" secondAttribute="bottom" constant="10.5" id="qu0-ua-YhJ"/>
+                                        <constraint firstItem="esY-9i-PSN" firstAttribute="top" secondItem="Nre-Sf-hWL" secondAttribute="top" constant="11" id="uOh-Jc-6ur"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cardView" destination="Nre-Sf-hWL" id="Qb1-AB-bbS"/>
+                                    <outlet property="timeLabel" destination="esY-9i-PSN" id="aVV-pT-yha"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -89,7 +107,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amc-ES-Ezc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2061" y="-222"/>
+            <point key="canvasLocation" x="2060.8695652173915" y="-222.32142857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="btQ-k8-vaE">
