@@ -32,6 +32,7 @@ class StorageController: UITableViewController {
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Session")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key:"startTime", ascending: true)]
         
         do {
             sessions = try managedContext.fetch(fetchRequest)
@@ -76,7 +77,6 @@ class StorageController: UITableViewController {
             }catch{
                 print("Error Deleting")
             }
-
             customTableView.reloadData()
         }
     }

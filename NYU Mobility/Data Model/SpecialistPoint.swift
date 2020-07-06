@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct SpecialistPoint: Codable { // Without 'Codable', it will not turn into a JSON
+struct SpecialistPoint: Codable {
     var time: String
     var steps: Int32
     var distance: Int32
