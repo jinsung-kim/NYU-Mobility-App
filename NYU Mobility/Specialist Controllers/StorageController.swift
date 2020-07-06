@@ -32,7 +32,7 @@ class StorageController: UITableViewController {
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Session")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key:"startTime", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: false)]
         
         do {
             sessions = try managedContext.fetch(fetchRequest)

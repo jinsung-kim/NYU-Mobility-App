@@ -47,16 +47,16 @@ class SpecialistTrackingController: UIViewController {
         super.viewDidLoad()
         loadData()
         self.navigationItem.setHidesBackButton(true, animated: false)
-        settingsButton()
+        storageButton()
     }
     
     // Upper right item from the tracking controller that goes to the settings
-    func settingsButton() {
-        let settingsButton = UIBarButtonItem()
-        settingsButton.title = "Settings"
-        settingsButton.action = #selector(settingsTap)
-        settingsButton.target = self
-        self.navigationItem.rightBarButtonItem = settingsButton
+    func storageButton() {
+        let storageButton = UIBarButtonItem()
+        storageButton.title = "Settings"
+        storageButton.action = #selector(settingsTap)
+        storageButton.target = self
+        self.navigationItem.rightBarButtonItem = storageButton
     }
     
     @objc func settingsTap() {
