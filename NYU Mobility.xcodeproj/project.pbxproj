@@ -30,6 +30,7 @@
 		A141FCD424816E5C00A3433D /* resume.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCCF24816E5C00A3433D /* resume.mp3 */; };
 		A141FCD524816E5C00A3433D /* stop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD024816E5C00A3433D /* stop.mp3 */; };
 		A141FCD624816E5C00A3433D /* start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD124816E5C00A3433D /* start.mp3 */; };
+		A14985E624B5312700331B7C /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14985E524B5312700331B7C /* CustomText.swift */; };
 		A16DE4AC2497E35A008777CD /* CustomAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DE4AB2497E35A008777CD /* CustomAdd.swift */; };
 		A16DE4B02497E4B8008777CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DE4AF2497E4B8008777CD /* Constants.swift */; };
 		A1AF57082492A8BD008EF983 /* settings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57062492A8BC008EF983 /* settings.mp3 */; };
@@ -87,6 +88,7 @@
 		A141FCCF24816E5C00A3433D /* resume.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = resume.mp3; sourceTree = "<group>"; };
 		A141FCD024816E5C00A3433D /* stop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stop.mp3; sourceTree = "<group>"; };
 		A141FCD124816E5C00A3433D /* start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = start.mp3; sourceTree = "<group>"; };
+		A14985E524B5312700331B7C /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
 		A16DE4AB2497E35A008777CD /* CustomAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAdd.swift; sourceTree = "<group>"; };
 		A16DE4AF2497E4B8008777CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A1AF57062492A8BC008EF983 /* settings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = settings.mp3; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				A16DE4AB2497E35A008777CD /* CustomAdd.swift */,
 				A16DE4AF2497E4B8008777CD /* Constants.swift */,
 				A12106E124AD6FE60041704D /* CardCell.swift */,
+				A14985E524B5312700331B7C /* CustomText.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,
 				A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */,
+				A14985E624B5312700331B7C /* CustomText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

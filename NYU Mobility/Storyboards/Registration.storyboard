@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vi2-PK-aE2">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,28 +12,33 @@
             <objects>
                 <viewController storyboardIdentifier="Registration" id="gnB-UP-gQP" customClass="RegistrationController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="laY-RN-P0X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2a-ec-mim" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="166" y="288" width="82" height="30"/>
+                                <rect key="frame" x="146.66666666666666" y="388" width="82" height="30"/>
                                 <state key="normal" title="I am a client"/>
                                 <connections>
                                     <segue destination="PDR-mp-3r4" kind="show" identifier="ClientSignUp" id="hEx-H3-lpH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbZ-3G-HR8" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="152.5" y="632" width="109" height="30"/>
+                                <rect key="frame" x="133" y="598" width="109" height="30"/>
                                 <state key="normal" title="I am a specialist"/>
                                 <connections>
                                     <segue destination="LTW-xd-LH4" kind="show" identifier="SpecialistSignUp" id="cpf-uN-Xo4"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uaM-wX-Xb8">
+                                <rect key="frame" x="127.66666666666669" y="158" width="120" height="120"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.33066866639665699" green="0.1185824159956317" blue="0.57703403561928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="VYn-Uo-xnw" firstAttribute="bottom" secondItem="LbZ-3G-HR8" secondAttribute="bottom" constant="200" id="PIU-pb-zT1"/>
-                            <constraint firstItem="H2a-ec-mim" firstAttribute="top" secondItem="VYn-Uo-xnw" secondAttribute="top" constant="200" id="uEr-te-SsT"/>
+                            <constraint firstItem="H2a-ec-mim" firstAttribute="top" secondItem="VYn-Uo-xnw" secondAttribute="top" constant="300" id="08h-Lj-86t"/>
+                            <constraint firstItem="uaM-wX-Xb8" firstAttribute="centerX" secondItem="laY-RN-P0X" secondAttribute="centerX" id="Cdr-Zf-Kz9"/>
+                            <constraint firstItem="VYn-Uo-xnw" firstAttribute="bottom" secondItem="LbZ-3G-HR8" secondAttribute="bottom" constant="150" id="Uxx-ou-jZK"/>
+                            <constraint firstItem="uaM-wX-Xb8" firstAttribute="top" secondItem="VYn-Uo-xnw" secondAttribute="top" constant="70" id="iOg-ZC-vvf"/>
                             <constraint firstItem="H2a-ec-mim" firstAttribute="centerX" secondItem="laY-RN-P0X" secondAttribute="centerX" id="xKQ-WF-hR8"/>
                             <constraint firstItem="LbZ-3G-HR8" firstAttribute="centerX" secondItem="laY-RN-P0X" secondAttribute="centerX" id="yCr-QT-36h"/>
                         </constraints>
@@ -49,18 +54,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCU-nm-fjG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831.88405797101461" y="105.80357142857143"/>
+            <point key="canvasLocation" x="831.20000000000005" y="105.69715142428787"/>
         </scene>
         <!--Specialist Registration-->
         <scene sceneID="WHk-js-bR2">
             <objects>
                 <viewController storyboardIdentifier="SpecialistVC" id="LTW-xd-LH4" customClass="SpecialistController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cxq-SX-dUV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6W-OZ-so3">
-                                <rect key="frame" x="163.5" y="433" width="87" height="30"/>
+                                <rect key="frame" x="144" y="391" width="87" height="30"/>
                                 <state key="normal" title="To Specialist"/>
                                 <connections>
                                     <action selector="registered:" destination="LTW-xd-LH4" eventType="touchUpInside" id="7dD-HW-bHq"/>
@@ -68,7 +73,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.33066866639665699" green="0.1185824159956317" blue="0.57703403561928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="E6W-OZ-so3" firstAttribute="centerY" secondItem="cxq-SX-dUV" secondAttribute="centerY" id="31D-ib-3Th"/>
                             <constraint firstItem="E6W-OZ-so3" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="Svj-S8-Wgp"/>
@@ -101,52 +106,76 @@
             <objects>
                 <viewController storyboardIdentifier="ClientVC" id="PDR-mp-3r4" customClass="ClientController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aab-3F-Tml">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOX-As-8l1" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="178.5" y="772" width="57" height="30"/>
+                                <rect key="frame" x="159" y="688" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registered:" destination="PDR-mp-3r4" eventType="touchUpInside" id="Fb1-ME-mxV"/>
                                     <segue destination="cYw-0i-MUx" kind="show" identifier="ToClient" id="fiU-F7-pAy"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: John Appleseed" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faE-p1-5eG">
-                                <rect key="frame" x="129" y="435" width="156" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: John Appleseed" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faE-p1-5eG" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="110.00000000000001" y="246" width="155.33333333333337" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="50B-F5-Acg"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ViJ-71-OBx">
-                                <rect key="frame" x="168.5" y="406" width="77" height="21"/>
+                                <rect key="frame" x="149" y="217" width="77" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9q1-z6-u6s">
-                                <rect key="frame" x="174" y="558" width="66" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9q1-z6-u6s" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="154.66666666666666" y="371" width="66" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="F3I-zE-RQh"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialist Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3D-uC-raI">
-                                <rect key="frame" x="147.5" y="529" width="119" height="21"/>
+                                <rect key="frame" x="128" y="342" width="119" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialist Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd6-r9-RQr">
+                                <rect key="frame" x="128" y="465" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ask Specialist" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lga-zE-HQI" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="128.66666666666666" y="494" width="118" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="bzf-hh-dCo"/>
+                                </connections>
+                            </textField>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.33066866639665699" green="0.1185824159956317" blue="0.57703403561928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="E3D-uC-raI" firstAttribute="top" secondItem="faE-p1-5eG" secondAttribute="bottom" constant="62" id="4ru-y5-wy1"/>
                             <constraint firstItem="9q1-z6-u6s" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="6YV-bd-hb4"/>
                             <constraint firstItem="sOX-As-8l1" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="AFi-Ek-Uk7"/>
+                            <constraint firstItem="sOX-As-8l1" firstAttribute="top" secondItem="lga-zE-HQI" secondAttribute="bottom" constant="160" id="EXi-eG-i7L"/>
                             <constraint firstItem="ViJ-71-OBx" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="Hbp-Vd-5TY"/>
+                            <constraint firstItem="Jd6-r9-RQr" firstAttribute="top" secondItem="9q1-z6-u6s" secondAttribute="bottom" constant="60" id="Heu-cH-Nm1"/>
                             <constraint firstItem="faE-p1-5eG" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="MfR-fH-AYZ"/>
+                            <constraint firstItem="lga-zE-HQI" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="PMp-4M-DWd"/>
+                            <constraint firstItem="Jd6-r9-RQr" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="Yji-vP-8ey"/>
                             <constraint firstItem="E3D-uC-raI" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="Zu5-w8-Yyc"/>
+                            <constraint firstItem="lga-zE-HQI" firstAttribute="top" secondItem="Jd6-r9-RQr" secondAttribute="bottom" constant="8" id="alC-Rm-WzA"/>
                             <constraint firstItem="g1e-us-2ka" firstAttribute="bottom" secondItem="sOX-As-8l1" secondAttribute="bottom" constant="60" id="ayR-uz-Nix"/>
                             <constraint firstItem="faE-p1-5eG" firstAttribute="top" secondItem="ViJ-71-OBx" secondAttribute="bottom" constant="8" id="c9Z-Ar-1w6"/>
-                            <constraint firstItem="sOX-As-8l1" firstAttribute="top" secondItem="9q1-z6-u6s" secondAttribute="bottom" constant="180" id="e0Z-ee-k9P"/>
                             <constraint firstItem="9q1-z6-u6s" firstAttribute="top" secondItem="E3D-uC-raI" secondAttribute="bottom" constant="8" id="pBS-k4-ipj"/>
-                            <constraint firstItem="E3D-uC-raI" firstAttribute="top" secondItem="faE-p1-5eG" secondAttribute="bottom" constant="60" id="xPs-lZ-73W"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g1e-us-2ka"/>
                     </view>
@@ -156,12 +185,13 @@
                     <connections>
                         <outlet property="fullName" destination="faE-p1-5eG" id="tTS-M8-vEs"/>
                         <outlet property="registerButton" destination="sOX-As-8l1" id="8ng-5p-Bco"/>
+                        <outlet property="specialistCode" destination="lga-zE-HQI" id="dtz-b8-icj"/>
                         <outlet property="specialistEmail" destination="9q1-z6-u6s" id="Uap-Pn-dpL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kN-Mb-J2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1992.753623188406" y="-246.42857142857142"/>
+            <point key="canvasLocation" x="1991.2" y="-246.79802955665025"/>
         </scene>
         <!--Tracking-->
         <scene sceneID="C28-8e-BbD">
@@ -179,7 +209,7 @@
                 <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" id="vi2-PK-aE2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cn4-EV-s9p">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -194,6 +224,9 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="fiU-F7-pAy"/>
-        <segue reference="Eqq-Fu-Tfp"/>
+        <segue reference="aJh-hw-HKs"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="logo" width="120" height="120"/>
+    </resources>
 </document>

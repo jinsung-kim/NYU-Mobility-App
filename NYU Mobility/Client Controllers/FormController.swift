@@ -16,11 +16,11 @@ class FormController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addButton: CustomAdd!
     
     // Text fields (In order of appearance)
-    @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var street: UITextField!
-    @IBOutlet weak var city: UITextField!
-    @IBOutlet weak var state: UITextField!
-    @IBOutlet weak var zip: UITextField!
+    @IBOutlet weak var name: CustomText!
+    @IBOutlet weak var street: CustomText!
+    @IBOutlet weak var city: CustomText!
+    @IBOutlet weak var state: CustomText!
+    @IBOutlet weak var zip: CustomText!
     
     var last: UITextField?
     
@@ -44,6 +44,7 @@ class FormController: UIViewController, UITextFieldDelegate {
     
     func update() {
         addButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         name.widthAnchor.constraint(equalToConstant: 150).isActive = true
         street.widthAnchor.constraint(equalToConstant: 300).isActive = true
         city.widthAnchor.constraint(equalToConstant: 150).isActive = true
@@ -65,7 +66,7 @@ class FormController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if (last != name && last != street) {
+        if (last != name) {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 if self.view.frame.origin.y == 0 {
                     self.view.frame.origin.y -= keyboardSize.height

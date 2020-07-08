@@ -62,9 +62,14 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true // Screen will not be put to sleep
         self.navigationItem.setHidesBackButton(true, animated: false)
+        self.viewer.backgroundColor = Colors.nyuPurple
         settingsButton() // The right side button
         getLocationPermission() // Permission to track
         enableDoubleTap() // Double tap feature
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.viewer.backgroundColor = Colors.nyuPurple
     }
     
     // Used to send over data to MapView Controller to read out results

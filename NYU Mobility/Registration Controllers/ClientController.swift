@@ -11,8 +11,9 @@ import UIKit
 class ClientController: UIViewController, UITextFieldDelegate {
     
     // Text fields
-    @IBOutlet weak var fullName: UITextField!
-    @IBOutlet weak var specialistEmail: UITextField!
+    @IBOutlet weak var fullName: CustomText!
+    @IBOutlet weak var specialistEmail: CustomText!
+    @IBOutlet weak var specialistCode: CustomText!
     
     @IBOutlet weak var registerButton: CustomAdd!
     
@@ -25,12 +26,16 @@ class ClientController: UIViewController, UITextFieldDelegate {
     }
     
     func labelAdjustments() {
-        registerButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        registerButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        // UI design for labels
         fullName.widthAnchor.constraint(equalToConstant: 350).isActive = true
         specialistEmail.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        specialistCode.widthAnchor.constraint(equalToConstant: 350).isActive = true
         
         // Connect all UITextFields to go to the next
-        UITextField.connectFields(fields: [fullName, specialistEmail])
+        UITextField.connectFields(fields: [fullName, specialistEmail, specialistCode])
         
         // Keyboard settings
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
@@ -48,7 +53,7 @@ class ClientController: UIViewController, UITextFieldDelegate {
                                                   object: nil)
     }
     
-    @IBAction func keyboardStays(_ sender: UITextField) {
+    @IBAction func keyboardStays(_ sender: CustomText) {
         last = sender
     }
     
@@ -76,6 +81,7 @@ class ClientController: UIViewController, UITextFieldDelegate {
     @IBAction func registered(_ sender: Any) {
         saveEmail(specialistEmail.text!)
         saveName(fullName.text!)
+        saveCode(specialistCode.text!)
     }
     
     func saveEmail(_ email: String) {
@@ -86,6 +92,11 @@ class ClientController: UIViewController, UITextFieldDelegate {
     func saveName(_ name: String) {
         let defaults = UserDefaults.standard
         defaults.set(name, forKey: "name")
+    }
+    
+    func saveCode(_ code: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(code, forKey: "code")
     }
 }
 

@@ -32,6 +32,7 @@ class StorageController: UITableViewController {
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Session")
+        // Order reversed
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: false)]
         
         do {
@@ -71,10 +72,10 @@ class StorageController: UITableViewController {
             sessions.remove(at: indexPath.row)
             context.delete(commit)
             
-            do{
+            do {
                 try context.save()
                 customTableView.deleteRows(at: [indexPath], with: .fade)
-            }catch{
+            } catch {
                 print("Error Deleting")
             }
             customTableView.reloadData()
