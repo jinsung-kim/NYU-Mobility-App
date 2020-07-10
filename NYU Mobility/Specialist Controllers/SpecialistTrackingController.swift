@@ -48,7 +48,6 @@ class SpecialistTrackingController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        self.navigationItem.setHidesBackButton(true, animated: false)
         storageButton()
     }
     
