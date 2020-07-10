@@ -10,7 +10,14 @@ import UIKit
 
 class SpecialistController: UIViewController {
     
-    @IBOutlet weak var registerButton: UIButton!
+    // Text fields to fill up
+    @IBOutlet weak var name: CustomText!
+    @IBOutlet weak var email: CustomText!
+    
+    // Register button
+    @IBOutlet weak var registerButton: CustomAdd!
+    // Login instead button
+    
     
     var last: UITextField?
 
@@ -21,14 +28,21 @@ class SpecialistController: UIViewController {
     }
     
     @IBAction func registered(_ sender: Any) {
-        
+        saveName(name.text!)
+        saveEmail(email.text!)
+        generateCode()
     }
     
     func labelAdjustments() {
         
+        registerButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        name.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        email.widthAnchor.constraint(equalToConstant: 350).isActive = true
         
         // Connect all UITextFields to go to the next
-//        UITextField.connectFields(fields: [fullName, specialistEmail])
+        UITextField.connectFields(fields: [name, email])
         
         // Keyboard settings
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
@@ -51,13 +65,13 @@ class SpecialistController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-//        if (last != fullName && last != specialistEmail) {
-//            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-//                if self.view.frame.origin.y == 0 {
-//                    self.view.frame.origin.y -= keyboardSize.height
-//                }
-//            }
-//        }
+        if (last != name) {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -79,6 +93,13 @@ class SpecialistController: UIViewController {
     func saveName(_ name: String) {
         let defaults = UserDefaults.standard
         defaults.set(name, forKey: "name")
+    }
+    
+    func generateCode() {
+        let uuid = UUID().uuidString
+        let defaults = UserDefaults.standard
+//        var code: String = ""
+        defaults.set(uuid, forKey: "code")
     }
     
 }

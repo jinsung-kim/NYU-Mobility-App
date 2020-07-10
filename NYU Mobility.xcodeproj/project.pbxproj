@@ -31,8 +31,11 @@
 		A141FCD524816E5C00A3433D /* stop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD024816E5C00A3433D /* stop.mp3 */; };
 		A141FCD624816E5C00A3433D /* start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD124816E5C00A3433D /* start.mp3 */; };
 		A14985E624B5312700331B7C /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14985E524B5312700331B7C /* CustomText.swift */; };
+		A14985E824B6A8B800331B7C /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14985E724B6A8B800331B7C /* CodeViewController.swift */; };
+		A14985EA24B7823300331B7C /* PickUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14985E924B7823300331B7C /* PickUserController.swift */; };
 		A16DE4AC2497E35A008777CD /* CustomAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DE4AB2497E35A008777CD /* CustomAdd.swift */; };
 		A16DE4B02497E4B8008777CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DE4AF2497E4B8008777CD /* Constants.swift */; };
+		A188675B24B7E42C007B6DE9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A188675A24B7E42C007B6DE9 /* UserCell.swift */; };
 		A1AF57082492A8BD008EF983 /* settings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57062492A8BC008EF983 /* settings.mp3 */; };
 		A1AF57092492A8BD008EF983 /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57072492A8BC008EF983 /* back.mp3 */; };
 		A1F002B624AC21340030E2F5 /* Specialist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F002B524AC21340030E2F5 /* Specialist.storyboard */; };
@@ -89,8 +92,11 @@
 		A141FCD024816E5C00A3433D /* stop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stop.mp3; sourceTree = "<group>"; };
 		A141FCD124816E5C00A3433D /* start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = start.mp3; sourceTree = "<group>"; };
 		A14985E524B5312700331B7C /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
+		A14985E724B6A8B800331B7C /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
+		A14985E924B7823300331B7C /* PickUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUserController.swift; sourceTree = "<group>"; };
 		A16DE4AB2497E35A008777CD /* CustomAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAdd.swift; sourceTree = "<group>"; };
 		A16DE4AF2497E4B8008777CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A188675A24B7E42C007B6DE9 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		A1AF57062492A8BC008EF983 /* settings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = settings.mp3; sourceTree = "<group>"; };
 		A1AF57072492A8BC008EF983 /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = back.mp3; sourceTree = "<group>"; };
 		A1F002B524AC21340030E2F5 /* Specialist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Specialist.storyboard; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 				A1366EC424AB853F00B1FA57 /* RegistrationController.swift */,
 				A1366EC624AB8BE900B1FA57 /* ClientController.swift */,
 				A1366EC824AB8C0F00B1FA57 /* SpecialistController.swift */,
+				A14985E724B6A8B800331B7C /* CodeViewController.swift */,
 			);
 			path = "Registration Controllers";
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 				A16DE4AF2497E4B8008777CD /* Constants.swift */,
 				A12106E124AD6FE60041704D /* CardCell.swift */,
 				A14985E524B5312700331B7C /* CustomText.swift */,
+				A188675A24B7E42C007B6DE9 /* UserCell.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 			children = (
 				A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */,
 				A12106DF24AD5E3D0041704D /* StorageController.swift */,
+				A14985E924B7823300331B7C /* PickUserController.swift */,
 			);
 			path = "Specialist Controllers";
 			sourceTree = "<group>";
@@ -397,9 +406,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A141FC9C24814B7C00A3433D /* TrackingController.swift in Sources */,
+				A14985E824B6A8B800331B7C /* CodeViewController.swift in Sources */,
 				A1F66C04248F0A840055DBAD /* MapViewController.swift in Sources */,
 				A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */,
 				A13FEA1B2491CE8800A4904F /* SettingsController.swift in Sources */,
+				A14985EA24B7823300331B7C /* PickUserController.swift in Sources */,
 				A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */,
 				A1366EC724AB8BE900B1FA57 /* ClientController.swift in Sources */,
 				A12106E224AD6FE60041704D /* CardCell.swift in Sources */,
@@ -414,6 +425,7 @@
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,
 				A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */,
 				A14985E624B5312700331B7C /* CustomText.swift in Sources */,
+				A188675B24B7E42C007B6DE9 /* UserCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,8 @@ class SpecialistTrackingController: UIViewController {
     @IBOutlet weak var trackingButton: UIButton!
     @IBOutlet var viewer: UIView!
     
+    var name: String?
+    
     private var buttonState: Int = 0
     
     // Used to track pedometer when saving data
@@ -54,12 +56,12 @@ class SpecialistTrackingController: UIViewController {
     func storageButton() {
         let storageButton = UIBarButtonItem()
         storageButton.title = "Settings"
-        storageButton.action = #selector(settingsTap)
+        storageButton.action = #selector(sessionsTap)
         storageButton.target = self
         self.navigationItem.rightBarButtonItem = storageButton
     }
     
-    @objc func settingsTap() {
+    @objc func sessionsTap() {
         self.performSegue(withIdentifier: "SeeSessions", sender: self)
     }
     

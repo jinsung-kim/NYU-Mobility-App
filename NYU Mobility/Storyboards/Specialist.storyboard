@@ -10,16 +10,16 @@
         <!--Track a Session-->
         <scene sceneID="IQf-SA-XMg">
             <objects>
-                <viewController storyboardIdentifier="ToSpecialist" id="lld-gF-TcX" customClass="SpecialistTrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ToTracking" id="lld-gF-TcX" customClass="SpecialistTrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vxm-Yr-3DV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqU-Mb-rmQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwI-Ls-0cO">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <state key="normal" title="Start">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,14 +56,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pXb-iU-j0O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="942.02898550724649" y="137.94642857142856"/>
+            <point key="canvasLocation" x="2022" y="138"/>
         </scene>
         <!--Storage Controller-->
         <scene sceneID="Dbd-4c-99R">
             <objects>
                 <tableViewController id="qrO-Op-9oN" customClass="StorageController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Storage" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Le5-LQ-lSh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -109,7 +109,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amc-ES-Ezc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2060.8695652173915" y="-222.32142857142856"/>
+            <point key="canvasLocation" x="3029" y="-240"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="btQ-k8-vaE">
@@ -122,12 +122,57 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="lld-gF-TcX" kind="relationship" relationship="rootViewController" id="Z6S-cd-OpE"/>
+                        <segue destination="YJH-PV-2s8" kind="show" identifier="NavigateSpecialist" id="5Zc-IN-9dD"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGg-Ux-dWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="31.884057971014496" y="137.94642857142856"/>
+        </scene>
+        <!--Pick User Controller-->
+        <scene sceneID="DE9-20-q2u">
+            <objects>
+                <tableViewController storyboardIdentifier="NavigateSpecialist" id="YJH-PV-2s8" customClass="PickUserController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F9H-Uf-saR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="eV5-BF-zIk" customClass="UserCell" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eV5-BF-zIk" id="28I-uW-hxq">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LX-Uq-1Y9">
+                                            <rect key="frame" x="20" y="11" width="45" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cardView" destination="28I-uW-hxq" id="oMy-hl-H61"/>
+                                    <outlet property="nameLabel" destination="2LX-Uq-1Y9" id="Ilt-9g-Cfc"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YJH-PV-2s8" id="cEV-5l-2PM"/>
+                            <outlet property="delegate" destination="YJH-PV-2s8" id="1iL-Hr-HQu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="mRG-Zr-MVM"/>
+                    <connections>
+                        <segue destination="lld-gF-TcX" kind="show" identifier="ToSpecialistTracking" id="KKD-LF-guu"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y1b-qu-LKs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1018.840579710145" y="137.94642857142856"/>
         </scene>
     </scenes>
 </document>
