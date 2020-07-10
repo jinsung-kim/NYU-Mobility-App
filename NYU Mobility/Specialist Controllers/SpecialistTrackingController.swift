@@ -54,7 +54,7 @@ class SpecialistTrackingController: UIViewController {
     // Upper right item from the tracking controller that goes to the settings
     func storageButton() {
         let storageButton = UIBarButtonItem()
-        storageButton.title = "Settings"
+        storageButton.title = "See Sessions"
         storageButton.action = #selector(sessionsTap)
         storageButton.target = self
         self.navigationItem.rightBarButtonItem = storageButton
