@@ -33,7 +33,7 @@ class PickUserController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.name = users[indexPath]
+        self.name = (users[indexPath.row].value(forKey: "name") as! String)
         self.performSegue(withIdentifier: "ToSpecialistTracking", sender: self)
     }
     
