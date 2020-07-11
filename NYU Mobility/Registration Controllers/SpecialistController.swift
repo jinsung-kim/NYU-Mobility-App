@@ -13,6 +13,8 @@ class SpecialistController: UIViewController {
     // Text fields to fill up
     @IBOutlet weak var name: CustomText!
     @IBOutlet weak var email: CustomText!
+    @IBOutlet weak var username: CustomText!
+    @IBOutlet weak var password: CustomText!
     
     // Register button
     @IBOutlet weak var registerButton: CustomAdd!
@@ -39,10 +41,12 @@ class SpecialistController: UIViewController {
         registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         name.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        username.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        password.widthAnchor.constraint(equalToConstant: 350).isActive = true
         email.widthAnchor.constraint(equalToConstant: 350).isActive = true
         
         // Connect all UITextFields to go to the next
-        UITextField.connectFields(fields: [name, email])
+        UITextField.connectFields(fields: [name, username, password, email])
         
         // Keyboard settings
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
@@ -65,7 +69,7 @@ class SpecialistController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if (last != name) {
+        if (last != name && last != username && last != password) {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 if self.view.frame.origin.y == 0 {
                     self.view.frame.origin.y -= keyboardSize.height

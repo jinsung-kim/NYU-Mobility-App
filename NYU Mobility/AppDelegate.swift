@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.isIdleTimerDisabled = true // Won't turn off by itself
         // Override point for customization after application launch
         let defaults = UserDefaults.standard
-        let defaultValue = ["name": "", "email" : "",
-                            "code": "", "state": true] as [String : Any]
+        let defaultValue = ["name": "", "email" : "", "username": "", "password": "",
+                            "code": "", "state": true, "mode": "client"] as [String : Any]
         defaults.register(defaults: defaultValue)
         // Disable dark mode (Broken at the moment)
         if #available(iOS 13, *) {

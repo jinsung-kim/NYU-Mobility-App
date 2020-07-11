@@ -19,9 +19,7 @@ class RegistrationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
-        if (getRegistered()) {
-            self.performSegue(withIdentifier: "SkipRegistration", sender: self)
-        }
+        self.skipRegistration()
         buttonConstraints()
     }
     
@@ -42,6 +40,34 @@ class RegistrationController: UIViewController {
             return false
         }
         return true
+    }
+    
+    @IBAction func clientMode(_ sender: Any) {
+        self.setMode("client")
+    }
+    
+    @IBAction func specialistMode(_ sender: Any) {
+        self.setMode("specialist")
+    }
+    
+    
+    func skipRegistration() {
+        if (getRegistered() && self.getMode() == "client") {
+            self.performSegue(withIdentifier: "SkipRegistration", sender: self)
+        } else if (getRegistered() && self.getMode() == "specialist") {
+            self.performSegue(withIdentifier: "SkipSpecialist", sender: self)
+        }
+    }
+    
+    func setMode(_ mode: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(mode, forKey: "mode")
+    }
+    
+    func getMode() -> String {
+        let defaults = UserDefaults.standard
+        let mode = defaults.string(forKey: "mode")
+        return mode!
     }
 
 }

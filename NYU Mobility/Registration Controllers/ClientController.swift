@@ -14,6 +14,8 @@ class ClientController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fullName: CustomText!
     @IBOutlet weak var specialistEmail: CustomText!
     @IBOutlet weak var specialistCode: CustomText!
+    @IBOutlet weak var username: CustomText!
+    @IBOutlet weak var password: CustomText!
     
     @IBOutlet weak var registerButton: CustomAdd!
     
@@ -31,11 +33,13 @@ class ClientController: UIViewController, UITextFieldDelegate {
         
         // UI design for labels
         fullName.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        username.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        password.widthAnchor.constraint(equalToConstant: 350).isActive = true
         specialistEmail.widthAnchor.constraint(equalToConstant: 350).isActive = true
         specialistCode.widthAnchor.constraint(equalToConstant: 350).isActive = true
         
         // Connect all UITextFields to go to the next
-        UITextField.connectFields(fields: [fullName, specialistEmail, specialistCode])
+        UITextField.connectFields(fields: [fullName, username, password, specialistEmail, specialistCode])
         
         // Keyboard settings
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
@@ -58,7 +62,7 @@ class ClientController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if (last != fullName && last != specialistEmail) {
+        if (last != fullName && last != username && last != password) {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 if self.view.frame.origin.y == 0 {
                     self.view.frame.origin.y -= keyboardSize.height
@@ -79,24 +83,16 @@ class ClientController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registered(_ sender: Any) {
-        saveEmail(specialistEmail.text!)
-        saveName(fullName.text!)
-        saveCode(specialistCode.text!)
+        save("email", specialistEmail.text!)
+        save("username", username.text!)
+        save("password", password.text!)
+        save("name", fullName.text!)
+        save("code", specialistCode.text!)
     }
     
-    func saveEmail(_ email: String) {
+    func save(_ key: String, _ value: String) {
         let defaults = UserDefaults.standard
-        defaults.set(email, forKey: "email")
-    }
-    
-    func saveName(_ name: String) {
-        let defaults = UserDefaults.standard
-        defaults.set(name, forKey: "name")
-    }
-    
-    func saveCode(_ code: String) {
-        let defaults = UserDefaults.standard
-        defaults.set(code, forKey: "code")
+        defaults.set(value, forKey: "\(key)")
     }
 }
 

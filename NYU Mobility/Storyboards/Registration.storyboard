@@ -19,6 +19,7 @@
                                 <rect key="frame" x="146.66666666666666" y="388" width="82" height="30"/>
                                 <state key="normal" title="I am a client"/>
                                 <connections>
+                                    <action selector="clientMode:" destination="gnB-UP-gQP" eventType="touchUpInside" id="ofu-30-3W6"/>
                                     <segue destination="PDR-mp-3r4" kind="show" identifier="ClientSignUp" id="hEx-H3-lpH"/>
                                 </connections>
                             </button>
@@ -26,6 +27,7 @@
                                 <rect key="frame" x="133" y="598" width="109" height="30"/>
                                 <state key="normal" title="I am a specialist"/>
                                 <connections>
+                                    <action selector="specialistMode:" destination="gnB-UP-gQP" eventType="touchUpInside" id="ngA-Ym-0Xx"/>
                                     <segue destination="LTW-xd-LH4" kind="show" identifier="SpecialistSignUp" id="cpf-uN-Xo4"/>
                                 </connections>
                             </button>
@@ -65,7 +67,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6W-OZ-so3" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="159" y="688" width="57" height="30"/>
+                                <rect key="frame" x="159" y="544" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registered:" destination="LTW-xd-LH4" eventType="touchUpInside" id="7dD-HW-bHq"/>
@@ -73,7 +75,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: John Appleseed" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBy-bB-p5g" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="110.00000000000001" y="371" width="155.33333333333337" height="34"/>
+                                <rect key="frame" x="110" y="197" width="155" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -82,13 +84,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kw6-0T-qXK">
-                                <rect key="frame" x="149" y="342" width="77" height="21"/>
+                                <rect key="frame" x="149" y="168" width="77" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jYr-bH-cNy" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="154.66666666666666" y="494" width="66" height="34"/>
+                                <rect key="frame" x="154.66666666666666" y="410" width="66" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -97,7 +99,37 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQe-Bz-fH2">
-                                <rect key="frame" x="167" y="465" width="41" height="21"/>
+                                <rect key="frame" x="167" y="381" width="41" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No special characters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jCz-VP-qDO" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="103.66666666666669" y="268" width="168" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="oFw-Km-axO"/>
+                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="qZ7-U3-lTc"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEH-7f-RJS">
+                                <rect key="frame" x="148" y="239" width="79" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="8 - 16 characters recommended" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evH-rQ-Esl" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="69.666666666666686" y="339" width="236" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="9Nl-5j-FgE"/>
+                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="xxo-8b-XvV"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1l-X3-GZ1">
+                                <rect key="frame" x="150.66666666666666" y="310" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -105,17 +137,24 @@
                         </subviews>
                         <color key="backgroundColor" red="0.33066866639665699" green="0.1185824159956317" blue="0.57703403561928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="jCz-VP-qDO" firstAttribute="top" secondItem="wEH-7f-RJS" secondAttribute="bottom" constant="8" id="0Nf-ac-cyR"/>
+                            <constraint firstItem="A1l-X3-GZ1" firstAttribute="top" secondItem="jCz-VP-qDO" secondAttribute="bottom" constant="8" id="4YA-n1-Ai5"/>
                             <constraint firstItem="QBy-bB-p5g" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="6F0-JI-Ro0"/>
                             <constraint firstItem="Kw6-0T-qXK" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="9fr-31-lnG"/>
-                            <constraint firstItem="n3u-88-GSE" firstAttribute="bottom" secondItem="E6W-OZ-so3" secondAttribute="bottom" constant="60" id="DLJ-Ya-LFw"/>
                             <constraint firstItem="QBy-bB-p5g" firstAttribute="top" secondItem="Kw6-0T-qXK" secondAttribute="bottom" constant="8" id="FLp-Xr-Mwk"/>
-                            <constraint firstItem="jYr-bH-cNy" firstAttribute="top" secondItem="IQe-Bz-fH2" secondAttribute="bottom" constant="8" id="Idj-M0-bOo"/>
+                            <constraint firstItem="Kw6-0T-qXK" firstAttribute="top" secondItem="n3u-88-GSE" secondAttribute="top" constant="80" id="Jk8-X6-uhS"/>
                             <constraint firstItem="jYr-bH-cNy" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="PXx-jn-OSU"/>
-                            <constraint firstItem="IQe-Bz-fH2" firstAttribute="top" secondItem="QBy-bB-p5g" secondAttribute="bottom" constant="60" id="SqT-OX-dub"/>
                             <constraint firstItem="E6W-OZ-so3" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="Svj-S8-Wgp"/>
+                            <constraint firstItem="wEH-7f-RJS" firstAttribute="top" secondItem="QBy-bB-p5g" secondAttribute="bottom" constant="8" id="TlM-pV-YOX"/>
+                            <constraint firstItem="wEH-7f-RJS" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="XCE-NV-xBu"/>
+                            <constraint firstItem="A1l-X3-GZ1" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="Yb1-gd-g5n"/>
+                            <constraint firstItem="evH-rQ-Esl" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="dtk-PM-kVY"/>
+                            <constraint firstItem="E6W-OZ-so3" firstAttribute="top" secondItem="jYr-bH-cNy" secondAttribute="bottom" constant="100" id="dxa-s7-13v"/>
+                            <constraint firstItem="IQe-Bz-fH2" firstAttribute="top" secondItem="evH-rQ-Esl" secondAttribute="bottom" constant="8" id="fdQ-tG-8rZ"/>
                             <constraint firstItem="IQe-Bz-fH2" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="jeG-YS-xor"/>
+                            <constraint firstItem="evH-rQ-Esl" firstAttribute="top" secondItem="A1l-X3-GZ1" secondAttribute="bottom" constant="8" id="oS8-vd-fKR"/>
                             <constraint firstItem="jYr-bH-cNy" firstAttribute="top" secondItem="IQe-Bz-fH2" secondAttribute="bottom" constant="8" id="pu1-00-A1g"/>
-                            <constraint firstItem="E6W-OZ-so3" firstAttribute="top" secondItem="jYr-bH-cNy" secondAttribute="bottom" constant="160" id="qpZ-Go-51Y"/>
+                            <constraint firstItem="jCz-VP-qDO" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="zba-dX-Ww9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="n3u-88-GSE"/>
                     </view>
@@ -125,7 +164,9 @@
                     <connections>
                         <outlet property="email" destination="jYr-bH-cNy" id="NzI-qG-X4Y"/>
                         <outlet property="name" destination="QBy-bB-p5g" id="oUm-ik-CTy"/>
+                        <outlet property="password" destination="evH-rQ-Esl" id="nNa-l6-5Ck"/>
                         <outlet property="registerButton" destination="E6W-OZ-so3" id="biK-bf-ini"/>
+                        <outlet property="username" destination="jCz-VP-qDO" id="Gor-5H-I0A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsG-S0-Df9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -208,7 +249,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOX-As-8l1" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="159" y="688" width="57" height="30"/>
+                                <rect key="frame" x="159" y="615" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registered:" destination="PDR-mp-3r4" eventType="touchUpInside" id="Fb1-ME-mxV"/>
@@ -216,21 +257,35 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: John Appleseed" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faE-p1-5eG" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="110.00000000000001" y="246" width="155.33333333333337" height="34"/>
+                                <rect key="frame" x="110" y="197" width="155" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="50B-F5-Acg"/>
                                 </connections>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No special characters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lfg-zk-7CM" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="103.66666666666669" y="268" width="168" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="zuM-TQ-oVq"/>
+                                </connections>
+                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ViJ-71-OBx">
-                                <rect key="frame" x="149" y="217" width="77" height="21"/>
+                                <rect key="frame" x="149" y="168" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPU-CH-4JG">
+                                <rect key="frame" x="148" y="239" width="79" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9q1-z6-u6s" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="154.66666666666666" y="371" width="66" height="34"/>
+                                <rect key="frame" x="154.66666666666666" y="410" width="66" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -238,42 +293,64 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialist Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3D-uC-raI">
-                                <rect key="frame" x="128" y="342" width="119" height="21"/>
+                                <rect key="frame" x="128" y="381" width="119" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialist Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd6-r9-RQr">
-                                <rect key="frame" x="128" y="465" width="119" height="21"/>
+                                <rect key="frame" x="128" y="452" width="119" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ask Specialist" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lga-zE-HQI" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="128.66666666666666" y="494" width="118" height="34"/>
+                                <rect key="frame" x="128.66666666666666" y="481" width="118" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="bzf-hh-dCo"/>
                                 </connections>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="8 - 16 characters recommended" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvT-X1-Ifp" customClass="CustomText" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="69.666666666666686" y="339" width="236" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="g5p-hq-K2i"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAC-SF-vbP">
+                                <rect key="frame" x="150.66666666666666" y="310" width="74" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.33066866639665699" green="0.1185824159956317" blue="0.57703403561928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="E3D-uC-raI" firstAttribute="top" secondItem="faE-p1-5eG" secondAttribute="bottom" constant="62" id="4ru-y5-wy1"/>
+                            <constraint firstItem="UAC-SF-vbP" firstAttribute="top" secondItem="lfg-zk-7CM" secondAttribute="bottom" constant="8" id="6Kv-0e-7yh"/>
                             <constraint firstItem="9q1-z6-u6s" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="6YV-bd-hb4"/>
                             <constraint firstItem="sOX-As-8l1" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="AFi-Ek-Uk7"/>
-                            <constraint firstItem="sOX-As-8l1" firstAttribute="top" secondItem="lga-zE-HQI" secondAttribute="bottom" constant="160" id="EXi-eG-i7L"/>
                             <constraint firstItem="ViJ-71-OBx" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="Hbp-Vd-5TY"/>
-                            <constraint firstItem="Jd6-r9-RQr" firstAttribute="top" secondItem="9q1-z6-u6s" secondAttribute="bottom" constant="60" id="Heu-cH-Nm1"/>
                             <constraint firstItem="faE-p1-5eG" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="MfR-fH-AYZ"/>
+                            <constraint firstItem="nvT-X1-Ifp" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="MzL-9i-MOf"/>
                             <constraint firstItem="lga-zE-HQI" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="PMp-4M-DWd"/>
                             <constraint firstItem="Jd6-r9-RQr" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="Yji-vP-8ey"/>
                             <constraint firstItem="E3D-uC-raI" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="Zu5-w8-Yyc"/>
                             <constraint firstItem="lga-zE-HQI" firstAttribute="top" secondItem="Jd6-r9-RQr" secondAttribute="bottom" constant="8" id="alC-Rm-WzA"/>
-                            <constraint firstItem="g1e-us-2ka" firstAttribute="bottom" secondItem="sOX-As-8l1" secondAttribute="bottom" constant="60" id="ayR-uz-Nix"/>
+                            <constraint firstItem="lfg-zk-7CM" firstAttribute="top" secondItem="CPU-CH-4JG" secondAttribute="bottom" constant="8" id="bli-rs-Y9l"/>
                             <constraint firstItem="faE-p1-5eG" firstAttribute="top" secondItem="ViJ-71-OBx" secondAttribute="bottom" constant="8" id="c9Z-Ar-1w6"/>
+                            <constraint firstItem="sOX-As-8l1" firstAttribute="top" secondItem="lga-zE-HQI" secondAttribute="bottom" constant="100" id="dmU-3c-a6Y"/>
+                            <constraint firstItem="nvT-X1-Ifp" firstAttribute="top" secondItem="UAC-SF-vbP" secondAttribute="bottom" constant="8" id="gNV-g5-4Nw"/>
+                            <constraint firstItem="CPU-CH-4JG" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="jH9-Tz-KlZ"/>
+                            <constraint firstItem="UAC-SF-vbP" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="jPz-GP-xQy"/>
+                            <constraint firstItem="ViJ-71-OBx" firstAttribute="top" secondItem="g1e-us-2ka" secondAttribute="top" constant="80" id="kVZ-Ye-x5h"/>
+                            <constraint firstItem="Jd6-r9-RQr" firstAttribute="top" secondItem="9q1-z6-u6s" secondAttribute="bottom" constant="8" id="lMJ-6y-lAe"/>
                             <constraint firstItem="9q1-z6-u6s" firstAttribute="top" secondItem="E3D-uC-raI" secondAttribute="bottom" constant="8" id="pBS-k4-ipj"/>
+                            <constraint firstItem="lfg-zk-7CM" firstAttribute="centerX" secondItem="Aab-3F-Tml" secondAttribute="centerX" id="r60-Q5-Miq"/>
+                            <constraint firstItem="E3D-uC-raI" firstAttribute="top" secondItem="nvT-X1-Ifp" secondAttribute="bottom" constant="8" id="rme-Ok-eTH"/>
+                            <constraint firstItem="CPU-CH-4JG" firstAttribute="top" secondItem="faE-p1-5eG" secondAttribute="bottom" constant="8" id="te5-e8-4U8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g1e-us-2ka"/>
                     </view>
@@ -282,9 +359,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="fullName" destination="faE-p1-5eG" id="tTS-M8-vEs"/>
+                        <outlet property="password" destination="nvT-X1-Ifp" id="Rvl-9o-s2y"/>
                         <outlet property="registerButton" destination="sOX-As-8l1" id="8ng-5p-Bco"/>
                         <outlet property="specialistCode" destination="lga-zE-HQI" id="dtz-b8-icj"/>
                         <outlet property="specialistEmail" destination="9q1-z6-u6s" id="Uap-Pn-dpL"/>
+                        <outlet property="username" destination="lfg-zk-7CM" id="Wlf-X1-VaO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kN-Mb-J2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -322,7 +401,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="fiU-F7-pAy"/>
-        <segue reference="q5u-vQ-EWC"/>
+        <segue reference="aJh-hw-HKs"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="logo" width="120" height="120"/>
