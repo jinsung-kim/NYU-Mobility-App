@@ -30,8 +30,10 @@ class SpecialistController: UIViewController {
     }
     
     @IBAction func registered(_ sender: Any) {
-        saveName(name.text!)
-        saveEmail(email.text!)
+        save("name", name.text!)
+        save("email", email.text!)
+        save("username", username.text!)
+        save("password", password.text!)
         generateCode()
     }
     
@@ -89,20 +91,14 @@ class SpecialistController: UIViewController {
         self.view.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    func saveEmail(_ email: String) {
+    func save(_ key: String, _ value: String) {
         let defaults = UserDefaults.standard
-        defaults.set(email, forKey: "email")
-    }
-    
-    func saveName(_ name: String) {
-        let defaults = UserDefaults.standard
-        defaults.set(name, forKey: "name")
+        defaults.set(value, forKey: "\(key)")
     }
     
     func generateCode() {
         let uuid = UUID().uuidString
         let defaults = UserDefaults.standard
-//        var code: String = ""
         defaults.set(uuid, forKey: "code")
     }
     

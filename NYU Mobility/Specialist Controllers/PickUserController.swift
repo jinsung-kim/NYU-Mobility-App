@@ -47,6 +47,7 @@ class PickUserController: UITableViewController {
         { (input: String?) in
             self.savePoint(input!)
         }
+        tableView.reloadData()
     }
     
     func addButton() {
@@ -96,6 +97,7 @@ class PickUserController: UITableViewController {
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+        tableView.reloadData()
     }
     
     // Table view functions

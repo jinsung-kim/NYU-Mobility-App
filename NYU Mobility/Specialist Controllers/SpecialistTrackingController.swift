@@ -50,9 +50,10 @@ class SpecialistTrackingController: UIViewController {
         loadData()
         storageButton()
     }
-    
+
     // Upper right item from the tracking controller that goes to the settings
     func storageButton() {
+        self.viewer.backgroundColor = Colors.nyuPurple
         let storageButton = UIBarButtonItem()
         storageButton.title = "See Sessions"
         storageButton.action = #selector(sessionsTap)
@@ -68,12 +69,10 @@ class SpecialistTrackingController: UIViewController {
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
         if (self.buttonState == 1) {
             trackingButton.setTitle("Resume", for: .normal)
-            self.viewer.backgroundColor = UIColor.red
             self.buttonState = 3
             trackingChange(trackingButton)
         } else {
             trackingButton.setTitle("Pause", for: .normal)
-            self.viewer.backgroundColor = UIColor.green
             self.buttonState = 4
             trackingChange(trackingButton)
         }
@@ -112,7 +111,6 @@ class SpecialistTrackingController: UIViewController {
             savePoint() // Saves into Core Data
             clearData()
             sender.setTitle("Start", for: .normal)
-            self.viewer.backgroundColor = UIColor.white
             self.buttonState = 0
         case 3:
             stopTracking()
@@ -136,7 +134,6 @@ class SpecialistTrackingController: UIViewController {
     func startTracking() {
         startGyro()
         startUpdating()
-        self.viewer.backgroundColor = UIColor.green
     }
     
     /**
@@ -147,7 +144,6 @@ class SpecialistTrackingController: UIViewController {
         stopUpdating()
         stopGyros()
         self.saveData(currTime: Date())
-        self.viewer.backgroundColor = UIColor.red
     }
     
     func stopUpdating() { pedometer.stopUpdates() }
