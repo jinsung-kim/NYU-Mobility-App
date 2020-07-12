@@ -65,6 +65,14 @@ class SpecialistTrackingController: UIViewController {
         self.performSegue(withIdentifier: "SeeSessions", sender: self)
     }
     
+    // Used to send over data to the Storage Controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is StorageController {
+            let vc = segue.destination as? StorageController
+            vc?.name = self.name!
+        }
+    }
+    
     // Goes together with enableDoubleTap
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
         if (self.buttonState == 1) {

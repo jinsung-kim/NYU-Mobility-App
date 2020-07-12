@@ -18,24 +18,30 @@ class CardCell: UITableViewCell {
     
     func configure(date: Date) {
         // Setting Labels to update recording information
-        timeLabel.text = "\(dateFormatter(date))"
+        timeLabel.text = "Session Started: \(dateFormatter(date))"
         
         // Fitting the text to the labels
         timeLabel.sizeToFit()
         
-        // Styling the card
+        cardView.backgroundColor = Colors.white
         cardView.layer.shadowColor = UIColor.gray.cgColor
         cardView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         cardView.layer.shadowOpacity = 1.0
         cardView.layer.masksToBounds = false
-        cardView.layer.cornerRadius = 5.0
+        cardView.layer.cornerRadius = self.frame.size.height / 4
     }
     
     // Transforming the date into a string
     func dateFormatter(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd hh:mm"
         let dateString = formatter.string(from: date)
         return dateString
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // space out sessions in content view
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
     }
 }

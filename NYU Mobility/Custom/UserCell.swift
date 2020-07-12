@@ -42,7 +42,7 @@ class UserCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        // space out users in list
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
     }
 }

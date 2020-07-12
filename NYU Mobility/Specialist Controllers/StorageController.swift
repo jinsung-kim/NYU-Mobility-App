@@ -14,12 +14,19 @@ class StorageController: UITableViewController {
     var sessions: [NSManagedObject] = []
     @IBOutlet var customTableView: UITableView!
     
+    var name: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        
+        self.tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
         customTableView.delegate = self
         customTableView.dataSource = self
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
     }
     
     // Load all of the sessions
