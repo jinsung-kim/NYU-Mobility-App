@@ -25,15 +25,14 @@ class PickUserController: UITableViewController {
         self.tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
     }
 
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
     }
     
     // Used to send over data to the Specialist Tracking Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is SpecialistTrackingController
-        {
-            self.updatePoint(self.index!, self.name!, Date())
+        if segue.destination is SpecialistTrackingController {
             let vc = segue.destination as? SpecialistTrackingController
             vc?.name = self.name!
         }
@@ -42,6 +41,7 @@ class PickUserController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.name = (users[indexPath.row].value(forKey: "name") as! String)
         self.index = indexPath.row
+        self.updateTime()
         self.performSegue(withIdentifier: "ToSpecialistTracking", sender: self)
     }
     
@@ -91,43 +91,33 @@ class PickUserController: UITableViewController {
 
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "User",
-                                                in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)!
         
-        let user = NSManagedObject(entity: entity,
-                                    insertInto: managedContext)
+        let user = NSManagedObject(entity: entity, insertInto: managedContext)
         
         user.setValue(name, forKeyPath: "name")
         user.setValue(date, forKeyPath: "lastActive")
         
         do {
             try managedContext.save()
-                users.append(user)
+            users.append(user)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
         tableView.reloadData()
     }
     
-    func updatePoint(_ ind: Int, _ name: String, _ date: Date) {
+    // update time for a user session
+    func updateTime() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
 
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "User",
-                                                in: managedContext)!
-        
-        let user = NSManagedObject(entity: entity,
-                                    insertInto: managedContext)
-        
-        user.setValue(name, forKeyPath: "name")
-        user.setValue(date, forKeyPath: "lastActive")
-        
         do {
+            users[self.index!].setValue(Date(), forKey: "lastActive")
             try managedContext.save()
-                users[ind] = user
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
@@ -149,7 +139,8 @@ class PickUserController: UITableViewController {
         
         // Getting the contents of the selected row
         // See UserCell.swift in Custom group
-        cell.configure(users[indexPath.row].value(forKey: "name") as! String, users[indexPath.row].value(forKey: "lastActive") as! Date)
+        cell.configure(users[indexPath.row].value(forKey: "name") as! String,
+                       users[indexPath.row].value(forKey: "lastActive") as! Date)
         
         return cell
     }
