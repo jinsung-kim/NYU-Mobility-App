@@ -11,11 +11,14 @@ import UIKit
 class UserCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var lastSession: UILabel!
+    
     @IBOutlet weak var cardView: UIView!
     
-    func configure(_ name: String){
+    func configure(_ name: String, _ last: Date){
         //Setting Labels to update recording information
         nameLabel.text = "\(name)"
+        lastSession.text = "Last Active: \(dateFormatter(last))"
         
         //Fiting the text to the labels
         nameLabel.sizeToFit()
@@ -26,5 +29,13 @@ class UserCell: UITableViewCell {
         cardView.layer.shadowOpacity = 1.0
         cardView.layer.masksToBounds = false
         cardView.layer.cornerRadius = 5.0
+    }
+    
+    // Transforming the date into a string
+    func dateFormatter(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateString = formatter.string(from: date)
+        return dateString
     }
 }

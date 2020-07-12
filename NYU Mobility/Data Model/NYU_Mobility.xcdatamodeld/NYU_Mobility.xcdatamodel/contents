@@ -6,6 +6,7 @@
         <attribute name="user" optional="YES" attributeType="String"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="lastActive" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserSaved" representedClassName="UserSaved" syncable="YES" codeGenerationType="class">
@@ -16,7 +17,7 @@
     </entity>
     <elements>
         <element name="Session" positionX="-63" positionY="9" width="128" height="88"/>
+        <element name="User" positionX="-63" positionY="18" width="128" height="73"/>
         <element name="UserSaved" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="User" positionX="-63" positionY="18" width="128" height="58"/>
     </elements>
 </model>

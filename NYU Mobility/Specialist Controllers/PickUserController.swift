@@ -13,6 +13,7 @@ class PickUserController: UITableViewController {
     
     var users: [NSManagedObject] = []
     var name: String?
+    var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class PickUserController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is SpecialistTrackingController
         {
+            self.updatePoint(self.index!, self.name!, Date())
             let vc = segue.destination as? SpecialistTrackingController
             vc?.name = self.name!
         }
@@ -34,6 +36,7 @@ class PickUserController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.name = (users[indexPath.row].value(forKey: "name") as! String)
+        self.index = indexPath.row
         self.performSegue(withIdentifier: "ToSpecialistTracking", sender: self)
     }
     
@@ -45,7 +48,7 @@ class PickUserController: UITableViewController {
                         inputPlaceholder: "Ex: John Appleseed",
                         inputKeyboardType: .emailAddress)
         { (input: String?) in
-            self.savePoint(input!)
+            self.savePoint(input!, Date())
         }
         tableView.reloadData()
     }
@@ -76,7 +79,7 @@ class PickUserController: UITableViewController {
     }
     
     // Saves user
-    func savePoint(_ name: String) {
+    func savePoint(_ name: String, _ date: Date) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -90,10 +93,36 @@ class PickUserController: UITableViewController {
                                     insertInto: managedContext)
         
         user.setValue(name, forKeyPath: "name")
+        user.setValue(date, forKeyPath: "lastActive")
         
         do {
             try managedContext.save()
                 users.append(user)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        tableView.reloadData()
+    }
+    
+    func updatePoint(_ ind: Int, _ name: String, _ date: Date) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "User",
+                                                in: managedContext)!
+        
+        let user = NSManagedObject(entity: entity,
+                                    insertInto: managedContext)
+        
+        user.setValue(name, forKeyPath: "name")
+        user.setValue(date, forKeyPath: "lastActive")
+        
+        do {
+            try managedContext.save()
+                users[ind] = user
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
@@ -115,7 +144,7 @@ class PickUserController: UITableViewController {
         
         // Getting the contents of the selected row
         // See UserCell.swift in Custom group
-        cell.configure(users[indexPath.row].value(forKey: "name") as! String)
+        cell.configure(users[indexPath.row].value(forKey: "name") as! String, users[indexPath.row].value(forKey: "lastActive") as! Date)
         
         return cell
     }
