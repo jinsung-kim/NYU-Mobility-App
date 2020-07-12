@@ -16,14 +16,14 @@ class CardCell: UITableViewCell {
     // Start time label
     @IBOutlet weak var timeLabel: UILabel!
     
-    func configure(date: Date){
-        //Setting Labels to update recording information
+    func configure(date: Date) {
+        // Setting Labels to update recording information
         timeLabel.text = "\(dateFormatter(date))"
         
-        //Fiting the text to the labels
+        // Fitting the text to the labels
         timeLabel.sizeToFit()
         
-        //Styling the card
+        // Styling the card
         cardView.layer.shadowColor = UIColor.gray.cgColor
         cardView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         cardView.layer.shadowOpacity = 1.0

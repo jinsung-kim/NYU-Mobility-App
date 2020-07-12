@@ -22,6 +22,11 @@ class PickUserController: UITableViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
         tableView.dataSource = self
         tableView.delegate = self
+        self.tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
+    }
+
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
     }
     
     // Used to send over data to the Specialist Tracking Controller

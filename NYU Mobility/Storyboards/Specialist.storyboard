@@ -133,16 +133,16 @@
         <scene sceneID="DE9-20-q2u">
             <objects>
                 <tableViewController storyboardIdentifier="NavigateSpecialist" id="YJH-PV-2s8" customClass="PickUserController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F9H-Uf-saR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F9H-Uf-saR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="70" id="eV5-BF-zIk" customClass="UserCell" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="70"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="80" id="eV5-BF-zIk" customClass="UserCell" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eV5-BF-zIk" id="28I-uW-hxq">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LX-Uq-1Y9">
@@ -164,7 +164,6 @@
                                         <constraint firstItem="WuT-22-gsU" firstAttribute="leading" secondItem="28I-uW-hxq" secondAttribute="leadingMargin" id="Xdv-dL-c1Z"/>
                                         <constraint firstItem="2LX-Uq-1Y9" firstAttribute="top" secondItem="28I-uW-hxq" secondAttribute="topMargin" id="f2A-VU-JbL"/>
                                         <constraint firstItem="2LX-Uq-1Y9" firstAttribute="leading" secondItem="28I-uW-hxq" secondAttribute="leadingMargin" id="kmi-hO-oaQ"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="WuT-22-gsU" secondAttribute="bottom" constant="3" id="oIh-a0-4fb"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
