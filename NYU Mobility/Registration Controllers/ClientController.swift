@@ -18,6 +18,7 @@ class ClientController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var password: CustomText!
     
     @IBOutlet weak var registerButton: CustomAdd!
+    @IBOutlet weak var loginRedirect: CustomAdd!
     
     var last: UITextField?
     
@@ -30,6 +31,9 @@ class ClientController: UIViewController, UITextFieldDelegate {
     func labelAdjustments() {
         registerButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        loginRedirect.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        loginRedirect.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // UI design for labels
         fullName.widthAnchor.constraint(equalToConstant: 350).isActive = true

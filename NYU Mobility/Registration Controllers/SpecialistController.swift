@@ -19,7 +19,7 @@ class SpecialistController: UIViewController {
     // Register button
     @IBOutlet weak var registerButton: CustomAdd!
     // Login instead button
-    
+    @IBOutlet weak var loginRedirect: CustomAdd!
     
     var last: UITextField?
 
@@ -41,6 +41,9 @@ class SpecialistController: UIViewController {
         
         registerButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginRedirect.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        loginRedirect.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         
         name.widthAnchor.constraint(equalToConstant: 350).isActive = true
         username.widthAnchor.constraint(equalToConstant: 350).isActive = true
