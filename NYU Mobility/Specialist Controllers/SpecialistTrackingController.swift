@@ -261,6 +261,7 @@ class SpecialistTrackingController: UIViewController {
         
         session.setValue(generateJSON(), forKeyPath: "json")
         session.setValue(startTime, forKeyPath: "startTime")
+        session.setValue(self.name!, forKeyPath: "user")
         
         do {
             try managedContext.save()
