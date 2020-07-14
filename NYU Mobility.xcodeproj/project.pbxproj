@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8524A09256C305841AA1670D /* Pods_NYU_Mobility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E3A246980BCEA3D50B26C6 /* Pods_NYU_Mobility.framework */; };
 		A12106DE24AD57130041704D /* SpecialistPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106DD24AD57130041704D /* SpecialistPoint.swift */; };
 		A12106E024AD5E3D0041704D /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106DF24AD5E3D0041704D /* StorageController.swift */; };
 		A12106E224AD6FE60041704D /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106E124AD6FE60041704D /* CardCell.swift */; };
@@ -17,6 +18,7 @@
 		A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC824AB8C0F00B1FA57 /* SpecialistController.swift */; };
 		A1366ECB24AC1A1000B1FA57 /* Client.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A141FC9D24814B7D00A3433D /* Client.storyboard */; };
 		A13FEA1B2491CE8800A4904F /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13FEA1A2491CE8800A4904F /* SettingsController.swift */; };
+		A141D93D24BD5F2D00384C38 /* VideoRecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141D93C24BD5F2D00384C38 /* VideoRecordingController.swift */; };
 		A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9724814B7C00A3433D /* AppDelegate.swift */; };
 		A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9924814B7C00A3433D /* SceneDelegate.swift */; };
 		A141FC9C24814B7C00A3433D /* TrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141FC9B24814B7C00A3433D /* TrackingController.swift */; };
@@ -63,6 +65,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		67F38718495BDB4644470005 /* Pods-NYU Mobility.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYU Mobility.release.xcconfig"; path = "Target Support Files/Pods-NYU Mobility/Pods-NYU Mobility.release.xcconfig"; sourceTree = "<group>"; };
+		88E3A246980BCEA3D50B26C6 /* Pods_NYU_Mobility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NYU_Mobility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B3B8AC87C898A479C45BC6C /* Pods-NYU Mobility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYU Mobility.debug.xcconfig"; path = "Target Support Files/Pods-NYU Mobility/Pods-NYU Mobility.debug.xcconfig"; sourceTree = "<group>"; };
 		A12106DD24AD57130041704D /* SpecialistPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistPoint.swift; sourceTree = "<group>"; };
 		A12106DF24AD5E3D0041704D /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		A12106E124AD6FE60041704D /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 		A1366EC624AB8BE900B1FA57 /* ClientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientController.swift; sourceTree = "<group>"; };
 		A1366EC824AB8C0F00B1FA57 /* SpecialistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistController.swift; sourceTree = "<group>"; };
 		A13FEA1A2491CE8800A4904F /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		A141D93C24BD5F2D00384C38 /* VideoRecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingController.swift; sourceTree = "<group>"; };
 		A141FC9424814B7C00A3433D /* NYU Mobility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYU Mobility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A141FC9724814B7C00A3433D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A141FC9924814B7C00A3433D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8524A09256C305841AA1670D /* Pods_NYU_Mobility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +139,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3817A1343455985A1DB6D158 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88E3A246980BCEA3D50B26C6 /* Pods_NYU_Mobility.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		921D19D09F663952CA82AAA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8B3B8AC87C898A479C45BC6C /* Pods-NYU Mobility.debug.xcconfig */,
+				67F38718495BDB4644470005 /* Pods-NYU Mobility.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A114729824840DCF0043B04B /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +185,8 @@
 				A141FCB024814B7E00A3433D /* NYU MobilityTests */,
 				A141FCBB24814B7E00A3433D /* NYU MobilityUITests */,
 				A141FC9524814B7C00A3433D /* Products */,
+				921D19D09F663952CA82AAA2 /* Pods */,
+				3817A1343455985A1DB6D158 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -264,6 +290,7 @@
 				A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */,
 				A12106DF24AD5E3D0041704D /* StorageController.swift */,
 				A14985E924B7823300331B7C /* PickUserController.swift */,
+				A141D93C24BD5F2D00384C38 /* VideoRecordingController.swift */,
 			);
 			path = "Specialist Controllers";
 			sourceTree = "<group>";
@@ -275,9 +302,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A141FCC124814B7E00A3433D /* Build configuration list for PBXNativeTarget "NYU Mobility" */;
 			buildPhases = (
+				5AB61EBAB62EF024424B1F40 /* [CP] Check Pods Manifest.lock */,
 				A141FC9024814B7C00A3433D /* Sources */,
 				A141FC9124814B7C00A3433D /* Frameworks */,
 				A141FC9224814B7C00A3433D /* Resources */,
+				5E03C49622230668FAFD22F3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -403,6 +432,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5AB61EBAB62EF024424B1F40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NYU Mobility-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E03C49622230668FAFD22F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NYU Mobility/Pods-NYU Mobility-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NYU Mobility/Pods-NYU Mobility-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NYU Mobility/Pods-NYU Mobility-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A141FC9024814B7C00A3433D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -430,6 +501,7 @@
 				A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */,
 				A14985E624B5312700331B7C /* CustomText.swift in Sources */,
 				A188675B24B7E42C007B6DE9 /* UserCell.swift in Sources */,
+				A141D93D24BD5F2D00384C38 /* VideoRecordingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +672,7 @@
 		};
 		A141FCC224814B7E00A3433D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B3B8AC87C898A479C45BC6C /* Pods-NYU Mobility.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -618,6 +691,7 @@
 		};
 		A141FCC324814B7E00A3433D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67F38718495BDB4644470005 /* Pods-NYU Mobility.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
