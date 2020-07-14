@@ -60,7 +60,7 @@ class SpecialistController: UIViewController {
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    // Called when we leave this view controller, whether that is going back or finished
+//     Called when we leave this view controller, whether that is going back or finished
     override func viewDidDisappear(_ animated: Bool) {
         // Cleaning up to avoid any unnecessary notification messages
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification,
@@ -72,7 +72,7 @@ class SpecialistController: UIViewController {
     @IBAction func keyboardStays(_ sender: UITextField) {
         last = sender
     }
-    
+
     @objc func keyboardWillShow(notification: NSNotification) {
         if (last != name && last != username && last != password) {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {

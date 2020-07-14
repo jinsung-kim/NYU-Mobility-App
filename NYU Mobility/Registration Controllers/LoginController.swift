@@ -47,41 +47,6 @@ class LoginController: UIViewController {
         
         // Connect all UITextFields to go to the next
         UITextField.connectFields(fields: [username, password])
-        
-        // Keyboard settings
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    // Called when we leave this view controller, whether that is going back or finished
-    override func viewDidDisappear(_ animated: Bool) {
-        // Cleaning up to avoid any unnecessary notification messages
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
-    }
-    
-    @IBAction func keyboardStays(_ sender: UITextField) {
-        last = sender
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if (last != username && last != password) {
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -= keyboardSize.height
-                }
-            }
-        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
-        }
     }
     
     func exitEdit() {
