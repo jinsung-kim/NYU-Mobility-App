@@ -10,3 +10,12 @@ import UIKit
 
 // https://github.com/Kesoyuh/simple-snapchat/blob/
 // master/simple-snapchat/Controllers/CameraViewController.swift
+
+class VideoRecordingController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        loadData()
+    }
+    
+}

@@ -66,7 +66,7 @@ class FormController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if (last != name) {
+        if (last != name && last != street) {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 if self.view.frame.origin.y == 0 {
                     self.view.frame.origin.y -= keyboardSize.height

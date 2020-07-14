@@ -10,16 +10,16 @@
         <!--Track a Session-->
         <scene sceneID="IQf-SA-XMg">
             <objects>
-                <viewController storyboardIdentifier="ToTracking" id="lld-gF-TcX" customClass="SpecialistTrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ToTracking" modalPresentationStyle="fullScreen" id="lld-gF-TcX" customClass="SpecialistTrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vxm-Yr-3DV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqU-Mb-rmQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwI-Ls-0cO">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <state key="normal" title="Start">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -29,7 +29,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.33066866639665699" green="0.1185824159956317" blue="0.57703403561928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.33066866639999998" green="0.118582416" blue="0.57703403559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="nwI-Ls-0cO" secondAttribute="bottom" id="5DR-K1-cQq"/>
                                     <constraint firstItem="nwI-Ls-0cO" firstAttribute="top" secondItem="sqU-Mb-rmQ" secondAttribute="top" id="Kb0-L7-R9U"/>
@@ -52,18 +52,35 @@
                         <outlet property="trackingButton" destination="nwI-Ls-0cO" id="oVq-6R-9aV"/>
                         <outlet property="viewer" destination="vxm-Yr-3DV" id="q3u-W3-o4U"/>
                         <segue destination="qrO-Op-9oN" kind="show" identifier="SeeSessions" id="yNg-ZM-EX0"/>
+                        <segue destination="M4u-GQ-mp9" kind="show" identifier="VisualMode" id="kgt-V3-bSk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pXb-iU-j0O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2022" y="138"/>
         </scene>
+        <!--Visualize-->
+        <scene sceneID="xNP-GY-i18">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="M4u-GQ-mp9" customClass="VideoRecordingController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pC4-Zp-6co">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="pXm-gk-fqN"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Visualize" id="dcP-rV-xq7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H0b-xV-hSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2022" y="960"/>
+        </scene>
         <!--Storage Controller-->
         <scene sceneID="Dbd-4c-99R">
             <objects>
-                <tableViewController id="qrO-Op-9oN" customClass="StorageController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="qrO-Op-9oN" customClass="StorageController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Storage" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Le5-LQ-lSh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -110,10 +127,10 @@
             </objects>
             <point key="canvasLocation" x="3029" y="-240"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation-->
         <scene sceneID="btQ-k8-vaE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Ms-Zx-mu3" sceneMemberID="viewController">
+                <navigationController title="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="2Ms-Zx-mu3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ntE-C6-n0H">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -128,12 +145,12 @@
             </objects>
             <point key="canvasLocation" x="31.884057971014496" y="137.94642857142856"/>
         </scene>
-        <!--Pick User Controller-->
+        <!--Select a Client-->
         <scene sceneID="DE9-20-q2u">
             <objects>
-                <tableViewController storyboardIdentifier="NavigateSpecialist" id="YJH-PV-2s8" customClass="PickUserController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NavigateSpecialist" modalPresentationStyle="fullScreen" id="YJH-PV-2s8" customClass="PickUserController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F9H-Uf-saR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -177,7 +194,8 @@
                             <outlet property="delegate" destination="YJH-PV-2s8" id="1iL-Hr-HQu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="mRG-Zr-MVM"/>
+                    <navigationItem key="navigationItem" title="Select a Client" id="mRG-Zr-MVM"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <segue destination="lld-gF-TcX" kind="show" identifier="ToSpecialistTracking" id="KKD-LF-guu"/>
                     </connections>
