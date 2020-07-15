@@ -132,18 +132,33 @@
         <!--Replay-->
         <scene sceneID="itn-tj-Aje">
             <objects>
-                <viewController id="gQr-u9-12c" sceneMemberID="viewController">
+                <viewController id="gQr-u9-12c" customClass="VideoPlaybackViewController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MqN-Sy-kCz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQe-Rb-NOX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8ae-fS-DRu" firstAttribute="trailing" secondItem="WQe-Rb-NOX" secondAttribute="trailing" id="8TG-pd-1bu"/>
+                            <constraint firstItem="WQe-Rb-NOX" firstAttribute="leading" secondItem="8ae-fS-DRu" secondAttribute="leading" id="LX5-jw-p0q"/>
+                            <constraint firstItem="WQe-Rb-NOX" firstAttribute="top" secondItem="MqN-Sy-kCz" secondAttribute="top" id="SFU-et-44p"/>
+                            <constraint firstAttribute="bottom" secondItem="WQe-Rb-NOX" secondAttribute="bottom" id="zlK-uw-RxW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8ae-fS-DRu"/>
                     </view>
                     <navigationItem key="navigationItem" title="Replay" id="7OY-Pf-fAm"/>
+                    <connections>
+                        <outlet property="videoView" destination="WQe-Rb-NOX" id="6D7-Jw-mFy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEK-8t-CGz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3029" y="960"/>
+            <point key="canvasLocation" x="3028" y="959.85221674876857"/>
         </scene>
         <!--Storage Controller-->
         <scene sceneID="Dbd-4c-99R">
