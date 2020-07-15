@@ -29,18 +29,28 @@ class ClientController: UIViewController, UITextFieldDelegate {
     }
     
     func labelAdjustments() {
+        let device = UIDevice.current.name
+        // 4.0 inch screen iPhone SE (only device that needs smaller buttons)
+        if (device == "iPhone SE (1st generation)") {
+            fullName.widthAnchor.constraint(equalToConstant: 250).isActive = true
+            username.widthAnchor.constraint(equalToConstant: 250).isActive = true
+            password.widthAnchor.constraint(equalToConstant: 250).isActive = true
+            specialistEmail.widthAnchor.constraint(equalToConstant: 250).isActive = true
+            specialistCode.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        } else {
+            // UI design for labels
+            fullName.widthAnchor.constraint(equalToConstant: 350).isActive = true
+            username.widthAnchor.constraint(equalToConstant: 350).isActive = true
+            password.widthAnchor.constraint(equalToConstant: 350).isActive = true
+            specialistEmail.widthAnchor.constraint(equalToConstant: 350).isActive = true
+            specialistCode.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        }
+                
         registerButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         loginRedirect.widthAnchor.constraint(equalToConstant: 200).isActive = true
         loginRedirect.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        // UI design for labels
-        fullName.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        username.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        password.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        specialistEmail.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        specialistCode.widthAnchor.constraint(equalToConstant: 350).isActive = true
         
         // Connect all UITextFields to go to the next
         UITextField.connectFields(fields: [fullName, username, password, specialistEmail, specialistCode])

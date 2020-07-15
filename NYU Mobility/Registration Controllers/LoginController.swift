@@ -38,12 +38,17 @@ class LoginController: UIViewController {
     }
     
     func labelAdjustments() {
+        let device = UIDevice.current.name
+        if (device == "iPhone SE (1st generation)") {
+            username.widthAnchor.constraint(equalToConstant: 250).isActive = true
+            password.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        } else {
+            username.widthAnchor.constraint(equalToConstant: 350).isActive = true
+            password.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        }
         
         loginButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        username.widthAnchor.constraint(equalToConstant: 350).isActive = true // found nil
-        password.widthAnchor.constraint(equalToConstant: 350).isActive = true
         
         // Connect all UITextFields to go to the next
         UITextField.connectFields(fields: [username, password])

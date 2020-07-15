@@ -17,6 +17,7 @@ class RegistrationController: UIViewController {
     @IBOutlet weak var specialistButton: CustomAdd!
     
     override func viewDidLoad() {
+        print(UIDevice.current.name)
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.skipRegistration()
@@ -24,12 +25,21 @@ class RegistrationController: UIViewController {
     }
     
     func buttonConstraints() {
-        // Client button styling
+        let device = UIDevice.current.name
+        // 4.0 inch screen iPhone SE (only device that needs smaller buttons)
+        if (device == "iPhone SE (1st generation)") {
+            clientButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            specialistButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        } else {
+            // Client button styling
+//            clientButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+            clientButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
+            // Specialist button styling
+//            specialistButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+            specialistButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        }
         clientButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        clientButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        // Specialist button styling
         specialistButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        specialistButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
     func getRegistered() -> Bool {

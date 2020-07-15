@@ -15,7 +15,7 @@ class VideoRecordingController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loadData()
+        
     }
     
 }

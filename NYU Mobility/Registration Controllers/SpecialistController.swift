@@ -38,17 +38,23 @@ class SpecialistController: UIViewController {
     }
     
     func labelAdjustments() {
+        let device = UIDevice.current.name
+        if (device == "iPhone SE (1st generation)") {
+            name.widthAnchor.constraint(equalToConstant: 250).isActive = true
+            username.widthAnchor.constraint(equalToConstant: 250).isActive = true
+            password.widthAnchor.constraint(equalToConstant: 250).isActive = true
+            email.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        } else {
+            name.widthAnchor.constraint(equalToConstant: 350).isActive = true
+            username.widthAnchor.constraint(equalToConstant: 350).isActive = true
+            password.widthAnchor.constraint(equalToConstant: 350).isActive = true
+            email.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        }
         
         registerButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         loginRedirect.widthAnchor.constraint(equalToConstant: 200).isActive = true
         loginRedirect.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        
-        name.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        username.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        password.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        email.widthAnchor.constraint(equalToConstant: 350).isActive = true
         
         // Connect all UITextFields to go to the next
         UITextField.connectFields(fields: [name, username, password, email])
