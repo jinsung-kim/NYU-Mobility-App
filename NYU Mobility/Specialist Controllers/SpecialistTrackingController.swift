@@ -13,6 +13,7 @@ import CoreData
 class SpecialistTrackingController: UIViewController {
     
     @IBOutlet weak var trackingButton: UIButton!
+    @IBOutlet weak var recordSessionButton: UIButton!
     @IBOutlet var viewer: UIView!
     
     var name: String?
@@ -49,6 +50,7 @@ class SpecialistTrackingController: UIViewController {
         super.viewDidLoad()
         loadData()
         storageButton()
+        recordSessionColor()
     }
 
     // Upper right item from the tracking controller that goes to the settings
@@ -59,6 +61,10 @@ class SpecialistTrackingController: UIViewController {
         storageButton.action = #selector(sessionsTap)
         storageButton.target = self
         self.navigationItem.rightBarButtonItem = storageButton
+    }
+    
+    func recordSessionColor() {
+        self.recordSessionButton.backgroundColor = UIColor.red
     }
     
     @objc func sessionsTap() {

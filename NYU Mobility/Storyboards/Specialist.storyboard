@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Ms-Zx-mu3">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,14 +12,14 @@
             <objects>
                 <viewController storyboardIdentifier="ToTracking" modalPresentationStyle="fullScreen" id="lld-gF-TcX" customClass="SpecialistTrackingController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vxm-Yr-3DV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqU-Mb-rmQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwI-Ls-0cO">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="732"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <state key="normal" title="Start">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -28,13 +28,51 @@
                                             <action selector="trackingChange:" destination="lld-gF-TcX" eventType="touchUpInside" id="7G0-ih-fPT"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc0-aD-ZN9">
+                                        <rect key="frame" x="0.0" y="732" width="375" height="80"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="Record Session">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="M4u-GQ-mp9" kind="show" identifier="RecordSession" id="ugx-aO-DP4"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.33066866639999998" green="0.118582416" blue="0.57703403559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="nwI-Ls-0cO" secondAttribute="bottom" id="5DR-K1-cQq"/>
+                                    <constraint firstAttribute="bottom" secondItem="nwI-Ls-0cO" secondAttribute="bottom" constant="80" id="6wO-gQ-hbK" customClass="NSLayoutHelper" customModule="LayoutHelper">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneSE">
+                                                <real key="value" value="60"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhone8">
+                                                <real key="value" value="80"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhone8Plus">
+                                                <real key="value" value="80"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXS">
+                                                <real key="value" value="80"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXR">
+                                                <real key="value" value="80"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXMax">
+                                                <real key="value" value="80"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstItem="Kc0-aD-ZN9" firstAttribute="top" secondItem="nwI-Ls-0cO" secondAttribute="bottom" id="BKs-v0-Sdy"/>
+                                    <constraint firstItem="nwI-Ls-0cO" firstAttribute="leading" secondItem="sqU-Mb-rmQ" secondAttribute="leading" id="K4F-iu-Zmu"/>
                                     <constraint firstItem="nwI-Ls-0cO" firstAttribute="top" secondItem="sqU-Mb-rmQ" secondAttribute="top" id="Kb0-L7-R9U"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kc0-aD-ZN9" secondAttribute="trailing" id="LCL-FG-4vB"/>
+                                    <constraint firstItem="nwI-Ls-0cO" firstAttribute="top" secondItem="sqU-Mb-rmQ" secondAttribute="top" id="MNd-YT-ddI"/>
                                     <constraint firstItem="nwI-Ls-0cO" firstAttribute="leading" secondItem="sqU-Mb-rmQ" secondAttribute="leading" id="NFq-ry-h27"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kc0-aD-ZN9" secondAttribute="bottom" id="Oxj-wd-cyM"/>
                                     <constraint firstAttribute="trailing" secondItem="nwI-Ls-0cO" secondAttribute="trailing" id="dK4-pu-2WS"/>
+                                    <constraint firstAttribute="trailing" secondItem="nwI-Ls-0cO" secondAttribute="trailing" id="mMM-Ah-cjF"/>
+                                    <constraint firstItem="Kc0-aD-ZN9" firstAttribute="leading" secondItem="sqU-Mb-rmQ" secondAttribute="leading" id="osk-L2-tGP"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -49,49 +87,81 @@
                     </view>
                     <navigationItem key="navigationItem" title="Track a Session" id="BKN-Q0-CRk"/>
                     <connections>
+                        <outlet property="recordSessionButton" destination="Kc0-aD-ZN9" id="Wv2-r0-yIM"/>
                         <outlet property="trackingButton" destination="nwI-Ls-0cO" id="oVq-6R-9aV"/>
                         <outlet property="viewer" destination="vxm-Yr-3DV" id="q3u-W3-o4U"/>
                         <segue destination="qrO-Op-9oN" kind="show" identifier="SeeSessions" id="yNg-ZM-EX0"/>
-                        <segue destination="M4u-GQ-mp9" kind="show" identifier="VisualMode" id="kgt-V3-bSk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pXb-iU-j0O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="138"/>
+            <point key="canvasLocation" x="2021.5999999999999" y="137.4384236453202"/>
         </scene>
-        <!--Visualize-->
+        <!--Record Session-->
         <scene sceneID="xNP-GY-i18">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="M4u-GQ-mp9" customClass="VideoRecordingController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="M4u-GQ-mp9" customClass="VideoRecordingController" customModule="NYU_Mobility" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pC4-Zp-6co">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcU-8V-YzQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qcU-8V-YzQ" firstAttribute="leading" secondItem="pXm-gk-fqN" secondAttribute="leading" id="4AH-cx-G1i"/>
+                            <constraint firstAttribute="bottom" secondItem="qcU-8V-YzQ" secondAttribute="bottom" id="9eO-xv-F79"/>
+                            <constraint firstItem="qcU-8V-YzQ" firstAttribute="trailing" secondItem="pXm-gk-fqN" secondAttribute="trailing" id="Bjq-BN-eNg"/>
+                            <constraint firstItem="qcU-8V-YzQ" firstAttribute="top" secondItem="pC4-Zp-6co" secondAttribute="top" id="zEo-Lu-7bC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="pXm-gk-fqN"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Visualize" id="dcP-rV-xq7"/>
+                    <navigationItem key="navigationItem" title="Record Session" id="dcP-rV-xq7"/>
+                    <connections>
+                        <outlet property="camPreview" destination="qcU-8V-YzQ" id="RE3-LP-OmE"/>
+                        <segue destination="gQr-u9-12c" kind="show" identifier="ReplayVideo" id="Vyu-Er-9WB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H0b-xV-hSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="960"/>
+            <point key="canvasLocation" x="2021.7391304347827" y="959.59821428571422"/>
+        </scene>
+        <!--Replay-->
+        <scene sceneID="itn-tj-Aje">
+            <objects>
+                <viewController id="gQr-u9-12c" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MqN-Sy-kCz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="8ae-fS-DRu"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Replay" id="7OY-Pf-fAm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YEK-8t-CGz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3029" y="960"/>
         </scene>
         <!--Storage Controller-->
         <scene sceneID="Dbd-4c-99R">
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="qrO-Op-9oN" customClass="StorageController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Storage" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Le5-LQ-lSh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StorageCell" rowHeight="60" id="gmv-Gn-BL3" customClass="CardCell" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="View" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gmv-Gn-BL3" translatesAutoresizingMaskIntoConstraints="NO" id="Nre-Sf-hWL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esY-9i-PSN">
-                                            <rect key="frame" x="20" y="11" width="80" height="20.5"/>
+                                            <rect key="frame" x="20" y="11" width="80" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -133,7 +203,7 @@
                 <navigationController title="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="2Ms-Zx-mu3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ntE-C6-n0H">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -150,25 +220,25 @@
             <objects>
                 <tableViewController storyboardIdentifier="NavigateSpecialist" modalPresentationStyle="fullScreen" id="YJH-PV-2s8" customClass="PickUserController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F9H-Uf-saR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="eV5-BF-zIk" customClass="UserCell" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eV5-BF-zIk" id="28I-uW-hxq">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LX-Uq-1Y9">
-                                            <rect key="frame" x="20" y="11" width="48" height="22"/>
+                                            <rect key="frame" x="16" y="11" width="48" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Session:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WuT-22-gsU">
-                                            <rect key="frame" x="20" y="38" width="91" height="18"/>
+                                            <rect key="frame" x="16" y="38" width="91" height="18"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

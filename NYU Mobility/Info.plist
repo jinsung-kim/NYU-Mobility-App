@@ -26,6 +26,8 @@
 	<string>Your location is needed to see where you go</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Your motion will be used to track your progress</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Your camera is needed to visualize motion</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
