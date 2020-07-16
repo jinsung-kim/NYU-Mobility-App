@@ -19,6 +19,7 @@ class UserCell: UITableViewCell {
         // Setting Labels to update recording information
         nameLabel.text = "\(name)"
         lastSession.text = "Last Active: \(dateFormatter(last))"
+        nameLabel.textColor = Colors.black
         
         // Fitting the text to the labels
         nameLabel.sizeToFit()

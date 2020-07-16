@@ -137,6 +137,8 @@ class PickUserController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
         
+        cell.clipsToBounds = true
+        
         // Getting the contents of the selected row
         // See UserCell.swift in Custom group
         cell.configure(users[indexPath.row].value(forKey: "name") as! String,

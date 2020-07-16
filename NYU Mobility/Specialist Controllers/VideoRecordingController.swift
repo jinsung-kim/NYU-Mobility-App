@@ -33,7 +33,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // If resources cannot be allocated anymore, clear them (still testing)
     }
     
     func setupButton() {
@@ -43,8 +43,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         self.cameraButton.frame = CGRect(x: 0, y: self.camPreview.frame.height - 40,
                                          width: 60, height: 60)
         self.cameraButton.center.x = view.center.x // centers horizontally
-        self.cameraButton.backgroundColor = UIColor.red
-        self.cameraButton.layer.cornerRadius = 30
+        self.cameraButton.backgroundColor = UIColor.red // button is red
+        self.cameraButton.layer.cornerRadius = 30 // button round
         self.cameraButton.layer.masksToBounds = true
         self.camPreview.addSubview(cameraButton)
     }
@@ -146,7 +146,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             }
             self.outputURL = tempURL()
             self.movieOutput.startRecording(to: outputURL, recordingDelegate: self)
-            print(self.outputURL!) // testing purposes
         // stop recording otherwise
         } else {
             self.stopRecording()
@@ -165,6 +164,17 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         if segue.destination is VideoPlaybackViewController {
             let vc = segue.destination as? VideoPlaybackViewController
             vc?.videoURL = self.outputURL!
+        }
+    }
+    
+    func capture(_ captureOutput: AVCaptureFileOutput!,
+                 didFinishRecordingToOutputFileAt outputFileURL: URL!,
+                 fromConnections connections: [Any]!, error: Error!) {
+        if (error != nil) {
+            print("Error recording movie: \(error!.localizedDescription)")
+        } else {
+            let videoRecorded = outputURL! as URL
+            performSegue(withIdentifier: "showVideo", sender: videoRecorded)
         }
     }
 

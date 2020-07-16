@@ -28,7 +28,8 @@ class StorageController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView,
-                            willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+                            willDisplay cell: UITableViewCell,
+                            forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
     }
     
@@ -77,6 +78,8 @@ class StorageController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StorageCell", for: indexPath) as! CardCell
         
+        cell.clipsToBounds = true
+        
         // Getting the contents of the selected row
         // See CardCell.swift in Custom group
         cell.configure(date: filter[indexPath.row].value(forKey: "startTime") as! Date)
@@ -99,6 +102,7 @@ class StorageController: UITableViewController {
             
             // delete within filtered list as well
             filter.remove(at: indexPath.row)
+            map.remove(at: indexPath.row)
             
             do {
                 try context.save()
@@ -109,5 +113,4 @@ class StorageController: UITableViewController {
             customTableView.reloadData()
         }
     }
-    
 }

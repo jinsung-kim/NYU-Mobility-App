@@ -19,6 +19,7 @@ class CardCell: UITableViewCell {
     func configure(date: Date) {
         // Setting Labels to update recording information
         timeLabel.text = "Session Started: \(dateFormatter(date))"
+        timeLabel.textColor = Colors.black
         
         // Fitting the text to the labels
         timeLabel.sizeToFit()

@@ -19,6 +19,10 @@ class VideoPlaybackViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initializePlayer()
+    }
+    
+    func initializePlayer() {
         self.avPlayerLayer = AVPlayerLayer(player: avPlayer)
         self.avPlayerLayer.frame = view.bounds
         self.avPlayerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -28,7 +32,7 @@ class VideoPlaybackViewController: UIViewController {
     
         let playerItem = AVPlayerItem(url: self.videoURL as URL)
         self.avPlayer.replaceCurrentItem(with: playerItem)
-    
+        // plays within view
         self.avPlayer.play()
     }
 }
