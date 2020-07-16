@@ -107,24 +107,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcU-8V-YzQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eof-qz-kjW">
-                                        <rect key="frame" x="167.66666666666666" y="732" width="40" height="40"/>
-                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="KM4-hQ-im9"/>
-                                            <constraint firstAttribute="width" constant="40" id="aXl-Lr-nGV"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="M4u-GQ-mp9" eventType="touchUpInside" id="6FI-AC-GVg"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Eof-qz-kjW" secondAttribute="bottom" constant="40" id="VqY-Wy-KQ0"/>
-                                    <constraint firstItem="Eof-qz-kjW" firstAttribute="centerX" secondItem="qcU-8V-YzQ" secondAttribute="centerX" id="k1V-5i-amE"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -139,7 +122,6 @@
                     <navigationItem key="navigationItem" title="Video Session" id="dcP-rV-xq7"/>
                     <connections>
                         <outlet property="camPreview" destination="qcU-8V-YzQ" id="RE3-LP-OmE"/>
-                        <outlet property="cameraButton" destination="Eof-qz-kjW" id="ODn-er-eRQ"/>
                         <segue destination="gQr-u9-12c" kind="show" identifier="ReplayVideo" id="Vyu-Er-9WB"/>
                     </connections>
                 </viewController>
@@ -194,7 +176,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esY-9i-PSN">
-                                            <rect key="frame" x="20" y="11.000000000000002" width="80" height="21.666666666666671"/>
+                                            <rect key="frame" x="20" y="11.000000000000002" width="80" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

@@ -14,7 +14,7 @@ import AVFoundation
 class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDelegate {
     
     @IBOutlet weak var camPreview: UIView!
-    @IBOutlet weak var cameraButton: UIButton!
+    let cameraButton = UIView()
     let captureSession = AVCaptureSession()
     let movieOutput = AVCaptureMovieFileOutput()
     var previewLayer: AVCaptureVideoPreviewLayer!
@@ -28,11 +28,25 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             self.setupPreview()
             self.startSession()
         }
+        self.setupButton()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupButton() {
+        self.cameraButton.isUserInteractionEnabled = true
+        let cameraButtonRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.startCapture))
+        self.cameraButton.addGestureRecognizer(cameraButtonRecognizer)
+        self.cameraButton.frame = CGRect(x: 0, y: self.camPreview.frame.height - 40,
+                                         width: 60, height: 60)
+        self.cameraButton.center.x = view.center.x // centers horizontally
+        self.cameraButton.backgroundColor = UIColor.red
+        self.cameraButton.layer.cornerRadius = 30
+        self.cameraButton.layer.masksToBounds = true
+        self.camPreview.addSubview(cameraButton)
     }
     
     func setupPreview() {
@@ -89,11 +103,12 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         return DispatchQueue.main
     }
 
+    // Note: app only works in portrait mode, so that is the only orientation that the camera will support
     func currentVideoOrientation() -> AVCaptureVideoOrientation {
         return AVCaptureVideoOrientation.portrait
     }
     
-    @IBAction func buttonPressed(_ sender: Any) {
+    @objc func startCapture() {
         self.startRecording()
     }
 
@@ -106,7 +121,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         }
         return nil
     }
-
 
     func startRecording() {
         // only record if there isn't already a previous session
@@ -129,22 +143,28 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
                 } catch {
                     print("Error setting configuration: \(error)")
                 }
-
             }
-
             self.outputURL = tempURL()
             self.movieOutput.startRecording(to: outputURL, recordingDelegate: self)
-            print(self.outputURL!)
+            print(self.outputURL!) // testing purposes
         // stop recording otherwise
         } else {
             self.stopRecording()
-            print("Done recording")
         }
     }
 
     func stopRecording() {
         if (self.movieOutput.isRecording == true) {
             self.movieOutput.stopRecording()
+            self.performSegue(withIdentifier: "ReplayVideo", sender: self)
+        }
+    }
+    
+    // Prepare link to Playback controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is VideoPlaybackViewController {
+            let vc = segue.destination as? VideoPlaybackViewController
+            vc?.videoURL = self.outputURL!
         }
     }
 
