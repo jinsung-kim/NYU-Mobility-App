@@ -14,9 +14,9 @@ import AVFoundation
 class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDelegate {
     
     @IBOutlet weak var camPreview: UIView!
+    @IBOutlet weak var cameraButton: UIButton!
     let captureSession = AVCaptureSession()
     let movieOutput = AVCaptureMovieFileOutput()
-
     var previewLayer: AVCaptureVideoPreviewLayer!
     var activeInput: AVCaptureDeviceInput!
     var outputURL: URL!
@@ -24,9 +24,9 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        if setupSession() {
-            setupPreview()
-            startSession()
+        if (self.setupSession()) {
+            self.setupPreview()
+            self.startSession()
         }
     }
 
@@ -34,40 +34,34 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func setupPreview() {
-        // Configure previewLayer
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = camPreview.bounds
-        previewLayer.videoGravity = .resizeAspectFill
-        camPreview.layer.addSublayer(previewLayer)
+        self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        self.previewLayer.frame = UIScreen.main.bounds
+        self.previewLayer.videoGravity = .resizeAspectFill
+        self.camPreview.layer.addSublayer(previewLayer)
     }
 
-    //MARK:- Setup Camera
-
     func setupSession() -> Bool {
-        captureSession.sessionPreset = AVCaptureSession.Preset.high
+        self.captureSession.sessionPreset = AVCaptureSession.Preset.high
 
         // Setup Camera
         let camera = AVCaptureDevice.default(for: .video)!
 
         do {
             let input = try AVCaptureDeviceInput(device: camera)
-            if captureSession.canAddInput(input) {
-                captureSession.addInput(input)
-                activeInput = input
+            if (self.captureSession.canAddInput(input)) {
+                self.captureSession.addInput(input)
+                self.activeInput = input
             }
         } catch {
             print("Error setting device video input: \(error)")
             return false
         }
 
-        // Setup Microphone
-        
-        // Movie output
-        if captureSession.canAddOutput(movieOutput) {
-            captureSession.addOutput(movieOutput)
+        if (self.captureSession.canAddOutput(movieOutput)) {
+            self.captureSession.addOutput(movieOutput)
         }
-
         return true
     }
 
@@ -75,11 +69,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         // Video Mode
     }
 
-    //MARK:- Camera Session
     func startSession() {
-
-
-        if !captureSession.isRunning {
+        if (!self.captureSession.isRunning) {
             videoQueue().async {
                 self.captureSession.startRunning()
             }
@@ -87,7 +78,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
 
     func stopSession() {
-        if captureSession.isRunning {
+        if (self.captureSession.isRunning) {
             videoQueue().async {
                 self.captureSession.stopRunning()
             }
@@ -98,49 +89,28 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         return DispatchQueue.main
     }
 
-
-
     func currentVideoOrientation() -> AVCaptureVideoOrientation {
-        var orientation: AVCaptureVideoOrientation
-
-        switch UIDevice.current.orientation {
-        case .portrait:
-            orientation = AVCaptureVideoOrientation.portrait
-        case .landscapeRight:
-            orientation = AVCaptureVideoOrientation.landscapeLeft
-        case .portraitUpsideDown:
-            orientation = AVCaptureVideoOrientation.portraitUpsideDown
-        default:
-            orientation = AVCaptureVideoOrientation.landscapeRight
-        }
-
-        return orientation
+        return AVCaptureVideoOrientation.portrait
     }
-
-    func startCapture() {
-
-        startRecording()
-
+    
+    @IBAction func buttonPressed(_ sender: Any) {
+        self.startRecording()
     }
-
-    //EDIT 1: I FORGOT THIS AT FIRST
 
     func tempURL() -> URL? {
         let directory = NSTemporaryDirectory() as NSString
 
-        if directory != "" {
+        if (directory != "") {
             let path = directory.appendingPathComponent(NSUUID().uuidString + ".mp4")
             return URL(fileURLWithPath: path)
         }
-
         return nil
     }
 
 
     func startRecording() {
-
-        if movieOutput.isRecording == false {
-
+        // only record if there isn't already a previous session
+        if (self.movieOutput.isRecording == false) {
             let connection = movieOutput.connection(with: .video)
             if (connection?.isVideoOrientationSupported)! {
                 connection?.videoOrientation = currentVideoOrientation()
@@ -162,29 +132,29 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
 
             }
 
-            //EDIT2: And I forgot this
-            outputURL = tempURL()
-            movieOutput.startRecording(to: outputURL, recordingDelegate: self)
-
+            self.outputURL = tempURL()
+            self.movieOutput.startRecording(to: outputURL, recordingDelegate: self)
+            print(self.outputURL!)
+        // stop recording otherwise
+        } else {
+            self.stopRecording()
+            print("Done recording")
         }
-        else {
-            stopRecording()
-        }
-
     }
 
     func stopRecording() {
-
-        if movieOutput.isRecording == true {
-            movieOutput.stopRecording()
+        if (self.movieOutput.isRecording == true) {
+            self.movieOutput.stopRecording()
         }
     }
 
-    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
-
+    // Protocol stubs
+    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL,
+                    from connections: [AVCaptureConnection]) {
     }
 
-    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL,
+                    from connections: [AVCaptureConnection], error: Error?) {
         if (error != nil) {
             print("Error recording movie: \(error!.localizedDescription)")
         } else {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Ms-Zx-mu3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Ms-Zx-mu3">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -31,7 +31,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc0-aD-ZN9">
                                         <rect key="frame" x="0.0" y="732" width="375" height="80"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <state key="normal" title="Record Session">
+                                        <state key="normal" title="Video Record Session">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -97,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="2021.5999999999999" y="137.4384236453202"/>
         </scene>
-        <!--Record Session-->
+        <!--Video Session-->
         <scene sceneID="xNP-GY-i18">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="M4u-GQ-mp9" customClass="VideoRecordingController" customModule="NYU_Mobility" sceneMemberID="viewController">
@@ -107,7 +107,24 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcU-8V-YzQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eof-qz-kjW">
+                                        <rect key="frame" x="167.66666666666666" y="732" width="40" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="KM4-hQ-im9"/>
+                                            <constraint firstAttribute="width" constant="40" id="aXl-Lr-nGV"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="M4u-GQ-mp9" eventType="touchUpInside" id="6FI-AC-GVg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Eof-qz-kjW" secondAttribute="bottom" constant="40" id="VqY-Wy-KQ0"/>
+                                    <constraint firstItem="Eof-qz-kjW" firstAttribute="centerX" secondItem="qcU-8V-YzQ" secondAttribute="centerX" id="k1V-5i-amE"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -119,15 +136,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pXm-gk-fqN"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Record Session" id="dcP-rV-xq7"/>
+                    <navigationItem key="navigationItem" title="Video Session" id="dcP-rV-xq7"/>
                     <connections>
                         <outlet property="camPreview" destination="qcU-8V-YzQ" id="RE3-LP-OmE"/>
+                        <outlet property="cameraButton" destination="Eof-qz-kjW" id="ODn-er-eRQ"/>
                         <segue destination="gQr-u9-12c" kind="show" identifier="ReplayVideo" id="Vyu-Er-9WB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H0b-xV-hSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2021.7391304347827" y="959.59821428571422"/>
+            <point key="canvasLocation" x="2021.5999999999999" y="959.11330049261085"/>
         </scene>
         <!--Replay-->
         <scene sceneID="itn-tj-Aje">
@@ -176,7 +194,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esY-9i-PSN">
-                                            <rect key="frame" x="20" y="11" width="80" height="21"/>
+                                            <rect key="frame" x="20" y="11.000000000000002" width="80" height="21.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -239,7 +257,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="eV5-BF-zIk" customClass="UserCell" customModule="NYU_Mobility" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="eV5-BF-zIk" customClass="UserCell" customModule="NYU_Mobility" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eV5-BF-zIk" id="28I-uW-hxq">
