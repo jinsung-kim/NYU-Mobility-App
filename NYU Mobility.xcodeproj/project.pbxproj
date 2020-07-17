@@ -12,7 +12,6 @@
 		A12106E024AD5E3D0041704D /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106DF24AD5E3D0041704D /* StorageController.swift */; };
 		A12106E224AD6FE60041704D /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106E124AD6FE60041704D /* CardCell.swift */; };
 		A121D94C24958C9500F4F5DE /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D94B24958C9500F4F5DE /* FormController.swift */; };
-		A127B04924BF6A17005088BA /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127B04824BF6A17005088BA /* VideoPlaybackViewController.swift */; };
 		A1366EC024AB843C00B1FA57 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1366EBF24AB843C00B1FA57 /* Registration.storyboard */; };
 		A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC424AB853F00B1FA57 /* RegistrationController.swift */; };
 		A1366EC724AB8BE900B1FA57 /* ClientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC624AB8BE900B1FA57 /* ClientController.swift */; };
@@ -73,7 +72,6 @@
 		A12106DF24AD5E3D0041704D /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		A12106E124AD6FE60041704D /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		A121D94B24958C9500F4F5DE /* FormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
-		A127B04824BF6A17005088BA /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		A1366EBF24AB843C00B1FA57 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		A1366EC424AB853F00B1FA57 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		A1366EC624AB8BE900B1FA57 /* ClientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientController.swift; sourceTree = "<group>"; };
@@ -293,7 +291,6 @@
 				A12106DF24AD5E3D0041704D /* StorageController.swift */,
 				A14985E924B7823300331B7C /* PickUserController.swift */,
 				A141D93C24BD5F2D00384C38 /* VideoRecordingController.swift */,
-				A127B04824BF6A17005088BA /* VideoPlaybackViewController.swift */,
 			);
 			path = "Specialist Controllers";
 			sourceTree = "<group>";
@@ -501,7 +498,6 @@
 				A12106DE24AD57130041704D /* SpecialistPoint.swift in Sources */,
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,
-				A127B04924BF6A17005088BA /* VideoPlaybackViewController.swift in Sources */,
 				A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */,
 				A14985E624B5312700331B7C /* CustomText.swift in Sources */,
 				A188675B24B7E42C007B6DE9 /* UserCell.swift in Sources */,

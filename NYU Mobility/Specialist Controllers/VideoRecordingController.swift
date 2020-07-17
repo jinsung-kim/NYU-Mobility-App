@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 import AVFoundation
 
 // https://stackoverflow.com/questions/41697568/capturing-video-with-avfoundation
@@ -43,7 +44,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         self.cameraButton.frame = CGRect(x: 0, y: self.camPreview.frame.height - 40,
                                          width: 60, height: 60)
         self.cameraButton.center.x = view.center.x // centers horizontally
-        self.cameraButton.backgroundColor = UIColor.red // button is red
+        self.cameraButton.backgroundColor = UIColor.white // button is white when initialized
         self.cameraButton.layer.cornerRadius = 30 // button round
         self.cameraButton.layer.masksToBounds = true
         self.camPreview.addSubview(cameraButton)
@@ -79,10 +80,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         return true
     }
 
-    func setupCaptureMode(_ mode: Int) {
-        // Video Mode
-    }
-
     func startSession() {
         if (!self.captureSession.isRunning) {
             videoQueue().async {
@@ -109,10 +106,11 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
     
     @objc func startCapture() {
+        self.cameraButton.backgroundColor = UIColor.red
         self.startRecording()
     }
 
-    func tempURL() -> URL? {
+    func generateURL() -> URL? {
         let directory = NSTemporaryDirectory() as NSString
 
         if (directory != "") {
@@ -144,8 +142,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
                     print("Error setting configuration: \(error)")
                 }
             }
-            self.outputURL = tempURL()
-            self.movieOutput.startRecording(to: outputURL, recordingDelegate: self)
+            self.outputURL = generateURL()
+            self.movieOutput.startRecording(to: self.outputURL, recordingDelegate: self)
         // stop recording otherwise
         } else {
             self.stopRecording()
@@ -154,24 +152,26 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
 
     func stopRecording() {
         if (self.movieOutput.isRecording == true) {
+            self.cameraButton.backgroundColor = UIColor.white
             self.movieOutput.stopRecording()
-            self.performSegue(withIdentifier: "ReplayVideo", sender: self)
+            self.redirectReplay()
         }
     }
     
-    // Prepare link to Playback controller
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is VideoPlaybackViewController {
-            let vc = segue.destination as? VideoPlaybackViewController
-            vc?.videoURL = self.outputURL!
-        }
+    func redirectReplay() {
+        let video = AVPlayer(url: self.outputURL!)
+        let videoPlayer = AVPlayerViewController()
+        videoPlayer.player = video
+        self.present(videoPlayer, animated: true, completion: {
+            video.play()
+        })
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!,
                  didFinishRecordingToOutputFileAt outputFileURL: URL!,
                  fromConnections connections: [Any]!, error: Error!) {
         if (error != nil) {
-            print("Error recording movie: \(error!.localizedDescription)")
+            print("Error capturing movie: \(error!.localizedDescription)")
         } else {
             let videoRecorded = outputURL! as URL
             performSegue(withIdentifier: "showVideo", sender: videoRecorded)
@@ -186,7 +186,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL,
                     from connections: [AVCaptureConnection], error: Error?) {
         if (error != nil) {
-            print("Error recording movie: \(error!.localizedDescription)")
+            print("Error outputting movie: \(error!.localizedDescription)")
         } else {
             _ = outputURL as URL
         }
