@@ -31,7 +31,10 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             self.setupPreview()
             self.startSession()
         }
-        
+        self.setupButton()
+    }
+    
+    func setupButton() {
         self.cameraButton.isUserInteractionEnabled = true
         
         let cameraButtonRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoRecordingController.startCapture))
@@ -44,13 +47,12 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         self.cameraButton.layer.masksToBounds = true
         
         self.camPreview.addSubview(cameraButton)
-        
     }
     
     func setupPreview() {
         // Configure previewLayer
         self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        self.previewLayer.frame = self.camPreview.bounds
+        self.previewLayer.frame = self.view.bounds
         self.previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         self.camPreview.layer.addSublayer(self.previewLayer)
     }
@@ -95,7 +97,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     
     func startSession() {
         if (!self.captureSession.isRunning) {
-            videoQueue().async {
+            self.videoQueue().async {
                 self.captureSession.startRunning()
             }
         }
@@ -103,7 +105,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     
     func stopSession() {
         if (self.captureSession.isRunning) {
-            videoQueue().async {
+            self.videoQueue().async {
                 self.captureSession.stopRunning()
             }
         }

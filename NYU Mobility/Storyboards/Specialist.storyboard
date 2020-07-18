@@ -120,6 +120,7 @@
                         <viewLayoutGuide key="safeArea" id="pXm-gk-fqN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Video Session" id="dcP-rV-xq7"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="camPreview" destination="qcU-8V-YzQ" id="GbQ-Ol-Ga7"/>
                         <segue destination="luT-WJ-P1P" kind="show" identifier="showVideo" id="Vuh-tt-w7M"/>
@@ -158,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRW-Z1-Riz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3221.5999999999999" y="958.37438423645324"/>
+            <point key="canvasLocation" x="3028" y="959"/>
         </scene>
         <!--Storage Controller-->
         <scene sceneID="Dbd-4c-99R">
