@@ -121,12 +121,44 @@
                     </view>
                     <navigationItem key="navigationItem" title="Video Session" id="dcP-rV-xq7"/>
                     <connections>
-                        <outlet property="camPreview" destination="qcU-8V-YzQ" id="RE3-LP-OmE"/>
+                        <outlet property="camPreview" destination="qcU-8V-YzQ" id="GbQ-Ol-Ga7"/>
+                        <segue destination="luT-WJ-P1P" kind="show" identifier="showVideo" id="Vuh-tt-w7M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H0b-xV-hSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2021.5999999999999" y="959.11330049261085"/>
+        </scene>
+        <!--Video Playback Controller-->
+        <scene sceneID="DQl-h9-vXX">
+            <objects>
+                <viewController id="luT-WJ-P1P" customClass="VideoPlaybackController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X1W-Uy-Nax">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="My6-rU-gnf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="My6-rU-gnf" firstAttribute="leading" secondItem="0YP-WI-uyZ" secondAttribute="leading" id="3OB-ud-OdR"/>
+                            <constraint firstItem="My6-rU-gnf" firstAttribute="trailing" secondItem="0YP-WI-uyZ" secondAttribute="trailing" id="PW9-co-fah"/>
+                            <constraint firstItem="My6-rU-gnf" firstAttribute="top" secondItem="X1W-Uy-Nax" secondAttribute="top" id="gMn-l9-Nwh"/>
+                            <constraint firstAttribute="bottom" secondItem="My6-rU-gnf" secondAttribute="bottom" id="zCl-cc-ApH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0YP-WI-uyZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HiW-tD-3rQ"/>
+                    <connections>
+                        <outlet property="videoView" destination="My6-rU-gnf" id="bQd-6x-cB4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IRW-Z1-Riz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3221.5999999999999" y="958.37438423645324"/>
         </scene>
         <!--Storage Controller-->
         <scene sceneID="Dbd-4c-99R">
@@ -144,7 +176,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esY-9i-PSN">
-                                            <rect key="frame" x="20" y="11" width="80" height="21"/>
+                                            <rect key="frame" x="20" y="10.999999999999998" width="80" height="21.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

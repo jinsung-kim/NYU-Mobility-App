@@ -41,6 +41,7 @@
 		A188675F24BD280C007B6DE9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A188675E24BD280C007B6DE9 /* LoginController.swift */; };
 		A1AF57082492A8BD008EF983 /* settings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57062492A8BC008EF983 /* settings.mp3 */; };
 		A1AF57092492A8BD008EF983 /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57072492A8BC008EF983 /* back.mp3 */; };
+		A1DE764724C3ABEB00D57B5F /* VideoPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE764624C3ABEB00D57B5F /* VideoPlaybackController.swift */; };
 		A1F002B624AC21340030E2F5 /* Specialist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F002B524AC21340030E2F5 /* Specialist.storyboard */; };
 		A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */; };
 		A1F66C04248F0A840055DBAD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F66C03248F0A840055DBAD /* MapViewController.swift */; };
@@ -107,6 +108,7 @@
 		A188675E24BD280C007B6DE9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A1AF57062492A8BC008EF983 /* settings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = settings.mp3; sourceTree = "<group>"; };
 		A1AF57072492A8BC008EF983 /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = back.mp3; sourceTree = "<group>"; };
+		A1DE764624C3ABEB00D57B5F /* VideoPlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackController.swift; sourceTree = "<group>"; };
 		A1F002B524AC21340030E2F5 /* Specialist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Specialist.storyboard; sourceTree = "<group>"; };
 		A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistTrackingController.swift; sourceTree = "<group>"; };
 		A1F66C03248F0A840055DBAD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */,
+				A1DE764624C3ABEB00D57B5F /* VideoPlaybackController.swift */,
 				A12106DF24AD5E3D0041704D /* StorageController.swift */,
 				A14985E924B7823300331B7C /* PickUserController.swift */,
 				A141D93C24BD5F2D00384C38 /* VideoRecordingController.swift */,
@@ -481,6 +484,7 @@
 			files = (
 				A141FC9C24814B7C00A3433D /* TrackingController.swift in Sources */,
 				A14985E824B6A8B800331B7C /* CodeViewController.swift in Sources */,
+				A1DE764724C3ABEB00D57B5F /* VideoPlaybackController.swift in Sources */,
 				A1F66C04248F0A840055DBAD /* MapViewController.swift in Sources */,
 				A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */,
 				A13FEA1B2491CE8800A4904F /* SettingsController.swift in Sources */,
