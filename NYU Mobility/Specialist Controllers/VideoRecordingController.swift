@@ -17,15 +17,11 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     @IBOutlet weak var camPreview: UIView!
     
     let cameraButton = UIView()
-    
     let captureSession = AVCaptureSession()
-    
     let movieOutput = AVCaptureMovieFileOutput()
     
     var previewLayer: AVCaptureVideoPreviewLayer!
-    
     var activeInput: AVCaptureDeviceInput!
-    
     var outputURL: URL!
     
     override func viewDidLoad() {
@@ -151,6 +147,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     func startRecording() {
         
         if (self.movieOutput.isRecording == false) {
+            self.cameraButton.backgroundColor = UIColor.red
             
             let connection = movieOutput.connection(with: AVMediaType.video)
             
@@ -182,6 +179,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     
     func stopRecording() {
         if (self.movieOutput.isRecording == true) {
+            self.cameraButton.backgroundColor = UIColor.white
             self.movieOutput.stopRecording()
         }
     }
