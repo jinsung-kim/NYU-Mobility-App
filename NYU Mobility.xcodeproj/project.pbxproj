@@ -42,6 +42,7 @@
 		A1AF57082492A8BD008EF983 /* settings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57062492A8BC008EF983 /* settings.mp3 */; };
 		A1AF57092492A8BD008EF983 /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57072492A8BC008EF983 /* back.mp3 */; };
 		A1DE764724C3ABEB00D57B5F /* VideoPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE764624C3ABEB00D57B5F /* VideoPlaybackController.swift */; };
+		A1DE764924C3B7E400D57B5F /* SpecialistTutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1DE764824C3B7E400D57B5F /* SpecialistTutorial.storyboard */; };
 		A1F002B624AC21340030E2F5 /* Specialist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F002B524AC21340030E2F5 /* Specialist.storyboard */; };
 		A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */; };
 		A1F66C04248F0A840055DBAD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F66C03248F0A840055DBAD /* MapViewController.swift */; };
@@ -109,6 +110,7 @@
 		A1AF57062492A8BC008EF983 /* settings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = settings.mp3; sourceTree = "<group>"; };
 		A1AF57072492A8BC008EF983 /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = back.mp3; sourceTree = "<group>"; };
 		A1DE764624C3ABEB00D57B5F /* VideoPlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackController.swift; sourceTree = "<group>"; };
+		A1DE764824C3B7E400D57B5F /* SpecialistTutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SpecialistTutorial.storyboard; sourceTree = "<group>"; };
 		A1F002B524AC21340030E2F5 /* Specialist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Specialist.storyboard; sourceTree = "<group>"; };
 		A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistTrackingController.swift; sourceTree = "<group>"; };
 		A1F66C03248F0A840055DBAD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -205,13 +207,13 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
+				A141FCD824816F6500A3433D /* Client Controllers */,
 				A1F002B724AC23DE0030E2F5 /* Specialist Controllers */,
 				A1366EC124AB84D400B1FA57 /* Registration Controllers */,
-				A16DE4AA2497E340008777CD /* Custom */,
-				A114729824840DCF0043B04B /* Data Model */,
-				A141FCD824816F6500A3433D /* Client Controllers */,
-				A141FCCC24816E1D00A3433D /* Sound */,
 				A141FCCA24814E6900A3433D /* Storyboards */,
+				A114729824840DCF0043B04B /* Data Model */,
+				A16DE4AA2497E340008777CD /* Custom */,
+				A141FCCC24816E1D00A3433D /* Sound */,
 				A141FC9724814B7C00A3433D /* AppDelegate.swift */,
 				A141FC9924814B7C00A3433D /* SceneDelegate.swift */,
 				A141FCA324814B7E00A3433D /* Assets.xcassets */,
@@ -245,6 +247,7 @@
 				A141FC9D24814B7D00A3433D /* Client.storyboard */,
 				A1366EBF24AB843C00B1FA57 /* Registration.storyboard */,
 				A1F002B524AC21340030E2F5 /* Specialist.storyboard */,
+				A1DE764824C3B7E400D57B5F /* SpecialistTutorial.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DE764924C3B7E400D57B5F /* SpecialistTutorial.storyboard in Resources */,
 				A141FCA724814B7E00A3433D /* LaunchScreen.storyboard in Resources */,
 				A1F002B624AC21340030E2F5 /* Specialist.storyboard in Resources */,
 				A1366ECB24AC1A1000B1FA57 /* Client.storyboard in Resources */,

@@ -5,5 +5,6 @@ target 'NYU Mobility' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
     pod 'LayoutHelper'
+    pod "Device", '~> 3.2.1'
 
 end
