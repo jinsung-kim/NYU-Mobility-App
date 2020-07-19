@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qBV-W6-saV">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Record a video session-->
+        <scene sceneID="A1e-pb-oKA">
+            <objects>
+                <viewController storyboardIdentifier="GoToTutorial" id="3bD-Wv-GhP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="heT-hx-9w5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ya6-qO-fjd">
+                                <rect key="frame" x="0.0" y="588.33333333333337" width="375" height="119.66666666666663"/>
+                                <string key="text">Place the cell phone into the carrying bag.
+The camera should be facing away from you.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.33066866639999998" green="0.118582416" blue="0.57703403559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="mZR-Cq-Dzu" firstAttribute="bottom" secondItem="Ya6-qO-fjd" secondAttribute="bottom" constant="70" id="FKX-2A-WXm" customClass="NSLayoutHelper" customModule="LayoutHelper">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhoneSE">
+                                        <real key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhone8">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhone8Plus">
+                                        <real key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXS">
+                                        <real key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXR">
+                                        <real key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXMax">
+                                        <real key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="Ya6-qO-fjd" firstAttribute="leading" secondItem="heT-hx-9w5" secondAttribute="leading" id="Nxz-3n-yl9"/>
+                            <constraint firstAttribute="trailing" secondItem="Ya6-qO-fjd" secondAttribute="trailing" id="Y3M-4n-mxa"/>
+                            <constraint firstItem="Ya6-qO-fjd" firstAttribute="centerX" secondItem="heT-hx-9w5" secondAttribute="centerX" id="eaw-gE-FSs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mZR-Cq-Dzu"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Record a video session" id="b8l-jd-IHF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ugv-lQ-5hW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1050.7246376811595" y="101.78571428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yrX-No-SmT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qBV-W6-saV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JNA-ef-VJc">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3bD-Wv-GhP" kind="relationship" relationship="rootViewController" id="nm2-G4-ePn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LQ8-Yd-EXz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140.57971014492756" y="101.78571428571428"/>
+        </scene>
+    </scenes>
+</document>

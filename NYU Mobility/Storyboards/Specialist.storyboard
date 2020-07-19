@@ -124,11 +124,22 @@
                     <connections>
                         <outlet property="camPreview" destination="qcU-8V-YzQ" id="GbQ-Ol-Ga7"/>
                         <segue destination="luT-WJ-P1P" kind="show" identifier="showVideo" id="Vuh-tt-w7M"/>
+                        <segue destination="znW-fN-M5Z" kind="show" identifier="VideoSessionTutorial" id="nIK-J9-1oa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H0b-xV-hSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2021.5999999999999" y="959.11330049261085"/>
+        </scene>
+        <!--GoToTutorial-->
+        <scene sceneID="iWa-9g-RyK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SpecialistTutorial" referencedIdentifier="GoToTutorial" id="znW-fN-M5Z" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3pQ-xq-MhR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gFK-ZN-Ith" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2022" y="1527"/>
         </scene>
         <!--Video Playback Controller-->
         <scene sceneID="DQl-h9-vXX">
@@ -177,7 +188,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esY-9i-PSN">
-                                            <rect key="frame" x="20" y="10.999999999999998" width="80" height="21.333333333333329"/>
+                                            <rect key="frame" x="20" y="11.000000000000002" width="80" height="21.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -207,6 +218,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="customTableView" destination="Le5-LQ-lSh" id="8Cq-a4-878"/>
+                        <segue destination="luT-WJ-P1P" kind="show" identifier="replayVideo" id="I4Z-UT-MvB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amc-ES-Ezc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -291,4 +303,7 @@
             <point key="canvasLocation" x="1018.840579710145" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Vuh-tt-w7M"/>
+    </inferredMetricsTieBreakers>
 </document>

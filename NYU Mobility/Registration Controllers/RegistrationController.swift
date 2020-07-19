@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Device
 
 class RegistrationController: UIViewController {
     
@@ -25,9 +26,8 @@ class RegistrationController: UIViewController {
     }
     
     func buttonConstraints() {
-        let device = UIDevice.current.name
         // 4.0 inch screen iPhone SE (only device that needs smaller buttons)
-        if (device == "iPhone SE (1st generation)") {
+        if (Device.size() == Size.screen4Inch) {
             clientButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
             specialistButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         } else {

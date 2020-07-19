@@ -21,11 +21,11 @@ class SpecialistTrackingController: UIViewController {
     private var buttonState: Int = 0
     
     // Used to track pedometer when saving data
-    var steps: Int32 = 0
-    var maxSteps: Int32 = 0
-    var distance: Int32 = 0 // In meters
-    var maxDistance: Int32 = 0
-    var startTime: Date = Date()
+    private var steps: Int32 = 0
+    private var maxSteps: Int32 = 0
+    private var distance: Int32 = 0 // In meters
+    private var maxDistance: Int32 = 0
+    private var startTime: Date = Date()
     
     // Used for creating the JSON
     var points: [SpecialistPoint] = []
@@ -233,8 +233,9 @@ class SpecialistTrackingController: UIViewController {
             self.maxDistance = self.distance
         }
         if (self.maxDistance != 0 && self.maxSteps != 0) {
-            points.append(SpecialistPoint(dateFormatter(), self.maxSteps, self.maxDistance, self.avgPace,
-                                self.currPace, self.currCad, self.gyroDict))
+            points.append(SpecialistPoint(dateFormatter(), self.maxSteps,
+                                          self.maxDistance, self.avgPace,
+                                          self.currPace, self.currCad, self.gyroDict))
             
             // Clear the gyroscope data after getting its string representation
             self.gyroDict.removeAll()
@@ -268,6 +269,7 @@ class SpecialistTrackingController: UIViewController {
         session.setValue(generateJSON(), forKeyPath: "json")
         session.setValue(startTime, forKeyPath: "startTime")
         session.setValue(self.name!, forKeyPath: "user")
+        session.setValue("", forKeyPath: "videoURL") // no video url for this type of sessions
         
         do {
             try managedContext.save()

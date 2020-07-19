@@ -27,11 +27,27 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Instructions Page Redirect setup
+        self.instructionButton()
+        
         if (self.setupSession()) {
             self.setupPreview()
             self.startSession()
         }
         self.setupButton()
+    }
+    
+    // Upper right item from the tracking controller that goes to the settings
+    func instructionButton() {
+        let instructionButton = UIBarButtonItem()
+        instructionButton.title = "See Tutorial"
+        instructionButton.action = #selector(sessionsTap)
+        instructionButton.target = self
+        self.navigationItem.rightBarButtonItem = instructionButton
+    }
+    
+    @objc func sessionsTap() {
+        self.performSegue(withIdentifier: "VideoSessionTutorial", sender: self)
     }
     
     func setupButton() {
@@ -142,8 +158,10 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! VideoPlaybackController
-        vc.videoURL = sender as? URL
+        if (segue.identifier == "showVideo") { // going to video playback controller
+            let vc = segue.destination as! VideoPlaybackController
+            vc.videoURL = sender as? URL
+        }
     }
     
     func startRecording() {
