@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Device
 
 class LoginController: UIViewController {
     
@@ -38,8 +39,7 @@ class LoginController: UIViewController {
     }
     
     func labelAdjustments() {
-        let device = UIDevice.current.name
-        if (device == "iPhone SE (1st generation)") {
+        if (Device.size() == Size.screen4Inch) {
             username.widthAnchor.constraint(equalToConstant: 250).isActive = true
             password.widthAnchor.constraint(equalToConstant: 250).isActive = true
         } else {

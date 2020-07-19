@@ -101,6 +101,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         trackingButton.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    // Redirects to settings page
     @objc func settingsTap() {
         playSound("settings")
         self.performSegue(withIdentifier: "SettingsSegue", sender: self)
@@ -122,7 +123,11 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             toggleButton(trackingButton)
         }
     }
-    
+    /**
+        Takes the current date and returns it in yyyy-MM-dd hh:mm:ss form
+        Used to store within CoreData
+       - Returns: String containing the date in the new format
+    */
     func dateFormatter() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
@@ -130,7 +135,10 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         return dateString
     }
     
-    // Generate JSON in String form
+    /**
+        Turns all of the points generated throughout the session and turns it into a JSON file
+       - Returns: String containing the JSON file (after being serialized)
+    */
     func generateJSON() -> String {
         let dicArray = points.map { $0.convertToDictionary() }
         if let data = try? JSONSerialization.data(withJSONObject: dicArray, options: .prettyPrinted) {
@@ -190,6 +198,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         locationManager.requestAlwaysAuthorization()
     }
     
+    // Continuously gets the location of the user
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for _ in locations { // _ -> currentLocation
             
@@ -217,8 +226,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         Starts the gyroscope tracking, GPS location tracking, and pedometer object
         Assumes that location permissions and motion permissions have already been granted
         Changes the color of the UIView to green (indicating that it is in go mode)
-        - Parameters:
-            - fileName: The name of the file that should be played
      */
     func startTracking() {
         locationManager.startUpdatingLocation()
@@ -253,6 +260,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         }
     }
     
+    // Starts at 0 for all digits
     func startTrackingActivityType() {
         activityManager.startActivityUpdates(to: OperationQueue.main) {
             [weak self] (activity: CMMotionActivity?) in
@@ -366,12 +374,19 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     // Export Functionality
+    
+    /**
+       Generates a temporary directory with a URL and creates a file to be exported as a JSON
+       - Parameters:
+           - exportString: The name of the file being executed (all within 'Sound' group)
+       - Returns: Data object as a JSON file
+    */
     func saveAndExport(exportString: String) -> Data {
         let exportFilePath = NSTemporaryDirectory() + "export.json"
         let exportFileUrl = NSURL(fileURLWithPath: exportFilePath)
         FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil)
         var fileHandle: FileHandle? = nil
-        // Try
+        // Try to save the file as a URL
         do {
             fileHandle = try FileHandle(forWritingTo: exportFileUrl as URL)
         } catch {

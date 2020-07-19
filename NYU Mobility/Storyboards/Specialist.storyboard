@@ -100,7 +100,7 @@
         <!--Video Session-->
         <scene sceneID="xNP-GY-i18">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="M4u-GQ-mp9" customClass="VideoRecordingController" customModule="NYU_Mobility" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoRecording" modalPresentationStyle="fullScreen" id="M4u-GQ-mp9" customClass="VideoRecordingController" customModule="NYU_Mobility" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pC4-Zp-6co">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -188,7 +188,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esY-9i-PSN">
-                                            <rect key="frame" x="20" y="11.000000000000002" width="80" height="21.666666666666671"/>
+                                            <rect key="frame" x="20" y="11.000000000000002" width="80" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

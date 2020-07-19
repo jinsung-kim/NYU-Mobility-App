@@ -37,6 +37,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         self.setupButton()
     }
     
+    @IBAction func unwindToRecorder(_ sender: UIStoryboardSegue) {}
+    
     // Upper right item from the tracking controller that goes to the settings
     func instructionButton() {
         let instructionButton = UIBarButtonItem()

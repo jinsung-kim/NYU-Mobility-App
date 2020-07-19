@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Device
 
 class SpecialistController: UIViewController {
     
@@ -38,8 +39,7 @@ class SpecialistController: UIViewController {
     }
     
     func labelAdjustments() {
-        let device = UIDevice.current.name
-        if (device == "iPhone SE (1st generation)") {
+        if (Device.size() == Size.screen4Inch) {
             name.widthAnchor.constraint(equalToConstant: 250).isActive = true
             username.widthAnchor.constraint(equalToConstant: 250).isActive = true
             password.widthAnchor.constraint(equalToConstant: 250).isActive = true

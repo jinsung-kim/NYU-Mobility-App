@@ -43,6 +43,8 @@
 		A1AF57092492A8BD008EF983 /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57072492A8BC008EF983 /* back.mp3 */; };
 		A1DE764724C3ABEB00D57B5F /* VideoPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE764624C3ABEB00D57B5F /* VideoPlaybackController.swift */; };
 		A1DE764924C3B7E400D57B5F /* SpecialistTutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1DE764824C3B7E400D57B5F /* SpecialistTutorial.storyboard */; };
+		A1DE764C24C3F85300D57B5F /* RecordTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE764B24C3F85300D57B5F /* RecordTutorial.swift */; };
+		A1DE764E24C3FAF000D57B5F /* RecordColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE764D24C3FAF000D57B5F /* RecordColors.swift */; };
 		A1F002B624AC21340030E2F5 /* Specialist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F002B524AC21340030E2F5 /* Specialist.storyboard */; };
 		A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */; };
 		A1F66C04248F0A840055DBAD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F66C03248F0A840055DBAD /* MapViewController.swift */; };
@@ -111,6 +113,8 @@
 		A1AF57072492A8BC008EF983 /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = back.mp3; sourceTree = "<group>"; };
 		A1DE764624C3ABEB00D57B5F /* VideoPlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackController.swift; sourceTree = "<group>"; };
 		A1DE764824C3B7E400D57B5F /* SpecialistTutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SpecialistTutorial.storyboard; sourceTree = "<group>"; };
+		A1DE764B24C3F85300D57B5F /* RecordTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTutorial.swift; sourceTree = "<group>"; };
+		A1DE764D24C3FAF000D57B5F /* RecordColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordColors.swift; sourceTree = "<group>"; };
 		A1F002B524AC21340030E2F5 /* Specialist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Specialist.storyboard; sourceTree = "<group>"; };
 		A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistTrackingController.swift; sourceTree = "<group>"; };
 		A1F66C03248F0A840055DBAD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
+				A1DE764A24C3F83D00D57B5F /* Tutorial */,
 				A141FCD824816F6500A3433D /* Client Controllers */,
 				A1F002B724AC23DE0030E2F5 /* Specialist Controllers */,
 				A1366EC124AB84D400B1FA57 /* Registration Controllers */,
@@ -287,6 +292,15 @@
 				A188675A24B7E42C007B6DE9 /* UserCell.swift */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		A1DE764A24C3F83D00D57B5F /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				A1DE764B24C3F85300D57B5F /* RecordTutorial.swift */,
+				A1DE764D24C3FAF000D57B5F /* RecordColors.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		A1F002B724AC23DE0030E2F5 /* Specialist Controllers */ = {
@@ -494,6 +508,7 @@
 				A13FEA1B2491CE8800A4904F /* SettingsController.swift in Sources */,
 				A14985EA24B7823300331B7C /* PickUserController.swift in Sources */,
 				A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */,
+				A1DE764E24C3FAF000D57B5F /* RecordColors.swift in Sources */,
 				A1366EC724AB8BE900B1FA57 /* ClientController.swift in Sources */,
 				A12106E224AD6FE60041704D /* CardCell.swift in Sources */,
 				A16DE4B02497E4B8008777CD /* Constants.swift in Sources */,
@@ -504,6 +519,7 @@
 				A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */,
 				A12106E024AD5E3D0041704D /* StorageController.swift in Sources */,
 				A12106DE24AD57130041704D /* SpecialistPoint.swift in Sources */,
+				A1DE764C24C3F85300D57B5F /* RecordTutorial.swift in Sources */,
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,
 				A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */,

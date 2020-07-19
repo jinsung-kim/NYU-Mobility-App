@@ -18,7 +18,6 @@ class RegistrationController: UIViewController {
     @IBOutlet weak var specialistButton: CustomAdd!
     
     override func viewDidLoad() {
-        print(UIDevice.current.name)
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.skipRegistration()
@@ -32,10 +31,8 @@ class RegistrationController: UIViewController {
             specialistButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         } else {
             // Client button styling
-//            clientButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
             clientButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
             // Specialist button styling
-//            specialistButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
             specialistButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
         }
         clientButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
@@ -62,9 +59,9 @@ class RegistrationController: UIViewController {
     
     
     func skipRegistration() {
-        if (getRegistered() && self.getMode() == "client") {
+        if (self.getRegistered() && self.getMode() == "client") {
             self.performSegue(withIdentifier: "SkipRegistration", sender: self)
-        } else if (getRegistered() && self.getMode() == "specialist") {
+        } else if (self.getRegistered() && self.getMode() == "specialist") {
             self.performSegue(withIdentifier: "SkipSpecialist", sender: self)
         }
     }
@@ -79,7 +76,6 @@ class RegistrationController: UIViewController {
         let mode = defaults.string(forKey: "mode")
         return mode!
     }
-
 }
 
 

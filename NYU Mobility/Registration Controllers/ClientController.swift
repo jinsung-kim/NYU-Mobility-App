@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Device
 
 class ClientController: UIViewController, UITextFieldDelegate {
     
@@ -29,9 +30,8 @@ class ClientController: UIViewController, UITextFieldDelegate {
     }
     
     func labelAdjustments() {
-        let device = UIDevice.current.name
         // 4.0 inch screen iPhone SE (only device that needs smaller buttons)
-        if (device == "iPhone SE (1st generation)") {
+        if (Device.size() == Size.screen4Inch) {
             fullName.widthAnchor.constraint(equalToConstant: 250).isActive = true
             username.widthAnchor.constraint(equalToConstant: 250).isActive = true
             password.widthAnchor.constraint(equalToConstant: 250).isActive = true
