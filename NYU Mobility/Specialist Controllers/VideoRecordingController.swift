@@ -9,6 +9,8 @@
 import UIKit
 import AVKit
 import AVFoundation
+import CoreMotion
+import CoreData
 
 // https://stackoverflow.com/questions/41697568/capturing-video-with-avfoundation
 
@@ -23,6 +25,36 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     var previewLayer: AVCaptureVideoPreviewLayer!
     var activeInput: AVCaptureDeviceInput!
     var outputURL: URL!
+    
+    // Movement tracking managers (copied from SpecialistTrackingController.swift
+    
+    var name: String?
+    
+    // Used to track pedometer when saving data
+    private var steps: Int32 = 0
+    private var maxSteps: Int32 = 0
+    private var distance: Int32 = 0 // In meters
+    private var maxDistance: Int32 = 0
+    private var startTime: Date = Date()
+    
+    // Used for creating the JSON
+    var points: [SpecialistPoint] = []
+    
+    var sessions: [NSManagedObject] = []
+    
+    // Pedometer object - used to trace each step
+    private let activityManager: CMMotionActivityManager = CMMotionActivityManager()
+    private let pedometer: CMPedometer = CMPedometer()
+    
+    // Gyro Sensor
+    private let motionManager: CMMotionManager = CMMotionManager()
+    // Used to store all x, y, z values
+    private var gyroDict: [String: [Double]] = ["x": [], "y": [], "z": []]
+    
+    // Pace trackers
+    private var currPace: Double = 0.0
+    private var avgPace: Double = 0.0
+    private var currCad: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()

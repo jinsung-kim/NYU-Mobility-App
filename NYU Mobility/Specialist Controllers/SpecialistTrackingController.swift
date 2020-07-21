@@ -73,8 +73,12 @@ class SpecialistTrackingController: UIViewController {
     
     // Used to send over data to the Storage Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is StorageController {
+        if (segue.destination is StorageController) {
             let vc = segue.destination as? StorageController
+            vc?.name = self.name!
+        // Even the tracking done within the
+        } else if (segue.destination is VideoRecordingController) {
+            let vc = segue.destination as? VideoRecordingController
             vc?.name = self.name!
         }
     }

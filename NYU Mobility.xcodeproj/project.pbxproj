@@ -211,7 +211,7 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
-				A1DE764A24C3F83D00D57B5F /* Tutorial */,
+				A1DE764A24C3F83D00D57B5F /* Tutorial Controllers */,
 				A141FCD824816F6500A3433D /* Client Controllers */,
 				A1F002B724AC23DE0030E2F5 /* Specialist Controllers */,
 				A1366EC124AB84D400B1FA57 /* Registration Controllers */,
@@ -294,13 +294,13 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
-		A1DE764A24C3F83D00D57B5F /* Tutorial */ = {
+		A1DE764A24C3F83D00D57B5F /* Tutorial Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				A1DE764B24C3F85300D57B5F /* RecordTutorial.swift */,
 				A1DE764D24C3FAF000D57B5F /* RecordColors.swift */,
 			);
-			path = Tutorial;
+			path = "Tutorial Controllers";
 			sourceTree = "<group>";
 		};
 		A1F002B724AC23DE0030E2F5 /* Specialist Controllers */ = {
