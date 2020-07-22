@@ -19,6 +19,8 @@ class StorageController: UITableViewController {
     
     var name: String?
     
+    var tappedIndex: Int = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
@@ -31,6 +33,14 @@ class StorageController: UITableViewController {
                             willDisplay cell: UITableViewCell,
                             forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
+    }
+    
+    // Go to video player
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.destination is VideoPlaybackController) {
+            let vc = segue.destination as? VideoPlaybackController
+            vc?.videoURL = URL(string: sessions[map[tappedIndex]].value(forKey: "videoURL") as! String)
+        }
     }
     
     // Load all of the sessions
@@ -87,6 +97,18 @@ class StorageController: UITableViewController {
         return cell
     }
     
+    // Used to redirect to display view controller with specifics
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tappedIndex = indexPath.row
+        if (sessions[map[tappedIndex]].value(forKey: "videoURL") as! String == "") { // No video to accompany the session
+            print("No video session")
+            self.performSegue(withIdentifier: "showDetails", sender: self)
+        } else {
+            print("Video session available")
+            self.performSegue(withIdentifier: "replayVideo", sender: self)
+        }
+    }
+    
     // Right swipe 'Delete'
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
@@ -96,14 +118,11 @@ class StorageController: UITableViewController {
             
             // Find the appropriate filtered index and remove it in the original
             let context = appDelegate.persistentContainer.viewContext
-            let commit = sessions[map[indexPath.row]]
+            let commit = sessions[map[indexPath.row]] // index out of range
             sessions.remove(at: map[indexPath.row])
             context.delete(commit)
-            
             // delete within filtered list as well
             filter.remove(at: indexPath.row)
-            map.remove(at: indexPath.row)
-            
             do {
                 try context.save()
                 customTableView.deleteRows(at: [indexPath], with: .fade)

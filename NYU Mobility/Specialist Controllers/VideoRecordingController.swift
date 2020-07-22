@@ -241,7 +241,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             self.cameraButton.backgroundColor = UIColor.white
             self.movieOutput.stopRecording()
             stopTracking()
-            print(outputURL!)
             savePoint()
             clearData()
         }

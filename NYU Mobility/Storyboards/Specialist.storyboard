@@ -215,11 +215,28 @@
                     <connections>
                         <outlet property="customTableView" destination="Le5-LQ-lSh" id="8Cq-a4-878"/>
                         <segue destination="luT-WJ-P1P" kind="show" identifier="replayVideo" id="I4Z-UT-MvB"/>
+                        <segue destination="juY-8l-hmP" kind="show" identifier="showDetails" id="sva-AB-wJU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amc-ES-Ezc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3029" y="-240"/>
+        </scene>
+        <!--Show Detail Controller-->
+        <scene sceneID="vyn-bf-NDv">
+            <objects>
+                <viewController id="juY-8l-hmP" customClass="ShowDetailController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Rs-WL-Q56">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="zLt-hO-B3Z"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TQs-12-CTI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DLd-I2-koa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4218" y="-240"/>
         </scene>
         <!--Navigation-->
         <scene sceneID="btQ-k8-vaE">
