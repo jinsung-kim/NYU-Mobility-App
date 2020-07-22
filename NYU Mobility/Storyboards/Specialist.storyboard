@@ -176,7 +176,7 @@
         <scene sceneID="Dbd-4c-99R">
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="qrO-Op-9oN" customClass="StorageController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Storage" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Le5-LQ-lSh">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Storage" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="Le5-LQ-lSh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -186,20 +186,16 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="View" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gmv-Gn-BL3" translatesAutoresizingMaskIntoConstraints="NO" id="Nre-Sf-hWL">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esY-9i-PSN">
-                                            <rect key="frame" x="20" y="11.000000000000002" width="80" height="20.666666666666671"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="esY-9i-PSN">
+                                            <rect key="frame" x="20" y="11" width="80" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="esY-9i-PSN" secondAttribute="trailing" constant="20" id="gZA-O3-QKR"/>
-                                        <constraint firstItem="esY-9i-PSN" firstAttribute="leading" secondItem="Nre-Sf-hWL" secondAttribute="leading" constant="20" id="jdK-LB-NLy"/>
-                                        <constraint firstAttribute="bottom" secondItem="esY-9i-PSN" secondAttribute="bottom" constant="10.5" id="qu0-ua-YhJ"/>
-                                        <constraint firstItem="esY-9i-PSN" firstAttribute="top" secondItem="Nre-Sf-hWL" secondAttribute="top" constant="11" id="uOh-Jc-6ur"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cardView" destination="Nre-Sf-hWL" id="Qb1-AB-bbS"/>
@@ -252,7 +248,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="80" translatesAutoresizingMaskIntoConstraints="NO" id="eV5-BF-zIk" customClass="UserCell" customModule="NYU_Mobility" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="80" id="eV5-BF-zIk" customClass="UserCell" customModule="NYU_Mobility" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eV5-BF-zIk" id="28I-uW-hxq">
@@ -304,6 +300,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vuh-tt-w7M"/>
+        <segue reference="I4Z-UT-MvB"/>
     </inferredMetricsTieBreakers>
 </document>

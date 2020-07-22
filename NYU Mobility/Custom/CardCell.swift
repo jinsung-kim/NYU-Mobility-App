@@ -23,6 +23,7 @@ class CardCell: UITableViewCell {
         
         // Fitting the text to the labels
         timeLabel.sizeToFit()
+
         
         cardView.backgroundColor = Colors.white
         cardView.layer.shadowColor = UIColor.gray.cgColor
