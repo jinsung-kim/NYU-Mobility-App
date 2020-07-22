@@ -101,10 +101,10 @@ class StorageController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tappedIndex = indexPath.row
         if (sessions[map[tappedIndex]].value(forKey: "videoURL") as! String == "") { // No video to accompany the session
-            print("No video session")
+//            print("No video session")
             self.performSegue(withIdentifier: "showDetails", sender: self)
         } else {
-            print("Video session available")
+//            print("Video session available")
             self.performSegue(withIdentifier: "replayVideo", sender: self)
         }
     }
