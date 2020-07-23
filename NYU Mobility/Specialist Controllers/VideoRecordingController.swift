@@ -191,16 +191,9 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
 
     func generateURL() -> URL? {
-//        let directory = NSTemporaryDirectory() as NSString
-//
-//        if (directory != "") {
-//            let path = self.getPathDirectory().appendingPathComponent(NSUUID().uuidString + ".mp4")
-//            return URL(fileURLWithPath: path)
-//        }
-//        return nil
         let path = self.getPathDirectory().appendingPathComponent(NSUUID().uuidString + ".mp4")
-        let videoData = NSData(contentsOf: path) // maybe self.outputURL! -?
-        videoData?.write(to: path, atomically: false)
+        let videoData = NSData(contentsOf: path)
+        videoData?.write(to: path, atomically: true)
         return path
     }
     

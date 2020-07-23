@@ -229,14 +229,46 @@
                     <view key="view" contentMode="scaleToFill" id="0Rs-WL-Q56">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOx-jo-SY4">
+                                <rect key="frame" x="97.666666666666686" y="98" width="180" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step Count: \(total step count)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AH-vo-Sfh">
+                                <rect key="frame" x="43.666666666666657" y="148" width="288" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Distance: \(distance travel)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd6-ic-9CB">
+                                <rect key="frame" x="34.666666666666657" y="195" width="306" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.33066866639999998" green="0.118582416" blue="0.57703403559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="cd6-ic-9CB" firstAttribute="top" secondItem="5AH-vo-Sfh" secondAttribute="bottom" constant="20" id="VQa-pW-MI2"/>
+                            <constraint firstItem="cd6-ic-9CB" firstAttribute="centerX" secondItem="0Rs-WL-Q56" secondAttribute="centerX" id="bff-EA-RnG"/>
+                            <constraint firstItem="LOx-jo-SY4" firstAttribute="top" secondItem="zLt-hO-B3Z" secondAttribute="top" constant="10" id="cC6-Vg-FjP"/>
+                            <constraint firstItem="LOx-jo-SY4" firstAttribute="centerX" secondItem="0Rs-WL-Q56" secondAttribute="centerX" id="enP-sa-0tj"/>
+                            <constraint firstItem="5AH-vo-Sfh" firstAttribute="centerX" secondItem="0Rs-WL-Q56" secondAttribute="centerX" id="jtr-eG-KrQ"/>
+                            <constraint firstItem="5AH-vo-Sfh" firstAttribute="top" secondItem="LOx-jo-SY4" secondAttribute="bottom" constant="20" id="kf7-0P-VMB"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zLt-hO-B3Z"/>
                     </view>
                     <navigationItem key="navigationItem" id="TQs-12-CTI"/>
+                    <connections>
+                        <outlet property="distance" destination="cd6-ic-9CB" id="5UF-HX-KaJ"/>
+                        <outlet property="stepCount" destination="cd6-ic-9CB" id="rvw-xE-nTj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLd-I2-koa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4218" y="-240"/>
+            <point key="canvasLocation" x="4216.8000000000002" y="-240.14778325123154"/>
         </scene>
         <!--Navigation-->
         <scene sceneID="btQ-k8-vaE">
