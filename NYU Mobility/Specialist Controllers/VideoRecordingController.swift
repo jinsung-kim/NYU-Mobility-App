@@ -199,6 +199,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
 //        }
 //        return nil
         let path = self.getPathDirectory().appendingPathComponent(NSUUID().uuidString + ".mp4")
+        let videoData = NSData(contentsOf: path) // maybe self.outputURL! -?
+        videoData?.write(to: path, atomically: false)
         return path
     }
     
