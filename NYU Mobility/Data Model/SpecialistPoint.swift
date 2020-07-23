@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct SpecialistPoint: Codable {
+public struct SpecialistPoint: Codable {
     var time: String
     var steps: Int32
     var distance: Int32

@@ -393,7 +393,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             let str = String(bytes: data, encoding: .utf8)
             return str!
         }
-        return "There was an error generating the JSON file"
+        return "There was an error generating the JSON file" // shouldn't ever happen
     }
     
     // Saves Point
@@ -409,7 +409,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         
         let session = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        session.setValue(self.generateJSON(), forKeyPath: "json")
+        session.setValue(generateJSON(), forKeyPath: "json")
         session.setValue(self.startTime, forKeyPath: "startTime")
         session.setValue(self.name!, forKeyPath: "user")
         session.setValue(self.outputURL!.absoluteString, forKeyPath: "videoURL")

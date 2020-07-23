@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SwiftyJSON // Used to convert string to JSON array
 
 class ShowDetailController: UIViewController {
     
@@ -16,37 +17,25 @@ class ShowDetailController: UIViewController {
     @IBOutlet weak var distance: UILabel!
     
     var session: NSManagedObject!
-    var validJSON: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(session.value(forKey: "json") as! String)
-        var _ = self.processString()
+//        print(session.value(forKey: "json") as! String)
         self.updateLabels()
+        self.getJSONArray()
     }
     
     func updateLabels() {
         
     }
     
-    /**
-        Processes the given session JSON, and returns in dictionary form
-        - Returns: [String: Any], so that that the data can be processed
-     */
-    func processString() -> [String : Any] {
-        var jsonArray = [String: Any]()
+    func getJSONArray() {
         let data = (session.value(forKey: "json") as! String).data(using: .utf8)!
         do {
-            if let converted = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? [String: Any] {
-                validJSON = true
-                jsonArray = converted
-            } else {
-                validJSON = false
-                print("JSON not valid")
-            }
-        } catch let error as NSError {
-            print(error)
+            let json = try JSON(data: data)
+            print(json)
+        } catch {
+            print("There was an error processing the string")
         }
-        return jsonArray
     }
 }

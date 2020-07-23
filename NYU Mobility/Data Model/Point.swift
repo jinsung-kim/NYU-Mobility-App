@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Point: Codable { // Without 'Codable', it will not turn into a JSON
+public struct Point: Codable { // Without 'Codable', it will not turn into a JSON
     var time: String
     var steps: Int32
     var distance: Int32

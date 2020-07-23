@@ -1,20 +1,24 @@
 PODS:
   - Device (3.2.1)
   - LayoutHelper (0.1.3)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Device (~> 3.2.1)
   - LayoutHelper
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
     - Device
     - LayoutHelper
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Device: 0738862dd8a30856b4bd9e21cb9b728873d21392
   LayoutHelper: 89385ca8de2464665b777265da86c84c1a28a128
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 763d798d49552fa8276b4012194df9b06a7ea915
+PODFILE CHECKSUM: c109389ac6bacb24f31cfefdd82919f451aebf37
 
 COCOAPODS: 1.9.1

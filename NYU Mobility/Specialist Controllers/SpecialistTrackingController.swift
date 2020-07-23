@@ -271,7 +271,7 @@ class SpecialistTrackingController: UIViewController {
                                     insertInto: managedContext)
         
         session.setValue(generateJSON(), forKeyPath: "json")
-        session.setValue(startTime, forKeyPath: "startTime")
+        session.setValue(self.startTime, forKeyPath: "startTime")
         session.setValue(self.name!, forKeyPath: "user")
         session.setValue("", forKeyPath: "videoURL") // no video url for this type of sessions
         

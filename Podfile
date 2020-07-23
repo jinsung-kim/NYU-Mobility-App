@@ -6,5 +6,6 @@ target 'NYU Mobility' do
   use_frameworks!
     pod 'LayoutHelper'
     pod "Device", '~> 3.2.1'
+    pod 'SwiftyJSON', '~> 4.0'
 
 end
