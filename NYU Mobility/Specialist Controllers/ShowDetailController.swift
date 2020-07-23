@@ -7,10 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class ShowDetailController: UIViewController {
     
+    var session: NSManagedObject!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(session!)
     }
+    
+//    func processString() -> [String : Any] {
+//
+//    }
 }

@@ -29,17 +29,21 @@ class StorageController: UITableViewController {
         customTableView.dataSource = self
     }
     
-    override func tableView(_ tableView: UITableView,
-                            willDisplay cell: UITableViewCell,
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                             forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
     }
     
     // Go to video player
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Replays the video for the session previously recorded
         if (segue.destination is VideoPlaybackController) {
             let vc = segue.destination as? VideoPlaybackController
             vc?.videoURL = URL(string: sessions[map[tappedIndex]].value(forKey: "videoURL") as! String)
+        // Shows a summary of the session
+        } else {
+            let vc = segue.destination as? ShowDetailController
+            vc?.session = sessions[map[tappedIndex]]
         }
     }
     
@@ -86,7 +90,8 @@ class StorageController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "StorageCell", for: indexPath) as! CardCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StorageCell",
+                                                 for: indexPath) as! CardCell
         
         cell.clipsToBounds = true
         
@@ -105,6 +110,7 @@ class StorageController: UITableViewController {
             self.performSegue(withIdentifier: "showDetails", sender: self)
         } else {
 //            print("Video session available")
+            print(sessions[map[tappedIndex]].value(forKey: "videoURL") as! String) // TEST
             self.performSegue(withIdentifier: "replayVideo", sender: self)
         }
     }
@@ -118,11 +124,20 @@ class StorageController: UITableViewController {
             
             // Find the appropriate filtered index and remove it in the original
             let context = appDelegate.persistentContainer.viewContext
-            let commit = sessions[map[indexPath.row]] // index out of range
+            let commit = sessions[map[indexPath.row]]
+            
+            // Delete the file within the directory
+            if (sessions[map[indexPath.row]].value(forKey: "videoURL") as! String != "") { // Only delete if the video URL is valid
+                try? FileManager.default.removeItem(at: URL(fileURLWithPath: sessions[map[indexPath.row]].value(forKey: "videoURL") as! String))
+                print("deleted")
+            }
+            
+            // Remove the index
             sessions.remove(at: map[indexPath.row])
             context.delete(commit)
             // delete within filtered list as well
             filter.remove(at: indexPath.row)
+            
             do {
                 try context.save()
                 customTableView.deleteRows(at: [indexPath], with: .fade)

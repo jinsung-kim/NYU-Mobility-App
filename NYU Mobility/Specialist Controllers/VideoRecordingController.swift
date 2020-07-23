@@ -12,7 +12,7 @@ import AVFoundation
 import CoreMotion
 import CoreData
 
-// https://stackoverflow.com/questions/41697568/capturing-video-with-avfoundation
+// https://stackoverflow.com/questions/36536044/swift-video-to-document-directory
 
 class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDelegate {
     
@@ -112,7 +112,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     func setupSession() -> Bool {
         
         self.captureSession.sessionPreset = AVCaptureSession.Preset.high
-        
         let camera = AVCaptureDevice.default(for: AVMediaType.video)!
         
         do {
@@ -182,15 +181,25 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     @objc func startCapture() {
         self.startRecording()
     }
+    
+    func getPathDirectory() -> URL {
+        // Searches a FileManager for paths and returns the first one
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = paths[0]
+        
+        return documentDirectory
+    }
 
     func generateURL() -> URL? {
-        let directory = NSTemporaryDirectory() as NSString
-        
-        if directory != "" {
-            let path = directory.appendingPathComponent(NSUUID().uuidString + ".mp4")
-            return URL(fileURLWithPath: path)
-        }
-        return nil
+//        let directory = NSTemporaryDirectory() as NSString
+//
+//        if (directory != "") {
+//            let path = self.getPathDirectory().appendingPathComponent(NSUUID().uuidString + ".mp4")
+//            return URL(fileURLWithPath: path)
+//        }
+//        return nil
+        let path = self.getPathDirectory().appendingPathComponent(NSUUID().uuidString + ".mp4")
+        return path
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -230,7 +239,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             }
             
             self.outputURL = self.generateURL()
-            self.movieOutput.startRecording(to: outputURL, recordingDelegate: self)
+            self.movieOutput.startRecording(to: self.outputURL!, recordingDelegate: self)
+            
         } else {
             self.stopRecording()
         }
@@ -239,6 +249,13 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     func stopRecording() {
         if (self.movieOutput.isRecording == true) {
             self.cameraButton.backgroundColor = UIColor.white
+            // TESTING
+            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let destinationURL = documentsDirectoryURL.appendingPathComponent("\(UUID().uuidString).mp4")
+            do {
+                try FileManager.default.moveItem(at: self.outputURL!, to: destinationURL)
+                self.outputURL = destinationURL
+            } catch let error as NSError { print(error.localizedDescription) }
             self.movieOutput.stopRecording()
             self.stopTracking()
             self.savePoint()
@@ -269,7 +286,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Session")
         
         do {
@@ -300,7 +316,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     func stopTracking() {
         stopUpdating()
         stopGyros()
-        self.saveData(currTime: Date())
+        saveData(currTime: Date())
     }
     
     func stopUpdating() { pedometer.stopUpdates() }
@@ -365,7 +381,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         if (self.distance >= self.maxDistance) {
             self.maxDistance = self.distance
         }
-        if (self.maxDistance != 0 && self.maxSteps != 0) {
+        if ((self.maxDistance != 0 && self.maxSteps != 0) || (self.points.count == 0)) {
             points.append(SpecialistPoint(dateFormatter(), self.maxSteps,
                                           self.maxDistance, self.avgPace,
                                           self.currPace, self.currCad, self.gyroDict))
@@ -396,11 +412,10 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         let entity = NSEntityDescription.entity(forEntityName: "Session",
                                                 in: managedContext)!
         
-        let session = NSManagedObject(entity: entity,
-                                    insertInto: managedContext)
+        let session = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        session.setValue(generateJSON(), forKeyPath: "json")
-        session.setValue(startTime, forKeyPath: "startTime")
+        session.setValue(self.generateJSON(), forKeyPath: "json")
+        session.setValue(self.startTime, forKeyPath: "startTime")
         session.setValue(self.name!, forKeyPath: "user")
         session.setValue(self.outputURL!.absoluteString, forKeyPath: "videoURL")
         
