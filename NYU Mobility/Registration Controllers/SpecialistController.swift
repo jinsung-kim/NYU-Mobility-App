@@ -106,9 +106,24 @@ class SpecialistController: UIViewController {
     }
     
     func generateCode() {
-        let uuid = UUID().uuidString
+        let uuid = UUID().uuidString[0 ..< 8]
         let defaults = UserDefaults.standard
         defaults.set(uuid, forKey: "code")
     }
     
+}
+
+// Used to truncate UUID string code
+extension String {
+    subscript (bounds: CountableClosedRange<Int>) -> String {
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return String(self[start...end])
+    }
+
+    subscript (bounds: CountableRange<Int>) -> String {
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return String(self[start..<end])
+    }
 }
