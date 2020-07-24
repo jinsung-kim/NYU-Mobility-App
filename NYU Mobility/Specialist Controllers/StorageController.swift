@@ -25,7 +25,7 @@ class StorageController: UITableViewController {
         super.viewDidLoad()
         loadData()
         logoutButton()
-        self.tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
+        tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
         customTableView.delegate = self
         customTableView.dataSource = self
     }
@@ -36,17 +36,17 @@ class StorageController: UITableViewController {
         logout.title = "Logout"
         logout.action = #selector(logoutTap)
         logout.target = self
-        self.navigationItem.rightBarButtonItem = logout
+        navigationItem.rightBarButtonItem = logout
     }
     
     // Redirects to registration page
     @objc func logoutTap() {
-        self.save("email", "")
-        self.save("username", "")
-        self.save("password", "")
-        self.save("name", "")
-        self.save("code", "")
-        self.performSegue(withIdentifier: "LoggingOut", sender: self)
+        save("email", "")
+        save("username", "")
+        save("password", "")
+        save("name", "")
+        save("code", "")
+        performSegue(withIdentifier: "LoggingOut", sender: self)
     }
     
     func save(_ key: String, _ value: String) {
@@ -88,7 +88,7 @@ class StorageController: UITableViewController {
         do {
             sessions = try managedContext.fetch(fetchRequest)
             for elem in 0 ..< sessions.count {
-                if (self.filterName(elem)) {
+                if (filterName(elem)) {
                     filter.append(sessions[elem])
                     map.append(elem)
                 }
@@ -131,9 +131,9 @@ class StorageController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tappedIndex = indexPath.row
         if (sessions[map[tappedIndex]].value(forKey: "videoURL") as! String == "") { // No video to accompany the session
-            self.performSegue(withIdentifier: "showDetails", sender: self)
+            performSegue(withIdentifier: "showDetails", sender: self)
         } else {
-            self.performSegue(withIdentifier: "replayVideo", sender: self)
+            performSegue(withIdentifier: "replayVideo", sender: self)
         }
     }
     

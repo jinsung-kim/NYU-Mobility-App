@@ -28,9 +28,9 @@ class ShowDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.results = self.getJSONArray() // processes into the json var
-        self.extractInformation()
-        self.updateLabels()
+        results = self.getJSONArray() // processes into the json var
+        extractInformation()
+        updateLabels()
     }
     
     /**
@@ -81,7 +81,7 @@ class ShowDetailController: UIViewController {
     func extractInformation() {
         // Session was not long enough to be considered a session or
         // no significant data was collected
-        if (self.results!.count < 2) {
+        if (results!.count < 2) {
             return
         }
         // Precondition: There is sufficient data to be collected + sorted + evaluated
@@ -89,11 +89,11 @@ class ShowDetailController: UIViewController {
         // Gets the start and end time to get time difference
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        let startTime = formatter.date(from: self.results![0]["time"].string!)
-        let endTime = formatter.date(from: self.results![self.results!.count - 1]["time"].string!)
+        let startTime = formatter.date(from: results![0]["time"].string!)
+        let endTime = formatter.date(from: results![results!.count - 1]["time"].string!)
         
-        self.sessionLength = self.getTimeDifference(startTime!, endTime!)
-        self.distance = self.results![self.results!.count - 1]["distance"].int!
-        self.stepCount = self.results![self.results!.count - 1]["steps"].int!
+        sessionLength = getTimeDifference(startTime!, endTime!)
+        distance = results![results!.count - 1]["distance"].int!
+        stepCount = results![results!.count - 1]["steps"].int!
     }
 }

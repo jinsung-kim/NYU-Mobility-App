@@ -61,25 +61,24 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true // Screen will not be put to sleep
-        self.navigationItem.setHidesBackButton(true, animated: false)
-        self.viewer.backgroundColor = Colors.nyuPurple
+        navigationItem.setHidesBackButton(true, animated: false)
+        viewer.backgroundColor = Colors.nyuPurple
         settingsButton() // The right side button
         getLocationPermission() // Permission to track
         enableDoubleTap() // Double tap feature
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.viewer.backgroundColor = Colors.nyuPurple
+        viewer.backgroundColor = Colors.nyuPurple
     }
     
     // Used to send over data to MapView Controller to read out results
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is MapViewController
-        {
+        if segue.destination is MapViewController {
             let vc = segue.destination as? MapViewController
-            vc?.steps = self.maxSteps
-            vc?.coords = self.coords
-            vc?.distance = self.maxDistance
+            vc?.steps = maxSteps
+            vc?.coords = coords
+            vc?.distance = maxDistance
         }
     }
     
@@ -89,7 +88,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         settingsButton.title = "Settings"
         settingsButton.action = #selector(settingsTap)
         settingsButton.target = self
-        self.navigationItem.rightBarButtonItem = settingsButton
+        navigationItem.rightBarButtonItem = settingsButton
     }
     
     // Double tap pauses and resumes given the previous state
@@ -104,22 +103,22 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     // Redirects to settings page
     @objc func settingsTap() {
         playSound("settings")
-        self.performSegue(withIdentifier: "SettingsSegue", sender: self)
+        performSegue(withIdentifier: "SettingsSegue", sender: self)
     }
     
     // Goes together with enableDoubleTap
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
-        if (self.buttonState == 1) {
+        if (buttonState == 1) {
             playSound("pause")
             trackingButton.setTitle("Resume", for: .normal)
-            self.viewer.backgroundColor = UIColor.red
-            self.buttonState = 3
+            viewer.backgroundColor = UIColor.red
+            buttonState = 3
             toggleButton(trackingButton)
         } else {
             playSound("resume")
             trackingButton.setTitle("Pause", for: .normal)
-            self.viewer.backgroundColor = UIColor.green
-            self.buttonState = 4
+            viewer.backgroundColor = UIColor.green
+            buttonState = 4
             toggleButton(trackingButton)
         }
     }
@@ -165,28 +164,28 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             startTracking()
             playSound("start")
             sender.setTitle("Stop", for: .normal)
-            self.buttonState = 1
+            buttonState = 1
         case 1:
             stopTracking()
             playSound("stop")
             sender.setTitle("Reset", for: .normal)
-            self.buttonState = 2
+            buttonState = 2
         case 2:
             self.performSegue(withIdentifier: "MapViewSegue", sender: self)
             sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
             clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)
-            self.viewer.backgroundColor = UIColor.white
-            self.buttonState = 0
+            viewer.backgroundColor = UIColor.white
+            buttonState = 0
         case 3:
             stopTracking()
-            self.buttonState = 0
+            buttonState = 0
         case 4:
             startTracking()
             playSound("resume")
             sender.setTitle("Stop", for: .normal)
-            self.buttonState = 1
+            buttonState = 1
         default: // Should never happen
             print("Unexpected case: \(self.buttonState)")
         }
@@ -201,19 +200,17 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     // Continuously gets the location of the user
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for _ in locations { // _ -> currentLocation
-            
             if let location: CLLocation = locationManager.location {
+                // Coordinate object
                 let coordinate: CLLocationCoordinate2D = location.coordinate
-                
-                self.coords.append(coordinate)
-
+                coords.append(coordinate)
                 // ... proceed with the location and coordinates
-                if (self.locationArray["lat"] == nil) {
-                    self.locationArray["lat"] = [coordinate.latitude]
-                    self.locationArray["long"] = [coordinate.longitude]
+                if (locationArray["lat"] == nil) {
+                    locationArray["lat"] = [coordinate.latitude]
+                    locationArray["long"] = [coordinate.longitude]
                 } else {
-                    self.locationArray["lat"]!.append(coordinate.latitude)
-                    self.locationArray["long"]!.append(coordinate.longitude)
+                    locationArray["lat"]!.append(coordinate.latitude)
+                    locationArray["long"]!.append(coordinate.longitude)
                 }
             }
             // Looks like this when debugged (city bike ride):
@@ -231,7 +228,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         locationManager.startUpdatingLocation()
         startGyro()
         startUpdating()
-        self.viewer.backgroundColor = UIColor.green
+        viewer.backgroundColor = UIColor.green
     }
     
     /**
@@ -242,8 +239,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         locationManager.stopUpdatingLocation()
         stopUpdating()
         stopGyros()
-        self.saveData(currTime: Date())
-        self.viewer.backgroundColor = UIColor.red
+        saveData(currTime: Date())
+        viewer.backgroundColor = UIColor.red
     }
     
     func stopUpdating() { pedometer.stopUpdates() }
@@ -296,20 +293,19 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
      */
     func saveData(currTime: Date) {
         // JSON array implementation (See Point.swift for model)
-        if (self.steps >= self.maxSteps) {
-            self.maxSteps = self.steps
+        if (steps >= maxSteps) {
+            maxSteps = steps
         }
-        if (self.distance >= self.maxDistance) {
-            self.maxDistance = self.distance
+        if (distance >= maxDistance) {
+            maxDistance = distance
         }
-        if (self.maxDistance != 0 && self.maxSteps != 0) {
-            points.append(Point(dateFormatter(), self.maxSteps, self.maxDistance, self.avgPace,
-                                self.currPace, self.currCad,
-                                self.locationArray, self.gyroDict))
+        if (maxDistance != 0 && maxSteps != 0) {
+            points.append(Point(dateFormatter(), maxSteps, maxDistance, avgPace,
+                                currPace, currCad, locationArray, gyroDict))
             
             // Clear the gyroscope data after getting its string representation
-            self.gyroDict.removeAll()
-            self.locationArray.removeAll()
+            gyroDict.removeAll()
+            locationArray.removeAll()
         }
     }
     
@@ -324,8 +320,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     func startGyro() {
         if motionManager.isGyroAvailable {
             // Set to update 5 times a second
-            self.motionManager.gyroUpdateInterval = 0.2
-            self.motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
+            motionManager.gyroUpdateInterval = 0.2
+            motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
                 if let gyroData = data {
                     if (self.gyroDict["x"] == nil) { // No entries for this point yet
                         self.gyroDict["x"] = [gyroData.rotationRate.x]
@@ -344,7 +340,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     }
     
     // Stops the gyroscope (assuming that it is available)
-    func stopGyros() { self.motionManager.stopGyroUpdates() }
+    func stopGyros() { motionManager.stopGyroUpdates() }
     
     // Sound Functionality
     

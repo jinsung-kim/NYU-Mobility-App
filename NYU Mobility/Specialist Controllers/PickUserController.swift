@@ -19,10 +19,10 @@ class PickUserController: UITableViewController {
         super.viewDidLoad()
         loadData()
         addButton()
-        self.navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.setHidesBackButton(true, animated: false)
         tableView.dataSource = self
         tableView.delegate = self
-        self.tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
+        tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
     }
 
     override func tableView(_ tableView: UITableView,
@@ -34,15 +34,15 @@ class PickUserController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is SpecialistTrackingController {
             let vc = segue.destination as? SpecialistTrackingController
-            vc?.name = self.name!
+            vc?.name = name!
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.name = (users[indexPath.row].value(forKey: "name") as! String)
-        self.index = indexPath.row
-        self.updateTime()
-        self.performSegue(withIdentifier: "ToSpecialistTracking", sender: self)
+        name = (users[indexPath.row].value(forKey: "name") as! String)
+        index = indexPath.row
+        updateTime()
+        performSegue(withIdentifier: "ToSpecialistTracking", sender: self)
     }
     
     @objc func addButtonTap() {
@@ -116,7 +116,7 @@ class PickUserController: UITableViewController {
         let managedContext = appDelegate.persistentContainer.viewContext
         
         do {
-            users[self.index!].setValue(Date(), forKey: "lastActive")
+            users[index!].setValue(Date(), forKey: "lastActive")
             try managedContext.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")

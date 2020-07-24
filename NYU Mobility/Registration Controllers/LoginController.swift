@@ -30,9 +30,9 @@ class LoginController: UIViewController {
         save("username", username.text!)
         save("password", password.text!)
         // Redirects to the proper storyboard reference via "show" segue
-        if (self.getMode() == "client" && self.validLogin()) { // going to client mode
+        if (getMode() == "client" && validLogin()) { // going to client mode
             self.performSegue(withIdentifier: "LoggedInClient", sender: self)
-        } else if (self.getMode() == "specialist" && self.validLogin()){ // going to specialist mode
+        } else if (getMode() == "specialist" && validLogin()){ // going to specialist mode
             self.performSegue(withIdentifier: "LoggedInSpecialist", sender: self)
         } // else do nothing (don't redirect) -> create error message
     }
@@ -54,7 +54,7 @@ class LoginController: UIViewController {
     }
     
     func exitEdit() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
         self.view.addGestureRecognizer(tapGestureRecognizer)
     }
     

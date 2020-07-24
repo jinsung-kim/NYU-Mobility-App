@@ -74,11 +74,11 @@ class SettingsController: UITableViewController {
     
     // Logs out of the current system -> Deletes all of their saved variables
     @IBAction func logoutPressed(_ sender: Any) {
-        self.save("email", "")
-        self.save("username", "")
-        self.save("password", "")
-        self.save("name", "")
-        self.save("code", "")
+        save("email", "")
+        save("username", "")
+        save("password", "")
+        save("name", "")
+        save("code", "")
     }
     
     // Updates all of the labels as necessary, based on what the user has already inputted
@@ -135,7 +135,7 @@ class SettingsController: UITableViewController {
             updateButtons()
         } else {
             // Moves onto the Form controller
-            self.performSegue(withIdentifier: "FormSegue", sender: self)
+            performSegue(withIdentifier: "FormSegue", sender: self)
         }
     }
     

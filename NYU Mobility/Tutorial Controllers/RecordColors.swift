@@ -14,7 +14,7 @@ class RecordColors: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.buttonConstraint()
+        buttonConstraint()
     }
     
     func buttonConstraint() {

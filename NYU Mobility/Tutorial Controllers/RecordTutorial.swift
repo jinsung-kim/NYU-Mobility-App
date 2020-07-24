@@ -14,7 +14,7 @@ class RecordTutorial: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.buttonConstraint()
+        buttonConstraint()
         
     }
     

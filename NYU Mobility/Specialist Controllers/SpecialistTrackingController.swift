@@ -55,43 +55,43 @@ class SpecialistTrackingController: UIViewController {
 
     // Upper right item from the tracking controller that goes to the settings
     func storageButton() {
-        self.viewer.backgroundColor = Colors.nyuPurple
+        viewer.backgroundColor = Colors.nyuPurple
         let storageButton = UIBarButtonItem()
         storageButton.title = "See Sessions"
         storageButton.action = #selector(sessionsTap)
         storageButton.target = self
-        self.navigationItem.rightBarButtonItem = storageButton
+        navigationItem.rightBarButtonItem = storageButton
     }
     
     func recordSessionColor() {
-        self.recordSessionButton.backgroundColor = UIColor.red
+        recordSessionButton.backgroundColor = UIColor.red
     }
     
     @objc func sessionsTap() {
-        self.performSegue(withIdentifier: "SeeSessions", sender: self)
+        performSegue(withIdentifier: "SeeSessions", sender: self)
     }
     
     // Used to send over data to the Storage Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.destination is StorageController) {
             let vc = segue.destination as? StorageController
-            vc?.name = self.name!
+            vc?.name = name!
         // Even the tracking done within the
         } else if (segue.destination is VideoRecordingController) {
             let vc = segue.destination as? VideoRecordingController
-            vc?.name = self.name!
+            vc?.name = name!
         }
     }
     
     // Goes together with enableDoubleTap
     @objc func labelTapped(recognizer: UITapGestureRecognizer) {
-        if (self.buttonState == 1) {
+        if (buttonState == 1) {
             trackingButton.setTitle("Resume", for: .normal)
-            self.buttonState = 3
+            buttonState = 3
             trackingChange(trackingButton)
         } else {
             trackingButton.setTitle("Pause", for: .normal)
-            self.buttonState = 4
+            buttonState = 4
             trackingChange(trackingButton)
         }
     }
@@ -115,30 +115,30 @@ class SpecialistTrackingController: UIViewController {
             - sender: The tracking button
      */
     @IBAction func trackingChange(_ sender: UIButton) {
-        switch(self.buttonState) {
+        switch(buttonState) {
         case 0:
             startTracking()
             startTime = Date()
             sender.setTitle("Stop", for: .normal)
-            self.buttonState = 1
+            buttonState = 1
         case 1:
             stopTracking()
             sender.setTitle("Reset", for: .normal)
-            self.buttonState = 2
+            buttonState = 2
         case 2:
             savePoint() // Saves into Core Data
             clearData()
             sender.setTitle("Start", for: .normal)
-            self.buttonState = 0
+            buttonState = 0
         case 3:
             stopTracking()
-            self.buttonState = 0
+            buttonState = 0
         case 4:
             startTracking()
             sender.setTitle("Stop", for: .normal)
-            self.buttonState = 1
+            buttonState = 1
         default: // Should never happen
-            print("Unexpected case: \(self.buttonState)")
+            print("Unexpected case: \(buttonState)")
         }
     }
     
@@ -161,7 +161,7 @@ class SpecialistTrackingController: UIViewController {
     func stopTracking() {
         stopUpdating()
         stopGyros()
-        self.saveData(currTime: Date())
+        saveData(currTime: Date())
     }
     
     func stopUpdating() { pedometer.stopUpdates() }
@@ -230,16 +230,15 @@ class SpecialistTrackingController: UIViewController {
      */
     func saveData(currTime: Date) {
         // JSON array implementation (See Point.swift for model)
-        if (self.steps >= self.maxSteps) {
-            self.maxSteps = self.steps
+        if (steps >= maxSteps) {
+            maxSteps = steps
         }
-        if (self.distance >= self.maxDistance) {
-            self.maxDistance = self.distance
+        if (distance >= maxDistance) {
+            maxDistance = distance
         }
-        if (self.maxDistance != 0 && self.maxSteps != 0) {
-            points.append(SpecialistPoint(dateFormatter(), self.maxSteps,
-                                          self.maxDistance, self.avgPace,
-                                          self.currPace, self.currCad, self.gyroDict))
+        if (maxDistance != 0 && maxSteps != 0) {
+            points.append(SpecialistPoint(dateFormatter(), maxSteps, maxDistance,
+                                          avgPace, currPace, currCad, gyroDict))
             
             // Clear the gyroscope data after getting its string representation
             self.gyroDict.removeAll()
@@ -271,8 +270,8 @@ class SpecialistTrackingController: UIViewController {
                                     insertInto: managedContext)
         
         session.setValue(generateJSON(), forKeyPath: "json")
-        session.setValue(self.startTime, forKeyPath: "startTime")
-        session.setValue(self.name!, forKeyPath: "user")
+        session.setValue(startTime, forKeyPath: "startTime")
+        session.setValue(name!, forKeyPath: "user")
         session.setValue("", forKeyPath: "videoURL") // no video url for this type of sessions
         
         do {

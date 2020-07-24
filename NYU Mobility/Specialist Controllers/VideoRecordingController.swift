@@ -59,16 +59,16 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loadData()
+        loadData()
         
         // Instructions Page Redirect setup
-        self.instructionButton()
+        instructionButton()
         
-        if (self.setupSession()) {
-            self.setupPreview()
-            self.startSession()
+        if (setupSession()) {
+            setupPreview()
+            startSession()
         }
-        self.setupButton()
+        setupButton()
     }
     
     @IBAction func unwindToRecorder(_ sender: UIStoryboardSegue) {}
@@ -79,47 +79,47 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         instructionButton.title = "See Tutorial"
         instructionButton.action = #selector(sessionsTap)
         instructionButton.target = self
-        self.navigationItem.rightBarButtonItem = instructionButton
+        navigationItem.rightBarButtonItem = instructionButton
     }
     
     @objc func sessionsTap() {
-        self.performSegue(withIdentifier: "VideoSessionTutorial", sender: self)
+        performSegue(withIdentifier: "VideoSessionTutorial", sender: self)
     }
     
     func setupButton() {
-        self.cameraButton.isUserInteractionEnabled = true
+        cameraButton.isUserInteractionEnabled = true
         
         let cameraButtonRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoRecordingController.startCapture))
-        self.cameraButton.addGestureRecognizer(cameraButtonRecognizer)
-        self.cameraButton.frame = CGRect(x: 0, y: self.camPreview.frame.height - 60,
+        cameraButton.addGestureRecognizer(cameraButtonRecognizer)
+        cameraButton.frame = CGRect(x: 0, y: camPreview.frame.height - 60,
                                          width: 60, height: 60)
-        self.cameraButton.center.x = view.center.x // centers horizontally
-        self.cameraButton.backgroundColor = UIColor.white // button is white when initialized
-        self.cameraButton.layer.cornerRadius = 30 // button round
-        self.cameraButton.layer.masksToBounds = true
+        cameraButton.center.x = view.center.x // centers horizontally
+        cameraButton.backgroundColor = UIColor.white // button is white when initialized
+        cameraButton.layer.cornerRadius = 30 // button round
+        cameraButton.layer.masksToBounds = true
         
-        self.camPreview.addSubview(cameraButton)
+        camPreview.addSubview(cameraButton)
     }
     
     func setupPreview() {
         // Configure previewLayer
-        self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        self.previewLayer.frame = self.view.bounds
-        self.previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        self.camPreview.layer.addSublayer(self.previewLayer)
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.frame = view.bounds
+        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        camPreview.layer.addSublayer(previewLayer)
     }
 
     func setupSession() -> Bool {
         
-        self.captureSession.sessionPreset = AVCaptureSession.Preset.high
+        captureSession.sessionPreset = AVCaptureSession.Preset.high
         let camera = AVCaptureDevice.default(for: AVMediaType.video)!
         
         do {
             let input = try AVCaptureDeviceInput(device: camera)
             
-            if (self.captureSession.canAddInput(input)) {
-                self.captureSession.addInput(input)
-                self.activeInput = input
+            if (captureSession.canAddInput(input)) {
+                captureSession.addInput(input)
+                activeInput = input
             }
         } catch {
             print("Error setting device video input: \(error)")
@@ -130,16 +130,16 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         
         do {
             let micInput = try AVCaptureDeviceInput(device: microphone)
-            if (self.captureSession.canAddInput(micInput)) {
-                self.captureSession.addInput(micInput)
+            if (captureSession.canAddInput(micInput)) {
+                captureSession.addInput(micInput)
             }
         } catch {
             print("Error setting device audio input: \(error)")
             return false
         }
         
-        if (self.captureSession.canAddOutput(movieOutput)) {
-            self.captureSession.addOutput(movieOutput)
+        if (captureSession.canAddOutput(movieOutput)) {
+            captureSession.addOutput(movieOutput)
         }
         return true
     }
@@ -147,16 +147,16 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     func setupCaptureMode(_ mode: Int) {}
     
     func startSession() {
-        if (!self.captureSession.isRunning) {
-            self.videoQueue().async {
+        if (!captureSession.isRunning) {
+            videoQueue().async {
                 self.captureSession.startRunning()
             }
         }
     }
     
     func stopSession() {
-        if (self.captureSession.isRunning) {
-            self.videoQueue().async {
+        if (captureSession.isRunning) {
+            videoQueue().async {
                 self.captureSession.stopRunning()
             }
         }
@@ -179,7 +179,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
     
     @objc func startCapture() {
-        self.startRecording()
+        startRecording()
     }
     
     // Gets the directory that the video is stored in
@@ -227,8 +227,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     
     func startRecording() {
         
-        if (self.movieOutput.isRecording == false) {
-            self.cameraButton.backgroundColor = UIColor.red
+        if (movieOutput.isRecording == false) {
+            cameraButton.backgroundColor = UIColor.red
             
             startTracking()
             startTime = Date()
@@ -254,21 +254,21 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
                 }
             }
             
-            self.outputURL = self.generateURL()
-            self.movieOutput.startRecording(to: self.outputURL!, recordingDelegate: self)
+            outputURL = self.generateURL()
+            movieOutput.startRecording(to: outputURL!, recordingDelegate: self)
             
         } else {
-            self.stopRecording()
+            stopRecording()
         }
     }
     
     func stopRecording() {
-        if (self.movieOutput.isRecording == true) {
-            self.cameraButton.backgroundColor = UIColor.white
-            self.movieOutput.stopRecording()
-            self.stopTracking()
-            self.savePoint()
-            self.clearData()
+        if (movieOutput.isRecording == true) {
+            cameraButton.backgroundColor = UIColor.white
+            movieOutput.stopRecording()
+            stopTracking()
+            savePoint()
+            clearData()
         }
     }
     
@@ -281,8 +281,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         if (error != nil) {
             print("Error recording movie: \(error!.localizedDescription)")
         } else {
-            self.downloadVideo(self.outputURL!) // Testing
-            self.performSegue(withIdentifier: "showVideo", sender: self.outputURL!)
+            downloadVideo(outputURL!) // Testing
+            performSegue(withIdentifier: "showVideo", sender: outputURL!)
         }
     }
     
@@ -384,16 +384,15 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
      */
     func saveData(currTime: Date) {
         // JSON array implementation (See Point.swift for model)
-        if (self.steps >= self.maxSteps) {
-            self.maxSteps = self.steps
+        if (steps >= maxSteps) {
+            maxSteps = steps
         }
-        if (self.distance >= self.maxDistance) {
-            self.maxDistance = self.distance
+        if (distance >= maxDistance) {
+            maxDistance = distance
         }
-        if ((self.maxDistance != 0 && self.maxSteps != 0) || (self.points.count == 0)) {
-            points.append(SpecialistPoint(dateFormatter(), self.maxSteps,
-                                          self.maxDistance, self.avgPace,
-                                          self.currPace, self.currCad, self.gyroDict))
+        if (maxDistance != 0 && maxSteps != 0) {
+            points.append(SpecialistPoint(dateFormatter(), maxSteps, maxDistance,
+                                          avgPace, currPace, currCad, gyroDict))
             
             // Clear the gyroscope data after getting its string representation
             self.gyroDict.removeAll()
@@ -424,9 +423,9 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         let session = NSManagedObject(entity: entity, insertInto: managedContext)
         
         session.setValue(generateJSON(), forKeyPath: "json")
-        session.setValue(self.startTime, forKeyPath: "startTime")
-        session.setValue(self.name!, forKeyPath: "user")
-        session.setValue(self.outputURL!.absoluteString, forKeyPath: "videoURL")
+        session.setValue(startTime, forKeyPath: "startTime")
+        session.setValue(name!, forKeyPath: "user")
+        session.setValue(outputURL!.absoluteString, forKeyPath: "videoURL")
         
         do {
             try managedContext.save()

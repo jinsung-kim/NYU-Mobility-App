@@ -78,31 +78,31 @@ class ClientController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillShow(notification: NSNotification) {
         if (last != fullName && last != username && last != password) {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -= keyboardSize.height
+                if view.frame.origin.y == 0 {
+                    view.frame.origin.y -= keyboardSize.height
                 }
             }
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
         }
     }
     
     func exitEdit() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
         self.view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     // Once the user hits the register button, all of the boxes that they filled will be saved
     @IBAction func registered(_ sender: Any) {
-        self.save("email", specialistEmail.text!)
-        self.save("username", username.text!)
-        self.save("password", password.text!)
-        self.save("name", fullName.text!)
-        self.save("code", specialistCode.text!)
+        save("email", specialistEmail.text!)
+        save("username", username.text!)
+        save("password", password.text!)
+        save("name", fullName.text!)
+        save("code", specialistCode.text!)
     }
     
     func save(_ key: String, _ value: String) {
