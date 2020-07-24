@@ -210,13 +210,13 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
-				A1F0993724CB448C003C092D /* UI */,
 				A1DE764A24C3F83D00D57B5F /* Tutorial Controllers */,
 				A141FCD824816F6500A3433D /* Client Controllers */,
 				A1F002B724AC23DE0030E2F5 /* Specialist Controllers */,
 				A1366EC124AB84D400B1FA57 /* Registration Controllers */,
 				A141FCCA24814E6900A3433D /* Storyboards */,
 				A114729824840DCF0043B04B /* Models */,
+				A1F0993724CB448C003C092D /* UI */,
 				A16DE4AA2497E340008777CD /* Custom */,
 				A141FCCC24816E1D00A3433D /* Sound */,
 				A141FC9724814B7C00A3433D /* AppDelegate.swift */,

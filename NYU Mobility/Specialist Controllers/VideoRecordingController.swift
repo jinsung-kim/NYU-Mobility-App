@@ -117,8 +117,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
 
     func setupSession() -> Bool {
-        
-        captureSession.sessionPreset = AVCaptureSession.Preset.high
+        // Proof of concept: Lowering quality to 720p
+        captureSession.sessionPreset = AVCaptureSession.Preset.hd1280x720
         let camera = AVCaptureDevice.default(for: AVMediaType.video)!
         
         do {
@@ -130,18 +130,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             }
         } catch {
             print("Error setting device video input: \(error)")
-            return false
-        }
-        
-        let microphone = AVCaptureDevice.default(for: AVMediaType.audio)!
-        
-        do {
-            let micInput = try AVCaptureDeviceInput(device: microphone)
-            if (captureSession.canAddInput(micInput)) {
-                captureSession.addInput(micInput)
-            }
-        } catch {
-            print("Error setting device audio input: \(error)")
             return false
         }
         
@@ -198,7 +186,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
 
     func generateURL() -> URL? {
-        let path = self.getPathDirectory().appendingPathComponent(NSUUID().uuidString + ".mp4")
+        let path = getPathDirectory().appendingPathComponent(NSUUID().uuidString + ".mp4")
         return path
     }
     

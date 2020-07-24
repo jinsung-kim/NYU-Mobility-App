@@ -12,8 +12,6 @@ import CoreData
 
 class FormController: UIViewController, UITextFieldDelegate {
     
-    // Add button
-//    @IBOutlet weak var addButton: CustomButton!
     @IBOutlet weak var addButton: CustomButton!
     
     @IBOutlet weak var name: CustomTextField!
