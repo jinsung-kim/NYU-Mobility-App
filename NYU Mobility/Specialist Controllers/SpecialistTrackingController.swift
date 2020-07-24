@@ -9,8 +9,9 @@
 import UIKit
 import CoreMotion
 import CoreData
+import CoreLocation
 
-class SpecialistTrackingController: UIViewController {
+class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var trackingButton: UIButton!
     @IBOutlet weak var recordSessionButton: UIButton!
@@ -27,9 +28,13 @@ class SpecialistTrackingController: UIViewController {
     private var maxDistance: Int32 = 0
     private var startTime: Date = Date()
     
-    // Used for creating the JSON
-    var points: [SpecialistPoint] = []
+    // GPS Location Services
+    var coords: [CLLocationCoordinate2D] = []
+    private let locationManager: CLLocationManager = CLLocationManager()
+    private var locationArray: [String: [Double]] = ["long": [], "lat": []]
     
+    // Used for creating the JSON
+    var points: [Point] = []
     var sessions: [NSManagedObject] = []
     
     // Pedometer object - used to trace each step
@@ -49,6 +54,7 @@ class SpecialistTrackingController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        getLocationPermission() // Permission to track
         storageButton()
         recordSessionColor()
     }
@@ -142,6 +148,35 @@ class SpecialistTrackingController: UIViewController {
         }
     }
     
+    // GPS Location Services
+    
+    func getLocationPermission() {
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    // Continuously gets the location of the user
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for _ in locations { // _ -> currentLocation
+            if let location: CLLocation = locationManager.location {
+                // Coordinate object
+                let coordinate: CLLocationCoordinate2D = location.coordinate
+                coords.append(coordinate)
+                // ... proceed with the location and coordinates
+                if (locationArray["lat"] == nil) {
+                    locationArray["lat"] = [coordinate.latitude]
+                    locationArray["long"] = [coordinate.longitude]
+                } else {
+                    locationArray["lat"]!.append(coordinate.latitude)
+                    locationArray["long"]!.append(coordinate.longitude)
+                }
+            }
+            // Looks like this when debugged (city bike ride):
+            // (Function): <+37.33144466,-122.03075535> +/- 30.00m
+            // (speed 6.01 mps / course 180.98) @ 3/13/20, 8:55:48 PM Pacific Daylight Time
+        }
+    }
+    
     /**
         Starts the gyroscope tracking, GPS location tracking, and pedometer object
         Assumes that location permissions and motion permissions have already been granted
@@ -150,6 +185,7 @@ class SpecialistTrackingController: UIViewController {
             - fileName: The name of the file that should be played
      */
     func startTracking() {
+        locationManager.startUpdatingLocation()
         startGyro()
         startUpdating()
     }
@@ -159,6 +195,7 @@ class SpecialistTrackingController: UIViewController {
         Assumes that the previously stated managers are running
      */
     func stopTracking() {
+        locationManager.stopUpdatingLocation()
         stopUpdating()
         stopGyros()
         saveData(currTime: Date())
@@ -237,11 +274,11 @@ class SpecialistTrackingController: UIViewController {
             maxDistance = distance
         }
         if (maxDistance != 0 && maxSteps != 0) {
-            points.append(SpecialistPoint(dateFormatter(), maxSteps, maxDistance,
-                                          avgPace, currPace, currCad, gyroDict))
+            points.append(Point(dateFormatter(), maxSteps, maxDistance,
+                                          avgPace, currPace, currCad, locationArray, gyroDict))
             
             // Clear the gyroscope data after getting its string representation
-            self.gyroDict.removeAll()
+            gyroDict.removeAll()
         }
     }
     

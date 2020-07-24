@@ -111,13 +111,11 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         if (buttonState == 1) {
             playSound("pause")
             trackingButton.setTitle("Resume", for: .normal)
-            viewer.backgroundColor = UIColor.red
             buttonState = 3
             toggleButton(trackingButton)
         } else {
             playSound("resume")
             trackingButton.setTitle("Pause", for: .normal)
-            viewer.backgroundColor = UIColor.green
             buttonState = 4
             toggleButton(trackingButton)
         }
@@ -176,7 +174,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)
-            viewer.backgroundColor = UIColor.white
             buttonState = 0
         case 3:
             stopTracking()
@@ -228,7 +225,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         locationManager.startUpdatingLocation()
         startGyro()
         startUpdating()
-        viewer.backgroundColor = UIColor.green
     }
     
     /**
@@ -240,7 +236,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         stopUpdating()
         stopGyros()
         saveData(currTime: Date())
-        viewer.backgroundColor = UIColor.red
     }
     
     func stopUpdating() { pedometer.stopUpdates() }

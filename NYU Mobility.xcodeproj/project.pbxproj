@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8524A09256C305841AA1670D /* Pods_NYU_Mobility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E3A246980BCEA3D50B26C6 /* Pods_NYU_Mobility.framework */; };
-		A12106DE24AD57130041704D /* SpecialistPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106DD24AD57130041704D /* SpecialistPoint.swift */; };
 		A12106E024AD5E3D0041704D /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106DF24AD5E3D0041704D /* StorageController.swift */; };
 		A12106E224AD6FE60041704D /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106E124AD6FE60041704D /* CardCell.swift */; };
 		A121D94C24958C9500F4F5DE /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D94B24958C9500F4F5DE /* FormController.swift */; };
@@ -73,7 +72,6 @@
 		67F38718495BDB4644470005 /* Pods-NYU Mobility.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYU Mobility.release.xcconfig"; path = "Target Support Files/Pods-NYU Mobility/Pods-NYU Mobility.release.xcconfig"; sourceTree = "<group>"; };
 		88E3A246980BCEA3D50B26C6 /* Pods_NYU_Mobility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NYU_Mobility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3B8AC87C898A479C45BC6C /* Pods-NYU Mobility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYU Mobility.debug.xcconfig"; path = "Target Support Files/Pods-NYU Mobility/Pods-NYU Mobility.debug.xcconfig"; sourceTree = "<group>"; };
-		A12106DD24AD57130041704D /* SpecialistPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistPoint.swift; sourceTree = "<group>"; };
 		A12106DF24AD5E3D0041704D /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		A12106E124AD6FE60041704D /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		A121D94B24958C9500F4F5DE /* FormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 			children = (
 				A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */,
 				A1FC5FF924853A25001DCCD5 /* Point.swift */,
-				A12106DD24AD57130041704D /* SpecialistPoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -531,7 +528,6 @@
 				A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */,
 				A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */,
 				A12106E024AD5E3D0041704D /* StorageController.swift in Sources */,
-				A12106DE24AD57130041704D /* SpecialistPoint.swift in Sources */,
 				A1DE764C24C3F85300D57B5F /* RecordTutorial.swift in Sources */,
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,

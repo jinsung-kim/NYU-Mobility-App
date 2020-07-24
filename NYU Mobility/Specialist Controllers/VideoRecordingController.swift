@@ -11,10 +11,12 @@ import AVKit
 import AVFoundation
 import CoreMotion
 import CoreData
+import CoreLocation
 
 // https://stackoverflow.com/questions/36536044/swift-video-to-document-directory
 
-class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDelegate {
+class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDelegate,
+                                CLLocationManagerDelegate {
     
     @IBOutlet weak var camPreview: UIView!
     
@@ -37,8 +39,13 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     private var maxDistance: Int32 = 0
     private var startTime: Date = Date()
     
+    // GPS Location Services
+    var coords: [CLLocationCoordinate2D] = []
+    private let locationManager: CLLocationManager = CLLocationManager()
+    private var locationArray: [String: [Double]] = ["long": [], "lat": []]
+    
     // Used for creating the JSON
-    var points: [SpecialistPoint] = []
+    var points: [Point] = []
     
     var sessions: [NSManagedObject] = []
     
@@ -304,6 +311,35 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         }
     }
     
+    // GPS Location Services
+    
+    func getLocationPermission() {
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    // Continuously gets the location of the user
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for _ in locations { // _ -> currentLocation
+            if let location: CLLocation = locationManager.location {
+                // Coordinate object
+                let coordinate: CLLocationCoordinate2D = location.coordinate
+                coords.append(coordinate)
+                // ... proceed with the location and coordinates
+                if (locationArray["lat"] == nil) {
+                    locationArray["lat"] = [coordinate.latitude]
+                    locationArray["long"] = [coordinate.longitude]
+                } else {
+                    locationArray["lat"]!.append(coordinate.latitude)
+                    locationArray["long"]!.append(coordinate.longitude)
+                }
+            }
+            // Looks like this when debugged (city bike ride):
+            // (Function): <+37.33144466,-122.03075535> +/- 30.00m
+            // (speed 6.01 mps / course 180.98) @ 3/13/20, 8:55:48 PM Pacific Daylight Time
+        }
+    }
+    
     // Pedometer Tracking
     
     /**
@@ -391,8 +427,9 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             maxDistance = distance
         }
         if (maxDistance != 0 && maxSteps != 0) {
-            points.append(SpecialistPoint(dateFormatter(), maxSteps, maxDistance,
-                                          avgPace, currPace, currCad, gyroDict))
+            points.append(Point(dateFormatter(), maxSteps, maxDistance,
+                                          avgPace, currPace, currCad,
+                                          locationArray, gyroDict))
             
             // Clear the gyroscope data after getting its string representation
             self.gyroDict.removeAll()
