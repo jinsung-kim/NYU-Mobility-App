@@ -18,8 +18,8 @@ class CodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
-        buttonConstraints()
-        codeLabel.text = getCode()
+        self.buttonConstraints()
+        codeLabel.text = self.getCode()
     }
     
     func buttonConstraints() {

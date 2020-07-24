@@ -96,12 +96,13 @@ class ClientController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    // Once the user hits the register button, all of the boxes that they filled will be saved
     @IBAction func registered(_ sender: Any) {
-        save("email", specialistEmail.text!)
-        save("username", username.text!)
-        save("password", password.text!)
-        save("name", fullName.text!)
-        save("code", specialistCode.text!)
+        self.save("email", specialistEmail.text!)
+        self.save("username", username.text!)
+        self.save("password", password.text!)
+        self.save("name", fullName.text!)
+        self.save("code", specialistCode.text!)
     }
     
     func save(_ key: String, _ value: String) {

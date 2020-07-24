@@ -21,7 +21,7 @@ class RegistrationController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.skipRegistration()
-        buttonConstraints()
+        self.buttonConstraints()
     }
     
     func buttonConstraints() {
@@ -56,7 +56,6 @@ class RegistrationController: UIViewController {
     @IBAction func specialistMode(_ sender: Any) {
         self.setMode("specialist")
     }
-    
     
     func skipRegistration() {
         if (self.getRegistered() && self.getMode() == "client") {

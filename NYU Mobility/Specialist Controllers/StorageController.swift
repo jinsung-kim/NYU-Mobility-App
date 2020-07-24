@@ -24,9 +24,34 @@ class StorageController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        logoutButton()
         self.tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
         customTableView.delegate = self
         customTableView.dataSource = self
+    }
+    
+    // Upper right item from the tracking controller that goes to the settings
+    func logoutButton() {
+        let logout = UIBarButtonItem()
+        logout.title = "Logout"
+        logout.action = #selector(logoutTap)
+        logout.target = self
+        self.navigationItem.rightBarButtonItem = logout
+    }
+    
+    // Redirects to registration page
+    @objc func logoutTap() {
+        self.save("email", "")
+        self.save("username", "")
+        self.save("password", "")
+        self.save("name", "")
+        self.save("code", "")
+        self.performSegue(withIdentifier: "LoggingOut", sender: self)
+    }
+    
+    func save(_ key: String, _ value: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(value, forKey: key)
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,

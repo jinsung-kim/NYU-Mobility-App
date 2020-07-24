@@ -216,6 +216,7 @@
                         <outlet property="customTableView" destination="Le5-LQ-lSh" id="8Cq-a4-878"/>
                         <segue destination="luT-WJ-P1P" kind="show" identifier="replayVideo" id="I4Z-UT-MvB"/>
                         <segue destination="juY-8l-hmP" kind="show" identifier="showDetails" id="sva-AB-wJU"/>
+                        <segue destination="KlD-4C-DQe" kind="show" identifier="LoggingOut" id="bQH-2y-5Zr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amc-ES-Ezc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -230,45 +231,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOx-jo-SY4">
-                                <rect key="frame" x="97.666666666666686" y="98" width="180" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOx-jo-SY4">
+                                <rect key="frame" x="97.666666666666686" y="118" width="180" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step Count: \(total step count)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AH-vo-Sfh">
-                                <rect key="frame" x="43.666666666666657" y="148" width="288" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step Count: \(total step count)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AH-vo-Sfh">
+                                <rect key="frame" x="56.333333333333343" y="232" width="262.66666666666663" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Distance: \(distance travel)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd6-ic-9CB">
-                                <rect key="frame" x="34.666666666666657" y="195" width="306" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Distance: \(distance travel)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd6-ic-9CB">
+                                <rect key="frame" x="48" y="286" width="279.33333333333331" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time of Session: \(time)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="dsJ-6a-MHR">
+                                <rect key="frame" x="84.333333333333329" y="178" width="206.66666666666669" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.33066866639999998" green="0.118582416" blue="0.57703403559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="cd6-ic-9CB" firstAttribute="top" secondItem="5AH-vo-Sfh" secondAttribute="bottom" constant="20" id="VQa-pW-MI2"/>
-                            <constraint firstItem="cd6-ic-9CB" firstAttribute="centerX" secondItem="0Rs-WL-Q56" secondAttribute="centerX" id="bff-EA-RnG"/>
-                            <constraint firstItem="LOx-jo-SY4" firstAttribute="top" secondItem="zLt-hO-B3Z" secondAttribute="top" constant="10" id="cC6-Vg-FjP"/>
+                            <constraint firstItem="cd6-ic-9CB" firstAttribute="top" secondItem="5AH-vo-Sfh" secondAttribute="bottom" constant="30" id="2Gq-vm-351"/>
+                            <constraint firstItem="5AH-vo-Sfh" firstAttribute="top" secondItem="dsJ-6a-MHR" secondAttribute="bottom" constant="30" id="Dc4-MT-CbI"/>
+                            <constraint firstItem="cd6-ic-9CB" firstAttribute="centerX" secondItem="0Rs-WL-Q56" secondAttribute="centerX" id="Di1-1l-r9b"/>
+                            <constraint firstItem="dsJ-6a-MHR" firstAttribute="top" secondItem="LOx-jo-SY4" secondAttribute="bottom" constant="30" id="WSH-5S-FKy"/>
                             <constraint firstItem="LOx-jo-SY4" firstAttribute="centerX" secondItem="0Rs-WL-Q56" secondAttribute="centerX" id="enP-sa-0tj"/>
-                            <constraint firstItem="5AH-vo-Sfh" firstAttribute="centerX" secondItem="0Rs-WL-Q56" secondAttribute="centerX" id="jtr-eG-KrQ"/>
-                            <constraint firstItem="5AH-vo-Sfh" firstAttribute="top" secondItem="LOx-jo-SY4" secondAttribute="bottom" constant="20" id="kf7-0P-VMB"/>
+                            <constraint firstItem="LOx-jo-SY4" firstAttribute="top" secondItem="zLt-hO-B3Z" secondAttribute="top" constant="30" id="fZ9-G0-qLp"/>
+                            <constraint firstItem="dsJ-6a-MHR" firstAttribute="centerX" secondItem="0Rs-WL-Q56" secondAttribute="centerX" id="gc4-EO-vAy"/>
+                            <constraint firstItem="5AH-vo-Sfh" firstAttribute="centerX" secondItem="0Rs-WL-Q56" secondAttribute="centerX" id="lZg-VW-sPD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zLt-hO-B3Z"/>
                     </view>
                     <navigationItem key="navigationItem" id="TQs-12-CTI"/>
                     <connections>
-                        <outlet property="distance" destination="cd6-ic-9CB" id="5UF-HX-KaJ"/>
-                        <outlet property="stepCount" destination="cd6-ic-9CB" id="rvw-xE-nTj"/>
+                        <outlet property="distanceLabel" destination="cd6-ic-9CB" id="ihd-QI-gCa"/>
+                        <outlet property="sessionLengthLabel" destination="dsJ-6a-MHR" id="3DZ-yC-TtP"/>
+                        <outlet property="stepCountLabel" destination="5AH-vo-Sfh" id="ETu-Sw-xMn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLd-I2-koa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4216.8000000000002" y="-240.14778325123154"/>
+        </scene>
+        <!--Registration-->
+        <scene sceneID="ow5-1U-mBB">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Registration" storyboardName="Registration" referencedIdentifier="Registration" id="KlD-4C-DQe" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="TaF-ge-inw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JXr-9a-fTa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3028" y="-699"/>
         </scene>
         <!--Navigation-->
         <scene sceneID="btQ-k8-vaE">

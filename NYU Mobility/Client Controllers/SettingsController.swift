@@ -68,14 +68,17 @@ class SettingsController: UITableViewController {
                         inputPlaceholder: "Email: ",
                         inputKeyboardType: .emailAddress)
         { (input: String?) in
-            self.saveEmail(input!)
+            self.save("email", input!)
         }
     }
     
-    // Logs out of the current system
+    // Logs out of the current system -> Deletes all of their saved variables
     @IBAction func logoutPressed(_ sender: Any) {
-        self.saveEmail("")
-        self.saveName("")
+        self.save("email", "")
+        self.save("username", "")
+        self.save("password", "")
+        self.save("name", "")
+        self.save("code", "")
     }
     
     // Updates all of the labels as necessary, based on what the user has already inputted
@@ -164,14 +167,9 @@ class SettingsController: UITableViewController {
         return email!
     }
     
-    func saveEmail(_ email: String) {
+    func save(_ key: String, _ value: String) {
         let defaults = UserDefaults.standard
-        defaults.set(email, forKey: "email")
-    }
-    
-    func saveName(_ name: String) {
-        let defaults = UserDefaults.standard
-        defaults.set(name, forKey: "name")
+        defaults.set(value, forKey: key)
     }
     
     // State Functionality:
