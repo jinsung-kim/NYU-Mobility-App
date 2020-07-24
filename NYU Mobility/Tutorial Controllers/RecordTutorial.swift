@@ -10,7 +10,7 @@ import UIKit
 
 class RecordTutorial: UIViewController {
     
-    @IBOutlet weak var nextButton: CustomAdd!
+    @IBOutlet weak var nextButton: CustomButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

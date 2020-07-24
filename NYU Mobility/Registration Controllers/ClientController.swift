@@ -12,14 +12,14 @@ import Device
 class ClientController: UIViewController, UITextFieldDelegate {
     
     // Text fields
-    @IBOutlet weak var fullName: CustomText!
-    @IBOutlet weak var specialistEmail: CustomText!
-    @IBOutlet weak var specialistCode: CustomText!
-    @IBOutlet weak var username: CustomText!
-    @IBOutlet weak var password: CustomText!
-    
-    @IBOutlet weak var registerButton: CustomAdd!
-    @IBOutlet weak var loginRedirect: CustomAdd!
+    @IBOutlet weak var fullName: CustomTextField!
+    @IBOutlet weak var username: CustomTextField!
+    @IBOutlet weak var password: CustomTextField!
+    @IBOutlet weak var specialistEmail: CustomTextField!
+    @IBOutlet weak var specialistCode: CustomTextField!
+
+    @IBOutlet weak var registerButton: CustomButton!
+    @IBOutlet weak var loginRedirect: CustomButton!
     
     var last: UITextField?
     
@@ -71,7 +71,7 @@ class ClientController: UIViewController, UITextFieldDelegate {
                                                   object: nil)
     }
     
-    @IBAction func keyboardStays(_ sender: CustomText) {
+    @IBAction func keyboardStays(_ sender: CustomTextField) {
         last = sender
     }
     

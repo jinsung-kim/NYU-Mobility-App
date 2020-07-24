@@ -12,11 +12,10 @@ import Device
 class LoginController: UIViewController {
     
     // Text fields to fill up
-    @IBOutlet weak var username: CustomText!
-    @IBOutlet weak var password: CustomText!
+    @IBOutlet weak var username: CustomTextField!
+    @IBOutlet weak var password: CustomTextField!
     
-    // Login Button
-    @IBOutlet weak var loginButton: CustomAdd!
+    @IBOutlet weak var loginButton: CustomButton!
     
     var last: UITextField?
 

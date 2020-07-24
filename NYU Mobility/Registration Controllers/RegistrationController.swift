@@ -12,10 +12,10 @@ import Device
 class RegistrationController: UIViewController {
     
     // Client button
-    @IBOutlet weak var clientButton: CustomAdd!
+    @IBOutlet weak var clientButton: CustomButton!
     
     // Specialist button
-    @IBOutlet weak var specialistButton: CustomAdd!
+    @IBOutlet weak var specialistButton: CustomButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

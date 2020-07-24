@@ -33,10 +33,8 @@
 		A141FCD524816E5C00A3433D /* stop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD024816E5C00A3433D /* stop.mp3 */; };
 		A141FCD624816E5C00A3433D /* start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A141FCD124816E5C00A3433D /* start.mp3 */; };
 		A144240C24C7DB25004EE00F /* ShowDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A144240B24C7DB25004EE00F /* ShowDetailController.swift */; };
-		A14985E624B5312700331B7C /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14985E524B5312700331B7C /* CustomText.swift */; };
 		A14985E824B6A8B800331B7C /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14985E724B6A8B800331B7C /* CodeViewController.swift */; };
 		A14985EA24B7823300331B7C /* PickUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14985E924B7823300331B7C /* PickUserController.swift */; };
-		A16DE4AC2497E35A008777CD /* CustomAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DE4AB2497E35A008777CD /* CustomAdd.swift */; };
 		A16DE4B02497E4B8008777CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DE4AF2497E4B8008777CD /* Constants.swift */; };
 		A188675B24B7E42C007B6DE9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A188675A24B7E42C007B6DE9 /* UserCell.swift */; };
 		A188675F24BD280C007B6DE9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A188675E24BD280C007B6DE9 /* LoginController.swift */; };
@@ -48,6 +46,8 @@
 		A1DE764E24C3FAF000D57B5F /* RecordColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE764D24C3FAF000D57B5F /* RecordColors.swift */; };
 		A1F002B624AC21340030E2F5 /* Specialist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F002B524AC21340030E2F5 /* Specialist.storyboard */; };
 		A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */; };
+		A1F0993924CB6066003C092D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F0993824CB6066003C092D /* CustomButton.swift */; };
+		A1F0993B24CB608A003C092D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F0993A24CB608A003C092D /* CustomTextField.swift */; };
 		A1F66C04248F0A840055DBAD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F66C03248F0A840055DBAD /* MapViewController.swift */; };
 		A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC5FF924853A25001DCCD5 /* Point.swift */; };
 /* End PBXBuildFile section */
@@ -104,10 +104,8 @@
 		A141FCD024816E5C00A3433D /* stop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stop.mp3; sourceTree = "<group>"; };
 		A141FCD124816E5C00A3433D /* start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = start.mp3; sourceTree = "<group>"; };
 		A144240B24C7DB25004EE00F /* ShowDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailController.swift; sourceTree = "<group>"; };
-		A14985E524B5312700331B7C /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
 		A14985E724B6A8B800331B7C /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		A14985E924B7823300331B7C /* PickUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUserController.swift; sourceTree = "<group>"; };
-		A16DE4AB2497E35A008777CD /* CustomAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAdd.swift; sourceTree = "<group>"; };
 		A16DE4AF2497E4B8008777CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A188675A24B7E42C007B6DE9 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		A188675E24BD280C007B6DE9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -119,6 +117,8 @@
 		A1DE764D24C3FAF000D57B5F /* RecordColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordColors.swift; sourceTree = "<group>"; };
 		A1F002B524AC21340030E2F5 /* Specialist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Specialist.storyboard; sourceTree = "<group>"; };
 		A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistTrackingController.swift; sourceTree = "<group>"; };
+		A1F0993824CB6066003C092D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		A1F0993A24CB608A003C092D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		A1F66C03248F0A840055DBAD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A1FC5FF924853A25001DCCD5 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,14 +166,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A114729824840DCF0043B04B /* Data Model */ = {
+		A114729824840DCF0043B04B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				A141FCA024814B7D00A3433D /* NYU_Mobility.xcdatamodeld */,
 				A1FC5FF924853A25001DCCD5 /* Point.swift */,
 				A12106DD24AD57130041704D /* SpecialistPoint.swift */,
 			);
-			path = "Data Model";
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A1366EC124AB84D400B1FA57 /* Registration Controllers */ = {
@@ -213,12 +213,13 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
+				A1F0993724CB448C003C092D /* UI */,
 				A1DE764A24C3F83D00D57B5F /* Tutorial Controllers */,
 				A141FCD824816F6500A3433D /* Client Controllers */,
 				A1F002B724AC23DE0030E2F5 /* Specialist Controllers */,
 				A1366EC124AB84D400B1FA57 /* Registration Controllers */,
 				A141FCCA24814E6900A3433D /* Storyboards */,
-				A114729824840DCF0043B04B /* Data Model */,
+				A114729824840DCF0043B04B /* Models */,
 				A16DE4AA2497E340008777CD /* Custom */,
 				A141FCCC24816E1D00A3433D /* Sound */,
 				A141FC9724814B7C00A3433D /* AppDelegate.swift */,
@@ -287,10 +288,7 @@
 		A16DE4AA2497E340008777CD /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				A16DE4AB2497E35A008777CD /* CustomAdd.swift */,
-				A16DE4AF2497E4B8008777CD /* Constants.swift */,
 				A12106E124AD6FE60041704D /* CardCell.swift */,
-				A14985E524B5312700331B7C /* CustomText.swift */,
 				A188675A24B7E42C007B6DE9 /* UserCell.swift */,
 			);
 			path = Custom;
@@ -316,6 +314,16 @@
 				A144240B24C7DB25004EE00F /* ShowDetailController.swift */,
 			);
 			path = "Specialist Controllers";
+			sourceTree = "<group>";
+		};
+		A1F0993724CB448C003C092D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A16DE4AF2497E4B8008777CD /* Constants.swift */,
+				A1F0993824CB6066003C092D /* CustomButton.swift */,
+				A1F0993A24CB608A003C092D /* CustomTextField.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,11 +513,13 @@
 			files = (
 				A144240C24C7DB25004EE00F /* ShowDetailController.swift in Sources */,
 				A141FC9C24814B7C00A3433D /* TrackingController.swift in Sources */,
+				A1F0993924CB6066003C092D /* CustomButton.swift in Sources */,
 				A14985E824B6A8B800331B7C /* CodeViewController.swift in Sources */,
 				A1DE764724C3ABEB00D57B5F /* VideoPlaybackController.swift in Sources */,
 				A1F66C04248F0A840055DBAD /* MapViewController.swift in Sources */,
 				A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */,
 				A13FEA1B2491CE8800A4904F /* SettingsController.swift in Sources */,
+				A1F0993B24CB608A003C092D /* CustomTextField.swift in Sources */,
 				A14985EA24B7823300331B7C /* PickUserController.swift in Sources */,
 				A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */,
 				A1DE764E24C3FAF000D57B5F /* RecordColors.swift in Sources */,
@@ -518,7 +528,6 @@
 				A16DE4B02497E4B8008777CD /* Constants.swift in Sources */,
 				A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */,
 				A188675F24BD280C007B6DE9 /* LoginController.swift in Sources */,
-				A16DE4AC2497E35A008777CD /* CustomAdd.swift in Sources */,
 				A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */,
 				A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */,
 				A12106E024AD5E3D0041704D /* StorageController.swift in Sources */,
@@ -527,7 +536,6 @@
 				A141FC9A24814B7C00A3433D /* SceneDelegate.swift in Sources */,
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,
 				A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */,
-				A14985E624B5312700331B7C /* CustomText.swift in Sources */,
 				A188675B24B7E42C007B6DE9 /* UserCell.swift in Sources */,
 				A141D93D24BD5F2D00384C38 /* VideoRecordingController.swift in Sources */,
 			);

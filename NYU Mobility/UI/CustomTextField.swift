@@ -1,5 +1,5 @@
 //
-//  CustomText.swift
+//  CustomTextField.swift
 //  NYU Mobility
 //
 //  Created by Jin Kim on 7/7/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomText: UITextField {
+class CustomTextField: UITextField {
     
     // Called
     override init(frame: CGRect) {

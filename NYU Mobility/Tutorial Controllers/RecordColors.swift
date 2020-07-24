@@ -10,7 +10,7 @@ import UIKit
 
 class RecordColors: UIViewController {
     
-    @IBOutlet weak var startButton: CustomAdd!
+    @IBOutlet weak var startButton: CustomButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

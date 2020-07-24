@@ -30,7 +30,7 @@ The camera should be facing away from you.</string>
                                     <constraint firstAttribute="height" constant="300" id="tNH-Gj-DvK"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmi-pg-Iai" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmi-pg-Iai" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
                                 <rect key="frame" x="188" y="792" width="38" height="30"/>
                                 <state key="normal" title="Got it"/>
                                 <connections>
@@ -116,7 +116,7 @@ The camera should be facing away from you.</string>
                     </view>
                     <navigationItem key="navigationItem" title="How to Wear" id="b8l-jd-IHF"/>
                     <connections>
-                        <outlet property="nextButton" destination="Fmi-pg-Iai" id="8dD-Ch-2lW"/>
+                        <outlet property="nextButton" destination="Fmi-pg-Iai" id="b4G-gj-VBN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugv-lQ-5hW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -131,7 +131,7 @@ The camera should be facing away from you.</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjw-Kx-OF1" customClass="CustomAdd" customModule="NYU_Mobility" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjw-Kx-OF1" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
                                 <rect key="frame" x="164" y="792" width="86" height="30"/>
                                 <state key="normal" title="Let's Record"/>
                                 <connections>
@@ -282,7 +282,7 @@ The camera should be facing away from you.</string>
                     </view>
                     <navigationItem key="navigationItem" title="How to Record" id="cKk-fW-29f"/>
                     <connections>
-                        <outlet property="startButton" destination="jjw-Kx-OF1" id="2dY-ds-J6Y"/>
+                        <outlet property="startButton" destination="jjw-Kx-OF1" id="cFI-NM-0lb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I4T-dF-CLP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

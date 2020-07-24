@@ -13,14 +13,14 @@ import CoreData
 class FormController: UIViewController, UITextFieldDelegate {
     
     // Add button
-    @IBOutlet weak var addButton: CustomAdd!
+//    @IBOutlet weak var addButton: CustomButton!
+    @IBOutlet weak var addButton: CustomButton!
     
-    // Text fields (In order of appearance)
-    @IBOutlet weak var name: CustomText!
-    @IBOutlet weak var street: CustomText!
-    @IBOutlet weak var city: CustomText!
-    @IBOutlet weak var state: CustomText!
-    @IBOutlet weak var zip: CustomText!
+    @IBOutlet weak var name: CustomTextField!
+    @IBOutlet weak var street: CustomTextField!
+    @IBOutlet weak var city: CustomTextField!
+    @IBOutlet weak var state: CustomTextField!
+    @IBOutlet weak var zip: CustomTextField!
     
     var last: UITextField?
     
@@ -61,7 +61,7 @@ class FormController: UIViewController, UITextFieldDelegate {
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @IBAction func keyboardStays(_ sender: UITextField) {
+    @IBAction func keyboardStays(_ sender: CustomTextField) {
         last = sender
     }
     

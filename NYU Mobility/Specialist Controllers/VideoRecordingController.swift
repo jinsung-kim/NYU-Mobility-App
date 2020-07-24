@@ -182,19 +182,40 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         self.startRecording()
     }
     
+    // Gets the directory that the video is stored in
     func getPathDirectory() -> URL {
         // Searches a FileManager for paths and returns the first one
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentDirectory = paths[0]
-        
         return documentDirectory
     }
 
     func generateURL() -> URL? {
         let path = self.getPathDirectory().appendingPathComponent(NSUUID().uuidString + ".mp4")
-        let videoData = NSData(contentsOf: path)
-        videoData?.write(to: path, atomically: true)
         return path
+    }
+    
+    /**
+        Takes the generated local URL from the directory and saves it to a downloaded path url
+            - Parameters:
+                - url: URL address path
+     */
+    func downloadVideo(_ url: URL) {
+        let downloadTask = URLSession.shared.downloadTask(with: url) {
+            urlOrNil, responseOrNil, errorOrNil in
+            guard let fileURL = urlOrNil else { return }
+            do {
+                let documentsURL = try
+                    FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+                                            appropriateFor: nil, create: false)
+                let savedURL = documentsURL.appendingPathComponent(fileURL.lastPathComponent)
+                try FileManager.default.moveItem(at: fileURL, to: savedURL)
+                self.outputURL = savedURL
+            } catch {
+                print ("Error Code: \(error)")
+            }
+        }
+        downloadTask.resume()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -244,13 +265,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     func stopRecording() {
         if (self.movieOutput.isRecording == true) {
             self.cameraButton.backgroundColor = UIColor.white
-            // TESTING
-            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let destinationURL = documentsDirectoryURL.appendingPathComponent("\(UUID().uuidString).mp4")
-            do {
-                try FileManager.default.moveItem(at: self.outputURL!, to: destinationURL)
-                self.outputURL = destinationURL
-            } catch let error as NSError { print(error.localizedDescription) }
             self.movieOutput.stopRecording()
             self.stopTracking()
             self.savePoint()
@@ -267,8 +281,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         if (error != nil) {
             print("Error recording movie: \(error!.localizedDescription)")
         } else {
-            let videoRecorded = self.outputURL! as URL
-            self.performSegue(withIdentifier: "showVideo", sender: videoRecorded)
+            self.downloadVideo(self.outputURL!) // Testing
+            self.performSegue(withIdentifier: "showVideo", sender: self.outputURL!)
         }
     }
     

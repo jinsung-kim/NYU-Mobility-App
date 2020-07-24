@@ -12,15 +12,15 @@ import Device
 class SpecialistController: UIViewController {
     
     // Text fields to fill up
-    @IBOutlet weak var name: CustomText!
-    @IBOutlet weak var email: CustomText!
-    @IBOutlet weak var username: CustomText!
-    @IBOutlet weak var password: CustomText!
+    @IBOutlet weak var name: CustomTextField!
+    @IBOutlet weak var username: CustomTextField!
+    @IBOutlet weak var password: CustomTextField!
+    @IBOutlet weak var email: CustomTextField!
     
     // Register button
-    @IBOutlet weak var registerButton: CustomAdd!
-    // Login instead button
-    @IBOutlet weak var loginRedirect: CustomAdd!
+    @IBOutlet weak var registerButton: CustomButton!
+    // Login instead -> redirect
+    @IBOutlet weak var loginRedirect: CustomButton!
     
     var last: UITextField?
 

@@ -1,5 +1,5 @@
 //
-//  CustomAdd.swift
+//  CustomButton.swift
 //  NYU Mobility
 //
 //  Created by Jin Kim on 6/15/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomAdd: UIButton {
+class CustomButton: UIButton {
     
     // Called
     override init(frame: CGRect) {
