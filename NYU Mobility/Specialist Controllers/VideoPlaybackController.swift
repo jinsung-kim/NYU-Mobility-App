@@ -7,14 +7,23 @@
 //
 
 import UIKit
+import CoreData
 import AVFoundation
+import SwiftyJSON // Used to extract JSON information throughout the video playback
 
 class VideoPlaybackController: UIViewController {
     
     let avPlayer = AVPlayer()
     var avPlayerLayer: AVPlayerLayer!
     
+    var session: NSManagedObject!
     var videoURL: URL!
+    
+    var sessionLength: String = ""
+    var stepCount: Int = 0
+    var distance: Int = 0
+    
+    var results: JSON? = nil
     
     @IBOutlet weak var videoView: UIView!
     
@@ -28,9 +37,47 @@ class VideoPlaybackController: UIViewController {
         
         view.layoutIfNeeded()
         
-        let playerItem = AVPlayerItem(url: self.videoURL as URL)
+        videoURL = generateURL()
+        let playerItem = AVPlayerItem(url: videoURL!)
         avPlayer.replaceCurrentItem(with: playerItem)
         
         avPlayer.play()
     }
+    
+    // Gets the directory that the video is stored in
+    func getPathDirectory() -> URL {
+        // Searches a FileManager for paths and returns the first one
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = paths[0]
+        return documentDirectory
+    }
+
+    func generateURL() -> URL? {
+        let path = getPathDirectory().appendingPathComponent(session.value(forKey: "videoURL") as! String)
+        return path
+    }
+    
+    /**
+        Looks at the results of the JSON conversion and extracts information for the labels
+     */
+    func extractInformation() {
+        // Session was not long enough to be considered a session or
+        // no significant data was collected
+        if (results!.count < 2) {
+            return
+        }
+        // Precondition: There is sufficient data to be collected + sorted + evaluated
+        
+        // Gets the start and end time to get time difference
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        let startTime = formatter.date(from: results![0]["time"].string!)
+        let endTime = formatter.date(from: results![results!.count - 1]["time"].string!)
+        
+        sessionLength = getTimeDifference(startTime!, endTime!)
+        distance = results![results!.count - 1]["distance"].int!
+        stepCount = results![results!.count - 1]["steps"].int!
+    }
+    
+    
 }

@@ -36,8 +36,6 @@
 	<string>Your location is needed to track where you go</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is needed to see where you go</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Your microphone is needed to hear instructions</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Your motion will be used to track your progress</string>
 	<key>UIApplicationSceneManifest</key>

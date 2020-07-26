@@ -15,10 +15,19 @@ class CardCell: UITableViewCell {
     
     // Start time label
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var videoAvailableLabel: UILabel!
     
-    func configure(date: Date) {
+    func configure(date: Date, video: String) {
         // Setting Labels to update recording information
         timeLabel.text = "Session Started: \(dateFormatter(date))"
+        
+        if (video == "") {
+            videoAvailableLabel.text = ""
+        } else {
+            videoAvailableLabel.text = "📷" // indicates that there is a video to be played
+        }
+        
+        videoAvailableLabel.textColor = UIColor.black
         timeLabel.textColor = Colors.black
         
         // Fitting the text to the labels

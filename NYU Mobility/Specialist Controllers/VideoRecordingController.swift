@@ -27,6 +27,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     var previewLayer: AVCaptureVideoPreviewLayer!
     var activeInput: AVCaptureDeviceInput!
     var outputURL: URL!
+    var saved: String = ""
     
     // Movement tracking managers (copied from SpecialistTrackingController.swift
     
@@ -186,37 +187,15 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
 
     func generateURL() -> URL? {
-        let path = getPathDirectory().appendingPathComponent(NSUUID().uuidString + ".mp4")
+        saved = NSUUID().uuidString + ".mp4"
+        let path = getPathDirectory().appendingPathComponent(saved)
         return path
-    }
-    
-    /**
-        Takes the generated local URL from the directory and saves it to a downloaded path url
-            - Parameters:
-                - url: URL address path
-     */
-    func downloadVideo(_ url: URL) {
-        let downloadTask = URLSession.shared.downloadTask(with: url) {
-            urlOrNil, responseOrNil, errorOrNil in
-            guard let fileURL = urlOrNil else { return }
-            do {
-                let documentsURL = try
-                    FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
-                                            appropriateFor: nil, create: false)
-                let savedURL = documentsURL.appendingPathComponent(fileURL.lastPathComponent)
-                try FileManager.default.moveItem(at: fileURL, to: savedURL)
-                self.outputURL = savedURL
-            } catch {
-                print ("Error Code: \(error)")
-            }
-        }
-        downloadTask.resume()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showVideo") { // going to video playback controller
             let vc = segue.destination as! VideoPlaybackController
-            vc.videoURL = sender as? URL
+            vc.session = sessions[sessions.count - 1]
         }
     }
     
@@ -249,7 +228,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
                 }
             }
             
-            outputURL = self.generateURL()
+            outputURL = generateURL()
             movieOutput.startRecording(to: outputURL!, recordingDelegate: self)
             
         } else {
@@ -276,7 +255,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         if (error != nil) {
             print("Error recording movie: \(error!.localizedDescription)")
         } else {
-            downloadVideo(outputURL!) // Testing
             performSegue(withIdentifier: "showVideo", sender: outputURL!)
         }
     }
@@ -416,8 +394,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         }
         if (maxDistance != 0 && maxSteps != 0) {
             points.append(Point(dateFormatter(), maxSteps, maxDistance,
-                                          avgPace, currPace, currCad,
-                                          locationArray, gyroDict))
+                                avgPace, currPace, currCad,
+                                locationArray, gyroDict))
             
             // Clear the gyroscope data after getting its string representation
             self.gyroDict.removeAll()
@@ -450,7 +428,10 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         session.setValue(generateJSON(), forKeyPath: "json")
         session.setValue(startTime, forKeyPath: "startTime")
         session.setValue(name!, forKeyPath: "user")
-        session.setValue(outputURL!.absoluteString, forKeyPath: "videoURL")
+        
+        // Saving the necessary portion of the URL to be played in the future due to sandboxing
+        // See generateURL() to see 'saved' file name + extension
+        session.setValue(saved, forKeyPath: "videoURL")
         
         do {
             try managedContext.save()
@@ -491,6 +472,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
     
     // Stops the gyroscope (assuming that it is available)
-    func stopGyros() { self.motionManager.stopGyroUpdates() }
+    func stopGyros() { motionManager.stopGyroUpdates() }
     
 }

@@ -16,6 +16,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
     @IBOutlet weak var trackingButton: UIButton!
     @IBOutlet weak var recordSessionButton: UIButton!
     @IBOutlet var viewer: UIView!
+    @IBOutlet weak var circleView: UIView!
     
     var name: String?
     
@@ -54,6 +55,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        createCircleView()
         getLocationPermission() // Permission to track
         storageButton()
         recordSessionColor()
@@ -69,8 +71,13 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         navigationItem.rightBarButtonItem = storageButton
     }
     
+    func createCircleView() {
+        circleView.layer.cornerRadius = 120 // half the width / height
+        circleView.backgroundColor = Colors.nyuPurple
+    }
+    
     func recordSessionColor() {
-        recordSessionButton.backgroundColor = UIColor.red
+        recordSessionButton.backgroundColor = Colors.nyuPurple
     }
     
     @objc func sessionsTap() {

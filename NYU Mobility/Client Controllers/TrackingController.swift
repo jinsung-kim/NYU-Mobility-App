@@ -15,8 +15,8 @@ import MessageUI // Used to send emails
 
 class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate {
     
-    // What is used to change color
     @IBOutlet var viewer: UIView!
+    @IBOutlet weak var circleView: UIView!
     
     // Button used to change states
     @IBOutlet weak var trackingButton: UIButton!
@@ -62,14 +62,15 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true // Screen will not be put to sleep
         navigationItem.setHidesBackButton(true, animated: false)
-        viewer.backgroundColor = Colors.nyuPurple
+        createCircleView()
         settingsButton() // The right side button
         getLocationPermission() // Permission to track
         enableDoubleTap() // Double tap feature
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        viewer.backgroundColor = Colors.nyuPurple
+    func createCircleView() {
+        circleView.layer.cornerRadius = 120 // half the width / height
+        circleView.backgroundColor = Colors.nyuPurple
     }
     
     // Used to send over data to MapView Controller to read out results
@@ -169,7 +170,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             sender.setTitle("Reset", for: .normal)
             buttonState = 2
         case 2:
-            self.performSegue(withIdentifier: "MapViewSegue", sender: self)
+//            self.performSegue(withIdentifier: "MapViewSegue", sender: self) // Not redirecting to the map view anymore
             sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
             clearData()
             playSound("reset")

@@ -64,7 +64,7 @@ class StorageController: UITableViewController {
         // Replays the video for the session previously recorded
         if (segue.destination is VideoPlaybackController) {
             let vc = segue.destination as? VideoPlaybackController
-            vc?.videoURL = URL(string: sessions[map[tappedIndex]].value(forKey: "videoURL") as! String)
+            vc?.session = sessions[map[tappedIndex]]
         // Shows a summary of the session
         } else {
             let vc = segue.destination as? ShowDetailController
@@ -122,7 +122,8 @@ class StorageController: UITableViewController {
         
         // Getting the contents of the selected row
         // See CardCell.swift in Custom group
-        cell.configure(date: filter[indexPath.row].value(forKey: "startTime") as! Date)
+        cell.configure(date: filter[indexPath.row].value(forKey: "startTime") as! Date,
+                       video: filter[indexPath.row].value(forKey: "videoURL") as! String)
         
         return cell
     }
@@ -159,6 +160,8 @@ class StorageController: UITableViewController {
             // delete within filtered list as well
             filter.remove(at: indexPath.row)
             
+            deletingLocalCacheAttachments()
+            
             do {
                 try context.save()
                 customTableView.deleteRows(at: [indexPath], with: .fade)
@@ -166,6 +169,22 @@ class StorageController: UITableViewController {
                 print("Error Deleting")
             }
             customTableView.reloadData()
+        }
+    }
+    
+    // Deletes all of the videos
+    func deletingLocalCacheAttachments() {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            if fileURLs.count > 0 {
+                for fileURL in fileURLs {
+                    try fileManager.removeItem(at: fileURL)
+                }
+            }
+        } catch {
+            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
         }
     }
 }

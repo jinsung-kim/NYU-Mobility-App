@@ -18,6 +18,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqU-Mb-rmQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCy-nF-cel">
+                                        <rect key="frame" x="67.666666666666686" y="245" width="240" height="240"/>
+                                        <color key="backgroundColor" red="0.33066866639999998" green="0.118582416" blue="0.57703403559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="240" id="Ky1-w2-DQt"/>
+                                            <constraint firstAttribute="width" constant="240" id="wXH-fN-BGh"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwI-Ls-0cO">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="732"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
@@ -38,8 +46,15 @@
                                             <segue destination="M4u-GQ-mp9" kind="show" identifier="RecordSession" id="ugx-aO-DP4"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oandmicon" translatesAutoresizingMaskIntoConstraints="NO" id="Igl-gG-d6n">
+                                        <rect key="frame" x="227" y="604" width="128" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="aZ0-4Q-48X"/>
+                                            <constraint firstAttribute="width" constant="128" id="q80-Ze-bjP"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.33066866639999998" green="0.118582416" blue="0.57703403559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="nwI-Ls-0cO" secondAttribute="bottom" constant="80" id="6wO-gQ-hbK" customClass="NSLayoutHelper" customModule="LayoutHelper">
                                         <userDefinedRuntimeAttributes>
@@ -64,15 +79,40 @@
                                         </userDefinedRuntimeAttributes>
                                     </constraint>
                                     <constraint firstItem="Kc0-aD-ZN9" firstAttribute="top" secondItem="nwI-Ls-0cO" secondAttribute="bottom" id="BKs-v0-Sdy"/>
+                                    <constraint firstItem="QCy-nF-cel" firstAttribute="centerX" secondItem="sqU-Mb-rmQ" secondAttribute="centerX" id="G71-qL-6aZ"/>
                                     <constraint firstItem="nwI-Ls-0cO" firstAttribute="leading" secondItem="sqU-Mb-rmQ" secondAttribute="leading" id="K4F-iu-Zmu"/>
                                     <constraint firstItem="nwI-Ls-0cO" firstAttribute="top" secondItem="sqU-Mb-rmQ" secondAttribute="top" id="Kb0-L7-R9U"/>
                                     <constraint firstAttribute="trailing" secondItem="Kc0-aD-ZN9" secondAttribute="trailing" id="LCL-FG-4vB"/>
+                                    <constraint firstItem="Kc0-aD-ZN9" firstAttribute="top" secondItem="Igl-gG-d6n" secondAttribute="bottom" id="Lhn-xQ-DQx"/>
                                     <constraint firstItem="nwI-Ls-0cO" firstAttribute="top" secondItem="sqU-Mb-rmQ" secondAttribute="top" id="MNd-YT-ddI"/>
                                     <constraint firstItem="nwI-Ls-0cO" firstAttribute="leading" secondItem="sqU-Mb-rmQ" secondAttribute="leading" id="NFq-ry-h27"/>
                                     <constraint firstAttribute="bottom" secondItem="Kc0-aD-ZN9" secondAttribute="bottom" id="Oxj-wd-cyM"/>
                                     <constraint firstAttribute="trailing" secondItem="nwI-Ls-0cO" secondAttribute="trailing" id="dK4-pu-2WS"/>
                                     <constraint firstAttribute="trailing" secondItem="nwI-Ls-0cO" secondAttribute="trailing" id="mMM-Ah-cjF"/>
+                                    <constraint firstItem="QCy-nF-cel" firstAttribute="top" secondItem="sqU-Mb-rmQ" secondAttribute="top" constant="245" id="mPH-I9-Wyk" customClass="NSLayoutHelper" customModule="LayoutHelper">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneSE">
+                                                <real key="value" value="130"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhone8">
+                                                <real key="value" value="180"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhone8Plus">
+                                                <real key="value" value="210"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXS">
+                                                <real key="value" value="245"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXR">
+                                                <real key="value" value="290"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXMax">
+                                                <real key="value" value="290"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
                                     <constraint firstItem="Kc0-aD-ZN9" firstAttribute="leading" secondItem="sqU-Mb-rmQ" secondAttribute="leading" id="osk-L2-tGP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Igl-gG-d6n" secondAttribute="trailing" constant="20" id="zbf-Q5-I7H"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -87,6 +127,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Track a Session" id="BKN-Q0-CRk"/>
                     <connections>
+                        <outlet property="circleView" destination="QCy-nF-cel" id="Zou-JH-dAP"/>
                         <outlet property="recordSessionButton" destination="Kc0-aD-ZN9" id="Wv2-r0-yIM"/>
                         <outlet property="trackingButton" destination="nwI-Ls-0cO" id="oVq-6R-9aV"/>
                         <outlet property="viewer" destination="vxm-Yr-3DV" id="q3u-W3-o4U"/>
@@ -195,11 +236,19 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qxI-We-VG0">
+                                            <rect key="frame" x="350" y="11" width="25" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cardView" destination="Nre-Sf-hWL" id="Qb1-AB-bbS"/>
                                     <outlet property="timeLabel" destination="esY-9i-PSN" id="aVV-pT-yha"/>
+                                    <outlet property="videoAvailableLabel" destination="qxI-We-VG0" id="6HT-dw-4zf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -221,7 +270,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amc-ES-Ezc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3029" y="-240"/>
+            <point key="canvasLocation" x="3028" y="-240.14778325123154"/>
         </scene>
         <!--Show Detail Controller-->
         <scene sceneID="vyn-bf-NDv">
@@ -238,13 +287,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step Count: \(total step count)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AH-vo-Sfh">
-                                <rect key="frame" x="56.333333333333343" y="232" width="262.66666666666663" height="24"/>
+                                <rect key="frame" x="56" y="232" width="263" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Distance: \(distance travel)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd6-ic-9CB">
-                                <rect key="frame" x="48" y="286" width="279.33333333333331" height="24"/>
+                                <rect key="frame" x="48" y="286" width="279" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -371,4 +420,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="I4Z-UT-MvB"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="oandmicon" width="820" height="816"/>
+    </resources>
 </document>
