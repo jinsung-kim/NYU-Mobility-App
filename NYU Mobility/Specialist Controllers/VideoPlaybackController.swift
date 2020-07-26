@@ -58,6 +58,16 @@ class VideoPlaybackController: UIViewController {
     }
     
     /**
+        Gets the time interval between two dates
+        - Returns: String containing the number of minutes and seconds that has passed between the session start and end
+     */
+    func getTimeDifference(_ startTime: Date, _ endTime: Date) -> String {
+        let difference = Calendar.current.dateComponents([.minute, .second], from: startTime, to: endTime)
+        let formattedString = String(format: "%d minutes and %d seconds", difference.minute!, difference.second!)
+        return formattedString
+    }
+    
+    /**
         Looks at the results of the JSON conversion and extracts information for the labels
      */
     func extractInformation() {
@@ -78,6 +88,4 @@ class VideoPlaybackController: UIViewController {
         distance = results![results!.count - 1]["distance"].int!
         stepCount = results![results!.count - 1]["steps"].int!
     }
-    
-    
 }

@@ -154,13 +154,14 @@ class StorageController: UITableViewController {
                 try? FileManager.default.removeItem(at: URL(fileURLWithPath: sessions[map[indexPath.row]].value(forKey: "videoURL") as! String))
             }
             
+            // Delete file
+            deleteFileAt(map[indexPath.row])
+            
             // Remove the index
             sessions.remove(at: map[indexPath.row])
             context.delete(commit)
             // delete within filtered list as well
             filter.remove(at: indexPath.row)
-            
-            deletingLocalCacheAttachments()
             
             do {
                 try context.save()
@@ -169,6 +170,28 @@ class StorageController: UITableViewController {
                 print("Error Deleting")
             }
             customTableView.reloadData()
+        }
+    }
+    
+    // Gets the directory that the video is stored in
+    func getPathDirectory() -> URL {
+        // Searches a FileManager for paths and returns the first one
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = paths[0]
+        return documentDirectory
+    }
+
+    func generateURL(_ ind: size_t) -> URL? {
+        let path = getPathDirectory().appendingPathComponent(sessions[map[ind]].value(forKey: "videoURL") as! String)
+        return path
+    }
+    
+    func deleteFileAt(_ ind: size_t) {
+        let url = generateURL(ind)!
+        do {
+            try FileManager.default.removeItem(at: url)
+        } catch let error as NSError {
+            print("Error: \(error.domain)")
         }
     }
     
