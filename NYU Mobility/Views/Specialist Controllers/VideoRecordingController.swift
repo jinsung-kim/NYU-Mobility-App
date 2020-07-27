@@ -314,6 +314,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     func startTracking() {
         startGyro()
         startUpdating()
+        saveData(currTime: Date())
     }
     
     /**

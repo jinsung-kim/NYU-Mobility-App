@@ -195,6 +195,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         locationManager.startUpdatingLocation()
         startGyro()
         startUpdating()
+        saveData(currTime: Date())
     }
     
     /**
