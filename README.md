@@ -11,11 +11,35 @@ and GPS location at different points of time. The data that is collected, is giv
 
 ### Registration
 
-### Code
+Users select whether they are a specialist or a client when they start up the app for the first time.
+
+<img src="https://i.imgur.com/4705Gvm.png" alt="Registration page" width=350>
+
+If a user is a specialist, a unique code will be presented. This code is for clients to connect with their specialists.
+
+<img src="https://i.imgur.com/W9Sye43.png" alt="Generated code example" width=350>
 
 ### Tracking
 
-<img src="https://i.imgur.com/4705Gvm.png" alt="Tracking a session" width=414>
+All a client needs to do to track a session is tap on the start button. They can stop at any given point by tapping the stop button.
+Once a session is completed, the client can share the video with their specialist, currently through email.
+<img src="https://i.imgur.com/4705Gvm.png" alt="Tracking a session" width=350>
+<img src="https://i.imgur.com/uZaV36a.png" alt="Sharing and downloading a session" width=350>
+
+Specialists can have multiple clients, so when they open up the app, they will have to select a client to work with.
+
+<img src="https://i.imgur.com/HtK5173.png" alt="All patients" width=350>
+
+Specialists also have an additional form of visual tracking. The visual tracking option offers the same JSON file as the client tracking
+feature, but also offers a video with it. It can be used to track where the user goes, and see what movements should be noted. To access this
+mode, there is a small bar at the bottom of the tracking controller to switch modes. Specialists can see their 
+sessions on the upper right hand corner of their tracking screen.
+
+<img src="https://i.imgur.com/9d596yn.png" alt="All sessions" width=350>
+
+Specialists also have access to the session tracking without visuals, just like the clients.
+
+<img src="https://i.imgur.com/TItRZ3j.png" alt="All sessions" width=350>
 
 ## Sample Data
 
