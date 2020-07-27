@@ -44,6 +44,7 @@
 		A1DE764924C3B7E400D57B5F /* SpecialistTutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1DE764824C3B7E400D57B5F /* SpecialistTutorial.storyboard */; };
 		A1DE764C24C3F85300D57B5F /* RecordTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE764B24C3F85300D57B5F /* RecordTutorial.swift */; };
 		A1DE764E24C3FAF000D57B5F /* RecordColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE764D24C3FAF000D57B5F /* RecordColors.swift */; };
+		A1DF936824CF3F7300AF4ED7 /* ShareSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DF936724CF3F7300AF4ED7 /* ShareSessionController.swift */; };
 		A1F002B624AC21340030E2F5 /* Specialist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F002B524AC21340030E2F5 /* Specialist.storyboard */; };
 		A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */; };
 		A1F0993924CB6066003C092D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F0993824CB6066003C092D /* CustomButton.swift */; };
@@ -115,6 +116,7 @@
 		A1DE764824C3B7E400D57B5F /* SpecialistTutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SpecialistTutorial.storyboard; sourceTree = "<group>"; };
 		A1DE764B24C3F85300D57B5F /* RecordTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTutorial.swift; sourceTree = "<group>"; };
 		A1DE764D24C3FAF000D57B5F /* RecordColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordColors.swift; sourceTree = "<group>"; };
+		A1DF936724CF3F7300AF4ED7 /* ShareSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSessionController.swift; sourceTree = "<group>"; };
 		A1F002B524AC21340030E2F5 /* Specialist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Specialist.storyboard; sourceTree = "<group>"; };
 		A1F002B824AC23F10030E2F5 /* SpecialistTrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistTrackingController.swift; sourceTree = "<group>"; };
 		A1F0993824CB6066003C092D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				A1F66C03248F0A840055DBAD /* MapViewController.swift */,
 				A13FEA1A2491CE8800A4904F /* SettingsController.swift */,
 				A121D94B24958C9500F4F5DE /* FormController.swift */,
+				A1DF936724CF3F7300AF4ED7 /* ShareSessionController.swift */,
 			);
 			path = "Client Controllers";
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				A121D94C24958C9500F4F5DE /* FormController.swift in Sources */,
 				A1366EC924AB8C0F00B1FA57 /* SpecialistController.swift in Sources */,
 				A188675B24B7E42C007B6DE9 /* UserCell.swift in Sources */,
+				A1DF936824CF3F7300AF4ED7 /* ShareSessionController.swift in Sources */,
 				A141D93D24BD5F2D00384C38 /* VideoRecordingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

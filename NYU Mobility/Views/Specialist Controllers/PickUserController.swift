@@ -12,6 +12,7 @@ import CoreData
 class PickUserController: UITableViewController {
     
     var users: [NSManagedObject] = []
+    var sessions: [NSManagedObject] = []
     var name: String?
     var index: Int?
     
@@ -74,10 +75,12 @@ class PickUserController: UITableViewController {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+        let fetchRequestUsers = NSFetchRequest<NSManagedObject>(entityName: "User")
+        let fetchRequestSessions = NSFetchRequest<NSManagedObject>(entityName: "Session")
         
         do {
-            users = try managedContext.fetch(fetchRequest)
+            users = try managedContext.fetch(fetchRequestUsers)
+            sessions = try managedContext.fetch(fetchRequestSessions)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -156,6 +159,8 @@ class PickUserController: UITableViewController {
             
             let context = appDelegate.persistentContainer.viewContext
             let commit = users[indexPath.row]
+//            let name = users[indexPath.row].value(forKey: "name") as! String
+//            deleteSessionsFor(name: name)
             users.remove(at: indexPath.row)
             context.delete(commit)
             
@@ -166,6 +171,15 @@ class PickUserController: UITableViewController {
                 print("Error Deleting")
             }
             tableView.reloadData()
+        }
+    }
+    
+    // Deletes all the sessions for a user that is deleted
+    func deleteSessionsFor(name: String) {
+        for ind in 0 ..< sessions.count {
+            if (sessions[ind].value(forKey: "name") as! String == name) {
+                sessions.remove(at: ind)
+            }
         }
     }
     

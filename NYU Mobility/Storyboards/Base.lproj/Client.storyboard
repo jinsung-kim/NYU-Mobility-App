@@ -567,6 +567,7 @@
                         <outlet property="viewer" destination="8bC-Xf-vdC" id="CfJ-uY-ekU"/>
                         <segue destination="mb0-rH-wPf" kind="show" identifier="MapViewSegue" id="lYd-j5-o2L"/>
                         <segue destination="wSX-zg-eUu" kind="show" identifier="SettingsSegue" id="n1X-dA-RoJ"/>
+                        <segue destination="84j-X5-ScI" kind="show" identifier="ShareSession" id="S3j-X7-9H4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -617,7 +618,6 @@
                         <outlet property="distanceLabel" destination="fvt-cS-Kjt" id="jib-II-ohC"/>
                         <outlet property="mapView" destination="FX0-9C-yL1" id="lBC-Mo-IMC"/>
                         <outlet property="stepsLabel" destination="KtX-Rt-veK" id="I69-5E-4ZJ"/>
-                        <segue destination="4yC-Ij-NeA" kind="show" identifier="trackingSegue" id="mCP-mK-cti"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WRN-bQ-zDN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -646,11 +646,96 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="93.103448275862078"/>
         </scene>
+        <!--Share Session-->
+        <scene sceneID="FP3-hc-tTV">
+            <objects>
+                <viewController id="84j-X5-ScI" customClass="ShareSessionController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qdg-sS-Yfo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rte-mc-Y0C">
+                                <rect key="frame" x="55" y="228" width="304" height="370"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="370" id="ODa-ZU-hRz" customClass="NSLayoutHelper" customModule="LayoutHelper">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXS">
+                                                <real key="value" value="398"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXR">
+                                                <real key="value" value="398"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXMax">
+                                                <real key="value" value="398"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhone8Plus">
+                                                <real key="value" value="398"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhone8">
+                                                <real key="value" value="370"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iPhoneSE">
+                                                <real key="value" value="370"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                                <state key="normal" image="share">
+                                    <attributedString key="attributedTitle"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButton:" destination="BQt-Hf-zp9" eventType="touchUpInside" id="KbB-a8-oFs"/>
+                                    <action selector="shareSession:" destination="84j-X5-ScI" eventType="touchUpInside" id="gqe-Ut-n8F"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oandmicon" translatesAutoresizingMaskIntoConstraints="NO" id="2Dv-Vd-mxi">
+                                <rect key="frame" x="266" y="714" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="ByY-Kf-FKY"/>
+                                    <constraint firstAttribute="height" constant="128" id="eJX-Oj-uKr"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9ck-Gz-QDf" firstAttribute="trailing" secondItem="2Dv-Vd-mxi" secondAttribute="trailing" constant="20" id="4mh-B2-bDf"/>
+                            <constraint firstItem="rte-mc-Y0C" firstAttribute="centerX" secondItem="Qdg-sS-Yfo" secondAttribute="centerX" id="JeD-sC-aOg"/>
+                            <constraint firstItem="9ck-Gz-QDf" firstAttribute="bottom" secondItem="2Dv-Vd-mxi" secondAttribute="bottom" constant="20" id="PSY-l7-sqo"/>
+                            <constraint firstItem="rte-mc-Y0C" firstAttribute="top" secondItem="9ck-Gz-QDf" secondAttribute="top" constant="140" id="cki-rh-OXe" customClass="NSLayoutHelper" customModule="LayoutHelper">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhoneSE">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhone8">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhone8Plus">
+                                        <real key="value" value="100"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXS">
+                                        <real key="value" value="100"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXR">
+                                        <real key="value" value="140"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="iPhoneXMax">
+                                        <real key="value" value="140"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9ck-Gz-QDf"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Share Session" id="Zik-hN-9Hd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Tt-Li-Z1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="BQt-Hf-zp9" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="909"/>
+        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Smj-0J-MLE"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="oandmicon" width="820" height="816"/>
+        <image name="share" width="304" height="394"/>
     </resources>
 </document>

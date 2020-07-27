@@ -80,6 +80,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             vc?.steps = maxSteps
             vc?.coords = coords
             vc?.distance = maxDistance
+        } else {
+            let vc = segue.destination as? ShareSessionController
+            vc?.points = points
         }
     }
     
@@ -170,8 +173,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             sender.setTitle("Reset", for: .normal)
             buttonState = 2
         case 2:
-//            self.performSegue(withIdentifier: "MapViewSegue", sender: self) // Not redirecting to the map view anymore
-            sendEmail(jsonData: saveAndExport(exportString: generateJSON()))
+            self.performSegue(withIdentifier: "ShareSession", sender: self) // Redirects to the share button
             clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)
@@ -226,6 +228,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         locationManager.startUpdatingLocation()
         startGyro()
         startUpdating()
+        saveData(currTime: Date())
     }
     
     /**
@@ -295,7 +298,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         if (distance >= maxDistance) {
             maxDistance = distance
         }
-        if (maxDistance != 0 && maxSteps != 0) {
+        if (maxDistance != 0 || maxSteps != 0 || points.isEmpty) {
             points.append(Point(dateFormatter(), maxSteps, maxDistance, avgPace,
                                 currPace, currCad, locationArray, gyroDict))
             
@@ -365,34 +368,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         }
     }
     
-    // Export Functionality
-    
-    /**
-       Generates a temporary directory with a URL and creates a file to be exported as a JSON
-       - Parameters:
-           - exportString: The name of the file being executed (all within 'Sound' group)
-       - Returns: Data object as a JSON file
-    */
-    func saveAndExport(exportString: String) -> Data {
-        let exportFilePath = NSTemporaryDirectory() + "export.json"
-        let exportFileUrl = NSURL(fileURLWithPath: exportFilePath)
-        FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil)
-        var fileHandle: FileHandle? = nil
-        // Try to save the file as a URL
-        do {
-            fileHandle = try FileHandle(forWritingTo: exportFileUrl as URL)
-        } catch {
-            print("Error with File Handle")
-        }
-        
-        fileHandle?.seekToEndOfFile()
-        let jsonData = exportString.data(using: String.Encoding.utf8, allowLossyConversion: false)
-        // Writes the JSON data into the file
-        fileHandle?.write(jsonData!)
-        fileHandle?.closeFile()
-        return jsonData ?? Data()
-    }
-    
     // Gesture Functionality
     func getState() -> Bool {
         let defaults = UserDefaults.standard
@@ -400,65 +375,4 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         return gesture
     }
     
-    // Email Functionality
-    
-    func saveEmail(_ email: String) {
-        let defaults = UserDefaults.standard
-        defaults.set(email, forKey: "email")
-    }
-    
-    func getEmail() -> String {
-        let defaults = UserDefaults.standard
-        let email = defaults.string(forKey: "email")
-        return email!
-    }
-    
-    func sendEmail(jsonData: Data) {
-        let recipientEmail = getEmail()
-        let subject = "JSON Export"
-        let body = "Here is the data that I tracked"
-
-        // Show default mail composer
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients([recipientEmail])
-            mail.setSubject(subject)
-            mail.setMessageBody(body, isHTML: false)
-            
-            mail.addAttachmentData(jsonData, mimeType: "application/json" , fileName: "export.json")
-
-            present(mail, animated: true)
-
-        // Show third party email composer if default Mail app is not present
-        } else if let emailUrl = createEmailUrl(to: recipientEmail, subject: subject, body: body) {
-            UIApplication.shared.open(emailUrl)
-        }
-    }
-    
-    func createEmailUrl(to: String, subject: String, body: String) -> URL? {
-        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-
-        let gmailUrl = URL(string: "googlegmail://co?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        let outlookUrl = URL(string: "ms-outlook://compose?to=\(to)&subject=\(subjectEncoded)")
-        let yahooMail = URL(string: "ymail://mail/compose?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        let sparkUrl = URL(string: "readdle-spark://compose?recipient=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        let defaultUrl = URL(string: "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)")
-
-        if let gmailUrl = gmailUrl, UIApplication.shared.canOpenURL(gmailUrl) {
-            return gmailUrl
-        } else if let outlookUrl = outlookUrl, UIApplication.shared.canOpenURL(outlookUrl) {
-            return outlookUrl
-        } else if let yahooMail = yahooMail, UIApplication.shared.canOpenURL(yahooMail) {
-            return yahooMail
-        } else if let sparkUrl = sparkUrl, UIApplication.shared.canOpenURL(sparkUrl) {
-            return sparkUrl
-        }
-        return defaultUrl
-    }
-
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
-    }
 }
