@@ -36,6 +36,8 @@ class VideoPlaybackController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        shareVideoButton()
+        
         // rounds the corners of the card
         cardView.layer.cornerRadius = 15
         
@@ -55,6 +57,26 @@ class VideoPlaybackController: UIViewController {
         avPlayer.replaceCurrentItem(with: playerItem)
         
         avPlayer.play()
+    }
+    
+    // Upper right item from the tracking controller that goes to send the video off
+    func shareVideoButton() {
+        let instructionButton = UIBarButtonItem()
+        instructionButton.title = "Share"
+        instructionButton.action = #selector(sessionsTap)
+        instructionButton.target = self
+        navigationItem.rightBarButtonItem = instructionButton
+    }
+    
+    @objc func sessionsTap() {
+        performSegue(withIdentifier: "ShareVideo", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.destination is ShareVideoController) {
+            let vc = segue.destination as? ShareVideoController
+            vc?.session = session
+        }
     }
     
     /**

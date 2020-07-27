@@ -20,7 +20,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     
     @IBOutlet weak var camPreview: UIView!
     
-    let cameraButton = UIView()
+    @IBOutlet weak var cameraButton: UIView!
     let captureSession = AVCaptureSession()
     let movieOutput = AVCaptureMovieFileOutput()
     
@@ -67,10 +67,10 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadData()
-        
         // Instructions Page Redirect setup
         instructionButton()
+        
+        loadData()
         
         if (setupSession()) {
             setupPreview()
@@ -96,12 +96,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     
     func setupButton() {
         cameraButton.isUserInteractionEnabled = true
-        
         let cameraButtonRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoRecordingController.startCapture))
         cameraButton.addGestureRecognizer(cameraButtonRecognizer)
-        cameraButton.frame = CGRect(x: 0, y: camPreview.frame.height - 60,
-                                         width: 60, height: 60)
-        cameraButton.center.x = view.center.x // centers horizontally
         cameraButton.backgroundColor = UIColor.white // button is white when initialized
         cameraButton.layer.cornerRadius = 30 // button round
         cameraButton.layer.masksToBounds = true

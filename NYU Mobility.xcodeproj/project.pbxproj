@@ -37,6 +37,7 @@
 		A16DE4B02497E4B8008777CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DE4AF2497E4B8008777CD /* Constants.swift */; };
 		A188675B24B7E42C007B6DE9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A188675A24B7E42C007B6DE9 /* UserCell.swift */; };
 		A188675F24BD280C007B6DE9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A188675E24BD280C007B6DE9 /* LoginController.swift */; };
+		A19E30E624CE5F5B00C87FDE /* ShareVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19E30E524CE5F5B00C87FDE /* ShareVideoController.swift */; };
 		A1AF57082492A8BD008EF983 /* settings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57062492A8BC008EF983 /* settings.mp3 */; };
 		A1AF57092492A8BD008EF983 /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57072492A8BC008EF983 /* back.mp3 */; };
 		A1DE764724C3ABEB00D57B5F /* VideoPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE764624C3ABEB00D57B5F /* VideoPlaybackController.swift */; };
@@ -107,6 +108,7 @@
 		A16DE4AF2497E4B8008777CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A188675A24B7E42C007B6DE9 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		A188675E24BD280C007B6DE9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		A19E30E524CE5F5B00C87FDE /* ShareVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareVideoController.swift; sourceTree = "<group>"; };
 		A1AF57062492A8BC008EF983 /* settings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = settings.mp3; sourceTree = "<group>"; };
 		A1AF57072492A8BC008EF983 /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = back.mp3; sourceTree = "<group>"; };
 		A1DE764624C3ABEB00D57B5F /* VideoPlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackController.swift; sourceTree = "<group>"; };
@@ -210,10 +212,7 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
-				A1DE764A24C3F83D00D57B5F /* Tutorial Controllers */,
-				A141FCD824816F6500A3433D /* Client Controllers */,
-				A1F002B724AC23DE0030E2F5 /* Specialist Controllers */,
-				A1366EC124AB84D400B1FA57 /* Registration Controllers */,
+				A19E30E424CE5A8D00C87FDE /* Views */,
 				A141FCCA24814E6900A3433D /* Storyboards */,
 				A114729824840DCF0043B04B /* Models */,
 				A1F0993724CB448C003C092D /* UI */,
@@ -291,6 +290,17 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		A19E30E424CE5A8D00C87FDE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1366EC124AB84D400B1FA57 /* Registration Controllers */,
+				A1F002B724AC23DE0030E2F5 /* Specialist Controllers */,
+				A141FCD824816F6500A3433D /* Client Controllers */,
+				A1DE764A24C3F83D00D57B5F /* Tutorial Controllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A1DE764A24C3F83D00D57B5F /* Tutorial Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +319,7 @@
 				A14985E924B7823300331B7C /* PickUserController.swift */,
 				A141D93C24BD5F2D00384C38 /* VideoRecordingController.swift */,
 				A144240B24C7DB25004EE00F /* ShowDetailController.swift */,
+				A19E30E524CE5F5B00C87FDE /* ShareVideoController.swift */,
 			);
 			path = "Specialist Controllers";
 			sourceTree = "<group>";
@@ -525,6 +536,7 @@
 				A16DE4B02497E4B8008777CD /* Constants.swift in Sources */,
 				A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */,
 				A188675F24BD280C007B6DE9 /* LoginController.swift in Sources */,
+				A19E30E624CE5F5B00C87FDE /* ShareVideoController.swift in Sources */,
 				A141FC9824814B7C00A3433D /* AppDelegate.swift in Sources */,
 				A1F002B924AC23F10030E2F5 /* SpecialistTrackingController.swift in Sources */,
 				A12106E024AD5E3D0041704D /* StorageController.swift in Sources */,
