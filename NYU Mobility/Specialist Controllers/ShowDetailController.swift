@@ -37,14 +37,13 @@ class ShowDetailController: UIViewController {
         After information has been extracted from the JSON array, the data is then displayed onto the screen
      */
     func updateLabels() {
-        
         // invalid session
         if (sessionLength == "") {
             sessionLengthLabel.text = "The session was too\nshort to track analytics"
             stepCountLabel.text = ""
             distanceLabel.text = ""
         } else {
-            sessionLengthLabel.text = "Length of Session: \(sessionLength)"
+            sessionLengthLabel.text = "Session Length: \(sessionLength)"
             stepCountLabel.text = "Step Count: \(stepCount) steps"
             distanceLabel.text = "Distance Covered: \(distance) m"
         }

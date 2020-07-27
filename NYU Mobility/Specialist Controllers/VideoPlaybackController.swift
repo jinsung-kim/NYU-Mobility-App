@@ -16,6 +16,13 @@ class VideoPlaybackController: UIViewController {
     let avPlayer = AVPlayer()
     var avPlayerLayer: AVPlayerLayer!
     
+    // View for card
+    @IBOutlet weak var cardView: UIView!
+    
+    @IBOutlet weak var timeElapsedLabel: UILabel!
+    @IBOutlet weak var stepCountLabel: UILabel!
+    @IBOutlet weak var distanceCoveredLabel: UILabel!
+    
     var session: NSManagedObject!
     var videoURL: URL!
     
@@ -29,6 +36,12 @@ class VideoPlaybackController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // rounds the corners of the card
+        cardView.layer.cornerRadius = 15
+        
+        results = getJSONArray()
+        extractInformation()
+        updateLabels()
         
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
         avPlayerLayer.frame = view.bounds
@@ -42,6 +55,33 @@ class VideoPlaybackController: UIViewController {
         avPlayer.replaceCurrentItem(with: playerItem)
         
         avPlayer.play()
+    }
+    
+    /**
+        Takes the existing session json string, and converts it into a readable JSON array to extract information
+        - Returns: JSON? of the string (See SwiftyJSON documentation for more)
+     */
+    func getJSONArray() -> JSON? {
+        let data = (session.value(forKey: "json") as! String).data(using: .utf8)!
+        do {
+            let json = try JSON(data: data)
+            return json
+        } catch {
+            print("There was an error processing the string")
+        }
+        return nil
+    }
+    
+    func updateLabels() {
+        // If the time difference function returns a non-empty string, there is a valid session
+        if (sessionLength != "") {
+            timeElapsedLabel.text = "Session Length: \(sessionLength)"
+        // There is no valid session
+        } else {
+            timeElapsedLabel.text = "Session was too short"
+        }
+        stepCountLabel.text = "Step Count: \(stepCount) steps"
+        distanceCoveredLabel.text = "Distance: \(distance) m"
     }
     
     // Gets the directory that the video is stored in

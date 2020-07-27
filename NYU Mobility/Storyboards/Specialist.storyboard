@@ -192,7 +192,51 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="My6-rU-gnf">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SkJ-eo-bjh">
+                                        <rect key="frame" x="67.666666666666686" y="654" width="240" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Elapsed:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhp-M6-jTD">
+                                                <rect key="frame" x="0.0" y="30" width="240" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step Count:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEw-Ei-cz8">
+                                                <rect key="frame" x="0.0" y="58" width="240" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82f-9Q-giu">
+                                                <rect key="frame" x="0.0" y="86" width="240" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.33066866639999998" green="0.118582416" blue="0.57703403559999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstItem="82f-9Q-giu" firstAttribute="top" secondItem="bEw-Ei-cz8" secondAttribute="bottom" constant="10" id="Aeu-K2-oFZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="bEw-Ei-cz8" secondAttribute="trailing" id="BNQ-Wh-4nJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vhp-M6-jTD" secondAttribute="trailing" id="ByD-OR-7W7"/>
+                                            <constraint firstItem="82f-9Q-giu" firstAttribute="leading" secondItem="SkJ-eo-bjh" secondAttribute="leading" id="F0s-Sc-Naq"/>
+                                            <constraint firstItem="Vhp-M6-jTD" firstAttribute="top" secondItem="SkJ-eo-bjh" secondAttribute="top" constant="30" id="Fap-50-DeL"/>
+                                            <constraint firstAttribute="width" constant="240" id="Jdn-BJ-bBV"/>
+                                            <constraint firstItem="bEw-Ei-cz8" firstAttribute="leading" secondItem="SkJ-eo-bjh" secondAttribute="leading" id="Su7-cf-K0B"/>
+                                            <constraint firstItem="bEw-Ei-cz8" firstAttribute="top" secondItem="Vhp-M6-jTD" secondAttribute="bottom" constant="10" id="aSe-4h-W70"/>
+                                            <constraint firstItem="82f-9Q-giu" firstAttribute="top" secondItem="bEw-Ei-cz8" secondAttribute="bottom" constant="10" id="giR-jJ-aaw"/>
+                                            <constraint firstItem="Vhp-M6-jTD" firstAttribute="leading" secondItem="SkJ-eo-bjh" secondAttribute="leading" id="orS-Ri-5aD"/>
+                                            <constraint firstAttribute="trailing" secondItem="82f-9Q-giu" secondAttribute="trailing" id="uQe-7K-e4x"/>
+                                            <constraint firstAttribute="height" constant="128" id="wn7-MY-zAw"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="SkJ-eo-bjh" secondAttribute="bottom" constant="30" id="54P-vt-J2t"/>
+                                    <constraint firstItem="SkJ-eo-bjh" firstAttribute="centerX" secondItem="My6-rU-gnf" secondAttribute="centerX" id="swd-iO-zVf"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -206,12 +250,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="HiW-tD-3rQ"/>
                     <connections>
+                        <outlet property="cardView" destination="SkJ-eo-bjh" id="MfB-xp-Ikx"/>
+                        <outlet property="distanceCoveredLabel" destination="82f-9Q-giu" id="ESE-Ht-EJ2"/>
+                        <outlet property="stepCountLabel" destination="bEw-Ei-cz8" id="Rb0-EC-VGm"/>
+                        <outlet property="timeElapsedLabel" destination="Vhp-M6-jTD" id="20U-RR-XJ4"/>
                         <outlet property="videoView" destination="My6-rU-gnf" id="bQd-6x-cB4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRW-Z1-Riz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3028" y="959"/>
+            <point key="canvasLocation" x="3028" y="958.37438423645324"/>
         </scene>
         <!--Storage Controller-->
         <scene sceneID="Dbd-4c-99R">
