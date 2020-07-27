@@ -15,7 +15,7 @@ and GPS location at different points of time. The data that is collected, is giv
 
 ### Tracking
 
-<img src="https://i.imgur.com/4705Gvm.png" alt="Tracking a session">
+<img src="https://i.imgur.com/4705Gvm.png" alt="Tracking a session" width=414>
 
 ## Sample Data
 
