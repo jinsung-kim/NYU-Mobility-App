@@ -32,16 +32,41 @@ class ShareVideoController: UIViewController {
     }
     
     @IBAction func shareVideo(_ sender: Any) {
-//        PHPhotoLibrary.shared().performChanges({
-//            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.generateURL()!)
-//        }) { saved, error in
-//            if saved {
-//                let alertController = UIAlertController(title: "Your video was successfully saved", message: nil, preferredStyle: .alert)
-//                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                alertController.addAction(defaultAction)
-//                present(alertController, animated: true, completion: nil)
-//            }
-//        }
+        saveVideoToAlbum(generateURL()!) { (error) in
+            // Do something with error
+        }
     }
+    
+    func requestAuthorization(completion: @escaping () -> Void) {
+            if PHPhotoLibrary.authorizationStatus() == .notDetermined {
+                PHPhotoLibrary.requestAuthorization { (status) in
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
+            } else if PHPhotoLibrary.authorizationStatus() == .authorized{
+                completion()
+            }
+        }
+
+
+
+    func saveVideoToAlbum(_ outputURL: URL, _ completion: ((Error?) -> Void)?) {
+            requestAuthorization {
+                PHPhotoLibrary.shared().performChanges({
+                    let request = PHAssetCreationRequest.forAsset()
+                    request.addResource(with: .video, fileURL: outputURL, options: nil)
+                }) { (result, error) in
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            print("Saved successfully")
+                        }
+                        completion?(error)
+                    }
+                }
+            }
+        }
     
 }
