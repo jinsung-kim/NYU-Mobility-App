@@ -5,18 +5,17 @@
 
 NYU Mobility is a tracking application built for iOS (in Swift), used to track mobility movement. 
 Using gyroscope sensors and GPS tracking services, the app tracks steps taken, orientation,
-and GPS location at different points of time. The data that is tracked, is exported as a JSON
-format, and is sent as an email.
+and GPS location at different points of time. The data that is collected, is given to researchers and specialists.
 
 ## How to Use
 
-When the app is loaded for the very first time, an email is needed send out results.
-If an email is not recorded, every time the app is loaded or a session is finished,
-the pop up will ask for it.
+### Registration
 
-To start the tracking, tap the screen once. To pause or resume, double tap the screen.
-To finish the tracking, tap the screen to finish, in a tracking phase.
-An email draft will be created, and sent with one click.
+### Code
+
+### Tracking
+
+<img src="https://i.imgur.com/4705Gvm.png" alt="Tracking a session">
 
 ## Sample Data
 
