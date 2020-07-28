@@ -44,13 +44,18 @@ class ShareVideoController: UIViewController {
                         completion()
                     }
                 }
-            } else if PHPhotoLibrary.authorizationStatus() == .authorized{
+            } else if PHPhotoLibrary.authorizationStatus() == .authorized {
                 completion()
             }
         }
 
-
-
+    /**
+        Given the url of the video, a request is created to the photo library to be added
+        - Parameters:
+            - outputURL: URL that is sent to be saved
+            - completion: Handles possible failures with saving the URL
+        - Returns: An error if applicable
+     */
     func saveVideoToAlbum(_ outputURL: URL, _ completion: ((Error?) -> Void)?) {
             requestAuthorization {
                 PHPhotoLibrary.shared().performChanges({
@@ -60,8 +65,15 @@ class ShareVideoController: UIViewController {
                     DispatchQueue.main.async {
                         if let error = error {
                             print(error.localizedDescription)
+                            let alertController = UIAlertController(title: "Your video could not be saved", message: nil, preferredStyle: .alert)
+                            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            alertController.addAction(defaultAction)
+                            self.present(alertController, animated: true, completion: nil)
                         } else {
-                            print("Saved successfully")
+                            let alertController = UIAlertController(title: "Your video was successfully saved", message: nil, preferredStyle: .alert)
+                            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            alertController.addAction(defaultAction)
+                            self.present(alertController, animated: true, completion: nil)
                         }
                         completion?(error)
                     }

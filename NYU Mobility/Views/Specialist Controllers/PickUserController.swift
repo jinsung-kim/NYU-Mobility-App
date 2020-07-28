@@ -159,6 +159,8 @@ class PickUserController: UITableViewController {
             
             let context = appDelegate.persistentContainer.viewContext
             let commit = users[indexPath.row]
+            
+            // Currently BUGGED
 //            let name = users[indexPath.row].value(forKey: "name") as! String
 //            deleteSessionsFor(name: name)
             users.remove(at: indexPath.row)

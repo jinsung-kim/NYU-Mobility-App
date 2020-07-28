@@ -85,14 +85,19 @@ class StorageController: UITableViewController {
         // Order reversed
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: false)]
         
+        map.removeAll()
+        filter.removeAll()
+        
         do {
             sessions = try managedContext.fetch(fetchRequest)
             for elem in 0 ..< sessions.count {
+                // If the name matches the client's session that we want, we add it to the table view
                 if (filterName(elem)) {
                     filter.append(sessions[elem])
                     map.append(elem)
                 }
             }
+
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -144,24 +149,22 @@ class StorageController: UITableViewController {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return
             }
-            
+
             // Find the appropriate filtered index and remove it in the original
             let context = appDelegate.persistentContainer.viewContext
             let commit = sessions[map[indexPath.row]]
-            
-            // Delete the file within the directory
-            if (sessions[map[indexPath.row]].value(forKey: "videoURL") as! String != "") { // Only delete if the video URL is valid
-                try? FileManager.default.removeItem(at: URL(fileURLWithPath: sessions[map[indexPath.row]].value(forKey: "videoURL") as! String))
-            }
-            
+
             // Delete file
-            deleteFileAt(map[indexPath.row])
+//            deleteFileAt(map[indexPath.row])
+            if (sessions[map[indexPath.row]].value(forKey: "videoURL") as! String != "") { // Only delete if the video URL is valid
+                try? FileManager.default.removeItem(at: generateURL(map[indexPath.row])!)
+            }
             
             // Remove the index
             sessions.remove(at: map[indexPath.row])
             context.delete(commit)
-            // delete within filtered list as well
-            filter.remove(at: indexPath.row)
+            // Reload data + fix the filtered list
+            loadData()
             
             do {
                 try context.save()
@@ -182,7 +185,7 @@ class StorageController: UITableViewController {
     }
 
     func generateURL(_ ind: size_t) -> URL? {
-        let path = getPathDirectory().appendingPathComponent(sessions[map[ind]].value(forKey: "videoURL") as! String)
+        let path = getPathDirectory().appendingPathComponent(sessions[ind].value(forKey: "videoURL") as! String)
         return path
     }
     
@@ -191,7 +194,7 @@ class StorageController: UITableViewController {
         do {
             try FileManager.default.removeItem(at: url)
         } catch let error as NSError {
-            print("Error: \(error.domain)")
+            print("Error: \(error.domain)") // NSCocoaErrorDomain
         }
     }
     

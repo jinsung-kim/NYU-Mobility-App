@@ -389,7 +389,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         if (distance >= maxDistance) {
             maxDistance = distance
         }
-        if (maxDistance != 0 && maxSteps != 0) {
+        if (maxDistance != 0 || maxSteps != 0 || points.isEmpty) {
             points.append(Point(dateFormatter(), maxSteps, maxDistance,
                                 avgPace, currPace, currCad,
                                 locationArray, gyroDict))
