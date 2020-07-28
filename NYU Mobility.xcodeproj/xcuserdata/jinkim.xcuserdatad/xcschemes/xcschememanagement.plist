@@ -7,7 +7,25 @@
 		<key>NYU Mobility.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A141FC9324814B7C00A3433D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A141FCAC24814B7E00A3433D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A141FCB724814B7E00A3433D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

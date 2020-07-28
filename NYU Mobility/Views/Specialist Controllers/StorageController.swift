@@ -155,7 +155,6 @@ class StorageController: UITableViewController {
             let commit = sessions[map[indexPath.row]]
 
             // Delete file
-//            deleteFileAt(map[indexPath.row])
             if (sessions[map[indexPath.row]].value(forKey: "videoURL") as! String != "") { // Only delete if the video URL is valid
                 try? FileManager.default.removeItem(at: generateURL(map[indexPath.row])!)
             }
@@ -187,15 +186,6 @@ class StorageController: UITableViewController {
     func generateURL(_ ind: size_t) -> URL? {
         let path = getPathDirectory().appendingPathComponent(sessions[ind].value(forKey: "videoURL") as! String)
         return path
-    }
-    
-    func deleteFileAt(_ ind: size_t) {
-        let url = generateURL(ind)!
-        do {
-            try FileManager.default.removeItem(at: url)
-        } catch let error as NSError {
-            print("Error: \(error.domain)") // NSCocoaErrorDomain
-        }
     }
     
     // Deletes all of the videos

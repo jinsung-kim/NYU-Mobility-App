@@ -15,7 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        application.isIdleTimerDisabled = true // Won't turn off by itself
+        // Won't turn off by itself
+        application.isIdleTimerDisabled = true
+        
         // Override point for customization after application launch
         let defaults = UserDefaults.standard
         /*
@@ -29,10 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultValue = ["name": "", "email" : "", "username": "", "password": "",
                             "code": "", "state": true, "mode": ""] as [String : Any]
         defaults.register(defaults: defaultValue)
-        // Disable dark mode (Broken at the moment)
-        if #available(iOS 13, *) {
-            window?.overrideUserInterfaceStyle = .light
-        }
         return true
     }
 
