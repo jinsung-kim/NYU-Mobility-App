@@ -60,7 +60,10 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.shared.isIdleTimerDisabled = true // Screen will not be put to sleep
+        
+        // Screen will not go to sleep with this line below
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         navigationItem.setHidesBackButton(true, animated: false)
         createCircleView()
         settingsButton() // The right side button

@@ -36,6 +36,10 @@ class VideoPlaybackController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Screen will not go to sleep with this line below
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         shareVideoButton()
         
         // rounds the corners of the card

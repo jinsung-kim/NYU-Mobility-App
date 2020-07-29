@@ -54,6 +54,10 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Screen will not go to sleep with this line below
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         loadData()
         createCircleView()
         getLocationPermission() // Permission to track
