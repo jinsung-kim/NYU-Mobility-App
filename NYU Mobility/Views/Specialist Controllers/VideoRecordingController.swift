@@ -67,6 +67,9 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Screen will not go to sleep with this line below
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         // Instructions Page Redirect setup
         instructionButton()
         
