@@ -29,6 +29,7 @@ class ShowDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         results = self.getJSONArray() // processes into the json var
+        print(results!)
         extractInformation()
         updateLabels()
     }

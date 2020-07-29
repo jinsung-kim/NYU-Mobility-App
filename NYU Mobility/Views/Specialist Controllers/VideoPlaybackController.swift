@@ -46,6 +46,9 @@ class VideoPlaybackController: UIViewController {
         cardView.layer.cornerRadius = 15
         
         results = getJSONArray()
+        
+        print(results!)
+        
         extractInformation()
         updateLabels()
         

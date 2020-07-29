@@ -18,9 +18,12 @@ class PickUserController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadData()
         addButton()
+        
         navigationItem.setHidesBackButton(true, animated: false)
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
@@ -160,9 +163,9 @@ class PickUserController: UITableViewController {
             let context = appDelegate.persistentContainer.viewContext
             let commit = users[indexPath.row]
             
-            // Currently BUGGED
-//            let name = users[indexPath.row].value(forKey: "name") as! String
-//            deleteSessionsFor(name: name)
+            // Testing
+            let name = users[indexPath.row].value(forKey: "name") as! String
+            deleteSessionsFor(name: name)
             users.remove(at: indexPath.row)
             context.delete(commit)
             
@@ -176,14 +179,45 @@ class PickUserController: UITableViewController {
         }
     }
     
+    // Gets the directory that the video is stored in
+    func getPathDirectory() -> URL {
+        // Searches a FileManager for paths and returns the first one
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = paths[0]
+        return documentDirectory
+    }
+
+    func generateURL(_ ind: size_t) -> URL? {
+        let path = getPathDirectory().appendingPathComponent(sessions[ind].value(forKey: "videoURL") as! String)
+        return path
+    }
+    
     // Deletes all the sessions for a user that is deleted
     func deleteSessionsFor(name: String) {
         for ind in 0 ..< sessions.count {
-            if (sessions[ind].value(forKey: "name") as! String == name) {
-                sessions.remove(at: ind)
+            if (sessions[ind].value(forKey: "user") as! String == name) {
+                // Removing at the provided URL
+                try? FileManager.default.removeItem(at: generateURL(ind)!)
+                deleteData(ind)
             }
         }
     }
     
+    // Deleting session object
+    func deleteData(_ ind: size_t) {
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        do {
+            context.delete(sessions[ind])
+            try context.save()
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+    }
 }
 

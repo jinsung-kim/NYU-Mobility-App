@@ -211,7 +211,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SkJ-eo-bjh">
                                         <rect key="frame" x="87" y="738" width="240" height="128"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Elapsed:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhp-M6-jTD">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Elapsed:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhp-M6-jTD">
                                                 <rect key="frame" x="0.0" y="30" width="240" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -443,7 +443,7 @@
             </objects>
             <point key="canvasLocation" x="3028" y="-240.14778325123154"/>
         </scene>
-        <!--Show Detail Controller-->
+        <!--Session Summary-->
         <scene sceneID="vyn-bf-NDv">
             <objects>
                 <viewController id="juY-8l-hmP" customClass="ShowDetailController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
@@ -469,7 +469,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time of Session: \(time)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="dsJ-6a-MHR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time of Session: \(time)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="dsJ-6a-MHR">
                                 <rect key="frame" x="104" y="178" width="206.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -489,7 +489,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zLt-hO-B3Z"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TQs-12-CTI"/>
+                    <navigationItem key="navigationItem" title="Session Summary" id="TQs-12-CTI"/>
                     <connections>
                         <outlet property="distanceLabel" destination="cd6-ic-9CB" id="ihd-QI-gCa"/>
                         <outlet property="sessionLengthLabel" destination="dsJ-6a-MHR" id="3DZ-yC-TtP"/>

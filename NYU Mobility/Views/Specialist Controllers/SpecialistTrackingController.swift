@@ -291,6 +291,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
             
             // Clear the gyroscope data after getting its string representation
             gyroDict.removeAll()
+            locationArray.removeAll()
         }
     }
     

@@ -74,6 +74,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         instructionButton()
         
         loadData()
+        getLocationPermission()
         
         if (setupSession()) {
             setupPreview()
@@ -315,6 +316,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             - fileName: The name of the file that should be played
      */
     func startTracking() {
+        locationManager.startUpdatingLocation()
         startGyro()
         startUpdating()
         saveData(currTime: Date())
@@ -325,6 +327,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         Assumes that the previously stated managers are running
      */
     func stopTracking() {
+        locationManager.stopUpdatingLocation()
         stopUpdating()
         stopGyros()
         saveData(currTime: Date())
@@ -398,7 +401,8 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
                                 locationArray, gyroDict))
             
             // Clear the gyroscope data after getting its string representation
-            self.gyroDict.removeAll()
+            gyroDict.removeAll()
+            locationArray.removeAll()
         }
     }
     
