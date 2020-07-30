@@ -220,11 +220,7 @@ class PickUserController: UITableViewController {
             - ind: The index (unsigned integer, to ensure that a non-valid index won't be provided)
      */
     func deleteSession(_ ind: size_t) {
-        print(ind)
-        print("user: \(sessions[ind].value(forKey: "user") as! String)")
-        print("videoURL: \(sessions[ind].value(forKey: "videoURL") as! String)")
-        print("startTime: \(sessions[ind].value(forKey: "startTime") as! Date)")
-        print()
+        printSession(ind)
         
         guard let appDelegate =
           UIApplication.shared.delegate as? AppDelegate else {
@@ -235,10 +231,19 @@ class PickUserController: UITableViewController {
         
         do {
             context.delete(sessions[ind])
+            sessions.remove(at: ind)
             try context.save()
         } catch {
             print("Error: \(error.localizedDescription)")
         }
+    }
+    
+    func printSession(_ ind: size_t) {
+        print(ind)
+        print("user: \(sessions[ind].value(forKey: "user") as! String)")
+        print("videoURL: \(sessions[ind].value(forKey: "videoURL") as! String)")
+        print("startTime: \(sessions[ind].value(forKey: "startTime") as! Date)")
+        print()
     }
     
     // Used for testing purposes
