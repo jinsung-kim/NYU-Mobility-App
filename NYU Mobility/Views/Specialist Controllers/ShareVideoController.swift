@@ -38,7 +38,8 @@ class ShareVideoController: UIViewController {
         saveVideoToAlbum(generateURL()!) { (error) in
             // Do something with error
         }
-        saveAndExport()
+//        saveAndExport()
+        writeJSONFile()
     }
     
     /**
@@ -105,24 +106,22 @@ class ShareVideoController: UIViewController {
     /**
        Generates a temporary directory with a URL and creates a file to be exported as a JSON
     */
-    func saveAndExport() {
-//        let filePath = "\(getPathDirectory())/\(session.value(forKey: "videoURL") as! String).json"
-//        let jsonLink = URL(fileURLWithPath: filePath)
+    func writeJSONFile() {
+        let file = "\((session.value(forKey: "videoURL") as! String)[0..<36]).json"
+        let content = session.value(forKey: "json") as! String
+        print(file)
+
         
-        guard let url = Bundle.main.url(forResource: "\(session.value(forKey: "videoURL") as! String)",
-                                        withExtension: "json") else {
-            return
-        }
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = directory.appendingPathComponent(file)
         
         do {
-            print(results!)
-            let data = try results!.rawData()
-            try data.write(to: url)
+            try content.write(to: fileURL, atomically: true, encoding: .utf8)
         } catch {
-            print("Error getting raw JSON data (JSON -> Data)")
+            print("Error: \(error)")
         }
-
-        let objectsToShare = [url]
+        
+        let objectsToShare = [fileURL]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
 
         activityVC.setValue("Export", forKey: "subject")
