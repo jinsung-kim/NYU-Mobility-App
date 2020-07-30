@@ -187,20 +187,4 @@ class StorageController: UITableViewController {
         let path = getPathDirectory().appendingPathComponent(sessions[ind].value(forKey: "videoURL") as! String)
         return path
     }
-    
-    // Deletes all of the videos
-    func deletingLocalCacheAttachments() {
-        let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        do {
-            let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
-            if fileURLs.count > 0 {
-                for fileURL in fileURLs {
-                    try fileManager.removeItem(at: fileURL)
-                }
-            }
-        } catch {
-            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
-        }
-    }
 }

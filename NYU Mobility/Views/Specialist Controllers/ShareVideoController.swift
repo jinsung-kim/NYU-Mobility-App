@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import CoreData
+import SwiftyJSON
 
 class ShareVideoController: UIViewController {
     
@@ -35,6 +36,7 @@ class ShareVideoController: UIViewController {
         saveVideoToAlbum(generateURL()!) { (error) in
             // Do something with error
         }
+//        saveAndExport()
     }
     
     func requestAuthorization(completion: @escaping () -> Void) {
@@ -57,28 +59,41 @@ class ShareVideoController: UIViewController {
         - Returns: An error if applicable
      */
     func saveVideoToAlbum(_ outputURL: URL, _ completion: ((Error?) -> Void)?) {
-            requestAuthorization {
-                PHPhotoLibrary.shared().performChanges({
-                    let request = PHAssetCreationRequest.forAsset()
-                    request.addResource(with: .video, fileURL: outputURL, options: nil)
-                }) { (result, error) in
-                    DispatchQueue.main.async {
-                        if let error = error {
-                            print(error.localizedDescription)
-                            let alertController = UIAlertController(title: "Your video could not be saved", message: nil, preferredStyle: .alert)
-                            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            alertController.addAction(defaultAction)
-                            self.present(alertController, animated: true, completion: nil)
-                        } else {
-                            let alertController = UIAlertController(title: "Your video was successfully saved", message: nil, preferredStyle: .alert)
-                            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            alertController.addAction(defaultAction)
-                            self.present(alertController, animated: true, completion: nil)
-                        }
-                        completion?(error)
-                    }
+        requestAuthorization {
+            PHPhotoLibrary.shared().performChanges({
+                let request = PHAssetCreationRequest.forAsset()
+                request.addResource(with: .video, fileURL: outputURL, options: nil)
+            }) { (result, error) in
+                DispatchQueue.main.async {
+//                    if let error = error {
+//                        print(error.localizedDescription)
+//                        let alertController = UIAlertController(title: "Your video could not be saved", message: nil, preferredStyle: .alert)
+//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                        alertController.addAction(defaultAction)
+//                        self.present(alertController, animated: true, completion: nil)
+//                    } else {
+//                        let alertController = UIAlertController(title: "Your video was successfully saved", message: nil, preferredStyle: .alert)
+//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                        alertController.addAction(defaultAction)
+//                        self.present(alertController, animated: true, completion: nil)
+//                    }
+                    completion?(error)
                 }
             }
         }
+    }
     
+    // Export Functionality
+    
+    /**
+       Generates a temporary directory with a URL and creates a file to be exported as a JSON
+    */
+//    func saveAndExport() {
+//        let jsonData = JSONSerialization()
+//        let filename = "\(getPathDirectory())/export-\(session.value(forKey: "videoURL") as! String).json"
+//        let fileURL = URL(fileURLWithPath: filename)
+//        try jsonData.write(to: fileURL, options: .atomic)
+//
+//        let vc = UIActivityViewController(activityItems: [fileURL], applicationActivities: [])
+//    }
 }

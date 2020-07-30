@@ -199,7 +199,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         locationManager.startUpdatingLocation()
         startGyro()
         startUpdating()
-        saveData(currTime: Date())
+        saveData(currTime: Date(), significant: true)
     }
     
     /**
@@ -210,7 +210,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         locationManager.stopUpdatingLocation()
         stopUpdating()
         stopGyros()
-        saveData(currTime: Date())
+        saveData(currTime: Date(), significant: true)
     }
     
     func stopUpdating() { pedometer.stopUpdates() }
@@ -234,7 +234,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
             self?.distance = 0
             self?.maxSteps = 0
             self?.maxDistance = 0
-            self?.saveData(currTime: Date())
+            self?.saveData(currTime: Date(), significant: false)
         }
     }
     
@@ -245,7 +245,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
 
             // Runs concurrently
             DispatchQueue.main.async {
-                self?.saveData(currTime: Date())
+                self?.saveData(currTime: Date(), significant: false)
                 self?.distance = Int32(truncating: pedometerData.distance ?? 0)
                 self?.steps = Int32(truncating: pedometerData.numberOfSteps)
                 self?.avgPace = Double(truncating: pedometerData.averageActivePace ?? 0)
@@ -276,8 +276,9 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         Saves the given data into the stack, and clears out the gyroscope data to start taking values again
         - Parameters:
             - currTime: Date in which the data has been tracked
+            - significant: Whether the point must be included or not
      */
-    func saveData(currTime: Date) {
+    func saveData(currTime: Date, significant: Bool) {
         // JSON array implementation (See Point.swift for model)
         if (steps >= maxSteps) {
             maxSteps = steps
@@ -285,9 +286,11 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         if (distance >= maxDistance) {
             maxDistance = distance
         }
-        if (maxDistance != 0 || maxSteps != 0 || points.isEmpty) {
+        
+        if (maxDistance != 0 || maxSteps != 0 || points.isEmpty || significant) {
             points.append(Point(dateFormatter(), maxSteps, maxDistance,
-                                          avgPace, currPace, currCad, locationArray, gyroDict))
+                                avgPace, currPace, currCad,
+                                locationArray, gyroDict))
             
             // Clear the gyroscope data after getting its string representation
             gyroDict.removeAll()

@@ -47,8 +47,6 @@ class VideoPlaybackController: UIViewController {
         
         results = getJSONArray()
         
-        print(results!)
-        
         extractInformation()
         updateLabels()
         
@@ -142,7 +140,7 @@ class VideoPlaybackController: UIViewController {
     func extractInformation() {
         // Session was not long enough to be considered a session or
         // no significant data was collected
-        if (results!.count < 2) {
+        if (results!.count < 3) {
             return
         }
         // Precondition: There is sufficient data to be collected + sorted + evaluated

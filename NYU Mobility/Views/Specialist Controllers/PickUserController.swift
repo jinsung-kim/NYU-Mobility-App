@@ -22,6 +22,8 @@ class PickUserController: UITableViewController {
         loadData()
         addButton()
         
+        printSessions()
+        
         navigationItem.setHidesBackButton(true, animated: false)
         
         tableView.dataSource = self
@@ -29,8 +31,8 @@ class PickUserController: UITableViewController {
         tableView.backgroundColor = Colors.nyuPurple // Sets the background color to purple
     }
 
-    override func tableView(_ tableView: UITableView,
-                            willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+                            forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
     }
     
@@ -57,7 +59,7 @@ class PickUserController: UITableViewController {
                         inputPlaceholder: "Ex: John Appleseed",
                         inputKeyboardType: .emailAddress)
         { (input: String?) in
-            self.savePoint(input!, Date())
+            self.saveUser(input!, Date())
         }
         tableView.reloadData()
     }
@@ -90,7 +92,7 @@ class PickUserController: UITableViewController {
     }
     
     // Saves user
-    func savePoint(_ name: String, _ date: Date) {
+    func saveUser(_ name: String, _ date: Date) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -154,7 +156,8 @@ class PickUserController: UITableViewController {
     }
     
     // Right swipe 'Delete'
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -163,9 +166,9 @@ class PickUserController: UITableViewController {
             let context = appDelegate.persistentContainer.viewContext
             let commit = users[indexPath.row]
             
-            // Testing
-            let name = users[indexPath.row].value(forKey: "name") as! String
-            deleteSessionsFor(name: name)
+            let toDelete = users[indexPath.row].value(forKey: "name") as! String
+            deleteAllSessions(toDelete)
+
             users.remove(at: indexPath.row)
             context.delete(commit)
             
@@ -192,19 +195,37 @@ class PickUserController: UITableViewController {
         return path
     }
     
-    // Deletes all the sessions for a user that is deleted
-    func deleteSessionsFor(name: String) {
-        for ind in 0 ..< sessions.count {
-            if (sessions[ind].value(forKey: "user") as! String == name) {
-                // Removing at the provided URL
-                try? FileManager.default.removeItem(at: generateURL(ind)!)
-                deleteData(ind)
+    /**
+        Removes the sessions under a client's name
+        - Parameters:
+            - name: The name of the client
+     */
+    func deleteAllSessions(_ name: String) {
+        var user: String = ""
+        for ind in (0 ..< sessions.count).reversed() {
+            user = sessions[ind].value(forKey: "user") as! String
+            if (name == user) {
+                // Only delete if there is a valid URL there
+                // Otherwise, the entire directory will be deleted
+                if (sessions[ind].value(forKey: "videoURL") as! String != "") {
+                    try? FileManager.default.removeItem(at: generateURL(ind)!)
+                }
+                deleteSession(ind)
             }
         }
     }
-    
-    // Deleting session object
-    func deleteData(_ ind: size_t) {
+    /**
+        Deletes a session given the index
+        - Parameters:
+            - ind: The index (unsigned integer, to ensure that a non-valid index won't be provided)
+     */
+    func deleteSession(_ ind: size_t) {
+        print(ind)
+        print("user: \(sessions[ind].value(forKey: "user") as! String)")
+        print("videoURL: \(sessions[ind].value(forKey: "videoURL") as! String)")
+        print("startTime: \(sessions[ind].value(forKey: "startTime") as! Date)")
+        print()
+        
         guard let appDelegate =
           UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -219,5 +240,15 @@ class PickUserController: UITableViewController {
             print("Error: \(error.localizedDescription)")
         }
     }
+    
+    // Used for testing purposes
+    func printSessions() {
+        for session in sessions {
+            print("user: \(session.value(forKey: "user") as! String)")
+            print("videoURL: \(session.value(forKey: "videoURL") as! String)")
+            print("startTime: \(session.value(forKey: "startTime") as! Date)")
+            print()
+        }
+    }
+    
 }
-
