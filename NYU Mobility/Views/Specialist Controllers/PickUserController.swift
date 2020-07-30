@@ -22,8 +22,8 @@ class PickUserController: UITableViewController {
         loadData()
         addButton()
         
-        print("viewDidLoad")
-        printSessions()
+//        print("viewDidLoad")
+//        printSessions()
         
         navigationItem.setHidesBackButton(true, animated: false)
         
@@ -36,8 +36,8 @@ class PickUserController: UITableViewController {
         loadData()
         addButton()
         
-        print("viewDidAppear")
-        printSessions()
+//        print("viewDidAppear")
+//        printSessions()
         
         navigationItem.setHidesBackButton(true, animated: false)
         
@@ -220,16 +220,13 @@ class PickUserController: UITableViewController {
         for ind in (0 ..< sessions.count).reversed() {
             user = sessions[ind].value(forKey: "user") as! String
             if (name == user) {
-                print(user)
                 // Check if file exists (UUID generated URL is 40 characters long)
                 if ((sessions[ind].value(forKey: "videoURL") as! String).count == 40) {
-                    print("should delete file")
                     try? FileManager.default.removeItem(at: generateURL(ind)!)
                 }
                 deleteSession(ind)
             }
         }
-        printSessions()
     }
     
     /**
