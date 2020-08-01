@@ -9,16 +9,13 @@
 import UIKit
 import Photos
 import CoreData
-import SwiftyJSON
 
 class ShareVideoController: UIViewController {
     
     var session: NSManagedObject!
-    var results: JSON? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        results = getJSONArray()
     }
     
     // Gets the directory that the video is stored in
@@ -40,21 +37,6 @@ class ShareVideoController: UIViewController {
         }
 //        saveAndExport()
         writeJSONFile()
-    }
-    
-    /**
-        Takes the existing session json string, and converts it into a readable JSON array to extract information
-        - Returns: JSON? of the string (See SwiftyJSON documentation for more)
-     */
-    func getJSONArray() -> JSON? {
-        let data = (session.value(forKey: "json") as! String).data(using: .utf8)!
-        do {
-            let json = try JSON(data: data)
-            return json
-        } catch {
-            print("There was an error processing the string")
-        }
-        return nil
     }
     
     func requestAuthorization(completion: @escaping () -> Void) {
