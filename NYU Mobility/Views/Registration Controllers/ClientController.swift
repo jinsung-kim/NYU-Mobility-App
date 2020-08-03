@@ -8,6 +8,7 @@
 
 import UIKit
 import Device
+import FirebaseDatabase
 
 class ClientController: UIViewController, UITextFieldDelegate {
     
@@ -22,6 +23,9 @@ class ClientController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginRedirect: CustomButton!
     
     var last: UITextField?
+    
+    // Database setup
+    private let database = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +107,18 @@ class ClientController: UIViewController, UITextFieldDelegate {
         save("password", password.text!)
         save("name", fullName.text!)
         save("code", specialistCode.text!)
+        
+        // Store within database
+        let object: [String: Any] = [
+            "email": specialistEmail.text! as NSObject,
+            "username": username.text! as NSObject,
+            "password": password.text! as NSObject,
+            "name": fullName.text! as NSObject,
+            "code": specialistCode.text! as NSObject
+        ]
+        database.child(specialistCode.text!).setValue(object)
+        
+        print("object sent")
     }
     
     func save(_ key: String, _ value: String) {

@@ -7,4 +7,6 @@ target 'NYU Mobility' do
     pod 'LayoutHelper'
     pod "Device", '~> 3.2.1'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
 end

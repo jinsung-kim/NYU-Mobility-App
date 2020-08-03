@@ -11,6 +11,7 @@
 		A12106E024AD5E3D0041704D /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106DF24AD5E3D0041704D /* StorageController.swift */; };
 		A12106E224AD6FE60041704D /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12106E124AD6FE60041704D /* CardCell.swift */; };
 		A121D94C24958C9500F4F5DE /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D94B24958C9500F4F5DE /* FormController.swift */; };
+		A122F79524D8816C006BF6FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A122F79424D8816C006BF6FA /* GoogleService-Info.plist */; };
 		A1366EC024AB843C00B1FA57 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1366EBF24AB843C00B1FA57 /* Registration.storyboard */; };
 		A1366EC524AB853F00B1FA57 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC424AB853F00B1FA57 /* RegistrationController.swift */; };
 		A1366EC724AB8BE900B1FA57 /* ClientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1366EC624AB8BE900B1FA57 /* ClientController.swift */; };
@@ -77,6 +78,7 @@
 		A12106DF24AD5E3D0041704D /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		A12106E124AD6FE60041704D /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		A121D94B24958C9500F4F5DE /* FormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
+		A122F79424D8816C006BF6FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1366EBF24AB843C00B1FA57 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		A1366EC424AB853F00B1FA57 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		A1366EC624AB8BE900B1FA57 /* ClientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientController.swift; sourceTree = "<group>"; };
@@ -214,16 +216,14 @@
 		A141FC9624814B7C00A3433D /* NYU Mobility */ = {
 			isa = PBXGroup;
 			children = (
+				A17A4D9024D89A7600FBEAFC /* Resources */,
 				A19E30E424CE5A8D00C87FDE /* Views */,
-				A141FCCA24814E6900A3433D /* Storyboards */,
 				A114729824840DCF0043B04B /* Models */,
 				A1F0993724CB448C003C092D /* UI */,
 				A16DE4AA2497E340008777CD /* Custom */,
 				A141FCCC24816E1D00A3433D /* Sound */,
-				A141FC9724814B7C00A3433D /* AppDelegate.swift */,
-				A141FC9924814B7C00A3433D /* SceneDelegate.swift */,
-				A141FCA324814B7E00A3433D /* Assets.xcassets */,
 				A141FCA824814B7E00A3433D /* Info.plist */,
+				A122F79424D8816C006BF6FA /* GoogleService-Info.plist */,
 			);
 			path = "NYU Mobility";
 			sourceTree = "<group>";
@@ -293,9 +293,20 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		A17A4D9024D89A7600FBEAFC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A141FC9724814B7C00A3433D /* AppDelegate.swift */,
+				A141FC9924814B7C00A3433D /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A19E30E424CE5A8D00C87FDE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A141FCA324814B7E00A3433D /* Assets.xcassets */,
+				A141FCCA24814E6900A3433D /* Storyboards */,
 				A1366EC124AB84D400B1FA57 /* Registration Controllers */,
 				A1F002B724AC23DE0030E2F5 /* Specialist Controllers */,
 				A141FCD824816F6500A3433D /* Client Controllers */,
@@ -456,6 +467,7 @@
 				A141FCD624816E5C00A3433D /* start.mp3 in Resources */,
 				A1AF57082492A8BD008EF983 /* settings.mp3 in Resources */,
 				A141FCD524816E5C00A3433D /* stop.mp3 in Resources */,
+				A122F79524D8816C006BF6FA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
