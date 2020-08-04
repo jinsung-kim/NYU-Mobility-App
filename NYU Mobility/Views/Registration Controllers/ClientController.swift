@@ -10,8 +10,11 @@ import UIKit
 import Device
 import FirebaseDatabase
 import FirebaseAuth
+import JGProgressHUD
 
 class ClientController: UIViewController, UITextFieldDelegate {
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     // Text fields
     @IBOutlet weak var fullName: CustomTextField!
@@ -105,23 +108,25 @@ class ClientController: UIViewController, UITextFieldDelegate {
     @IBAction func registered(_ sender: Any) {
         // At least one text field is empty
         // Uncomment all guards when launching
-//        if (password.text!.count == 0 || fullName.text!.count == 0 ||
-//            clientEmail.text!.count == 0 || specialistEmail.text!.count == 0) {
-//            alertUserRegistrationError()
-//            return
-//        }
+        if (password.text!.count == 0 || fullName.text!.count == 0 ||
+            clientEmail.text!.count == 0 || specialistEmail.text!.count == 0) {
+            alertUserRegistrationError()
+            return
+        }
         
         // Missing specialist code
-//        if (specialistCode.text!.count == 0) {
-//            alertUserRegistrationError(message: "You need a specialist code to use the application")
-//            return
-//        }
+        if (specialistCode.text!.count == 0) {
+            alertUserRegistrationError(message: "You need a specialist code to use the application")
+            return
+        }
         
         // The password is not long enough
-//        if (password.text!.count < 6) {
-//            alertUserRegistrationError(message: "Password must be at least 6 characters long")
-//            return
-//        }
+        if (password.text!.count < 6) {
+            alertUserRegistrationError(message: "Password must be at least 6 characters long")
+            return
+        }
+        
+        spinner.show(in: view)
         
         // Firebase register attempt
         DatabaseManager.shared.userExists(with: clientEmail.text!, completion: { [weak self] exists in
@@ -129,10 +134,15 @@ class ClientController: UIViewController, UITextFieldDelegate {
                 return
             }
             
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
+            }
+            
             guard !exists else {
                 strongSelf.alertUserRegistrationError(message: "It seems that a user for that email already exists")
                 return
             }
+            
             // If the user does not exist -> Add
             FirebaseAuth.Auth.auth().createUser(withEmail: self!.clientEmail.text!, password: self!.password.text!, completion: { authResult, error in
                 guard authResult != nil, error == nil else {
@@ -147,10 +157,12 @@ class ClientController: UIViewController, UITextFieldDelegate {
                 self!.save("name", self!.fullName.text!)
                 self!.save("code", self!.specialistCode.text!)
                 
-                let client = ClientUser(fullName: self!.fullName.text!, username: self!.clientEmail.text!,
-                                        password: self!.password.text!, code: self!.specialistCode.text!)
+                let client = ClientUser(fullName: self!.fullName.text!,
+                                        username: self!.clientEmail.text!,
+                                        password: self!.password.text!,
+                                        code: self!.specialistCode.text!)
                 
-                DatabaseManager.shared.insertUser(with: client, completion: { success in
+                DatabaseManager.shared.insertClientUser(with: client, completion: { success in
                     if success {
                         // if successful -> redirect
                         self!.performSegue(withIdentifier: "ToClient", sender: self)

@@ -9,8 +9,12 @@
 import UIKit
 import Device
 import FirebaseDatabase
+import FirebaseAuth
+import JGProgressHUD
 
 class SpecialistController: UIViewController {
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     // Text fields to fill up
     @IBOutlet weak var name: CustomTextField!
@@ -32,27 +36,58 @@ class SpecialistController: UIViewController {
     
     @IBAction func registered(_ sender: Any) {
         // At least one text field is empty
-//        if (password.text!.count == 0 || name.text!.count == 0 ||
-//            username.text!.count == 0 || email.text!.count == 0) {
-//            alertUserRegistrationError()
-//            return
-//        }
+        if (password.text!.count == 0 || name.text!.count == 0 ||
+            email.text!.count == 0) {
+            alertUserRegistrationError()
+            return
+        }
         
         // The password is not long enough
-//        if (password.text!.count < 6) {
-//            alertUserRegistrationError(message: "Password must be at least 6 characters long")
-//            return
-//        }
+        if (password.text!.count < 6) {
+            alertUserRegistrationError(message: "Password must be at least 6 characters long")
+            return
+        }
+        
+        spinner.show(in: view)
         
         // Firebase register attempt
-        
-        
-        save("name", name.text!)
-        save("email", email.text!)
-        save("username", email.text!)
-        save("password", password.text!)
-        generateCode()
-        performSegue(withIdentifier: "ShowCode", sender: self)
+        DatabaseManager.shared.userExists(with: email.text!, completion: { [weak self] exists in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
+            }
+            
+            guard !exists else {
+                strongSelf.alertUserRegistrationError(message: "It seems that a user for that email already exists")
+                return
+            }
+            
+            // If the user does not exist -> Add
+            FirebaseAuth.Auth.auth().createUser(withEmail: self!.email.text!, password: self!.password.text!, completion: { authResult, error in
+                guard authResult != nil, error == nil else {
+                    print("Error adding user")
+                    return
+                }
+                
+                // Saves all of the user defaults
+                self!.save("name", self!.name.text!)
+                self!.save("email", self!.email.text!)
+                self!.save("username", self!.email.text!)
+                self!.save("password", self!.password.text!)
+                self!.generateCode()
+                
+                let specialist = SpecialistUser(fullName: self!.name.text!,
+                                                username: self!.email.text!,
+                                                password: self!.password.text!,
+                                                code: UserDefaults.standard.string(forKey: "code")!)
+                DatabaseManager.shared.insertSpecialistUser(with: specialist, completion: { success in
+                    self!.performSegue(withIdentifier: "ShowCode", sender: self)
+                })
+            })
+        })
     }
     
     func labelAdjustments() {
@@ -75,40 +110,30 @@ class SpecialistController: UIViewController {
         UITextField.connectFields(fields: [name, email, password])
         
         // Keyboard settings
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+//                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+//                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
 //     Called when we leave this view controller, whether that is going back or finished
     override func viewDidDisappear(_ animated: Bool) {
         // Cleaning up to avoid any unnecessary notification messages
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification,
+//                                                  object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification,
+//                                                  object: nil)
     }
     
     @IBAction func keyboardStays(_ sender: UITextField) {
         last = sender
     }
 
-    @objc func keyboardWillShow(notification: NSNotification) {
-//        if (last != name && last != email && last != password) {
-//            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-//                if view.frame.origin.y == 0 {
-//                    view.frame.origin.y -= keyboardSize.height
-//                }
-//            }
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//        if view.frame.origin.y != 0 {
+//            view.frame.origin.y = 0
 //        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if view.frame.origin.y != 0 {
-            view.frame.origin.y = 0
-        }
-    }
+//    }
     
     func exitEdit() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))

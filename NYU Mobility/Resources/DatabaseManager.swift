@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+/// Manager object to read and write data to the real time Firebase database
 final class DatabaseManager {
     
     // Referenced throughout view controllers
@@ -24,10 +25,36 @@ final class DatabaseManager {
     }
 }
 
+extension DatabaseManager {
+    
+    /// Returns dictionary node at child path
+    public func getDataFor(path: String,
+                           completion: @escaping (Result<Any, Error>) -> Void) {
+        database.child("\(path)").observeSingleEvent(of: .value) { snapshot in
+            guard let value = snapshot.value else {
+                completion(.failure(DatabaseError.failedToFetch))
+                return
+            }
+            completion(.success(value))
+        }
+    }
+}
+
 // MARK: - Account Management
 
 extension DatabaseManager {
     
+    public enum DatabaseError: Error {
+        case failedToFetch
+        
+        public var localizedDescription: String {
+            switch self {
+            case .failedToFetch:
+                return "Database fetching failed"
+            }
+        }
+    }
+
     /**
         Checks to see if a user was already inserted into the system -> in which it would return true
         - Parameters:
@@ -47,10 +74,8 @@ extension DatabaseManager {
     }
     
     /// Inserts a user into the system
-    public func insertUser(with user: ClientUser,
+    public func insertClientUser(with user: ClientUser,
                            completion: @escaping (Bool) -> Void) {
-        print(user.safeEmail)
-        print(user.username)
         database.child(user.safeEmail).setValue([
             "fullName": user.fullName,
             "code": user.code,
@@ -114,6 +139,71 @@ extension DatabaseManager {
             }
         )
     }
+    
+    public func insertSpecialistUser(with user: SpecialistUser, completion: @escaping (Bool) -> Void) {
+        database.child(user.safeEmail).setValue([
+            "fullName": user.fullName,
+            "code": user.code,
+            "username": user.username,
+            "password": user.password
+            ], withCompletionBlock: {
+                [weak self] error, _ in
+                guard let strongSelf = self else {
+                    return
+                }
+                // Error inserting child
+                guard error == nil else {
+                    print("Failed to write to database")
+                    completion(false)
+                    return
+                }
+                strongSelf.database.child("specialists").observeSingleEvent(of: .value, with: {
+                    snapshot in
+                    if var usersCollection = snapshot.value as? [[String: String]] {
+                        // Append to user dictionary
+                        let newUser = [
+                            "fullName": user.fullName,
+                            "code": user.code,
+                            "username": user.username,
+                            "password": user.password
+                        ]
+                        usersCollection.append(newUser)
+                        
+                        // Look for error again when inserting the array
+                        strongSelf.database.child("specialists").setValue(usersCollection, withCompletionBlock: { error, _ in
+                            guard error == nil else {
+                                completion(false)
+                                return
+                            }
+                            // User inserted successfully
+                            completion(true)
+                        })
+                    } else {
+                        // No users in that array -> create that array
+                        let newUserCollection: [[String: String]] = [
+                            [
+                                "fullName": user.fullName,
+                                "code": user.code,
+                                "username": user.username,
+                                "password": user.password
+                            ]
+                        ]
+                        
+                        strongSelf.database.child("specialists").setValue(newUserCollection, withCompletionBlock: { error, _ in
+                            guard error == nil else {
+                                // Error creating array within document
+                                completion(false)
+                                return
+                            }
+                            
+                            // Collection created successfully
+                            completion(true)
+                        })
+                    }
+                })
+            }
+        )
+    }
 }
 
 struct ClientUser {
@@ -121,6 +211,21 @@ struct ClientUser {
     let username: String // email address
     let password: String
     let code: String // Specialist code
+    let mode: String = "client"
+    
+    var safeEmail: String {
+        var safeEmail = username.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
+}
+
+struct SpecialistUser {
+    let fullName: String
+    let username: String // email address
+    let password: String
+    let code: String // Specialist code that will be generated right before
+    let mode: String = "specialist"
     
     var safeEmail: String {
         var safeEmail = username.replacingOccurrences(of: ".", with: "-")

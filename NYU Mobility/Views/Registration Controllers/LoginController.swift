@@ -10,10 +10,11 @@ import UIKit
 import Device
 import FirebaseDatabase
 import FirebaseAuth
+import JGProgressHUD
 
 class LoginController: UIViewController {
     
-    private let database = Database.database().reference()
+    private let spinner = JGProgressHUD(style: .dark)
     
     // Text fields to fill up
     @IBOutlet weak var username: CustomTextField!
@@ -36,7 +37,7 @@ class LoginController: UIViewController {
         // Redirects to the proper storyboard reference via "show" segue
         if (getMode() == "client" && validLogin()) { // going to client mode
             self.performSegue(withIdentifier: "LoggedInClient", sender: self)
-        } else if (getMode() == "specialist" && validLogin()){ // going to specialist mode
+        } else if (getMode() == "specialist" && validLogin()) { // going to specialist mode
             self.performSegue(withIdentifier: "LoggedInSpecialist", sender: self)
         } else { // else do nothing (don't redirect) -> create error message
             alertUserLoginError()
@@ -82,8 +83,48 @@ class LoginController: UIViewController {
         if (email == "" || password == "") {
             return false
         }
+        
+        spinner.show(in: view)
+
         // Validate Login
-//        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password)
+        FirebaseAuth.Auth.auth().signIn(withEmail: email!, password: password!, completion: { [weak self] authResult, error in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
+            }
+            
+            guard let result = authResult, error == nil else {
+                print("Failed to log in user with email: \(email!)")
+                return
+            }
+            
+            let user = result.user
+            let safeEmail = DatabaseManager.safeEmail(email!)
+            
+            DatabaseManager.shared.getDataFor(path: safeEmail, completion: { result in
+                switch result {
+                case .success(let data):
+                    guard let userData = data as? [String: Any],
+                        let name = userData["fullName"] as? String,
+                        let code = userData["code"] as? String,
+                        let mode = userData["mode"] as? String else {
+                            return
+                    }
+                    // STORE MODE OF THE USER
+                    UserDefaults.standard.set(mode, forKey: "mode")
+                    UserDefaults.standard.set(name, forKey: "name")
+                    UserDefaults.standard.set(code, forKey: "code")
+                case .failure(let error):
+                    print("Failed to read data with error: \(error)")
+                    return
+                }
+            })
+            
+            print("Logged in User: \(user)")
+        })
         
         return true
     }
