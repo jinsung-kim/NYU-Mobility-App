@@ -8,8 +8,12 @@
 
 import UIKit
 import Device
+import FirebaseDatabase
+import FirebaseAuth
 
 class LoginController: UIViewController {
+    
+    private let database = Database.database().reference()
     
     // Text fields to fill up
     @IBOutlet weak var username: CustomTextField!
@@ -34,7 +38,9 @@ class LoginController: UIViewController {
             self.performSegue(withIdentifier: "LoggedInClient", sender: self)
         } else if (getMode() == "specialist" && validLogin()){ // going to specialist mode
             self.performSegue(withIdentifier: "LoggedInSpecialist", sender: self)
-        } // else do nothing (don't redirect) -> create error message
+        } else { // else do nothing (don't redirect) -> create error message
+            alertUserLoginError()
+        }
     }
     
     func labelAdjustments() {
@@ -72,11 +78,22 @@ class LoginController: UIViewController {
     func validLogin() -> Bool {
         let defaults = UserDefaults.standard
         let email = defaults.string(forKey: "username")
-        let name = defaults.string(forKey: "password")
-        if (email == "" || name == "") {
+        let password = defaults.string(forKey: "password")
+        if (email == "" || password == "") {
             return false
         }
+        // Validate Login
+//        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password)
+        
         return true
     }
     
+    func alertUserLoginError(message: String = "Login unsuccessful") {
+        let alert = UIAlertController(title: "Woops",
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title:"Dismiss",
+                                      style: .cancel, handler: nil))
+        present(alert, animated: true)
+    }
 }

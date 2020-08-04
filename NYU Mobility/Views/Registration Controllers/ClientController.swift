@@ -9,12 +9,13 @@
 import UIKit
 import Device
 import FirebaseDatabase
+import FirebaseAuth
 
 class ClientController: UIViewController, UITextFieldDelegate {
     
     // Text fields
     @IBOutlet weak var fullName: CustomTextField!
-    @IBOutlet weak var username: CustomTextField!
+    @IBOutlet weak var clientEmail: CustomTextField!
     @IBOutlet weak var password: CustomTextField!
     @IBOutlet weak var specialistEmail: CustomTextField!
     @IBOutlet weak var specialistCode: CustomTextField!
@@ -37,14 +38,14 @@ class ClientController: UIViewController, UITextFieldDelegate {
         // 4.0 inch screen iPhone SE (only device that needs smaller buttons)
         if (Device.size() == Size.screen4Inch) {
             fullName.widthAnchor.constraint(equalToConstant: 250).isActive = true
-            username.widthAnchor.constraint(equalToConstant: 250).isActive = true
+            clientEmail.widthAnchor.constraint(equalToConstant: 250).isActive = true
             password.widthAnchor.constraint(equalToConstant: 250).isActive = true
             specialistEmail.widthAnchor.constraint(equalToConstant: 250).isActive = true
             specialistCode.widthAnchor.constraint(equalToConstant: 250).isActive = true
         } else {
             // UI design for labels
             fullName.widthAnchor.constraint(equalToConstant: 350).isActive = true
-            username.widthAnchor.constraint(equalToConstant: 350).isActive = true
+            clientEmail.widthAnchor.constraint(equalToConstant: 350).isActive = true
             password.widthAnchor.constraint(equalToConstant: 350).isActive = true
             specialistEmail.widthAnchor.constraint(equalToConstant: 350).isActive = true
             specialistCode.widthAnchor.constraint(equalToConstant: 350).isActive = true
@@ -57,7 +58,7 @@ class ClientController: UIViewController, UITextFieldDelegate {
         loginRedirect.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // Connect all UITextFields to go to the next
-        UITextField.connectFields(fields: [fullName, username, password, specialistEmail, specialistCode])
+        UITextField.connectFields(fields: [fullName, clientEmail, password, specialistEmail, specialistCode])
         
         // Keyboard settings
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
@@ -80,7 +81,7 @@ class ClientController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if (last != fullName && last != username && last != password) {
+        if (last != fullName && last != clientEmail && last != password) {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 if view.frame.origin.y == 0 {
                     view.frame.origin.y -= keyboardSize.height
@@ -102,28 +103,54 @@ class ClientController: UIViewController, UITextFieldDelegate {
     
     // Once the user hits the register button, all of the boxes that they filled will be saved
     @IBAction func registered(_ sender: Any) {
+        // At least one text field is empty
+        // Uncomment all guards when launching
+//        if (password.text!.count == 0 || fullName.text!.count == 0 ||
+//            clientEmail.text!.count == 0 || specialistEmail.text!.count == 0) {
+//            alertUserRegistrationError()
+//            return
+//        }
+        
+        // Missing specialist code
+//        if (specialistCode.text!.count == 0) {
+//            alertUserRegistrationError(message: "You need a specialist code to use the application")
+//            return
+//        }
+        
+        // The password is not long enough
+//        if (password.text!.count < 6) {
+//            alertUserRegistrationError(message: "Password must be at least 6 characters long")
+//            return
+//        }
+        
+        // Firebase register attempt
+        
+        
         save("email", specialistEmail.text!)
-        save("username", username.text!)
+        save("username", clientEmail.text!) // email treated as username
         save("password", password.text!)
         save("name", fullName.text!)
         save("code", specialistCode.text!)
-        
         // Store within database
-        let object: [String: Any] = [
-            "email": specialistEmail.text! as NSObject,
-            "username": username.text! as NSObject,
-            "password": password.text! as NSObject,
-            "name": fullName.text! as NSObject,
-            "code": specialistCode.text! as NSObject
-        ]
-        database.child(specialistCode.text!).setValue(object)
         
-        print("object sent")
+        
+        // if successful -> redirect
+        performSegue(withIdentifier: "ToClient", sender: self)
     }
     
     func save(_ key: String, _ value: String) {
         let defaults = UserDefaults.standard
         defaults.set(value, forKey: "\(key)")
+    }
+    
+    // Error Messages
+    func alertUserRegistrationError(message: String = "Please enter all information to create a new account.") {
+        let alert = UIAlertController(title: "Woops",
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title:"Dismiss",
+                                      style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vi2-PK-aE2">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,11 +12,11 @@
             <objects>
                 <viewController storyboardIdentifier="Registration" id="gnB-UP-gQP" customClass="RegistrationController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="laY-RN-P0X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2a-ec-mim" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="166" y="378" width="82" height="30"/>
+                                <rect key="frame" x="146.66666666666666" y="378" width="82" height="30"/>
                                 <state key="normal" title="I am a client"/>
                                 <connections>
                                     <action selector="clientMode:" destination="gnB-UP-gQP" eventType="touchUpInside" id="ofu-30-3W6"/>
@@ -24,7 +24,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbZ-3G-HR8" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="152.5" y="508" width="109" height="30"/>
+                                <rect key="frame" x="133" y="508" width="109" height="30"/>
                                 <state key="normal" title="I am a specialist"/>
                                 <connections>
                                     <action selector="specialistMode:" destination="gnB-UP-gQP" eventType="touchUpInside" id="ngA-Ym-0Xx"/>
@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uaM-wX-Xb8">
-                                <rect key="frame" x="147" y="158" width="120" height="120"/>
+                                <rect key="frame" x="127.66666666666669" y="158" width="120" height="120"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.33066866639665699" green="0.1185824159956317" blue="0.57703403561928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -132,92 +132,74 @@
             <objects>
                 <viewController storyboardIdentifier="SpecialistVC" id="LTW-xd-LH4" customClass="SpecialistController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cxq-SX-dUV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6W-OZ-so3" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="178.5" y="702" width="57" height="30"/>
+                                <rect key="frame" x="159" y="618" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registered:" destination="LTW-xd-LH4" eventType="touchUpInside" id="7dD-HW-bHq"/>
-                                    <segue destination="k8T-5o-abq" kind="show" identifier="ShowCode" id="bSR-ac-zWX"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: John Appleseed" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBy-bB-p5g" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="129.5" y="187" width="155" height="34"/>
+                                <rect key="frame" x="110" y="187" width="155" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="dI5-gp-Rxt"/>
-                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="yyU-a7-gcK"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kw6-0T-qXK">
-                                <rect key="frame" x="168.5" y="158" width="77" height="21"/>
+                                <rect key="frame" x="149" y="158" width="77" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jYr-bH-cNy" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="174" y="400" width="66" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="aYX-gu-bHd"/>
-                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="vhI-zJ-yNw"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQe-Bz-fH2">
-                                <rect key="frame" x="186.5" y="371" width="41" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQe-Bz-fH2">
+                                <rect key="frame" x="147.66666666666666" y="229" width="80" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No special characters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jCz-VP-qDO" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="123" y="258" width="168" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="oFw-Km-axO"/>
-                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="qZ7-U3-lTc"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEH-7f-RJS">
-                                <rect key="frame" x="167.5" y="229" width="79" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="8 - 16 characters recommended" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evH-rQ-Esl" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="89" y="329" width="236" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="At least 6 characters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evH-rQ-Esl" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="106.66666666666669" y="329" width="162" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="9Nl-5j-FgE"/>
-                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="xxo-8b-XvV"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1l-X3-GZ1">
-                                <rect key="frame" x="170" y="300" width="74" height="21"/>
+                                <rect key="frame" x="150.66666666666666" y="300" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCl-Kb-NVj" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="161" y="772" width="92" height="30"/>
+                                <rect key="frame" x="141.66666666666666" y="688" width="92" height="30"/>
                                 <state key="normal" title="Login Instead"/>
                                 <connections>
                                     <segue destination="b23-ew-FkT" kind="show" id="Ju3-nv-zII"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jYr-bH-cNy" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="154.66666666666666" y="258" width="66" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="aYX-gu-bHd"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.33066866639665699" green="0.1185824159956317" blue="0.57703403561928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="jCz-VP-qDO" firstAttribute="top" secondItem="wEH-7f-RJS" secondAttribute="bottom" constant="8" id="0Nf-ac-cyR"/>
-                            <constraint firstItem="A1l-X3-GZ1" firstAttribute="top" secondItem="jCz-VP-qDO" secondAttribute="bottom" constant="8" id="4YA-n1-Ai5"/>
+                            <constraint firstItem="IQe-Bz-fH2" firstAttribute="top" secondItem="QBy-bB-p5g" secondAttribute="bottom" constant="8" id="4u4-oL-afi"/>
                             <constraint firstItem="QBy-bB-p5g" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="6F0-JI-Ro0"/>
                             <constraint firstItem="Kw6-0T-qXK" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="9fr-31-lnG"/>
                             <constraint firstItem="QBy-bB-p5g" firstAttribute="top" secondItem="Kw6-0T-qXK" secondAttribute="bottom" constant="8" id="FLp-Xr-Mwk"/>
+                            <constraint firstItem="A1l-X3-GZ1" firstAttribute="top" secondItem="jYr-bH-cNy" secondAttribute="bottom" constant="8" id="GK5-FK-UFq"/>
+                            <constraint firstItem="IQe-Bz-fH2" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="KwJ-zj-3yb"/>
                             <constraint firstItem="n3u-88-GSE" firstAttribute="bottom" secondItem="oCl-Kb-NVj" secondAttribute="bottom" constant="60" id="OUH-T8-E8t" customClass="NSLayoutHelper" customModule="LayoutHelper">
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="iPhoneSE">
@@ -242,8 +224,7 @@
                             </constraint>
                             <constraint firstItem="jYr-bH-cNy" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="PXx-jn-OSU"/>
                             <constraint firstItem="E6W-OZ-so3" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="Svj-S8-Wgp"/>
-                            <constraint firstItem="wEH-7f-RJS" firstAttribute="top" secondItem="QBy-bB-p5g" secondAttribute="bottom" constant="8" id="TlM-pV-YOX"/>
-                            <constraint firstItem="wEH-7f-RJS" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="XCE-NV-xBu"/>
+                            <constraint firstItem="jYr-bH-cNy" firstAttribute="top" secondItem="IQe-Bz-fH2" secondAttribute="bottom" constant="8" id="WGC-ZY-LhJ"/>
                             <constraint firstItem="A1l-X3-GZ1" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="Yb1-gd-g5n"/>
                             <constraint firstItem="oCl-Kb-NVj" firstAttribute="top" secondItem="E6W-OZ-so3" secondAttribute="bottom" constant="40" id="Zsk-Sb-0Qh"/>
                             <constraint firstItem="evH-rQ-Esl" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="dtk-PM-kVY"/>
@@ -269,12 +250,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </constraint>
-                            <constraint firstItem="IQe-Bz-fH2" firstAttribute="top" secondItem="evH-rQ-Esl" secondAttribute="bottom" constant="8" id="fdQ-tG-8rZ"/>
                             <constraint firstItem="IQe-Bz-fH2" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="jeG-YS-xor"/>
+                            <constraint firstItem="jYr-bH-cNy" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="nVC-7C-u1G"/>
                             <constraint firstItem="evH-rQ-Esl" firstAttribute="top" secondItem="A1l-X3-GZ1" secondAttribute="bottom" constant="8" id="oS8-vd-fKR"/>
-                            <constraint firstItem="jYr-bH-cNy" firstAttribute="top" secondItem="IQe-Bz-fH2" secondAttribute="bottom" constant="8" id="pu1-00-A1g"/>
                             <constraint firstItem="oCl-Kb-NVj" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="t1D-fd-9A1"/>
-                            <constraint firstItem="jCz-VP-qDO" firstAttribute="centerX" secondItem="cxq-SX-dUV" secondAttribute="centerX" id="zba-dX-Ww9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="n3u-88-GSE"/>
                     </view>
@@ -287,53 +266,45 @@
                         <outlet property="name" destination="QBy-bB-p5g" id="gZi-W1-dQZ"/>
                         <outlet property="password" destination="evH-rQ-Esl" id="t9n-QC-opR"/>
                         <outlet property="registerButton" destination="E6W-OZ-so3" id="Aqd-p9-Hsx"/>
-                        <outlet property="username" destination="jCz-VP-qDO" id="9FH-hc-rZh"/>
+                        <segue destination="k8T-5o-abq" kind="show" identifier="ShowCode" id="eNd-PI-eav"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsG-S0-Df9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1993" y="475"/>
+            <point key="canvasLocation" x="1992.753623188406" y="474.77678571428567"/>
         </scene>
         <!--Login-->
         <scene sceneID="OfX-dZ-5U9">
             <objects>
                 <viewController id="b23-ew-FkT" customClass="LoginController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Ik-I9-tiE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No special characters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A26-7J-S9f" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="123" y="197" width="168" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A26-7J-S9f" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="171.66666666666666" y="197" width="32" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="4N4-Jo-Wrt"/>
-                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="WHD-Cd-Jqu"/>
-                                </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nue-II-9vz">
-                                <rect key="frame" x="167.5" y="168" width="79" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nue-II-9vz">
+                                <rect key="frame" x="147.66666666666666" y="168" width="80" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="8 - 16 characters recommended" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LEO-lG-2o5" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="89" y="268" width="236" height="34"/>
+                                <rect key="frame" x="69.666666666666686" y="268" width="236" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="rPl-Tb-z5n"/>
-                                    <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="zG1-gB-4M5"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4d-bA-1z3">
-                                <rect key="frame" x="170" y="239" width="74" height="21"/>
+                                <rect key="frame" x="150.66666666666666" y="239" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vjz-IG-wei" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="188" y="712" width="38" height="30"/>
+                                <rect key="frame" x="168.66666666666666" y="628" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginButton:" destination="Mdb-qh-a3b" eventType="touchUpInside" id="Pom-ag-lb0"/>
@@ -424,30 +395,30 @@
             <objects>
                 <viewController id="k8T-5o-abq" customClass="CodeViewController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BhI-R0-Cg2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Specialist Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4v-do-1jJ">
-                                <rect key="frame" x="109.5" y="303.5" width="195" height="24"/>
+                                <rect key="frame" x="90" y="261.66666666666669" width="195" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save the code by taking a screenshot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdX-k6-jxc">
-                                <rect key="frame" x="45.5" y="337.5" width="323" height="24"/>
+                                <rect key="frame" x="26" y="295.66666666666669" width="323" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imd-9W-lUT" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="191" y="782" width="32" height="30"/>
+                                <rect key="frame" x="171.66666666666666" y="698" width="32" height="30"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
                                     <segue destination="gJT-e3-dp9" kind="show" identifier="ToSpecialist" id="q5u-vQ-EWC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqy-Qy-Syc">
-                                <rect key="frame" x="183.5" y="436.5" width="47" height="23"/>
+                                <rect key="frame" x="164" y="394.66666666666669" width="47" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -491,27 +462,26 @@
             <objects>
                 <viewController storyboardIdentifier="ClientVC" id="PDR-mp-3r4" customClass="ClientController" customModule="NYU_Mobility" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aab-3F-Tml">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOX-As-8l1" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="178.5" y="767" width="57" height="30"/>
+                                <rect key="frame" x="159" y="683" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registered:" destination="PDR-mp-3r4" eventType="touchUpInside" id="Fb1-ME-mxV"/>
-                                    <segue destination="cYw-0i-MUx" kind="show" identifier="ToClient" id="fiU-F7-pAy"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: John Appleseed" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faE-p1-5eG" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="129.5" y="187" width="155" height="34"/>
+                                <rect key="frame" x="110" y="187" width="155" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="50B-F5-Acg"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No special characters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lfg-zk-7CM" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="123" y="258" width="168" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your email will be your username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lfg-zk-7CM" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="67.666666666666686" y="258" width="240" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -519,19 +489,19 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ViJ-71-OBx">
-                                <rect key="frame" x="168.5" y="158" width="77" height="21"/>
+                                <rect key="frame" x="149" y="158" width="77" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPU-CH-4JG">
-                                <rect key="frame" x="167.5" y="229" width="79" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPU-CH-4JG">
+                                <rect key="frame" x="147.66666666666666" y="229" width="80" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9q1-z6-u6s" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="174" y="400" width="66" height="34"/>
+                                <rect key="frame" x="154.66666666666666" y="400" width="66" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -539,27 +509,27 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialist Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3D-uC-raI">
-                                <rect key="frame" x="147.5" y="371" width="119" height="21"/>
+                                <rect key="frame" x="128" y="371" width="119" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialist Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd6-r9-RQr">
-                                <rect key="frame" x="147.5" y="442" width="119" height="21"/>
+                                <rect key="frame" x="128" y="442" width="119" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ask Specialist" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lga-zE-HQI" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="148" y="471" width="118" height="34"/>
+                                <rect key="frame" x="128.66666666666666" y="471" width="118" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="bzf-hh-dCo"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="8 - 16 characters recommended" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvT-X1-Ifp" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="89" y="329" width="236" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="At least 6 characters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvT-X1-Ifp" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="106.66666666666669" y="329" width="162" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -567,13 +537,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAC-SF-vbP">
-                                <rect key="frame" x="170" y="300" width="74" height="21"/>
+                                <rect key="frame" x="150.66666666666666" y="300" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nde-uL-sKu" customClass="CustomButton" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="161" y="822" width="92" height="30"/>
+                                <rect key="frame" x="141.66666666666666" y="738" width="92" height="30"/>
                                 <state key="normal" title="Login Instead"/>
                                 <connections>
                                     <segue destination="b23-ew-FkT" kind="show" identifier="" id="0ue-6Y-cv2"/>
@@ -676,13 +646,14 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="3bL-IT-eWg"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="clientEmail" destination="lfg-zk-7CM" id="Bba-OF-Oui"/>
                         <outlet property="fullName" destination="faE-p1-5eG" id="3Wy-0t-3Jj"/>
                         <outlet property="loginRedirect" destination="nde-uL-sKu" id="hRv-lf-Rss"/>
                         <outlet property="password" destination="nvT-X1-Ifp" id="dfh-v2-qtB"/>
                         <outlet property="registerButton" destination="sOX-As-8l1" id="Uev-1p-p3c"/>
                         <outlet property="specialistCode" destination="lga-zE-HQI" id="2eZ-z6-oZH"/>
                         <outlet property="specialistEmail" destination="9q1-z6-u6s" id="2z8-LR-n9N"/>
-                        <outlet property="username" destination="lfg-zk-7CM" id="jEF-Gx-AJW"/>
+                        <segue destination="cYw-0i-MUx" kind="show" identifier="ToClient" id="YVW-B4-IhM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kN-Mb-J2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -705,7 +676,7 @@
                 <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" id="vi2-PK-aE2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cn4-EV-s9p">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -719,9 +690,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="epg-oJ-LXP"/>
-        <segue reference="q5u-vQ-EWC"/>
-        <segue reference="Ju3-nv-zII"/>
+        <segue reference="YVW-B4-IhM"/>
+        <segue reference="aJh-hw-HKs"/>
+        <segue reference="0ue-6Y-cv2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="logo" width="120" height="120"/>

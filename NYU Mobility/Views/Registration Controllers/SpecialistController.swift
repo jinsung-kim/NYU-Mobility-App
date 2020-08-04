@@ -8,12 +8,12 @@
 
 import UIKit
 import Device
+import FirebaseDatabase
 
 class SpecialistController: UIViewController {
     
     // Text fields to fill up
     @IBOutlet weak var name: CustomTextField!
-    @IBOutlet weak var username: CustomTextField!
     @IBOutlet weak var password: CustomTextField!
     @IBOutlet weak var email: CustomTextField!
     
@@ -31,22 +31,37 @@ class SpecialistController: UIViewController {
     }
     
     @IBAction func registered(_ sender: Any) {
+        // At least one text field is empty
+//        if (password.text!.count == 0 || name.text!.count == 0 ||
+//            username.text!.count == 0 || email.text!.count == 0) {
+//            alertUserRegistrationError()
+//            return
+//        }
+        
+        // The password is not long enough
+//        if (password.text!.count < 6) {
+//            alertUserRegistrationError(message: "Password must be at least 6 characters long")
+//            return
+//        }
+        
+        // Firebase register attempt
+        
+        
         save("name", name.text!)
         save("email", email.text!)
-        save("username", username.text!)
+        save("username", email.text!)
         save("password", password.text!)
         generateCode()
+        performSegue(withIdentifier: "ShowCode", sender: self)
     }
     
     func labelAdjustments() {
         if (Device.size() == Size.screen4Inch) {
             name.widthAnchor.constraint(equalToConstant: 250).isActive = true
-            username.widthAnchor.constraint(equalToConstant: 250).isActive = true
             password.widthAnchor.constraint(equalToConstant: 250).isActive = true
             email.widthAnchor.constraint(equalToConstant: 250).isActive = true
         } else {
             name.widthAnchor.constraint(equalToConstant: 350).isActive = true
-            username.widthAnchor.constraint(equalToConstant: 350).isActive = true
             password.widthAnchor.constraint(equalToConstant: 350).isActive = true
             email.widthAnchor.constraint(equalToConstant: 350).isActive = true
         }
@@ -57,7 +72,7 @@ class SpecialistController: UIViewController {
         loginRedirect.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // Connect all UITextFields to go to the next
-        UITextField.connectFields(fields: [name, username, password, email])
+        UITextField.connectFields(fields: [name, email, password])
         
         // Keyboard settings
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
@@ -80,13 +95,13 @@ class SpecialistController: UIViewController {
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
-        if (last != name && last != username && last != password) {
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if view.frame.origin.y == 0 {
-                    view.frame.origin.y -= keyboardSize.height
-                }
-            }
-        }
+//        if (last != name && last != email && last != password) {
+//            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//                if view.frame.origin.y == 0 {
+//                    view.frame.origin.y -= keyboardSize.height
+//                }
+//            }
+//        }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -109,6 +124,16 @@ class SpecialistController: UIViewController {
         let uuid = UUID().uuidString[0 ..< 8]
         let defaults = UserDefaults.standard
         defaults.set(uuid, forKey: "code")
+    }
+    
+    // Error Messages
+    func alertUserRegistrationError(message: String = "Please enter all information to create a new account.") {
+        let alert = UIAlertController(title: "Woops",
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title:"Dismiss",
+                                      style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
     
 }

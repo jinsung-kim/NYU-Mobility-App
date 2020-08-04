@@ -8,6 +8,7 @@
 
 import UIKit
 import Device
+import FirebaseAuth
 
 class RegistrationController: UIViewController {
     
@@ -41,9 +42,9 @@ class RegistrationController: UIViewController {
     
     func getRegistered() -> Bool {
         let defaults = UserDefaults.standard
-        let email = defaults.string(forKey: "email")
-        let name = defaults.string(forKey: "name")
-        if (email == "" || name == "") {
+        let username = defaults.string(forKey: "username")
+        let password = defaults.string(forKey: "password")
+        if (username == "" || password == "") {
             return false
         }
         return true

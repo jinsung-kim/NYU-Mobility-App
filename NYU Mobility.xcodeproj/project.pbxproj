@@ -38,6 +38,7 @@
 		A16DE4B02497E4B8008777CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DE4AF2497E4B8008777CD /* Constants.swift */; };
 		A188675B24B7E42C007B6DE9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A188675A24B7E42C007B6DE9 /* UserCell.swift */; };
 		A188675F24BD280C007B6DE9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A188675E24BD280C007B6DE9 /* LoginController.swift */; };
+		A194F56F24D9B4C1006E1025 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A194F56E24D9B4C1006E1025 /* DatabaseManager.swift */; };
 		A19E30E624CE5F5B00C87FDE /* ShareVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19E30E524CE5F5B00C87FDE /* ShareVideoController.swift */; };
 		A1AF57082492A8BD008EF983 /* settings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57062492A8BC008EF983 /* settings.mp3 */; };
 		A1AF57092492A8BD008EF983 /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A1AF57072492A8BC008EF983 /* back.mp3 */; };
@@ -111,6 +112,7 @@
 		A16DE4AF2497E4B8008777CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A188675A24B7E42C007B6DE9 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		A188675E24BD280C007B6DE9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		A194F56E24D9B4C1006E1025 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		A19E30E524CE5F5B00C87FDE /* ShareVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareVideoController.swift; sourceTree = "<group>"; };
 		A1AF57062492A8BC008EF983 /* settings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = settings.mp3; sourceTree = "<group>"; };
 		A1AF57072492A8BC008EF983 /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = back.mp3; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			children = (
 				A141FC9724814B7C00A3433D /* AppDelegate.swift */,
 				A141FC9924814B7C00A3433D /* SceneDelegate.swift */,
+				A194F56E24D9B4C1006E1025 /* DatabaseManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				A1F66C04248F0A840055DBAD /* MapViewController.swift in Sources */,
 				A141FCA224814B7D00A3433D /* NYU_Mobility.xcdatamodeld in Sources */,
 				A13FEA1B2491CE8800A4904F /* SettingsController.swift in Sources */,
+				A194F56F24D9B4C1006E1025 /* DatabaseManager.swift in Sources */,
 				A1F0993B24CB608A003C092D /* CustomTextField.swift in Sources */,
 				A14985EA24B7823300331B7C /* PickUserController.swift in Sources */,
 				A1FC5FFA24853A25001DCCD5 /* Point.swift in Sources */,
