@@ -124,18 +124,40 @@ class ClientController: UIViewController, UITextFieldDelegate {
 //        }
         
         // Firebase register attempt
-        
-        
-        save("email", specialistEmail.text!)
-        save("username", clientEmail.text!) // email treated as username
-        save("password", password.text!)
-        save("name", fullName.text!)
-        save("code", specialistCode.text!)
-        // Store within database
-        
-        
-        // if successful -> redirect
-        performSegue(withIdentifier: "ToClient", sender: self)
+        DatabaseManager.shared.userExists(with: clientEmail.text!, completion: { [weak self] exists in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            guard !exists else {
+                strongSelf.alertUserRegistrationError(message: "It seems that a user for that email already exists")
+                return
+            }
+            // If the user does not exist -> Add
+            FirebaseAuth.Auth.auth().createUser(withEmail: self!.clientEmail.text!, password: self!.password.text!, completion: { authResult, error in
+                guard authResult != nil, error == nil else {
+                    print("Error adding user")
+                    return
+                }
+                
+                // Saves all of the user defaults
+                self!.save("email", self!.specialistEmail.text!)
+                self!.save("username", self!.clientEmail.text!) // email treated as username
+                self!.save("password", self!.password.text!)
+                self!.save("name", self!.fullName.text!)
+                self!.save("code", self!.specialistCode.text!)
+                
+                let client = ClientUser(fullName: self!.fullName.text!, username: self!.clientEmail.text!,
+                                        password: self!.password.text!, code: self!.specialistCode.text!)
+                
+                DatabaseManager.shared.insertUser(with: client, completion: { success in
+                    if success {
+                        // if successful -> redirect
+                        self!.performSegue(withIdentifier: "ToClient", sender: self)
+                    }
+                })
+            })
+        })
     }
     
     func save(_ key: String, _ value: String) {

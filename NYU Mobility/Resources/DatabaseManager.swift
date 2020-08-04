@@ -16,6 +16,12 @@ final class DatabaseManager {
     
     // Reference to the database
     private let database = Database.database().reference()
+    
+    static func safeEmail(_ emailAddress: String) -> String {
+        var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
 }
 
 // MARK: - Account Management
@@ -30,7 +36,8 @@ extension DatabaseManager {
      */
     public func userExists(with username: String,
                            completion: @escaping ((Bool) -> Void)) {
-        database.child(username).observeSingleEvent(of: .value, with: { snapshot in
+        let safeEmail = DatabaseManager.safeEmail(username)
+        database.child(safeEmail).observeSingleEvent(of: .value, with: { snapshot in
             guard snapshot.value as? [String: Any] != nil else {
                 completion(false)
                 return
@@ -42,9 +49,12 @@ extension DatabaseManager {
     /// Inserts a user into the system
     public func insertUser(with user: ClientUser,
                            completion: @escaping (Bool) -> Void) {
-        database.child(user.username).setValue([
+        print(user.safeEmail)
+        print(user.username)
+        database.child(user.safeEmail).setValue([
             "fullName": user.fullName,
             "code": user.code,
+            "username": user.username,
             "password": user.password
             ], withCompletionBlock: {
                 [weak self] error, _ in
@@ -69,7 +79,7 @@ extension DatabaseManager {
                         ]
                         usersCollection.append(newUser)
                         
-                        // Look for error again when inserting the
+                        // Look for error again when inserting the array
                         strongSelf.database.child("clients").setValue(usersCollection, withCompletionBlock: { error, _ in
                             guard error == nil else {
                                 completion(false)
@@ -111,4 +121,10 @@ struct ClientUser {
     let username: String // email address
     let password: String
     let code: String // Specialist code
+    
+    var safeEmail: String {
+        var safeEmail = username.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
 }
