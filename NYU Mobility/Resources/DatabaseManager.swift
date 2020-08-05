@@ -48,7 +48,7 @@ extension DatabaseManager {
         case failedToFetch
         
         public var localizedDescription: String {
-            switch self {
+            switch (self) {
             case .failedToFetch:
                 return "Database fetching failed"
             }
@@ -73,6 +73,26 @@ extension DatabaseManager {
         })
     }
     
+    public func getAllClientUsers(completion: @escaping (Result<[[String: String]], Error>) -> Void) {
+        database.child("clients").observeSingleEvent(of: .value, with: { snapshot in
+            guard let value = snapshot.value as? [[String: String]] else {
+                completion(.failure(DatabaseError.failedToFetch))
+                return
+            }
+            completion(.success(value))
+        })
+    }
+    
+    public func getAllSpecialistUsers(completion: @escaping (Result<[[String: String]], Error>) -> Void) {
+        database.child("specialists").observeSingleEvent(of: .value, with: { snapshot in
+            guard let value = snapshot.value as? [[String: String]] else {
+                completion(.failure(DatabaseError.failedToFetch))
+                return
+            }
+            completion(.success(value))
+        })
+    }
+    
     /// Inserts a user into the system
     public func insertClientUser(with user: ClientUser,
                            completion: @escaping (Bool) -> Void) {
@@ -80,7 +100,8 @@ extension DatabaseManager {
             "fullName": user.fullName,
             "code": user.code,
             "username": user.username,
-            "password": user.password
+            "password": user.password,
+            "mode": "client"
             ], withCompletionBlock: {
                 [weak self] error, _ in
                 guard let strongSelf = self else {
@@ -100,7 +121,8 @@ extension DatabaseManager {
                             "fullName": user.fullName,
                             "code": user.code,
                             "username": user.username,
-                            "password": user.password
+                            "password": user.password,
+                            "mode": "client"
                         ]
                         usersCollection.append(newUser)
                         
@@ -120,7 +142,8 @@ extension DatabaseManager {
                                 "fullName": user.fullName,
                                 "code": user.code,
                                 "username": user.username,
-                                "password": user.password
+                                "password": user.password,
+                                "mode": "client"
                             ]
                         ]
                         
@@ -145,7 +168,8 @@ extension DatabaseManager {
             "fullName": user.fullName,
             "code": user.code,
             "username": user.username,
-            "password": user.password
+            "password": user.password,
+            "mode": "specialist"
             ], withCompletionBlock: {
                 [weak self] error, _ in
                 guard let strongSelf = self else {
@@ -165,7 +189,8 @@ extension DatabaseManager {
                             "fullName": user.fullName,
                             "code": user.code,
                             "username": user.username,
-                            "password": user.password
+                            "password": user.password,
+                            "mode": "specialist"
                         ]
                         usersCollection.append(newUser)
                         
@@ -185,7 +210,8 @@ extension DatabaseManager {
                                 "fullName": user.fullName,
                                 "code": user.code,
                                 "username": user.username,
-                                "password": user.password
+                                "password": user.password,
+                                "mode": "specialist"
                             ]
                         ]
                         

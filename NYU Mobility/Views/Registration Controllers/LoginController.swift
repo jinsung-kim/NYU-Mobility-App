@@ -37,9 +37,6 @@ class LoginController: UIViewController {
         save("mode", "") // Reset the mode
         
         validLogin() {
-//            print(UserDefaults.standard.string(forKey: "mode")!)
-//            print(UserDefaults.standard.string(forKey: "name")!)
-//            print(UserDefaults.standard.string(forKey: "code")!)
             // Redirects to the proper storyboard reference via "show" segue
             if (self.getMode() == "client") { // going to client mode
                 self.performSegue(withIdentifier: "LoggedInClient", sender: self)
@@ -51,7 +48,7 @@ class LoginController: UIViewController {
         }
     }
     
-    func validLogin(completionOuter: () -> Void) {
+    func validLogin(completionOuter: @escaping () -> Void) {
         // Recover above values to validate login
         let email = UserDefaults.standard.string(forKey: "username")
         let password = UserDefaults.standard.string(forKey: "password")
@@ -68,14 +65,15 @@ class LoginController: UIViewController {
                 strongSelf.spinner.dismiss()
             }
             
-            guard let result = authResult, error == nil else {
+            guard let _ = authResult, error == nil else {
                 print("Failed to log in user with email: \(email!)")
+                completionOuter()
                 return
             }
             
-            let user = result.user
-            let safeEmail = DatabaseManager.safeEmail(email!)
+//            let user = result.user
             
+            let safeEmail = DatabaseManager.safeEmail(email!)
             DatabaseManager.shared.getDataFor(path: safeEmail, completion: { result in
                 switch (result) {
                 case .success(let data):
@@ -89,18 +87,17 @@ class LoginController: UIViewController {
                     UserDefaults.standard.set(mode, forKey: "mode")
                     UserDefaults.standard.set(name, forKey: "name")
                     UserDefaults.standard.set(code, forKey: "code")
+                    completionOuter()
                 case .failure(let error):
                     print("Failed to read data with error: \(error)")
                     // Values will not pass
                     UserDefaults.standard.set("", forKey: "mode")
                     UserDefaults.standard.set("", forKey: "name")
                     UserDefaults.standard.set("", forKey: "code")
-                    return
                 }
             })
-            print("Logged in User: \(user)")
+//            print("Logged in User: \(user)")
         })
-        completionOuter()
     }
     
     func labelAdjustments() {

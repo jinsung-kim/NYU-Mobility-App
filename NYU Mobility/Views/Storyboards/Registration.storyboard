@@ -146,9 +146,6 @@
                                 <rect key="frame" x="110" y="187" width="155" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="dI5-gp-Rxt"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kw6-0T-qXK">
                                 <rect key="frame" x="149" y="158" width="77" height="21"/>
@@ -166,9 +163,6 @@
                                 <rect key="frame" x="106.66666666666669" y="329" width="162" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <connections>
-                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="9Nl-5j-FgE"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1l-X3-GZ1">
                                 <rect key="frame" x="150.66666666666666" y="300" width="74" height="21"/>
@@ -187,9 +181,6 @@
                                 <rect key="frame" x="154.66666666666666" y="258" width="66" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="aYX-gu-bHd"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.33066866639665699" green="0.1185824159956317" blue="0.57703403561928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -309,7 +300,6 @@
                                 <connections>
                                     <action selector="loginButton:" destination="Mdb-qh-a3b" eventType="touchUpInside" id="Pom-ag-lb0"/>
                                     <action selector="loginSubmitted:" destination="b23-ew-FkT" eventType="touchUpInside" id="OGy-S2-Sk8"/>
-                                    <action selector="registered:" destination="LTW-xd-LH4" eventType="touchUpInside" id="7TJ-d6-Lke"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -690,7 +680,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="epg-oJ-LXP"/>
+        <segue reference="YVW-B4-IhM"/>
         <segue reference="Fpi-Uh-hw4"/>
         <segue reference="0ue-6Y-cv2"/>
     </inferredMetricsTieBreakers>
