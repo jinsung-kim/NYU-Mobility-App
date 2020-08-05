@@ -34,14 +34,73 @@ class LoginController: UIViewController {
         // Save values
         save("username", username.text!)
         save("password", password.text!)
-        // Redirects to the proper storyboard reference via "show" segue
-        if (getMode() == "client" && validLogin()) { // going to client mode
-            self.performSegue(withIdentifier: "LoggedInClient", sender: self)
-        } else if (getMode() == "specialist" && validLogin()) { // going to specialist mode
-            self.performSegue(withIdentifier: "LoggedInSpecialist", sender: self)
-        } else { // else do nothing (don't redirect) -> create error message
-            alertUserLoginError()
+        save("mode", "") // Reset the mode
+        
+        validLogin() {
+//            print(UserDefaults.standard.string(forKey: "mode")!)
+//            print(UserDefaults.standard.string(forKey: "name")!)
+//            print(UserDefaults.standard.string(forKey: "code")!)
+            // Redirects to the proper storyboard reference via "show" segue
+            if (self.getMode() == "client") { // going to client mode
+                self.performSegue(withIdentifier: "LoggedInClient", sender: self)
+            } else if (self.getMode() == "specialist") { // going to specialist mode
+                self.performSegue(withIdentifier: "LoggedInSpecialist", sender: self)
+            } else { // else do nothing (don't redirect) -> create error message
+                self.alertUserLoginError()
+            }
         }
+    }
+    
+    func validLogin(completionOuter: () -> Void) {
+        // Recover above values to validate login
+        let email = UserDefaults.standard.string(forKey: "username")
+        let password = UserDefaults.standard.string(forKey: "password")
+        
+        spinner.show(in: view)
+
+        // Validate Login
+        FirebaseAuth.Auth.auth().signIn(withEmail: email!, password: password!, completion: { [weak self] authResult, error in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
+            }
+            
+            guard let result = authResult, error == nil else {
+                print("Failed to log in user with email: \(email!)")
+                return
+            }
+            
+            let user = result.user
+            let safeEmail = DatabaseManager.safeEmail(email!)
+            
+            DatabaseManager.shared.getDataFor(path: safeEmail, completion: { result in
+                switch (result) {
+                case .success(let data):
+                    guard let userData = data as? [String: Any],
+                        let name = userData["fullName"] as? String,
+                        let code = userData["code"] as? String,
+                        let mode = userData["mode"] as? String else {
+                            return
+                    }
+                    // Stores mode for the user
+                    UserDefaults.standard.set(mode, forKey: "mode")
+                    UserDefaults.standard.set(name, forKey: "name")
+                    UserDefaults.standard.set(code, forKey: "code")
+                case .failure(let error):
+                    print("Failed to read data with error: \(error)")
+                    // Values will not pass
+                    UserDefaults.standard.set("", forKey: "mode")
+                    UserDefaults.standard.set("", forKey: "name")
+                    UserDefaults.standard.set("", forKey: "code")
+                    return
+                }
+            })
+            print("Logged in User: \(user)")
+        })
+        completionOuter()
     }
     
     func labelAdjustments() {
@@ -74,59 +133,6 @@ class LoginController: UIViewController {
         let defaults = UserDefaults.standard
         let mode = defaults.string(forKey: "mode")
         return mode!
-    }
-    
-    func validLogin() -> Bool {
-        let defaults = UserDefaults.standard
-        let email = defaults.string(forKey: "username")
-        let password = defaults.string(forKey: "password")
-        if (email == "" || password == "") {
-            return false
-        }
-        
-        spinner.show(in: view)
-
-        // Validate Login
-        FirebaseAuth.Auth.auth().signIn(withEmail: email!, password: password!, completion: { [weak self] authResult, error in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                strongSelf.spinner.dismiss()
-            }
-            
-            guard let result = authResult, error == nil else {
-                print("Failed to log in user with email: \(email!)")
-                return
-            }
-            
-            let user = result.user
-            let safeEmail = DatabaseManager.safeEmail(email!)
-            
-            DatabaseManager.shared.getDataFor(path: safeEmail, completion: { result in
-                switch result {
-                case .success(let data):
-                    guard let userData = data as? [String: Any],
-                        let name = userData["fullName"] as? String,
-                        let code = userData["code"] as? String,
-                        let mode = userData["mode"] as? String else {
-                            return
-                    }
-                    // STORE MODE OF THE USER
-                    UserDefaults.standard.set(mode, forKey: "mode")
-                    UserDefaults.standard.set(name, forKey: "name")
-                    UserDefaults.standard.set(code, forKey: "code")
-                case .failure(let error):
-                    print("Failed to read data with error: \(error)")
-                    return
-                }
-            })
-            
-            print("Logged in User: \(user)")
-        })
-        
-        return true
     }
     
     func alertUserLoginError(message: String = "Login unsuccessful") {

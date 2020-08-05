@@ -25,8 +25,6 @@ class SpecialistController: UIViewController {
     @IBOutlet weak var registerButton: CustomButton!
     // Login instead -> redirect
     @IBOutlet weak var loginRedirect: CustomButton!
-    
-    var last: UITextField?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,32 +106,7 @@ class SpecialistController: UIViewController {
         
         // Connect all UITextFields to go to the next
         UITextField.connectFields(fields: [name, email, password])
-        
-        // Keyboard settings
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
-//                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-//                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
-//     Called when we leave this view controller, whether that is going back or finished
-    override func viewDidDisappear(_ animated: Bool) {
-        // Cleaning up to avoid any unnecessary notification messages
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification,
-//                                                  object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification,
-//                                                  object: nil)
-    }
-    
-    @IBAction func keyboardStays(_ sender: UITextField) {
-        last = sender
-    }
-
-//    @objc func keyboardWillHide(notification: NSNotification) {
-//        if view.frame.origin.y != 0 {
-//            view.frame.origin.y = 0
-//        }
-//    }
     
     func exitEdit() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))

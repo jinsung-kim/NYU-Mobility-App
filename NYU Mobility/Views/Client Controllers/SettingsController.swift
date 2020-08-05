@@ -79,6 +79,7 @@ class SettingsController: UITableViewController {
         save("password", "")
         save("name", "")
         save("code", "")
+        save("mode", "")
     }
     
     // Updates all of the labels as necessary, based on what the user has already inputted

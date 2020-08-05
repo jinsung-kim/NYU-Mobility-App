@@ -46,6 +46,7 @@ class StorageController: UITableViewController {
         save("password", "")
         save("name", "")
         save("code", "")
+        save("mode", "")
         performSegue(withIdentifier: "LoggingOut", sender: self)
     }
     

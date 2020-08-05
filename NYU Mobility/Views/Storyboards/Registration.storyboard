@@ -165,7 +165,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="At least 6 characters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evH-rQ-Esl" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
                                 <rect key="frame" x="106.66666666666669" y="329" width="162" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="keyboardStays:" destination="LTW-xd-LH4" eventType="editingDidBegin" id="9Nl-5j-FgE"/>
                                 </connections>
@@ -292,10 +292,10 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="8 - 16 characters recommended" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LEO-lG-2o5" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
-                                <rect key="frame" x="69.666666666666686" y="268" width="236" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LEO-lG-2o5" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
+                                <rect key="frame" x="171.66666666666666" y="268" width="32" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4d-bA-1z3">
                                 <rect key="frame" x="150.66666666666666" y="239" width="74" height="21"/>
@@ -531,7 +531,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="At least 6 characters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvT-X1-Ifp" customClass="CustomTextField" customModule="NYU_Mobility" customModuleProvider="target">
                                 <rect key="frame" x="106.66666666666669" y="329" width="162" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="keyboardStays:" destination="PDR-mp-3r4" eventType="editingDidBegin" id="g5p-hq-K2i"/>
                                 </connections>
@@ -690,8 +690,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YVW-B4-IhM"/>
-        <segue reference="aJh-hw-HKs"/>
+        <segue reference="epg-oJ-LXP"/>
+        <segue reference="Fpi-Uh-hw4"/>
         <segue reference="0ue-6Y-cv2"/>
     </inferredMetricsTieBreakers>
     <resources>

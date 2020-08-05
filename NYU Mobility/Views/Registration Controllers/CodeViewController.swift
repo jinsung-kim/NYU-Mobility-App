@@ -23,7 +23,7 @@ class CodeViewController: UIViewController {
     }
     
     func buttonConstraints() {
-        // next button
+        // Next button
         nextButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
