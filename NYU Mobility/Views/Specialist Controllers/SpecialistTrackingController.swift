@@ -113,11 +113,11 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         }
     }
     
-    func dateFormatter() -> String {
+    /// Turns Date object into a string in yyyy-MM-dd hh:mm:ss format
+    func dateToString(_ date: Date = Date()) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        let dateString = formatter.string(from: Date())
-        return dateString
+        return formatter.string(from: date)
     }
     
     /**
@@ -143,7 +143,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
             sender.setTitle("Reset", for: .normal)
             buttonState = 2
         case 2:
-            savePoint() // Saves into Core Data
+            saveSession() // Saves into Core Data
             clearData()
             sender.setTitle("Start", for: .normal)
             buttonState = 0
@@ -288,7 +288,7 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         }
         
         if (maxDistance != 0 || maxSteps != 0 || points.isEmpty || significant) {
-            points.append(Point(dateFormatter(), maxSteps, maxDistance,
+            points.append(Point(dateToString(), maxSteps, maxDistance,
                                 avgPace, currPace, currCad,
                                 locationArray, gyroDict))
             
@@ -308,8 +308,8 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         return "There was an error generating the JSON file"
     }
     
-    // Saves Point
-    func savePoint() {
+    // Saves Points
+    func saveSession() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -319,17 +319,28 @@ class SpecialistTrackingController: UIViewController, CLLocationManagerDelegate 
         let entity = NSEntityDescription.entity(forEntityName: "Session",
                                                 in: managedContext)!
         
-        let session = NSManagedObject(entity: entity,
-                                    insertInto: managedContext)
+        let session = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        session.setValue(generateJSON(), forKeyPath: "json")
+        let json: String = generateJSON()
+        session.setValue(json, forKeyPath: "json")
         session.setValue(startTime, forKeyPath: "startTime")
         session.setValue(name!, forKeyPath: "user")
         session.setValue("", forKeyPath: "videoURL") // no video url for this type of sessions
         
+        let code: String = UserDefaults.standard.string(forKey: "code")!
+        let mode: String = "specialist"
+        
+        DatabaseManager.shared.insertClientSession(code: code, json: json, clientName: name!,
+                                                   startTime: dateToString(startTime), mode: mode,
+                                                   videoURL: "", completion: { success in
+            if (!success) {
+                print("Failed to save to database")
+            }
+        })
+        
         do {
             try managedContext.save()
-                sessions.append(session)
+            sessions.append(session)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

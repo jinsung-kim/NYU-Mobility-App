@@ -354,7 +354,6 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             self?.distance = 0
             self?.maxSteps = 0
             self?.maxDistance = 0
-//            self?.saveData(currTime: Date(), significant: false)
         }
     }
     
@@ -397,6 +396,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             maxDistance = distance
         }
         
+        // If the data collected is valid -> insert into the collection of points
         if (maxDistance != 0 || maxSteps != 0 || points.isEmpty || significant) {
             points.append(Point(dateFormatter(), maxSteps, maxDistance,
                                 avgPace, currPace, currCad,

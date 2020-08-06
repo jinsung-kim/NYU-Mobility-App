@@ -176,7 +176,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             sender.setTitle("Reset", for: .normal)
             buttonState = 2
         case 2:
-            self.performSegue(withIdentifier: "ShareSession", sender: self) // Redirects to the share button
+            // Redirects to the share button
+            self.performSegue(withIdentifier: "ShareSession", sender: self)
             clearData()
             playSound("reset")
             sender.setTitle("Start", for: .normal)

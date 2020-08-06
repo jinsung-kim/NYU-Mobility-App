@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import SwiftyJSON
 
 /// Manager object to read and write data to the real time Firebase database
 final class DatabaseManager {
@@ -95,7 +96,7 @@ extension DatabaseManager {
     
     /// Inserts a user into the system
     public func insertClientUser(with user: ClientUser,
-                           completion: @escaping (Bool) -> Void) {
+                                 completion: @escaping (Bool) -> Void) {
         database.child(user.safeEmail).setValue([
             "fullName": user.fullName,
             "code": user.code,
@@ -161,6 +162,50 @@ extension DatabaseManager {
                 })
             }
         )
+    }
+    
+    /// Given the details of a session, this function will add the session under the specialists' code database
+    public func insertClientSession(code: String, json: String, clientName: String, startTime: String,
+                                    mode: String, videoURL: String, completion: @escaping (Bool) -> Void) {
+        self.database.child(code).observeSingleEvent(of: .value, with: {
+            snapshot in
+            if var sessions = snapshot.value as? [[String: String]] {
+                let session = [
+                    "json": json,
+                    "clientName": clientName,
+                    "startTime": startTime,
+                    "mode": mode,
+                    "videoURL": videoURL
+                ]
+                sessions.append(session)
+                self.database.child(code).setValue(sessions, withCompletionBlock: {
+                    error, _ in
+                    guard error == nil else {
+                        completion(false)
+                        return
+                    }
+                    completion(true)
+                })
+            } else {
+                let session: [[String: String]] = [
+                    [
+                    "json": json,
+                    "clientName": clientName,
+                    "startTime": startTime,
+                    "mode": mode,
+                    "videoURL": videoURL
+                    ]
+                ]
+                self.database.child(code).setValue(session, withCompletionBlock: {
+                    error, _ in
+                    guard error == nil else {
+                        completion(false)
+                        return
+                    }
+                    completion(true)
+                })
+            }
+        })
     }
     
     public func insertSpecialistUser(with user: SpecialistUser, completion: @escaping (Bool) -> Void) {

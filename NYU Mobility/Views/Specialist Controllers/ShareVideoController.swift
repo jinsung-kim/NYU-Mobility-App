@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import CoreData
+import SwiftyJSON
 
 class ShareVideoController: UIViewController {
     
@@ -32,20 +33,29 @@ class ShareVideoController: UIViewController {
     }
     
     @IBAction func shareVideo(_ sender: Any) {
-        saveVideoToAlbum(generateURL()!) { (error) in
-            // Do something with error
+        saveVideoToAlbum(generateURL()!) { error in
+            if (error != nil) {
+                print("There was an error saving the video")
+                self.alertUserSaveError()
+            }
         }
-//        saveAndExport()
         writeJSONFile()
     }
     
+    /**
+        Sends a request to the device to save the video to the camera
+        - Parameters:
+            - completion: The completion handler that returns whether the video save contained an error
+     */
     func requestAuthorization(completion: @escaping () -> Void) {
+        // Needs to ask phone for permissions
         if PHPhotoLibrary.authorizationStatus() == .notDetermined {
             PHPhotoLibrary.requestAuthorization { (status) in
                 DispatchQueue.main.async {
                     completion()
                 }
             }
+        // device has already given permission to save to the camera roll
         } else if PHPhotoLibrary.authorizationStatus() == .authorized {
             completion()
         }
@@ -65,18 +75,6 @@ class ShareVideoController: UIViewController {
                 request.addResource(with: .video, fileURL: outputURL, options: nil)
             }) { (result, error) in
                 DispatchQueue.main.async {
-//                    if let error = error {
-//                        print(error.localizedDescription)
-//                        let alertController = UIAlertController(title: "Your video could not be saved", message: nil, preferredStyle: .alert)
-//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                        alertController.addAction(defaultAction)
-//                        self.present(alertController, animated: true, completion: nil)
-//                    } else {
-//                        let alertController = UIAlertController(title: "Your video was successfully saved", message: nil, preferredStyle: .alert)
-//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                        alertController.addAction(defaultAction)
-//                        self.present(alertController, animated: true, completion: nil)
-//                    }
                     completion?(error)
                 }
             }
@@ -89,10 +87,8 @@ class ShareVideoController: UIViewController {
        Generates a temporary directory with a URL and creates a file to be exported as a JSON
     */
     func writeJSONFile() {
-        let file = "\((session.value(forKey: "videoURL") as! String)[0..<36]).json"
+        let file = "\((session.value(forKey: "videoURL") as! String)[0 ..< 36]).json"
         let content = session.value(forKey: "json") as! String
-        print(file)
-
         
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = directory.appendingPathComponent(file)
@@ -124,7 +120,16 @@ class ShareVideoController: UIViewController {
                                                 UIActivity.ActivityType.postToTencentWeibo, UIActivity.ActivityType.postToVimeo,
                                                 UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.print]
         }
-
         present(activityVC, animated: true, completion: nil)
     }
+    
+    func alertUserSaveError(message: String = "The video could not be saved to the camera roll") {
+        let alert = UIAlertController(title: "Woops",
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title:"Dismiss",
+                                      style: .cancel, handler: nil))
+        present(alert, animated: true)
+    }
 }
+
