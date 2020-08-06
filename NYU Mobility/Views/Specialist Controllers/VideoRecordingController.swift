@@ -241,7 +241,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
             cameraButton.backgroundColor = UIColor.white
             movieOutput.stopRecording()
             stopTracking()
-            savePoint()
+            saveSession()
             clearData()
         }
     }
@@ -374,10 +374,10 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         }
     }
     
-    func dateFormatter() -> String {
+    func dateToString(_ date: Date = Date()) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        let dateString = formatter.string(from: Date())
+        let dateString = formatter.string(from: date)
         return dateString
     }
     
@@ -398,7 +398,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         
         // If the data collected is valid -> insert into the collection of points
         if (maxDistance != 0 || maxSteps != 0 || points.isEmpty || significant) {
-            points.append(Point(dateFormatter(), maxSteps, maxDistance,
+            points.append(Point(dateToString(), maxSteps, maxDistance,
                                 avgPace, currPace, currCad,
                                 locationArray, gyroDict))
             
@@ -419,7 +419,7 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
     }
     
     // Saves Point
-    func savePoint() {
+    func saveSession() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -431,7 +431,9 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         
         let session = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        session.setValue(generateJSON(), forKeyPath: "json")
+        let json: String = generateJSON()
+        
+        session.setValue(json, forKeyPath: "json")
         session.setValue(startTime, forKeyPath: "startTime")
         session.setValue(name!, forKeyPath: "user")
         
@@ -439,9 +441,20 @@ class VideoRecordingController: UIViewController, AVCaptureFileOutputRecordingDe
         // See generateURL() to see 'saved' file name + extension
         session.setValue(saved, forKeyPath: "videoURL")
         
+        let code: String = UserDefaults.standard.string(forKey: "code")!
+        let mode: String = "specialist"
+        
+        DatabaseManager.shared.insertClientSession(code: code, json: json, clientName: name!,
+                                                   startTime: dateToString(startTime), mode: mode,
+                                                   videoURL: saved[0 ..< 36], completion: { success in
+            if (!success) {
+                print("Failed to save to database")
+            }
+        })
+        
         do {
             try managedContext.save()
-                sessions.append(session)
+            sessions.append(session)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

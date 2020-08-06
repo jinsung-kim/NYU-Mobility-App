@@ -55,6 +55,9 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
     var points: [Point] = []
     var coords: [CLLocationCoordinate2D] = []
     
+    // Start Time
+    var startTime: Date = Date()
+    
     // Local Storage
     var userLocations: [NSManagedObject] = []
     
@@ -128,14 +131,17 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         }
     }
     /**
-        Takes the current date and returns it in yyyy-MM-dd hh:mm:ss form
-        Used to store within CoreData
-       - Returns: String containing the date in the new format
+        Takes the date and returns it in yyyy-MM-dd hh:mm:ss form
+        Used to store within CoreData + Firebase
+     - Parameters:
+        - date: Date that needs to be converted; by default, the time the session was recorded
+
+     - Returns: String containing the date in the new format
     */
-    func dateFormatter() -> String {
+    func dateToString(_ date: Date = Date()) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        let dateString = formatter.string(from: Date())
+        let dateString = formatter.string(from: date)
         return dateString
     }
     
@@ -195,6 +201,21 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         }
     }
     
+    func saveSession() {
+        let json: String = generateJSON()
+        let code: String = UserDefaults.standard.string(forKey: "code")!
+        let mode: String = "client"
+        let name: String = UserDefaults.standard.string(forKey: "name")!
+        
+        DatabaseManager.shared.insertClientSession(code: code, json: json, clientName: name,
+                                                   startTime: dateToString(startTime), mode: mode,
+                                                   videoURL: "", completion: { success in
+            if (!success) {
+                print("Failed to save to database")
+            }
+        })
+    }
+    
     // Should only do this once
     func getLocationPermission() {
         locationManager.delegate = self
@@ -230,9 +251,10 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
      */
     func startTracking() {
         locationManager.startUpdatingLocation()
+        startTime = Date()
         startGyro()
         startUpdating()
-        saveData(currTime: Date())
+        self.saveData(currTime: Date(), significant: true)
     }
     
     /**
@@ -243,7 +265,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         locationManager.stopUpdatingLocation()
         stopUpdating()
         stopGyros()
-        saveData(currTime: Date())
+        saveData(currTime: Date(), significant: true)
     }
     
     func stopUpdating() { pedometer.stopUpdates() }
@@ -268,7 +290,6 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
             self?.distance = 0
             self?.maxSteps = 0
             self?.maxDistance = 0
-            self?.saveData(currTime: Date())
         }
     }
     
@@ -279,7 +300,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
 
             // Runs concurrently
             DispatchQueue.main.async {
-                self?.saveData(currTime: Date())
+                self?.saveData(currTime: Date(), significant: false)
                 self?.distance = Int32(truncating: pedometerData.distance ?? 0)
                 self?.steps = Int32(truncating: pedometerData.numberOfSteps)
                 self?.avgPace = Double(truncating: pedometerData.averageActivePace ?? 0)
@@ -294,7 +315,7 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         - Parameters:
             - currTime: Date in which the data has been tracked
      */
-    func saveData(currTime: Date) {
+    func saveData(currTime: Date, significant: Bool) {
         // JSON array implementation (See Point.swift for model)
         if (steps >= maxSteps) {
             maxSteps = steps
@@ -302,8 +323,8 @@ class TrackingController: UIViewController, CLLocationManagerDelegate, MFMailCom
         if (distance >= maxDistance) {
             maxDistance = distance
         }
-        if (maxDistance != 0 || maxSteps != 0 || points.isEmpty) {
-            points.append(Point(dateFormatter(), maxSteps, maxDistance, avgPace,
+        if (maxDistance != 0 || maxSteps != 0 || points.isEmpty || significant) {
+            points.append(Point(dateToString(), maxSteps, maxDistance, avgPace,
                                 currPace, currCad, locationArray, gyroDict))
             
             // Clear the gyroscope data after getting its string representation
