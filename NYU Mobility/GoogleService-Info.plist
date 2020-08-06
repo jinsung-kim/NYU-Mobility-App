@@ -13,21 +13,21 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>jin-kim.NYU-Mobility</string>
+	<string>jin-kim.NYU-Mobility-test</string>
 	<key>PROJECT_ID</key>
 	<string>nyu-mobility</string>
 	<key>STORAGE_BUCKET</key>
 	<string>nyu-mobility.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:417267477895:ios:b360d1226f570c99c1f722</string>
 	<key>DATABASE_URL</key>
